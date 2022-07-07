@@ -73,12 +73,12 @@
 				                      	<input type="text" name="sub_category_name" id="sub_category_name" value="<?php echo $subcategory_data[0]['sub_category_name'] ?>" class="form-control" required="">
 				                    </div>
 				                </div>
-                            <div class="col-sm-4">
+                            <!-- <div class="col-sm-4">
                                  <div class="form-group">
                                  <label>Enter Sub category(ar)<span class="text-danger">*</span></label>
                                     <input type="text" name="sub_category_name_ar" id="sub_category_name_ar" value="<?php echo $subcategory_data[0]['sub_category_name_ar'] ?>" class="form-control" required="">
                                 </div>
-                            </div>
+                            </div> -->
                              <div class="col-sm-4 mr20">
                                     <div class="form-group">
                                         <label>Sort Order<span class="text-danger">*</span></label>

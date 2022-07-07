@@ -41,18 +41,18 @@
                     </ul>
                  </li>
 
-                 <!--  <li class="xn-openable">
+                  <li class="xn-openable">
                    <a href="#"><span class="fa fa-child"></span> <span class="xn-text">Banners</span></a>
                     <ul>
                    <li><a href="<?php echo base_url();?>admin/add_banner">Add Banner</a></li>
                     </ul>
-                 </li> -->
+                 </li>
 
-                <!--  <li class="xn-openable">
+                 <li class="xn-openable">
                         <a href="#"><span class="fa fa-gift"></span> <span class="xn-text">Product</span></a>
                         <ul>
                             <li><a href="<?php echo base_url();?>admin/add_new_product">Add Product</a></li>
-                <li><a href="<?php echo base_url();?>admin/product_list">Product List</a></li> -->
+                <li><a href="<?php echo base_url();?>admin/product_list">Product List</a></li>
         </ul>
     </li>
 
