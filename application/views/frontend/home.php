@@ -71,7 +71,7 @@
                      </div>
                      <!-- Deals -->
                      <div class="module deals-layout1">
-                        <h3 class="modtitle"><span>Daily Deals</span></h3>
+                       <!--  <h3 class="modtitle"><span>Daily Deals</span></h3> -->
                         <div class="modcontent">
                            <div id="so_deal_1" class="so-deal style2">
                               <div class="extraslider-inner products-list yt-content-slider" data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="2" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="yes" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
@@ -118,14 +118,14 @@
                                                       </div>
                                                    </div>
                                                    <!--countdown box-->
-                                                   <div class="item-time-w">
+                                                  <!--  <div class="item-time-w">
                                                       <div class="time-title"><span>Hurry Up!</span> Offer ends in:</div>
                                                       <div class="item-time">
                                                          <div class="item-timer">
                                                             <div class="defaultCountdown-30"></div>
                                                          </div>
                                                       </div>
-                                                   </div>
+                                                   </div> -->
                                                    <!--end countdown box-->
                                                 </div>
                                              </div>
@@ -176,14 +176,14 @@
                                                       </div>
                                                    </div>
                                                    <!--countdown box-->
-                                                   <div class="item-time-w">
+                                                   <!-- <div class="item-time-w">
                                                       <div class="time-title"><span>Hurry Up!</span> Offer ends in:</div>
                                                       <div class="item-time">
                                                          <div class="item-timer">
                                                             <div class="defaultCountdown-30"></div>
                                                          </div>
                                                       </div>
-                                                   </div>
+                                                   </div> -->
                                                    <!--end countdown box-->
                                                 </div>
                                              </div>
@@ -232,14 +232,14 @@
                                                       </div>
                                                    </div>
                                                    <!--countdown box-->
-                                                   <div class="item-time-w">
+                                                  <!--  <div class="item-time-w">
                                                       <div class="time-title"><span>Hurry Up!</span> Offer ends in:</div>
                                                       <div class="item-time">
                                                          <div class="item-timer">
                                                             <div class="defaultCountdown-30"></div>
                                                          </div>
                                                       </div>
-                                                   </div>
+                                                   </div> -->
                                                    <!--end countdown box-->
                                                 </div>
                                              </div>
@@ -288,14 +288,14 @@
                                                       </div>
                                                    </div>
                                                    <!--countdown box-->
-                                                   <div class="item-time-w">
+                                                  <!--  <div class="item-time-w">
                                                       <div class="time-title"><span>Hurry Up!</span> Offer ends in:</div>
                                                       <div class="item-time">
                                                          <div class="item-timer">
                                                             <div class="defaultCountdown-30"></div>
                                                          </div>
                                                       </div>
-                                                   </div>
+                                                   </div> -->
                                                    <!--end countdown box-->
                                                 </div>
                                              </div>
@@ -310,7 +310,7 @@
                      <!-- End Deals -->
                      <!-- Listing tabs -->
                      <div class="module listingtab-layout1">
-                        <h3 class="modtitle"><span>Trending items</span></h3>
+                       <!--  <h3 class="modtitle"><span>Trending items</span></h3> -->
                         <div id="so_listing_tabs_1" class="so-listing-tabs first-load">
                            <div class="loadeding"></div>
                            <div class="ltabs-wrap">

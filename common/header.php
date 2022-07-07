@@ -45,7 +45,7 @@
          <div class="row">
             <!-- Logo -->
             <div class="navbar-logo col-lg-2 col-md-2 col-sm-12 col-xs-12">
-               <div class="logo"><a href="index-2.html"><img src="<?php echo base_url();?>assets_frontend/image/catalog/logo.png" title="Your Store" alt="Your Store" /></a></div>
+               <div class="logo"><a href="index-2.html"><img src="<?php echo base_url();?>assets_frontend/image/logo.png" title="Your Store" alt="Your Store" style="margin-top: -40px !important;" /></a></div>
             </div>
             <!-- //end Logo -->
             <!-- Main menu -->
@@ -336,7 +336,7 @@
                <div class="telephone hidden-xs hidden-sm hidden-md">
                   <ul class="blank">
                      <li><a href="#"><i class="fa fa-truck"></i>track your order</a></li>
-                     <li><a href="#"><i class="fa fa-phone-square"></i>Hotline (+123)4 567 890</a></li>
+                     <li><a href="#"><i class="fa fa-phone-square"></i>Hotline 66655674</a></li>
                   </ul>
                </div>
             </div>

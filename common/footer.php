@@ -62,19 +62,19 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 col-style">
                         <div class="infos-footer">
-                            <a href="#"><img src="image/catalog/logo-footer.png" alt="image"></a>
+                            <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/logo.png" alt="image"></a>
                             <ul class="menu">
-                                <li class="adres">
+                                <!-- <li class="adres">
                                     San Luis potosí, centro historico, 78000 san luis potosí, SPL, Mexico
-                                </li>
+                                </li> -->
                                 <li class="phone">
-                                    (+0214)0 315 215 - (+0214)0 315 215
+                                    66655674
                                 </li>
                                 <li class="mail">
-                                    <a href="mailto:contact@opencartworks.com">contact@opencartworks.com</a>
+                                    <a href="mailto:contact@opencartworks.com">info@circuitstore.qa</a>
                                 </li>
                                 <li class="time">
-                                    Open time: 8:00AM - 6:00PM
+                                    Open time: 9:00AM - 9:00PM
                                 </li>
                             </ul>
                         </div>

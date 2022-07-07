@@ -318,7 +318,32 @@ function delete_product(ele,product_id){
 	return false;
 }
 
-
+function delete_gallery_product(ele,product_id,img_path){
+	if(confirm("Are you sure wanted to delete the selected product?")){
+		var user = {};
+		user.product = {};
+		user.product.product_id = product_id;
+		user.product.img_path = img_path;
+					
+		var q = JSON.stringify(user);
+		jQuery.ajax({
+			dataType: 'json',
+			type: "POST",
+			url: "delete_gallery_product",
+			data: {'jsonObj' : q},
+			cache: false,
+			beforeSend: function(){ 
+				jQuery(ele).html('..').prop('disabled', true);
+			},
+			success: function(res){
+				if(res.status=='1'){ // Success
+	          		jQuery(ele).closest('tr').remove();
+	          	}
+      		}
+  		});
+	}
+	return false;
+}
 
 
 
@@ -664,15 +689,14 @@ function validate_add_new_category(ele){
 	hide_message_box(ele);
 	var hasError = 0;
 	var category_name = $('#category_name').val(); 
-	// var category_name_ar = $('#category_name_ar').val();
+	var category_name_ar = $('#category_name_ar').val();
 	var image_file=$('#image_file').val()
 
 	if(jQuery.trim(category_name)=='') { 
 		showError("Please enter category name","category_name"); hasError = 1; 
+	}else if(jQuery.trim(category_name_ar)==''){
+		showError("Please enter category name in ar","category_name_ar"); hasError = 1; 
 	}
-	// else if(jQuery.trim(category_name_ar)==''){
-	// 	showError("Please enter category name in ar","category_name_ar"); hasError = 1; 
-	// }
 	else if(jQuery.trim(image_file) == '')
 	{
 		showError("Please Select the File");
@@ -781,7 +805,7 @@ function validate_new_sub_category(ele){
 	var hasError = 0;
 	var category_id = $('#category_id').val(); 
 	var sub_category_name = $('#sub_category_name').val(); 
-	// var sub_category_name_ar = $('#sub_category_name_ar').val();
+	var sub_category_name_ar = $('#sub_category_name_ar').val();
 	var sub_category_sort_order = $('#sub_category_sort_order').val();  
 	
 	if(jQuery.trim(category_id)=='') { showError("Please select category","category_id"); hasError = 1; }
@@ -794,11 +818,11 @@ function validate_new_sub_category(ele){
 	 	changeError("sub_category_name");
 	 }
 
-	 // if(jQuery.trim(sub_category_name_ar)=='') {
-	 // showError("Please enter sub category name in ar","sub_category_name_ar"); hasError = 1; }
-	 // else {
-	 // 	changeError("sub_category_name_ar");
-	 // }
+	 if(jQuery.trim(sub_category_name_ar)=='') {
+	 showError("Please enter sub category name in ar","sub_category_name_ar"); hasError = 1; }
+	 else {
+	 	changeError("sub_category_name_ar");
+	 }
 
 	 if(jQuery.trim(sub_category_sort_order)=='') {
 
@@ -815,9 +839,8 @@ function validate_new_sub_category(ele){
 			user.product = {};
 			user.product.category_id = category_id;
 			user.product.sub_category_name = sub_category_name;
-			// user.product.sub_category_name_ar = sub_category_name_ar;
+			user.product.sub_category_name_ar = sub_category_name_ar;
 			user.product.sub_category_sort_order = sub_category_sort_order;
-			user.product.fk_lang_id = fk_lang_id;
 						
 			var q = JSON.stringify(user);
 

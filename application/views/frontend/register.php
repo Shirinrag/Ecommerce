@@ -29,7 +29,7 @@
                <div id="content" class="col-sm-12">
                   <h2 class="title">Register Account</h2>
                   <p>If you already have an account with us, please login at the <a href="#">login page</a>.</p>
-                  <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
+                  <form action="<?php echo base_url(); ?>Account/do_registers" method="post" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
                      <fieldset id="account">
                         <legend>Your Personal Details</legend>
                         <div class="form-group required" style="display: none;">
@@ -99,7 +99,16 @@
       <!-- Include Libs & Plugins
          ============================================ -->
       <!-- Placed at the end of the document so the pages load faster -->
-      <?php include('common/jsfiles.php');?>    
+      <?php include('common/jsfiles.php');?> 
+         
    </body>
   
 </html>
+<script type="text/javascript">
+    $("#telephone").keypress(function (e) {
+        var txt = String.fromCharCode(e.which);
+        if(!txt.match(/[0-9]/)){
+            return false;
+        }
+    })
+</script>
