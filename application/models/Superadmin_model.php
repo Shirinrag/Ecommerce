@@ -25,6 +25,16 @@ class Superadmin_model extends CI_Model {
         return $query->result_array();
 	}
 
+	public function get_child_category($id='')
+	{
+		$this->db->select('childcategory.*,tbl_language.lang_name');
+		$this->db->from('childcategory');
+		$this->db->join('tbl_language','childcategory.fk_lang_id=tbl_language.id','left');
+		$this->db->where('childcategory.child_category_id',$id);
+		 $query=$this->db->get();
+        return $query->result_array();
+	}
+
 }
 ?>
 

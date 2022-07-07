@@ -64,8 +64,7 @@ $autoload['libraries'] = array('database', 'session','','','simple_html_dom','gl
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('email','url','file','html','text','date','form','captcha','common_helper');
-
+$autoload['helper'] = array('email','url','file','html','text','date','form','captcha','jwt','authorization','common');
 
 /*
 | -------------------------------------------------------------------
@@ -79,8 +78,7 @@ $autoload['helper'] = array('email','url','file','html','text','date','form','ca
 | config files.  Otherwise, leave it blank.
 |
 */
-
-$autoload['config'] = array();
+$autoload['config'] = array('jwt');
 
 
 /*

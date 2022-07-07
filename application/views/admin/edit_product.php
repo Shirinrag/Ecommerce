@@ -60,28 +60,21 @@
                                 <?php }?>
                                 <div class="row ml20 mb20">
                                     <div class="col-sm-3 mr20">
-                                        <div class="form-group">
-                                            <label>Enter product name<span class="text-danger">*</span></label>
-                                            <input type="text"  name="product_name" dir="ltl" id="product_name" class="form-control" value="<?php echo $product_data[0]['product_name']; ?>">
-                                            <input type="hidden" name="product_id" value="<?php echo $product_data[0]['product_id']; ?>">
-                                          
-                                        </div>
+                              <div class="form-group">
+                                 <div class="col-sm-3 mr20">
+                                    <label>Language<span class="text-danger">*</span></label>
+                                    <div><span><?php echo $lang_name[0]['lang_name'];?></span>
                                     </div>
-
-                                    <div class="col-sm-3 mr20">
-                                        <div class="form-group">
-                                            <label>Enter product name(ar)<span class="text-danger">*</span></label>
-                                            <input type="text"  name="product_name_ar" dir="ltl" id="product_name_ar" class="form-control" value="<?php echo $product_data[0]['product_name_ar']; ?>">
-                                        </div>
-                                    </div>
-
+                                 </div>
+                              </div>
+                           </div>
                                     <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Select Category<span class="text-danger">*</span></label>
                                             <select class="form-control" onchange="getSubCategory(this.value)" id="product_category" name="category_id">
                                                 <option disabled value="">Select Category</option>
                                                 <?php foreach ($category_list as $key => $value) {?>
-                                                    <option value="<?php echo $value['category_id'];?>" <?php if($category_data[0]['category_id'] == $value['category_id']){ ?> selected=selected <?php } ?>> <?php echo $value['category_name']." || ". $value['category_name_ar'];?></option>
+                                                    <option value="<?php echo $value['category_id'];?>" <?php if($category_data[0]['category_id'] == $value['category_id']){ ?> selected=selected <?php } ?>> <?php echo $value['category_name']?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -95,10 +88,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row ml20 mb20">
-
-                                    <div class="col-sm-3 mr20">
+                               <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Child category</label>
                                             <select class="form-control select2"  id="child_category_id" name="child_category_id">
@@ -106,6 +96,27 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-sm-3 mr20">
+                                        <div class="form-group">
+                                            <label>Enter product name<span class="text-danger">*</span></label>
+                                            <input type="text"  name="product_name" dir="ltl" id="product_name" class="form-control" value="<?php echo $product_data[0]['product_name']; ?>">
+                                            <input type="hidden" name="product_id" value="<?php echo $product_data[0]['product_id']; ?>">
+                                          
+                                        </div>
+                                    </div>
+
+
+                                    <!-- <div class="col-sm-3 mr20">
+                                        <div class="form-group">
+                                            <label>Enter product name(ar)<span class="text-danger">*</span></label>
+                                            <input type="text"  name="product_name_ar" dir="ltl" id="product_name_ar" class="form-control" value="<?php echo $product_data[0]['product_name_ar']; ?>">
+                                        </div>
+                                    </div> -->
+
+                                    
+                                <div class="row ml20 mb20">
+
+                                    
                                     <div class="col-sm-2 mr20">
                                         <div class="form-group">
                                             <label>Select Unit<span class="text-danger">*</span></label>
@@ -320,7 +331,6 @@
     function getSubCategory(cat_id){
         //var category_id = $('#product_category').val();
         var category_id = cat_id;
-        alert(category_id);
         var subcatid="<?= $product_data[0]['sub_category_id']; ?>";
         var postData = {
             'category_id' : category_id

@@ -41,6 +41,18 @@
                                 <div class="alert alert-danger" style="display:none;"></div>
 
                                 <div class="row ml20  mb20">
+                                     <div class="col-sm-3 mr20">
+                                    <div class="form-group">
+                                        <label>Select Language<span class="text-danger">*</span></label>
+                                        <select class="form-control" name="fk_lang_id" id="fk_lang_id" onchange="getCategory()">
+                                            <option value=""></option>
+                                            <?php foreach ($lang_name as $lang_name_key => $lang_name_row) { ?>
+                                              <option value="<?= $lang_name_row['id']?>"><?= $lang_name_row['lang_name']?></option>
+                                           <?php } ?>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
                                     <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Select category<span class="text-danger">*</span></label>
@@ -206,7 +218,22 @@
     }
 
 
-    
+    function getCategory(){
+        var fk_lang_id = $('#fk_lang_id').val();
+        var postData = {
+            'fk_lang_id' : fk_lang_id
+        }
+        $.post('<?php echo base_url('admin/getCategory')?>',postData,function(data){
+            var subcats = $.parseJSON(data);
+            $('#category_id').html('');
+
+            var html = '<option value="">Select Category</option>';
+            $.each(subcats,function(i,val){
+                html += '<option value="'+val.category_id+'">'+val.category_name+'</option>';
+            })
+            $('#category_id').html(html);
+        })
+    }
 
     $(document).ready(function() {
         var dataTable = $('#child_category_list').DataTable( {
