@@ -15,7 +15,7 @@
 |
 */
 
-$config['base_url']	= "http://localhost/stzsoft/Ecom/";
+$config['base_url']	= "http://localhost/stzsoft/Ecommerce/";
 
 
 /*

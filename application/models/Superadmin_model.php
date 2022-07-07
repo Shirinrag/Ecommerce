@@ -20,7 +20,7 @@ class Superadmin_model extends CI_Model {
 		$this->db->select('subcategory.*,tbl_language.lang_name');
 		$this->db->from('subcategory');
 		$this->db->join('tbl_language','subcategory.fk_lang_id=tbl_language.id','left');
-		$this->db->where('subcategory.subcategory_id',$id);
+		$this->db->where('subcategory.sub_category_id',$id);
 		 $query=$this->db->get();
         return $query->result_array();
 	}

@@ -229,12 +229,13 @@ function edit_category(){
 
         $array_data = json_decode($jsonObj,true); 
         $array_entity = $array_data['product'];
+        print_r($array_entity);die;
         if(isset($array_entity) && !empty($array_entity)){
             $category_id = $array_entity['category_id'];
             $sub_category_name = $array_entity['sub_category_name'];
             $sub_category_name_ar = $array_entity['sub_category_name_ar'];
             $sub_category_sort_order = $array_entity['sub_category_sort_order'];
-            //echo $sub_category_sort_order;die();
+            
             $sub_category_data =$this->model->getData("subcategory",array('sub_category_name'=>$sub_category_name,'status'=>'1'));
             if(isset($sub_category_data) && !empty($sub_category_data)){
                 $data['status'] = '0';
@@ -262,6 +263,7 @@ function edit_category(){
         $sub_category_id = $this->input->get_post('sub_category_id');
         $data['category_data'] = $this->model->getData('category',array('status'=>'1'));
         $data['subcategory_data'] = $this->superadmin_model->get_subcategory($sub_category_id);
+       echo"<pre>"; print_r($data);die;
         $data['menu'] ='subcategory';
         $data['main_content']='admin/edit_sub_category'; //dashboard
         $this->load->view('admin/includes/template',$data);

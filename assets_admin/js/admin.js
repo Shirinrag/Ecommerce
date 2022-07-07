@@ -817,6 +817,7 @@ function validate_new_sub_category(ele){
 			user.product.sub_category_name = sub_category_name;
 			// user.product.sub_category_name_ar = sub_category_name_ar;
 			user.product.sub_category_sort_order = sub_category_sort_order;
+			user.product.fk_lang_id = fk_lang_id;
 						
 			var q = JSON.stringify(user);
 

@@ -114,7 +114,7 @@
                                         <th>Sr No.</th>
                                         <th>Category Name</th>
                                         <th>Sub Category Name</th>
-                                        <th>Sub Category Name(ar)</th>
+                                        <!-- <th>Sub Category Name(ar)</th> -->
                                         <th>Sort Order</th>
                                         <th>Action</th>
                                     </tr>
@@ -127,7 +127,7 @@
                                             <td><?php echo ++$i;?></td>
                                             <td><?php echo $subcategory['category_name'];?></td>
                                             <td><?php echo $subcategory['sub_category_name'];?></td>
-                                            <td><?php echo $subcategory['sub_category_name_ar'];?></td>
+                                            <!-- <td><?php echo $subcategory['sub_category_name_ar'];?></td> -->
                                              <td><?php echo $subcategory['sort_order'];?></td>
                                             <td>
                                                <span><a href="<?php echo base_url()."admin/edit_sub_category?sub_category_id=".$subcategory['sub_category_id']?>"><i class='fa fa-pencil'></i></a></span>
