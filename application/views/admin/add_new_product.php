@@ -51,14 +51,14 @@
                                 <div class="col-sm-3 mr20">
                                     <div class="form-group">
                                         <label>Enter product name<span class="text-danger">*</span></label>
-                                        <input type="text"  name="product_name" dir="rtl" id="product_name" class="form-control">
+                                        <input type="text"  name="product_name" dir="ltl" id="product_name" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3 mr20">
                                     <div class="form-group">
                                         <label>Enter product name(ar)<span class="text-danger">*</span></label>
-                                        <input type="text"  name="product_name_ar" dir="rtl" id="product_name_ar" class="form-control">
+                                        <input type="text"  name="product_name_ar" dir="ltl" id="product_name_ar" class="form-control">
                                     </div>
                                 </div>
 
@@ -107,7 +107,7 @@
                                 <div class="col-sm-2 mr20">
                                     <div class="form-group">
                                         <label>Selling Price <span class="text-danger">*</span></label>
-                                        <input placeholder="" type="text" dir="rtl" class="form-control" 
+                                        <input placeholder="" type="text" dir="ltl" class="form-control" 
                                         name="product_price" id="product_price">
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                                  <div class="col-sm-2 mr20">
                                     <div class="form-group">
                                         <label>Product Offer Price<span class="text-danger">*</span></label>
-                                        <input placeholder="" type="text" dir="rtl" class="form-control"
+                                        <input placeholder="" type="text" dir="ltl" class="form-control"
                                          name="product_offer_price" id="product_offer_price">
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@
                                  <div class="col-sm-2 mr20">
                                     <div class="form-group">
                                         <label>Product Purchase Price <span class="text-danger">*</span></label>
-                                        <input placeholder="" type="text" dir="rtl" class="form-control"
+                                        <input placeholder="" type="text" dir="ltl" class="form-control"
                                          name="product_purchase_price" id="product_purchase_price">
                                     </div>
                                 </div>
@@ -134,7 +134,7 @@
                                 <div class="col-sm-2 mr20">
                                     <div class="form-group">
                                         <label>Pack Size<span class="text-danger">*</span></label>
-                                        <input placeholder="ex.1,2,3" type="text" dir="rtl" class="form-control" name="pack_size" id="pack_size">
+                                        <input placeholder="ex.1,2,3" type="text" dir="ltl" class="form-control" name="pack_size" id="pack_size">
                                     </div>
                                 </div>
                                  <div class="col-sm-4 mr20">
@@ -151,13 +151,13 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>Product Barcode</label>
-                                        <input type="text" class="form-control" dir="rtl" name="product_barcode" id="product_barcode">
+                                        <input type="text" class="form-control" dir="ltl" name="product_barcode" id="product_barcode">
                                     </div>
                                 </div>
                                    <div class="col-sm-2 mr20">
                                     <div class="form-group">
                                         <label>Product Code <span class="text-danger">*</span></label>
-                                        <input placeholder="" type="text" dir="rtl" class="form-control"
+                                        <input placeholder="" type="text" dir="ltl" class="form-control"
                                          name="product_code" id="product_code">
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Product Video Url</label>
-                                        <input type="text" class="form-control" dir="rtl" name="video_url" 
+                                        <input type="text" class="form-control" dir="ltl" name="video_url" 
                                         id="video_url">
                                     </div>
                                 </div>
@@ -194,7 +194,7 @@
                                  <div class="col-sm-2">
                                     <div class="form-group">
                                         <label>Maximum Selling limit <span class="text-danger">*</span></label>
-                                        <input placeholder="" type="text" dir="rtl" class="form-control" 
+                                        <input placeholder="" type="text" dir="ltl" class="form-control" 
                                         name="max_sell_limit" id="max_sell_limit">
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
                                         <label>Enter Product Description </label>
-                                        <textarea class="form-control" dir="rtl" name="description" id="product_description"></textarea>
+                                        <textarea class="form-control" dir="ltl" name="description" id="product_description"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +212,7 @@
                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
                                         <label>Enter Product Description (ar)</label>
-                                        <textarea class="form-control" dir="rtl" name="description_ar" id="product_description"></textarea>
+                                        <textarea class="form-control" dir="ltl" name="description_ar" id="product_description"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +283,6 @@
 
     function getSubCategory(){
         var category_id = $('#product_category').val();
-
         var postData = {
             'category_id' : category_id
         }

@@ -16,6 +16,18 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+        .img-download {
+  position: relative;
+}
+
+.img-download > a {
+  position: relative;
+  background: white;
+  bottom: 0;
+  padding: 10px;
+  left: 0;
+  margin: 7px;
+}
     </style>
 </head>
 <body>
@@ -34,10 +46,7 @@
                 <div class="row">
                     <div class="panel">
 
-
-
-
-                       <form id="basicForm" method="post" action="<?php echo base_url();?>admin/submit_product" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_product(this);">
+                     <form id="basicForm" method="post" action="<?php echo base_url();?>admin/update_products" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_product(this);">
                         <div class="panel-heading nopaddingbottom">
                             <h4 class="panel-title"><b>Edit Product</b></h4>
                             <button class="btn btn-success btn-quirk btn-wide mr5" style="float: right;margin-top: 2px;">Edit Product</button>
@@ -53,21 +62,23 @@
                                     <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Enter product name<span class="text-danger">*</span></label>
-                                            <input type="text"  name="product_name" dir="rtl" id="product_name" class="form-control" value="<?php echo $product_data[0]['product_name']; ?>">
+                                            <input type="text"  name="product_name" dir="ltl" id="product_name" class="form-control" value="<?php echo $product_data[0]['product_name']; ?>">
+                                            <input type="hidden" name="product_id" value="<?php echo $product_data[0]['product_id']; ?>">
+                                          
                                         </div>
                                     </div>
 
                                     <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Enter product name(ar)<span class="text-danger">*</span></label>
-                                            <input type="text"  name="product_name_ar" dir="rtl" id="product_name_ar" class="form-control" value="<?php echo $product_data[0]['product_name_ar']; ?>">
+                                            <input type="text"  name="product_name_ar" dir="ltl" id="product_name_ar" class="form-control" value="<?php echo $product_data[0]['product_name_ar']; ?>">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Select Category<span class="text-danger">*</span></label>
-                                            <select class="form-control" onchange="getSubCategory()" id="product_category" name="category_id">
+                                            <select class="form-control" onchange="getSubCategory(this.value)" id="product_category" name="category_id">
                                                 <option disabled value="">Select Category</option>
                                                 <?php foreach ($category_list as $key => $value) {?>
                                                     <option value="<?php echo $value['category_id'];?>" <?php if($category_data[0]['category_id'] == $value['category_id']){ ?> selected=selected <?php } ?>> <?php echo $value['category_name']." || ". $value['category_name_ar'];?></option>
@@ -90,7 +101,7 @@
                                     <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Child category</label>
-                                            <select class="form-control"  id="child_category_id" name="child_category_id">
+                                            <select class="form-control select2"  id="child_category_id" name="child_category_id">
                                                 <option disabled value="">Select</option>
                                             </select>
                                         </div>
@@ -109,7 +120,7 @@
                                     <div class="col-sm-2 mr20">
                                         <div class="form-group">
                                             <label>Selling Price <span class="text-danger">*</span></label>
-                                            <input placeholder="" type="text" dir="rtl" class="form-control" 
+                                            <input placeholder="" type="text" dir="ltl" class="form-control" 
                                             name="product_price" id="product_price" value="<?php echo $product_data[0]['product_price']; ?>">
                                         </div>
                                     </div>
@@ -117,7 +128,7 @@
                                     <div class="col-sm-2 mr20">
                                         <div class="form-group">
                                             <label>Product Offer Price<span class="text-danger">*</span></label>
-                                            <input placeholder="" type="text" dir="rtl" class="form-control"
+                                            <input placeholder="" type="text" dir="ltl" class="form-control"
                                             name="product_offer_price" id="product_offer_price" value="<?php echo $product_data[0]['product_offer_price']; ?>">
                                         </div>
                                     </div>
@@ -125,7 +136,7 @@
                                     <div class="col-sm-2 mr20">
                                         <div class="form-group">
                                             <label>Product Purchase Price <span class="text-danger">*</span></label>
-                                            <input placeholder="" type="text" dir="rtl" class="form-control"
+                                            <input placeholder="" type="text" dir="ltl" class="form-control"
                                             name="product_purchase_price" id="product_purchase_price" value="<?php echo $product_data[0]['product_purchase_price']; ?>">
                                         </div>
                                     </div>
@@ -136,7 +147,7 @@
                                     <div class="col-sm-2 mr20">
                                         <div class="form-group">
                                             <label>Pack Size<span class="text-danger">*</span></label>
-                                            <input placeholder="ex.1,2,3" type="text" dir="rtl" class="form-control" name="pack_size" id="pack_size" value="<?php echo $product_data[0]['pack_size']; ?>">
+                                            <input placeholder="ex.1,2,3" type="text" dir="ltl" class="form-control" name="pack_size" id="pack_size" value="<?php echo $product_data[0]['pack_size']; ?>">
                                         </div>
                                     </div>
                                     <div class="col-sm-4 mr20">
@@ -145,7 +156,7 @@
                                             <select multiple="true" class="form-control select2" id="relatable_products" name="relatable_products[]">
                                                 <option disabled value="">Select Products</option>
                                                 <?php foreach ($product_list as $key => $value) {?>
-                            <option value="<?php echo $value['product_id'];?>" <?php if(in_array($value['product_name'], explode(',', $product_data[0]['relatable_products']))){ ?> selected="selected" <?php } ?>> <?php echo $value['product_name'];?></option>
+                                                    <option value="<?php echo $value['product_id'];?>" <?php if(in_array($value['product_name'], explode(',', $product_data[0]['relatable_products']))){ ?> selected="selected" <?php } ?>> <?php echo $value['product_name'];?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -153,19 +164,19 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label>Product Barcode</label>
-                                            <input type="text" class="form-control" dir="rtl" name="product_barcode" id="product_barcode" value="<?php echo $value['product_barcode'];?>">
+                                            <input type="text" class="form-control" dir="ltl" name="product_barcode" id="product_barcode" value="<?php echo $value['product_barcode'];?>">
                                         </div>
                                     </div>
                                     <div class="col-sm-2 mr20">
                                         <div class="form-group">
                                             <label>Product Code <span class="text-danger">*</span></label>
-                                            <input placeholder="" type="text" dir="rtl" class="form-control"
+                                            <input placeholder="" type="text" dir="ltl" class="form-control"
                                             name="product_code" id="product_code" value="<?php echo $value['product_code'];?>">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row ml20 mb20">
-                                   <div class="col-sm-2 mr20">
+                                 <div class="col-sm-2 mr20">
                                     <div class="form-group">
                                         <label>Is Listed in Superdeal?<span class="text-danger">*</span></label>
                                         <select class="form-control"  id="is_superdeal" name="listed_in_super_deal">
@@ -178,7 +189,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>Product Video Url</label>
-                                        <input type="text" class="form-control" dir="rtl" name="video_url" 
+                                        <input type="text" class="form-control" dir="ltl" name="video_url" 
                                         id="video_url" value="<?php echo $value['video_url'];?>">
                                     </div>
                                 </div>
@@ -196,7 +207,7 @@
                                 <div class="col-sm-2">
                                     <div class="form-group">
                                         <label>Maximum Selling limit <span class="text-danger">*</span></label>
-                                        <input placeholder="" type="text" dir="rtl" class="form-control" 
+                                        <input placeholder="" type="text" dir="ltl" class="form-control" 
                                         name="max_sell_limit" id="max_sell_limit" value="<?php echo $value['max_sell_limit'];?>">
                                     </div>
                                 </div>
@@ -206,7 +217,7 @@
                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
                                         <label>Enter Product Description </label>
-                                        <textarea class="form-control" dir="rtl" name="description" id="product_description" value="<?php echo $value['product_description'];?>"></textarea>
+                                        <textarea class="form-control" dir="ltl" name="description" id="product_description" value="<?php echo $value['product_description'];?>"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -214,18 +225,36 @@
                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
                                         <label>Enter Product Description (ar)</label>
-                                        <textarea class="form-control" dir="rtl" name="description_ar" id="product_description" value="<?php echo $value['description_ar'];?>"></textarea>
+                                        <textarea class="form-control" dir="ltl" name="description_ar" id="product_description" value="<?php echo $value['description_ar'];?>"></textarea>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                    </form>
+                        <br><br><br><br>
+                         <div class="panel-body"> 
+                            <label>Product Gallery</label>  
+                          <div class="row">
+                               <div class="col-md-12 img-download">
+                                    
+                                   <?php foreach ($product_gallery as $key => $value) { ?>
+                                          <img id="blah" src="<?php echo base_url().$value['img_url'];?>" style="width: 100px;height: 100px;" alt="your image" />
+                                            <a href='#' onclick='delete_gallery_product(this,"<?php echo $value['id']; ?>","<?php echo 
+                                        $value['img_url']; ?>")'><i class="fa fa-trash-o" aria-hidden="true"></i>  
+                                    </a>
+                                
+                            
+                        <?php }?>
+                        </div>
+                               
+                   </div>
+               </div> 
+               </form>
 
-                </div>
-            </div>
-        </div>
-    </div>
+           </div>
+       </div>
+   </div>
+</div>
 </div>
 <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
     <div class="mb-container">
@@ -274,17 +303,24 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        var cat_id = <?= $product_data[0]['category_id']; ?>         
+        var subcatid = <?= $product_data[0]['sub_category_id']; ?>
+        var childid = <?= $product_data[0]['child_category_id']; ?>
         getSubCategory();
+        getChildCategory();
+        var sub_category_id = $('#subcatid').val();
         $('#product_description,#terms_conditions').summernote({height: 50});
         $('#product_category').select2();
         //$('#subcategory').select2();
-        $('#child_category_id').select2();
+        //$('#child_category_id').select2();
         $('#product_unit').select2();
         $('#relatable_products').select2();        
     });
 
-    function getSubCategory(){
-        var category_id = $('#product_category').val();
+    function getSubCategory(cat_id){
+        //var category_id = $('#product_category').val();
+        var category_id = cat_id;
+        alert(category_id);
         var subcatid="<?= $product_data[0]['sub_category_id']; ?>";
         var postData = {
             'category_id' : category_id
@@ -298,19 +334,21 @@
             $.each(subcats,function(i,val){
 
                 if (val.sub_category_id==subcatid) {
-                   html += '<option value="'+val.sub_category_id+'" selected="selected">'+val.sub_category_name+' </option>';
-               }
-               else{
-                   html += '<option value="'+val.sub_category_id+'">'+val.sub_category_name+'</option>';  
-               }
-               
-           })
+                   
+                 html += '<option value="'+val.sub_category_id+'" selected="selected">'+val.sub_category_name+' </option>';
+             }
+             else{
+                 html += '<option value="'+val.sub_category_id+'">'+val.sub_category_name+'</option>';  
+             }
+
+         })
             $('#subcategory').html(html);
         })
 
     }
     function getChildCategory(){
-        var sub_category_id = $('#subcategory').val();
+        var sub_category_id = $('#subcatid').val();
+        var childcatid="<?= $product_data[0]['child_category_id']; ?>";
         var postData = {
             'sub_category_id' : sub_category_id
         }
@@ -320,9 +358,15 @@
             $('#select2-child_category_id-container').html('Select');
             $('#child_category_id').html('');
 
-            var html = '<option disable value="">Select</option>';
+            var html = '<option disable value="">Select Child Category</option>';
+
             $.each(childcats,function(i,val){
-                html += '<option value="'+val.child_category_id+'">'+val.child_category_name+' || '+val.child_category_name_ar+'</option>';
+              if (val.child_category_id==childcats[0]['child_category_id']) {
+                 html += '<option value="'+val.child_category_id+'" selected="selected">'+val.child_category_name+' || '+val.child_category_name_ar+'</option>';
+             }
+             else{
+                  html += '<option value="'+val.child_category_id+'">'+val.child_category_name+' || '+val.child_category_name_ar+'</option>';
+             }
             })
             $('#child_category_id').html(html);
         })
@@ -330,6 +374,7 @@
     }
 
 </script>
+
 </body>
 
 </html>
