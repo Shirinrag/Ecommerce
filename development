@@ -1,0 +1,21 @@
+Admin Panel 
+
+1)User list
+  a)User list Change the name by Customer List
+  b)Add Registration Date & Time on user list row
+  c)Add last activation date & time
+  d)User Activation/Deactivation
+  e)Date Range for the analysis of new downloads (hold)
+
+2)Category
+	a)New Field for upload the category Image
+	b)Add new field for set the order of category
+
+3)Sub Category
+	a)Add new field for set the order of sub-category
+
+4)Sub Category
+	a)Add new field for set the order of child-category
+
+5)Product 
+	a)Add the field for set product selling limit.

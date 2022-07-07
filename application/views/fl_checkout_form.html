@@ -1,0 +1,924 @@
+<div class="co-body">
+    <ul class="content">
+        <li>
+            <div class="co-panel login closed completed">
+                <div class="panel-heading">
+                    <div class="heading-bar ng-hide">
+                        <div class=""></div>
+                        <h2 class="fk-inline-block title">
+                        <span>1. Before you place your order! </span> <i ng-show="workflow_text" class="ng-binding"> &gt; Sign In</i> </h2>
+                        <div class="cls"></div>
+                    </div>
+                    <div class="rposition">
+                        <div class=""></div>
+                        <a class="collapsed-state pure-g-r" alt="Change Email">
+                            <div class="pure-u-4-5"> <span class="tick"></span>
+                                <h2 class="fk-inline-block title pure-u-1-4 tmargin10"><span>1. Login ID </span></h2> <span class="pure-u fk-font-19 font-color-med-dark tmargin5 ng-binding" ng-bind="loginId">arvind.prajapati20@gmail.com</span> </div>
+                            <div class="pure-u-1-5"> <span class="btn btn-white tmargin5 right_btn lmargin20">Change Login</span> </div>
+                        </a>
+                        <div class="tooltip top pw-updated-msg" ng-class="{in:show_pw_updated}">
+                            <div class="tooltip-arrow"></div>
+                            <div class="tooltip-inner">Password successfully updated! <a ng-click="closePwUpdatedMsg($event)">X</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body collapse" collapse="!is_opened" style="height: 0px;">
+                    <div class="body-loggedout bpadding20 ng-hide" ng-show="is_opened &amp;&amp; !showLogout &amp;&amp; !model.loggedIn">
+                        <div ng-class="{panel_disabled: flag.login.disabled}" class=""></div>
+                        <div class="pure-g-r">
+                            <div class="pure-u-1-2">
+                                <!-- ngRepeat: msg in model.msgs -->
+                                <form name="loginForm" autofill-binder="!loading &amp;&amp; do_login(loginForm)" event-handler="submit" method="post" ng-hide="disallow_otp || show_captcha" class="ng-pristine ng-valid-required ng-valid ng-valid-number">
+                                    <div ng-class="{show_error_msg:showEmailError}" ng-hide="model.loggedIn || login_type === 'has_account' || login_type === 'new_customer' || login_type === 'new_customer_email'" class="ng-hide">
+                                        <div class="fk-font-18">
+                                            <label for="email">Get started with our secure login flow</label>
+                                        </div>
+                                        <input id="email" type="text" name="email" class="fk-input ng-pristine ng-valid ng-valid-required" ng-model="email" required="" placeholder="Enter mobile number or email" autofill="" select-on="login_email">
+                                        <div class="fk-font-11 bpadding10 ng-hide" ng-show="showEmailError">Please enter a valid Email Address/Mobile Number</div>
+                                    </div>
+                                    <div class="" ng-show="(model.loggedIn || login_type === 'has_account' || login_type === 'new_customer' || login_type === 'new_customer_email') &amp;&amp; !otp_data.otp_sent">
+                                        <!-- ngIf: loginId!='' --><span class="fk-font-18 fk-bold ng-scope ng-binding" ng-if="loginId!=''">arvind.prajapati20@gmail.com</span>
+                                        <!-- end ngIf: loginId!='' -->
+                                        <!-- ngIf: !loginId && email!='' --><a href="#" class="edit-icon change lmargin20 lpadding15" ng-click="changeEmail()">Change</a> </div>
+                                    <div class="tpadding15 mobile-number" ng-hide="!model.loggedIn &amp;&amp; login_type !== 'new_customer_email'">
+                                        <div class="fk-font-17">
+                                            <label for="mobile">Enter Mobile Number</label>
+                                        </div>
+                                        <p class="fk-smallfont bpadding10 msg">(We'll send you a Verification Code to this number)</p>
+                                        <div ng-class="{show_error_msg:showMobileError}">
+                                            <input type="text" value="+91" disabled="" class="unit fk-input phone_code">
+                                            <input id="mobile" type="number" name="mobile" class="fk-input phone_field ng-pristine ng-valid-maxlength ng-valid-minlength ng-valid-pattern ng-valid ng-valid-number" ng-model="mobile" placeholder="Enter mobile number" ng-pattern="/^[7-9][0-9]{9}$/" ng-minlength="10" ng-maxlength="10" ng-blur="validateMobile()" select-on="mobile-number">
+                                            <div class="fk-font-12 bpadding10 ng-hide" ng-show="showMobileError">Please enter a valid 10 digit mobile number</div>
+                                        </div>
+                                    </div>
+                                    <div class="otp-email-text tpadding5 ng-hide" ng-show="otp_data.otp_sent">
+                                        For security reasons, we've sent a Verification Code to <strong class="ng-binding">arvind.prajapati20@gmail.com</strong>.
+                                        <!-- ngIf: email!=='' && mobile=='' --><a href="#" class="edit-icon change fk-font-13 lpadding15" ng-click="changeEmail()">Change</a> </div>
+                                    <div class="tpadding15 ng-hide" ng-show="show_otp_form == true">
+                                        <label for="otp" class="fk-font-17">Enter the Code</label>
+                                        <div class="pure-g-r">
+                                            <div class="pure-u-1-2">
+                                                <input type="text" id="otp" name="otp" class="fk-input otp_field ng-pristine ng-valid ng-valid-maxlength ng-valid-minlength" ng-model="otp" ng-disabled="!otp_data.otp_sent || showOTPError===false" maxlength="6" ng-maxlength="6" ng-minlength="6" ng-change="verify_otp()" autocomplete="off" select-on="otp-text" disabled="disabled">
+                                                <input type="hidden" id="otp_key" name="otp_key" ng-value="otp_data.otp_key" ng-model="otp_key" ng-init="otp_key=otp_data.otp_key" class="ng-pristine ng-valid"> </div>
+                                            <div class="pure-u-1-3 otp-status" ng-class="{show_error_msg:showOTPError}"> <span ng-class="{'otp-failure-icon': showOTPError===true, 'otp-success-icon': showOTPError===false}"></span> <span class="ng-binding"></span> </div>
+                                        </div>
+                                        <div class="opt-help" ng-hide="otp_data.otp_validated"> <span class="text">Trouble receiving Code?</span> <a href="javascript:" class="fk-underline" ng-click="generate_otp(true)">Resend Code</a> </div>
+                                    </div>
+                                    <div class="tpadding20 ng-hide" ng-show="(login_type === 'has_account' || login_type === 'new_customer') &amp;&amp; email!=='' &amp;&amp; login_type !== 'phone_sales'" ng-class="{show_error_msg:showPasswordError || showMinimumLengthError}">
+                                        <label for="password" class="fk-font-17" ng-class="{disabled:otp_data.otp_sent &amp;&amp; !otp_data.otp_validated}">
+                                            <!-- ngIf: login_type === 'has_account' && workflow!='guest_only' -->
+                                            <!-- ngIf: login_type === 'new_customer' || workflow == 'guest_only' -->Password<sup>*</sup> </label>
+                                        <input type="password" id="password" name="password" class="fk-input ng-pristine ng-valid" ng-model="password" autofill="" select-on="login-password" ng-disabled="otp_data.otp_sent &amp;&amp; !otp_data.otp_validated">
+                                        <div class="fk-font-11 bpadding10 ng-hide" ng-show="showPasswordError">Please enter password</div>
+                                        <div class="fk-font-11 bpadding10 ng-hide" ng-show="showMinimumLengthError">Password must be at least 4 characters long</div>
+                                    </div>
+                                    <div class="tpadding10 ng-hide" ng-show="(login_type === 'new_customer' &amp;&amp; login_type !== 'phone_sales') || otp_data.otp_sent" ng-class="{show_error_msg:showConfirmPasswordError || showConfPassMismatchError}">
+                                        <label for="confirm_password" class="fk-font-17" ng-class="{disabled:otp_data.otp_sent &amp;&amp; !otp_data.otp_validated}">Confirm Password<sup>*</sup></label>
+                                        <input type="password" id="confirm_password" name="confirm_password" class="fk-input ng-pristine ng-valid" ng-model="confirm_password" ng-disabled="otp_data.otp_sent &amp;&amp; !otp_data.otp_validated">
+                                        <div class="fk-font-11 bpadding10 ng-hide" ng-show="showConfirmPasswordError">Please confirm password</div>
+                                        <div class="fk-font-11 bpadding10 ng-hide" ng-show="showConfPassMismatchError">Password mismatch</div>
+                                    </div>
+                                    <!-- ngIf: !(login_type === 'has_account' || login_type === 'new_customer') || login_type === 'phone_sales' || login_type ==='new_customer_email' -->
+                                    <input type="submit" class="btn btn-large btn-blue tmargin5 ng-scope" value="Continue" ng-if="!(login_type === 'has_account' || login_type === 'new_customer') || login_type === 'phone_sales' || login_type ==='new_customer_email'">
+                                    <!-- end ngIf: !(login_type === 'has_account' || login_type === 'new_customer') || login_type === 'phone_sales' || login_type ==='new_customer_email' -->
+                                    <!-- ngIf: (login_type === 'has_account' && email!=='' ) -->
+                                    <!-- ngIf: (login_type === 'new_customer' && email!=='' ) --><a href="javascript:" class="forgot-pwd-link fk-display-block tmargin10 ng-hide" ng-click="forgot_password()" ng-show="login_type === 'has_account' &amp;&amp; !otp_data.otp_sent" ng-disabled="otp_data.otp_sent &amp;&amp; !otp_data.otp_validated">Forgot Password?</a> </form>
+                                <p class="error ng-hide" ng-show="account_churned">
+                                    Your phone number seems to have changed.
+                                    <br> Please contact customer support to access your account.
+                                </p>
+                                <div ng-show="disallow_otp" class="otp-exceeded ng-hide">
+                                    <!-- ngIf: attempts_exceeded -->
+                                    <!-- ngIf: !attempts_exceeded -->
+                                    <p ng-if="!attempts_exceeded" class="ng-scope">
+                                        For security reasons, to recover your password
+                                        <br> <a href="https://www.flipkart.com/s/contact" target="_blank" class="fk-underline forgot-pwd-link">Contact customer support</a> </p>
+                                    <!-- end ngIf: !attempts_exceeded --><span class="circular-bg">OR</span>
+                                    <p>
+                                        Try again with <a href="#" ng-click="changeEmail()" class="fk-underline forgot-pwd-link">Different Email Address or Mobile Number</a> </p>
+                                </div>
+                                <div ng-show="show_captcha" class="ng-hide">
+                                    <form name="captchaForm" id="captchaForm" autofill-binder="!loading &amp;&amp; verify_captcha()" event-handler="submit" method="post" class="ng-pristine ng-invalid ng-invalid-required">
+                                        <div>
+                                            <p class="bmargin10">For security reasons, we need to establish the requests were indeed generated by you</p>
+                                            <div> <img ng-src="../genImage.php?id=&amp;co_id=OD5070116641388630" class="bmargin20" src="../genImage.php?id=&amp;co_id=OD5070116641388630">
+                                                <p class="bmargin20">
+                                                    Can't read the code above? <a href="#" ng-click="generate_captcha()" class="fk-underline">Regenerate code</a> </p>
+                                            </div>
+                                            <div>
+                                                <label for="captchaInput">Please enter the code below. Letters are not case-sensitive.</label>
+                                                <input type="text" name="captchaInput" id="captchaInput" autocomplete="off" ng-maxlength="6" ng-required="true" maxlength="6" ng-pattern="/^[0-9a-zA-Z]+$/" class="fk-input tmargin8 ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength ng-valid-pattern" ng-model="captchaInput" placeholder="Enter the characters" select-on="captcha_code" required="required">
+                                                <input type="submit" class="btn btn-large btn-orange" value="Continue"> </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="pure-u-1-6 divider-cont">
+                                <div class="divider"> <span class="or-icon"></span> </div>
+                            </div>
+                            <div class="pure-u">
+                                <div class="signup-benefits">
+                                    <h2 class="title">Advantages of Sign Up</h2>
+                                    <ul>
+                                        <li class="item"><span class="manage-icon"></span>
+                                            <p>Manage your Orders</p>
+                                            <p class="fk-smallfont">Easily Track Orders, Hassle free Returns</p>
+                                        </li>
+                                        <li class="item"><span class="decision-icon"></span>
+                                            <p>Make Informed Decisions</p>
+                                            <p class="fk-smallfont">Get Relevant Alerts and Recommendations</p>
+                                        </li>
+                                        <li class="item"><span class="engage-icon"></span>
+                                            <p>Engage Socially</p>
+                                            <p class="fk-smallfont">With wishlists, Reviews, Ratings</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tmargin10 bpadding20 ng-hide" ng-show="is_opened &amp;&amp; showLogout">
+                        <div ng-class="{panel_disabled: flag.login.disabled}" class=""></div>
+                        <div class="pure-g-r">
+                            <div class="pure-u-1">
+                                <p class="bmargin10"> <span class="fk-font-17">
+ Logged in as <!-- ngIf: loginId!='' --><strong ng-if="loginId!=''" class="ng-scope ng-binding">arvind.prajapati20@gmail.com</strong><!-- end ngIf: loginId!='' --><!-- ngIf: !loginId && email!='' --> </span>.
+                                </p>
+                                <div class="info">Please note that upon clicking "Sign out" you will lose items in your cart and will be redirected to Flipkart home page.</div> <a class="btn btn-large btn-orange login_btn tmargin20" ng-click="logout()">Sign out </a> <span class="fk-font-17 lmargin20"><a ng-click="!loading &amp;&amp; restoreStates()" class="fk-underline" alt="Continue with checkout">Continue with checkout</a></span> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li ng-controller="AddressController" class="ng-scope">
+            <div class="co-panel address closed completed" ng-class="{closed: !is_opened, open: is_opened, completed: flag.address.completed}">
+                <div class="panel-heading">
+                    <h2 class="title ng-hide" ng-show="(model.selectedAddress==null || model.selectedAddress.length==0) &amp;&amp; !is_opened"> <span ng-class="{panel_disabled: flag.address.disabled}" class=""></span> <span class="ng-binding">2. Delivery Address</span> </h2>
+                    <div class="heading-bar">
+                        <!-- ngIf: !flag.loggedIn -->
+                        <div ng-class="{panel_disabled: flag.address.disabled}" class=""></div>
+                        <h2 class="title"><span class="ng-binding">2. Delivery Address</span></h2> </div>
+                    <div class="rposition">
+                        <div ng-class="{panel_disabled: flag.address.disabled}" class=""></div>
+                        <a class="collapsed-state pure-g-r" ng-show="!showSelectAddress &amp;&amp; model.selectedAddress" ng-click="(flag.login.disabled=true) &amp;&amp; doChangeAddress()" alt="Change Address" bind-log="change address CNTCTB39A97311E734B0E9105FAA1F">
+                            <div class="pure-u-4-5"> <span class="tick"></span>
+                                <h2 class="fk-inline-block title pure-u-1-4 tmargin10"><span class="ng-binding">2. Delivery Address </span></h2>
+                                <div class="pure-u-2-3 font-color-med-dark ng-binding"> <span class="fk-font-19 rpadding10 selected_address ng-binding">Indramani Prajapati</span><span class="ng-binding">9819144820</span>
+                                    <br> 424, 4th Flr, Videocon, Building No C-1, Soham Plaza, Chitalsar Manpada, G.B Road Thane West Manpada Bus Stop, Thane, Maharashtra - 400607
+                                </div>
+                            </div>
+                            <div class="pure-u-1-5"> <span ng-show="model.totalAddress>=1 || model.selectedAddress" class="btn btn-white tmargin5 right_btn lmargin20">Change Address</span> </div>
+                        </a>
+                        <div class="tooltip top skip-address-msg" ng-class="{in:flag.address.skip}">
+                            <div class="tooltip-arrow"></div>
+                            <div class="tooltip-inner">We have pre-selected your address for you! <a ng-click="closeSkipAddressMsg($event)">X</a></div>
+                        </div>
+                    </div>
+                    <div class="cls"></div>
+                </div>
+                <div class="panel-body collapse" collapse="!is_opened" style="height: 0px;">
+                    <div ng-class="{panel_disabled: flag.address.disabled}" class=""></div>
+                    <!-- ngRepeat: msgs in model.msgs | filter:{relatedTo:null} -->
+                    <div ng-show="showSelectAddress" class="select-address ng-hide">
+                        <div class="address-carousel">
+                            <div carousel="" class="ng-isolate-scope">
+                                <div class="carousel-pointer" ng-show="slides().length>1">Showing <span ng-bind="currentSlide()+1" class="ng-binding">1</span> of <span ng-bind="slides().length" class="ng-binding">2</span></div>
+                                <div ng-mouseenter="pause()" ng-mouseleave="play()" class="carousel">
+                                    <ol class="carousel-indicators" ng-show="slides().length > 1">
+                                        <!-- ngRepeat: slide in slides() -->
+                                        <li ng-repeat="slide in slides()" ng-class="{active: isActive(slide)}" ng-click="select(slide)" class="ng-scope active"></li>
+                                        <!-- end ngRepeat: slide in slides() -->
+                                        <li ng-repeat="slide in slides()" ng-class="{active: isActive(slide)}" ng-click="select(slide)" class="ng-scope"></li>
+                                        <!-- end ngRepeat: slide in slides() -->
+                                    </ol>
+                                    <div class="carousel-inner" ng-transclude="">
+                                        <!-- ngRepeat: slides in address.list -->
+                                        <div ng-class="{
+    'active': leaving || (active &amp;&amp; !entering),
+    'prev': (next || active) &amp;&amp; direction=='prev',
+    'next': (next || active) &amp;&amp; direction=='next',
+    'right': direction=='prev',
+    'left': direction=='next'
+  }" class="item text-center ng-isolate-scope active" ng-transclude="" slide="" ng-repeat="slides in address.list" transition="straight" ng-init="currentSlideIndex=($index+1)">
+                                            <!-- ngRepeat: address in slides -->
+                                            <div ng-repeat="address in slides" class="address_detail ng-scope">
+                                                <a ng-click="!loading &amp;&amp; pickAddress(address.address_id, (currentSlideIndex-1)*3+($index+1))" class="padding20 address-item" ng-class="{selected:isSelectedAddress(address.address_id)}" bind-log="select address CNTCT0814992C4C554B589BEA15855">
+                                                    <div class="name rposition"> <span class="tick-icon tick-mark ng-hide" ng-show="isSelectedAddress(address.address_id)"></span> <span class="text-ellipsis ng-binding" title="Devendra Yadav">Devendra Yadav</span> </div>
+                                                    <p class="ng-binding">Telephone Chawl, Ganesh Nagar Manpada, Thane West Nr. Bhartiya Sanskar Shikshan High School</p>
+                                                    <p class="ng-binding">400607, Thane</p>
+                                                    <p class="ng-binding">Maharashtra</p> <span class="phone ng-binding">9594943800</span>
+                                                    <p class="select_btn btn btn-white">
+                                                        <!-- ngIf: !isSelectedAddress(address.address_id) && addressType=='Delivery' --><span ng-if="!isSelectedAddress(address.address_id) &amp;&amp; addressType=='Delivery'" class="ng-scope">Deliver Here</span>
+                                                        <!-- end ngIf: !isSelectedAddress(address.address_id) && addressType=='Delivery' -->
+                                                        <!-- ngIf: !isSelectedAddress(address.address_id) && addressType=='Billing' -->
+                                                        <!-- ngIf: isSelectedAddress(address.address_id) -->
+                                                    </p>
+                                                </a>
+                                                <div class="address-icons">
+                                                    <a class="delete-icon margin5 ng-scope" ng-click="!loading &amp;&amp; deleteAddress(address.address_id)" tooltip="Delete" tooltip-placement="bottom" tooltip-trigger="mouseenter" bind-log="deleting address CNTCT0814992C4C554B589BEA15855"></a>
+                                                    <a class="address-edit-icon margin5 ng-scope" ng-click="!loading &amp;&amp; editAddress(address)" tooltip="Edit" tooltip-placement="bottom" tooltip-trigger="mouseenter" bind-log="editing address CNTCT0814992C4C554B589BEA15855"></a>
+                                                </div>
+                                            </div>
+                                            <!-- end ngRepeat: address in slides -->
+                                            <div ng-repeat="address in slides" class="address_detail ng-scope">
+                                                <a ng-click="!loading &amp;&amp; pickAddress(address.address_id, (currentSlideIndex-1)*3+($index+1))" class="padding20 address-item" ng-class="{selected:isSelectedAddress(address.address_id)}" bind-log="select address ADD14315200888096958">
+                                                    <div class="name rposition"> <span class="tick-icon tick-mark ng-hide" ng-show="isSelectedAddress(address.address_id)"></span> <span class="text-ellipsis ng-binding" title="Arvind Prajapati">Arvind Prajapati</span> </div>
+                                                    <p class="ng-binding">Mobisoftseo Technologies C-2010, Station Plaza, Bhandup West Bageecha Hotel</p>
+                                                    <p class="ng-binding">400078, Mumbai</p>
+                                                    <p class="ng-binding">Maharashtra</p> <span class="phone ng-binding">8424940007</span>
+                                                    <p class="select_btn btn btn-white">
+                                                        <!-- ngIf: !isSelectedAddress(address.address_id) && addressType=='Delivery' --><span ng-if="!isSelectedAddress(address.address_id) &amp;&amp; addressType=='Delivery'" class="ng-scope">Deliver Here</span>
+                                                        <!-- end ngIf: !isSelectedAddress(address.address_id) && addressType=='Delivery' -->
+                                                        <!-- ngIf: !isSelectedAddress(address.address_id) && addressType=='Billing' -->
+                                                        <!-- ngIf: isSelectedAddress(address.address_id) -->
+                                                    </p>
+                                                </a>
+                                                <div class="address-icons">
+                                                    <a class="delete-icon margin5 ng-scope" ng-click="!loading &amp;&amp; deleteAddress(address.address_id)" tooltip="Delete" tooltip-placement="bottom" tooltip-trigger="mouseenter" bind-log="deleting address ADD14315200888096958"></a>
+                                                    <a class="address-edit-icon margin5 ng-scope" ng-click="!loading &amp;&amp; editAddress(address)" tooltip="Edit" tooltip-placement="bottom" tooltip-trigger="mouseenter" bind-log="editing address ADD14315200888096958"></a>
+                                                </div>
+                                            </div>
+                                            <!-- end ngRepeat: address in slides -->
+                                            <div ng-repeat="address in slides" class="address_detail ng-scope">
+                                                <a ng-click="!loading &amp;&amp; pickAddress(address.address_id, (currentSlideIndex-1)*3+($index+1))" class="padding20 address-item selected" ng-class="{selected:isSelectedAddress(address.address_id)}" bind-log="select address CNTCTB39A97311E734B0E9105FAA1F">
+                                                    <div class="name rposition"> <span class="tick-icon tick-mark" ng-show="isSelectedAddress(address.address_id)"></span> <span class="text-ellipsis ng-binding" title="Indramani Prajapati">Indramani Prajapati</span> </div>
+                                                    <p class="ng-binding">424, 4th Flr, Videocon, Building No C-1, Soham Plaza, Chitalsar Manpada, G.B Road Thane West Manpada Bus Stop</p>
+                                                    <p class="ng-binding">400607, Thane</p>
+                                                    <p class="ng-binding">Maharashtra</p> <span class="phone ng-binding">9819144820</span>
+                                                    <p class="select_btn btn btn-white">
+                                                        <!-- ngIf: !isSelectedAddress(address.address_id) && addressType=='Delivery' -->
+                                                        <!-- ngIf: !isSelectedAddress(address.address_id) && addressType=='Billing' -->
+                                                        <!-- ngIf: isSelectedAddress(address.address_id) --><span ng-if="isSelectedAddress(address.address_id)" class="ng-scope">continue</span>
+                                                        <!-- end ngIf: isSelectedAddress(address.address_id) -->
+                                                    </p>
+                                                </a>
+                                                <div class="address-icons">
+                                                    <a class="delete-icon margin5 ng-scope" ng-click="!loading &amp;&amp; deleteAddress(address.address_id)" tooltip="Delete" tooltip-placement="bottom" tooltip-trigger="mouseenter" bind-log="deleting address CNTCTB39A97311E734B0E9105FAA1F"></a>
+                                                    <a class="address-edit-icon margin5 ng-scope" ng-click="!loading &amp;&amp; editAddress(address)" tooltip="Edit" tooltip-placement="bottom" tooltip-trigger="mouseenter" bind-log="editing address CNTCTB39A97311E734B0E9105FAA1F"></a>
+                                                </div>
+                                            </div>
+                                            <!-- end ngRepeat: address in slides -->
+                                        </div>
+                                        <!-- end ngRepeat: slides in address.list -->
+                                        <div ng-class="{
+    'active': leaving || (active &amp;&amp; !entering),
+    'prev': (next || active) &amp;&amp; direction=='prev',
+    'next': (next || active) &amp;&amp; direction=='next',
+    'right': direction=='prev',
+    'left': direction=='next'
+  }" class="item text-center ng-isolate-scope" ng-transclude="" slide="" ng-repeat="slides in address.list" transition="straight" ng-init="currentSlideIndex=($index+1)">
+                                            <!-- ngRepeat: address in slides -->
+                                            <div ng-repeat="address in slides" class="address_detail ng-scope">
+                                                <a ng-click="!loading &amp;&amp; pickAddress(address.address_id, (currentSlideIndex-1)*3+($index+1))" class="padding20 address-item" ng-class="{selected:isSelectedAddress(address.address_id)}" bind-log="select address ADD14149230428316">
+                                                    <div class="name rposition"> <span class="tick-icon tick-mark ng-hide" ng-show="isSelectedAddress(address.address_id)"></span> <span class="text-ellipsis ng-binding" title="Arvind Prajapati">Arvind Prajapati</span> </div>
+                                                    <p class="ng-binding">Paperplane Software Solution 501-502, 5th Floor, Mehar House, Kawasji Patel Street. Fort Yazdani beckery</p>
+                                                    <p class="ng-binding">400001, Mumbai</p>
+                                                    <p class="ng-binding">Maharashtra</p> <span class="phone ng-binding">8424940007</span>
+                                                    <p class="select_btn btn btn-white">
+                                                        <!-- ngIf: !isSelectedAddress(address.address_id) && addressType=='Delivery' --><span ng-if="!isSelectedAddress(address.address_id) &amp;&amp; addressType=='Delivery'" class="ng-scope">Deliver Here</span>
+                                                        <!-- end ngIf: !isSelectedAddress(address.address_id) && addressType=='Delivery' -->
+                                                        <!-- ngIf: !isSelectedAddress(address.address_id) && addressType=='Billing' -->
+                                                        <!-- ngIf: isSelectedAddress(address.address_id) -->
+                                                    </p>
+                                                </a>
+                                                <div class="address-icons">
+                                                    <a class="delete-icon margin5 ng-scope" ng-click="!loading &amp;&amp; deleteAddress(address.address_id)" tooltip="Delete" tooltip-placement="bottom" tooltip-trigger="mouseenter" bind-log="deleting address ADD14149230428316"></a>
+                                                    <a class="address-edit-icon margin5 ng-scope" ng-click="!loading &amp;&amp; editAddress(address)" tooltip="Edit" tooltip-placement="bottom" tooltip-trigger="mouseenter" bind-log="editing address ADD14149230428316"></a>
+                                                </div>
+                                            </div>
+                                            <!-- end ngRepeat: address in slides -->
+                                        </div>
+                                        <!-- end ngRepeat: slides in address.list -->
+                                    </div>
+                                    <a class="left carousel-control disabled_btn" ng-click="prev()" ng-class="{disabled_btn:prev_disable}" ng-show="slides().length > 1"><span class="icon-prev"></span></a>
+                                    <a class="right carousel-control" ng-click="next()" ng-class="{disabled_btn:next_disable}" ng-show="slides().length > 1"><span class="icon-next"></span></a>
+                                </div>
+                            </div>
+                            <div class="cls"></div>
+                        </div>
+                        <div class="add-address" ng-show="!flag.showAddressForm">
+                            <a class="collapsed-state fk-display-block padding15 fk-text-center" ng-click="!loading &amp;&amp; onClickAddAddress()" alt="Add New Address" bind-log="add new address"> <span class="add_address_btn btn btn-white-yellow">+ Add new Address</span> </a>
+                        </div>
+                        <div class="cls"></div>
+                    </div>
+                    <!-- ngIf: flag.showAddressForm && (!flag.loggedIn || model.totalAddress==0) -->
+                    <script type="text/ng-template" id="addAddress.html">
+                        <div class="addressDetailForm bmargin20" ng-model="newAddress">
+                            <form name="address.form" id="createAddress" autofill-binder="!loading && addAddress()" event-handler="submit" method="post">
+                                <input id="address_id" type="hidden" name="address_id" ng-model="newAddress.address_id" value="{{newAddress.address_id}}" />
+                                <input id="autofill_modified" type="hidden" name="autofill_modified" ng-model="newAddress.autofill_modified" value="{{newAddress.autofill_modified}}" />
+                                <p class="add-address-title lpadding20 tmargin10 bmargin10 bpadding10 fk-font-17" ng-show="flag.loggedIn && model.totalAddress!=0"> <span ng-if="showAddTitle">Enter a new shipping address</span> <span ng-if="!showAddTitle">Edit the shipping address</span> <a ng-click="cancel()" class="unitExt fk-font-15 rpadding20" alt="Close" bind-log="close address form">X</a> </p>
+                                <p class="{{msg.type}}" ng-repeat="msg in model.msgs | filter:{relatedTo:'create'}">{{msg.text}}</p>
+                                <div class="pure-g-r">
+                                    <div class="{{model.totalAddress!=0 ? 'pure-u-1' : 'pure-u-2-3'}}">
+                                        <table align='left' width="100%">
+                                            <tr ng-class="{show_error_msg:showInvalidMessage.name}">
+                                                <td width="25%" class="fk-label" align="right">
+                                                    <label for="name">Name</label>
+                                                </td>
+                                                <td width="75%">
+                                                    <input id="name" ng-model="newAddress.name" ng-required="true" ng-blur="showErrorMsg($event)" ng-minlength="3" ng-pattern="/^[A-Za-z0-9'.,-]+[\ +[A-Za-z0-9'.,-]+]*$/" name="name" class='fk-input' type='text' value='' select-on="fullname" autofill />
+                                                    <div class="fk-font-11" ng-show="showInvalidMessage.name">Please enter your valid name</div>
+                                                </td>
+                                            </tr>
+                                            <tr ng-class="{show_error_msg:showInvalidMessage.pincode}">
+                                                <td class="fk-label" align="right">
+                                                    <label for="pincode">Pincode </label>
+                                                </td>
+                                                <td>
+                                                    <input ng-if='model.totalAddress==0' id='pincode' name="pincode" maxlength="6" ng-pattern="/[1-9][0-9]{5}/" ng-blur="showErrorMsg($event) && pincodeAutofill($event, newAddress)" ng-model="newAddress.pincode" ng-required="true" class='fk-input' type='text' value='' data-nan='* Pincode should contain 6 digits' data-format='* Pincode should start from 1-9' data-error_msg='* Please enter a 6 digit Pincode' tooltip="Please enter your six-digit pincode" tooltip-trigger="focus" tooltip-placement="right" autofill/>
+                                                    <input ng-if='model.totalAddress!=0' id='pincode' name="pincode" maxlength="6" ng-pattern="/[1-9][0-9]{5}/" ng-blur="showErrorMsg($event) && pincodeAutofill($event, newAddress)" ng-model="newAddress.pincode" ng-required="true" class='fk-input' type='text' value='' data-nan='* Pincode should contain 6 digits' data-format='* Pincode should start from 1-9' data-error_msg='* Please enter a 6 digit Pincode' autofill/>
+                                                    <div class="fk-font-11" ng-show="showInvalidMessage.pincode">Please enter your valid six-digit pincode</div>
+                                                </td>
+                                            </tr>
+                                            <tr ng-class="{show_error_msg:showInvalidMessage.address}">
+                                                <td class="fk-label vtop" align="right">
+                                                    <div class="tpadding20 tmargin5">
+                                                        <label for="address">Address </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <textarea rows="4" name="address" id="address" ng-minlength="10" ng-maxlength="216" ng-blur="showErrorMsg($event)" ng-model="newAddress.address_line_1" ng-required="true" class="fk-input" autofill></textarea>
+                                                    <div class="fk-font-11" ng-show="showInvalidMessage.address">Please enter your valid address - Your order will be delivered here</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fk-label" align="right">
+                                                    <label for="landmark">Landmark</td>
+                                                <td>
+                                                    <input id='landmark' name="landmark" ng-model="newAddress.address_line_2" class='fk-input' type='text' value='' placeholder="(Optional)" autofill maxlength="60" ng-maxlength="60" />
+                                                </td>
+                                            </tr>
+                                            <tr ng-class="{show_error_msg:showInvalidMessage.city}" ng-show="newAddress.pincode!=''&&newAddress.pincode.length==6">
+                                                <td class="fk-label" align="right">
+                                                    <label for="city">City </label>
+                                                </td>
+                                                <td>
+                                                    <input id='city' name="city" ng-model="newAddress.city" ng-required="true" ng-blur="showErrorMsg($event)" ng-pattern='/^[A-Za-z]+[\ +[A-Za-z]+]*$/' class='fk-input' type='text' value='' autofill/>
+                                                    <div class="fk-font-11" ng-show="showInvalidMessage.city">Please enter your valid city</div>
+                                                </td>
+                                            </tr>
+                                            <tr ng-class="{show_error_msg:showInvalidMessage.state}" ng-show="newAddress.pincode!=''&&newAddress.pincode.length==6">
+                                                <td class="fk-label" align="right">
+                                                    <label for="state">State </label>
+                                                </td>
+                                                <td>
+                                                    <select id='state' ng-model="newAddress.state" ng-required="true" ng-blur="showErrorMsg($event)" name="state" class='fk-input state_field' autofill>
+                                                        <option value="">--Select State--</option>
+                                                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar</option>
+                                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                        <option value="Assam">Assam</option>
+                                                        <option value="Bihar">Bihar</option>
+                                                        <option value="Chandigarh">Chandigarh</option>
+                                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                                        <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                                                        <option value="Daman and Diu">Daman and Diu</option>
+                                                        <option value="Delhi">Delhi</option>
+                                                        <option value="Goa">Goa</option>
+                                                        <option value="Gujarat">Gujarat</option>
+                                                        <option value="Haryana">Haryana</option>
+                                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                        <option value="Jharkhand">Jharkhand</option>
+                                                        <option value="Karnataka">Karnataka</option>
+                                                        <option value="Kerala">Kerala</option>
+                                                        <option value="Lakshadweep">Lakshadweep</option>
+                                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                        <option value="Maharashtra">Maharashtra</option>
+                                                        <option value="Manipur">Manipur</option>
+                                                        <option value="Meghalaya">Meghalaya</option>
+                                                        <option value="Mizoram">Mizoram</option>
+                                                        <option value="Nagaland">Nagaland</option>
+                                                        <option value="Odisha">Odisha</option>
+                                                        <option value="Pondicherry">Pondicherry</option>
+                                                        <option value="Punjab">Punjab</option>
+                                                        <option value="Rajasthan">Rajasthan</option>
+                                                        <option value="Sikkim">Sikkim</option>
+                                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                                        <option value="Tripura">Tripura</option>
+                                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                        <option value="Uttrakhand">Uttarakhand</option>
+                                                        <option value="West Bengal">West Bengal</option>
+                                                        <option value="Army Post Office">Army Post Office</option>
+                                                        <option value="Telangana">Telangana</option>
+                                                    </select>
+                                                    <div class="fk-font-11" ng-show="showInvalidMessage.state">Please select a state</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fk-label country_field" align="right">Country</td>
+                                                <td class="tpadding15 bpadding5"><b>{{country}}</b> <span class='co_note'>(Service available only in {{country}})</span></td>
+                                            </tr>
+                                            <tr ng-class="{show_error_msg:showInvalidMessage.phone}">
+                                                <td class="fk-label" align="right">
+                                                    <label for="phone">Phone</label>
+                                                </td>
+                                                <td class="line">
+                                                    <input type="text" value="+91" disabled class="unit fk-input phone_code" />
+                                                    <input ng-if='model.totalAddress==0' id='phone' ng-model="newAddress.phone" ng-required="true" name="phone" ng-pattern="/^[7-9][0-9]{9}$/" ng-blur="showErrorMsg($event)" class='fk-input phone_field' type='text' value='' tooltip="Please enter your phone number" tooltip-trigger="focus" tooltip-placement="right" autofill ng-maxlength="10" maxlength="10" />
+                                                    <input ng-if='model.totalAddress!=0' id='phone' ng-model="newAddress.phone" ng-required="true" name="phone" ng-pattern="/^[7-9][0-9]{9}$/" ng-blur="showErrorMsg($event)" class='fk-input phone_field' type='text' value='' autofill ng-maxlength="10" maxlength="10" />
+                                                    <div class="fk-font-11" ng-show="showInvalidMessage.phone">Please enter your valid phone number - Required for order related updates</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp;</td>
+                                                <td class="tpadding15">
+                                                    <input type='submit' class='btn btn-large btn-orange address_submit' value='Save & Continue' bind-log="new address continue" /> </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="cls"></div>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </li>
+        <li ng-controller="OrderController" class="ng-scope">
+            <style>
+                img.f-assured {
+                    width: 62px;
+                    height: 17px;
+                }
+            </style>
+            <div class="co-panel order-summary closed completed" ng-class="{closed: !is_opened, completed: flag.order.completed, open: is_opened, digitalOrder: model.orderList.is_digital||model.orderList.is_subscription}" id="order_summary_panel">
+                <div class="panel-heading">
+                    <h2 class="title ng-hide" ng-show="!flag.order.completed &amp;&amp; !is_opened"> <span ng-class="{panel_disabled: flag.order.disabled}" class=""></span> <span>3. Order Summary</span> <i class="rpadding10 lpadding10 no-uppercase ng-binding">1 items</i> <i class="no-uppercase ng-binding">Total: Rs.699</i> </h2>
+                    <div class="heading-bar">
+                        <!-- ngIf: !flag.loggedIn -->
+                        <div ng-class="{panel_disabled: flag.order.disabled}" class=""></div>
+                        <h2 class="fk-inline-block title"><span>3. Order Summary</span> <!-- ngIf: model.summary.items>0 --><i ng-if="model.summary.items>0" class="ng-scope ng-binding">1 items</i><!-- end ngIf: model.summary.items>0 --></h2> </div>
+                    <div class="rposition">
+                        <div ng-class="{panel_disabled: flag.order.disabled}" class=""></div>
+                        <a class="collapsed-state pure-g-r" ng-show="flag.order.completed" ng-click="reviewOrder()" bind-log="review order">
+                            <div class="pure-u-4-5"> <span class="tick"></span>
+                                <h2 class="fk-inline-block title pure-u-1-4 tmargin10"><span>3. Order Summary </span></h2>
+                                <div class="pure-u font-color-med-dark">
+                                    <div class="tmargin10 fk-font-19"> <span class="rpadding10 ng-binding">1 items</span> <span>Total <strong class="ng-binding">Rs.699</strong></span> </div>
+                                </div>
+                            </div>
+                            <div class="pure-u-1-5"> <span class="btn btn-white tmargin5 right_btn lmargin20">Review Order</span> </div>
+                        </a>
+                    </div>
+                    <div class="cls"></div>
+                </div>
+                <div class="panel-body collapse" collapse="!is_opened" ng-class="{egv:model.orderList.is_giftcard_order}" style="height: 0px;">
+                    <div ng-class="{panel_disabled: flag.order.disabled}" class=""></div>
+                    <!-- ngRepeat: msg in order.msgs | filter:{relatedTo:null} -->
+                    <!-- ngIf: model.orderList.cart.total_items_restricted>0 -->
+                    <!-- ngIf: model.orderList.cold_state_info.items -->
+                    <!-- ngIf: model.orderList.cart.total_items_not_serviceable>0 -->
+                    <!-- ngIf: model.orderList.cart.total_items_serviceable>0 -->
+                    <table width="100%" cellpadding="0" cellspacing="0" class="cart-table ng-scope" ng-if="model.orderList.cart.total_items_serviceable>0">
+                        <thead class="fk-uppercase cart-head">
+                            <tr>
+                                <td class="image-cell head-cell">&nbsp;</td>
+                                <td class="product-cell head-cell" colspan="3">
+                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="item-cell head-cell"><span class="lpadding10">Item</span></td>
+                                                <td class="qty-cell head-cell">Qty</td>
+                                                <td class="price-cell fk-text-center head-cell">Price</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="head-cell delivery-cell fk-text-center">Delivery Details</td>
+                                <td class="head-cell subtotal-cell fk-text-center">Subtotal</td>
+                                <td class="head-cell remove-cell">&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody class="cart-body">
+                            <!-- ngRepeat: (spTag, sp_products) in model.orderList.cart.serviceable -->
+                            <tr ng-repeat="(spTag, sp_products) in model.orderList.cart.serviceable" class="ng-scope">
+                                <td colspan="7">
+                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <!-- ngRepeat: product in sp_products -->
+                                            <tr ng-repeat="product in sp_products" class="ng-scope">
+                                                <td class="cell image-cell">
+                                                    <div class="carty-image fk-text-center" ng-show="product.product_image_url">
+                                                        <!-- ngIf: is_opened -->
+                                                    </div> <span class="gift-icon ng-hide" ng-show="model.orderList.is_giftcard_order"></span>
+                                                    <div class="line tmargin15 font-color-medium fk-uppercase fk-font-11 ng-binding ng-hide" ng-show="!product.product_image_url">Smart Band Tag</div>
+                                                </td>
+                                                <td colspan="3" class="product-cell">
+                                                    <table width="100%" height="100%" cellspacing="0" cellpadding="0" class="product-table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="cell item-cell">
+                                                                    <div class="line bmargin5 font-color-medium fk-font-11 ng-binding fk-uppercase" ng-class="product.is_digital ? 'digital-type': 'fk-uppercase'" ng-show="product.product_image_url"> <span class="smart band tag-icon ng-hide" ng-show="product.is_digital"></span>Smart Band Tag</div> <span class="title ng-binding">EnerZ Gofit Pro</span>
+                                                                    <!-- ngIf: product.title_tag!='' -->
+                                                                    <p class="tmargin5 fk-font-11 font-color-medium ng-scope ng-binding" ng-if="product.title_tag!=''">Black</p>
+                                                                    <!-- end ngIf: product.title_tag!='' -->
+                                                                    <!-- ngIf: product.co_subtitle!='' -->
+                                                                    <p class="tmargin5 fk-font-11 font-color-medium ng-scope ng-binding" ng-if="product.co_subtitle!=''"></p>
+                                                                    <!-- end ngIf: product.co_subtitle!='' --><span class="ff-icon tmargin5 ng-hide" ng-show="product.isFFOfferApplied" title="Flipkart First"></span>
+                                                                    <!-- ngIf: product.title_product_offer!='' -->
+                                                                    <!-- ngIf: product.extra_warning!='' && product.extra_warning!=null -->
+                                                                    <div class="tmargin10 ng-binding">
+                                                                        Seller: EnerZ
+                                                                        <!-- ngIf: spTag == 'FBF' -->
+                                                                        <div ng-if="spTag == 'FBF'" class="fk-inline-block ng-scope">| <span class="fa-icon"><img class="f-assured" src="http://rukmini1.flixcart.com/www/308/84/promos/11/08/2016/fc906a53-e6b5-4793-bcb9-86f957421408.png?q=90"></span></div>
+                                                                        <!-- end ngIf: spTag == 'FBF' -->
+                                                                    </div>
+                                                                    <!-- ngIf: product.emi_cashback_offer -->
+                                                                    <!-- ngIf: product.debit_card_cashback_offer -->
+                                                                    <!-- ngIf: product.credit_card_cashback_offer -->
+                                                                    <!-- ngIf: product.isPrexoApplied -->
+                                                                    <div class="tmargin5 offer-applied" ng-show="product.promotion_detail.appliedPromotions">
+                                                                        <a class="fk-inline-block btn btn-white offer-ttp ng-binding" ng-mouseenter="showOffers=true"> <span class="offer-color fk-bold">OFFERS:</span> 1 applied
+                                                                        </a>
+                                                                        <ul class="promo-info-div ng-hide" ng-show="showOffers" ng-mouseleave="showOffers=false">
+                                                                            <!-- ngRepeat: promotion in product.promotion_detail.appliedPromotions -->
+                                                                            <li class="pure-g-r tmargin5 bmargin5 ng-scope" ng-repeat="promotion in product.promotion_detail.appliedPromotions">
+                                                                                <div class="pure-u-4-5">
+                                                                                    <p class="promo-info fk-inline-block fk-font-small ng-binding">
+                                                                                        +&nbsp; Just Rs.699 on EnerZ Smartband
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="pure-u text_right fk-font-11 fk-bold ng-binding" ng-show="promotion.discountAmount>0">Rs.200</div>
+                                                                            </li>
+                                                                            <!-- end ngRepeat: promotion in product.promotion_detail.appliedPromotions -->
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="conditional-offer tmargin10 ng-hide" ng-show="product.promotion_detail.conditionalPromotions"> <a class="conditional-offer-count ng-binding" ng-mouseenter="showEligibleOffers=true" ng-mouseleave="showEligibleOffers=false">You are eligible for <!-- ngIf: product.promotion_detail.totalPromotions > 0 --><span ng-if="product.promotion_detail.totalPromotions > 0" class="ng-scope"> more</span><!-- end ngIf: product.promotion_detail.totalPromotions > 0 --> offer<!-- ngIf: product.promotion_detail.totalConditionalPromotions > 1 -->!</a>
+                                                                        <div class="offer-content ng-hide" ng-show="showEligibleOffers"> <span class="tooltip-arrow bottom"></span>
+                                                                            <ul class="offer-list">
+                                                                                <!-- ngRepeat: promotion in product.promotion_detail.conditionalPromotions -->
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- ngIf: product.promotion_detail.disbursalWarnings -->
+                                                                    <!-- ngIf: product.forward_services!='' -->
+                                                                </td>
+                                                                <td class="cell fk-text-center qty-cell carty-changeQuantity">
+                                                                    <form class="qtyForm ng-isolate-scope ng-pristine ng-valid" name="form_LSTSBNEDGGEUSST9DZZX6B9FY:ACLP7L148NJAOU7YYA5IHNBS8E9YUOT2-57d02f0e031a9:P:C-0012:U:SPCMS" method="get" data-listing_id="LSTSBNEDGGEUSST9DZZX6B9FY:ACLP7L148NJAOU7YYA5IHNBS8E9YUOT2-57d02f0e031a9:P:C-0012:U:SPCMS" ng-submit="onSubmit($event)" quantity="" model="product" on-quantity-change="updateQuantity(qty, id, title)">
+                                                                        <input type="text" ng-focus="onFocus()" ng-blur="onSubmit($event)" maxlength="3" value="1" ng-disabled="disabled" ng-pattern="/^[1-9][0-9]*$/" ng-model="product.quantity" class="qty-box fk-input ng-scope ng-pristine ng-valid ng-valid-pattern" select-on="qty_LSTSBNEDGGEUSST9DZZX6B9FY:ACLP7L148NJAOU7YYA5IHNBS8E9YUOT2-57d02f0e031a9:P:C-0012:U:SPCMS" tooltip-placement="right" tooltip="Please enter units: 1 or more" tooltip-trigger="focus">
+                                                                        <!-- ngIf: product.isQtyRestrictedMessage -->
+                                                                        <br>
+                                                                        <input type="submit" class="qty-save fk-font-small ng-hide" value="Save" ng-show="showSave" bind-log="quantity update LSTSBNEDGGEUSST9DZZX6B9FY:ACLP7L148NJAOU7YYA5IHNBS8E9YUOT2-57d02f0e031a9:P:C-0012:U:SPCMS">
+                                                                    </form>
+                                                                </td>
+                                                                <td class="cell price-cell">
+                                                                    <div class="carty-price text_right">
+                                                                        <!-- ngIf: product.promotion_discount!=0 || product.cashback!=0 || product.sourcing_fee!=0 || product.pickup_charge!=0 -->
+                                                                        <div class="popup_recent_our_price fk-font-11 fk-fontlight ng-scope" ng-if="product.promotion_discount!=0 || product.cashback!=0 || product.sourcing_fee!=0 || product.pickup_charge!=0">Item Price:
+                                                                            <!-- ngIf: product.price.selling_price -->
+                                                                            <!-- ngIf: product.price && !product.price.selling_price --><span ng-if="product.price &amp;&amp; !product.price.selling_price" class="ng-scope ng-binding">Rs.899</span>
+                                                                            <!-- end ngIf: product.price && !product.price.selling_price -->
+                                                                        </div>
+                                                                        <!-- end ngIf: product.promotion_discount!=0 || product.cashback!=0 || product.sourcing_fee!=0 || product.pickup_charge!=0 -->
+                                                                        <!-- ngIf: product.promotion_discount==0 && product.cashback==0 && product.sourcing_fee==0 && product.pickup_charge==0 --><span class="price-adjust ng-binding ng-hide" ng-show="product.sourcing_fee &amp;&amp; product.feeType">(Incl. Rs.0  fee)</span>
+                                                                        <div class="price-adjust tmargin5 ng-binding ng-hide" ng-show="product.pickup_charge > 0">(+) Pickup Charges: Rs.0</div>
+                                                                        <div class="price-adjust tmargin5 ng-binding ng-hide" ng-show="product.cashback!=0">(-) Cashback: 0</div>
+                                                                        <div class="price-adjust tmargin5 ng-binding ng-hide" ng-show="product.net_octroi_charge > 0">Octroi: Rs.0</div>
+                                                                        <div class="offer-color fk-font-11 tmargin5 ng-binding" ng-show="product.promotion_discount>0">(-) Savings: Rs.200</div>
+                                                                        <div class="tmargin20 fk-bold price ng-binding" ng-show="product.promotion_discount!=0 || product.cashback!=0 || product.sourcing_fee!=0 || product.pickup_charge!=0"> Rs.699</div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td class="cell delivery-cell">
+                                                    <!-- ngIf: product.is_digital -->
+                                                    <!-- ngIf: !product.is_digital&&!product.is_egv&&!product.is_subscription -->
+                                                    <div ng-if="!product.is_digital&amp;&amp;!product.is_egv&amp;&amp;!product.is_subscription" class="ng-scope">
+                                                        <!-- ngIf: product.tiered_shipping_info==null || product.tiered_shipping_info.total_available_tiers<0 -->
+                                                        <!-- ngIf: product.tiered_shipping_info!=null && product.tiered_shipping_info.total_available_tiers>0 -->
+                                                        <div class="shipping-options-container bpadding10 fk-font-13 ng-scope" ng-if="product.tiered_shipping_info!=null &amp;&amp; product.tiered_shipping_info.total_available_tiers>0">
+                                                            <!-- ngRepeat: tier_option in product.tiered_shipping_info.available_tiers -->
+                                                            <div class="lpadding20 rpadding10 ng-scope" ng-repeat="tier_option in product.tiered_shipping_info.available_tiers" ng-init="tiered_shipping=product.tiered_shipping_info">
+                                                                <div class="bmargin5">
+                                                                    <div ng-show="product.slots_available" class="lmargin20 bmargin5 ng-hide">Earliest delivery</div>
+                                                                    <label>
+                                                                        <input class="select-shipping-option rmargin5 bmargin5 ng-pristine ng-valid" type="radio" ng-disabled="tiered_shipping.total_available_tiers==1" ng-change="selectShipping(product.id, tier_option.promise_tag)" name="tier_LSTSBNEDGGEUSST9DZZX6B9FY:ACLP7L148NJAOU7YYA5IHNBS8E9YUOT2-57d02f0e031a9:P:C-0012:U:SPCMS" value="REGULAR" ng-model="product.tiered_shipping_info.selected_promise_tag" bind-log="shipping option REGULAR" disabled="disabled">
+                                                                        <!-- ngIf: product.shipping.indexOf('Will be shipped') == -1 && !product.is_preorder --><span ng-if="product.shipping.indexOf('Will be shipped') == -1 &amp;&amp; !product.is_preorder" class="ng-scope"> <!-- ngIf: tier_option.shipping_charge==0 --><span ng-if="tier_option.shipping_charge==0" class="offer-color ng-scope">FREE </span>
+                                                                        <!-- end ngIf: tier_option.shipping_charge==0 --><strong class="ng-binding">Delivery by Wed, Sep 14</strong>
+                                                                        <!-- ngIf: tier_option.shipping_charge>0 -->
+                                                                        </span>
+                                                                        <!-- end ngIf: product.shipping.indexOf('Will be shipped') == -1 && !product.is_preorder -->
+                                                                    </label>
+                                                                </div>
+                                                                <div class="fk-font-11 font-color-medium bmargin10 lmargin20" ng-show="product.tiered_shipping_info.selected_promise_tag == tier_option.promise_tag">
+                                                                    <!-- ngIf: product.slots_available -->
+                                                                    <!-- ngIf: (product.shipping.indexOf('Will be shipped') != -1 || product.is_preorder) && !product.slots_available -->
+                                                                </div>
+                                                            </div>
+                                                            <!-- end ngRepeat: tier_option in product.tiered_shipping_info.available_tiers -->
+                                                        </div>
+                                                        <!-- end ngIf: product.tiered_shipping_info!=null && product.tiered_shipping_info.total_available_tiers>0 -->
+                                                    </div>
+                                                    <!-- end ngIf: !product.is_digital&&!product.is_egv&&!product.is_subscription -->
+                                                </td>
+                                                <td class="cell subtotal-cell fk-font-17 fk-bold price text_right ng-binding">
+                                                    Rs.699
+                                                </td>
+                                                <td class="cell remove-cell">
+                                                    <a class="remove fk-inline-block" data-listing_id="LSTSBNEDGGEUSST9DZZX6B9FY:ACLP7L148NJAOU7YYA5IHNBS8E9YUOT2-57d02f0e031a9:P:C-0012:U:SPCMS" title="Remove Item" ng-click="removeItem($index, product.id, product.title)" alt="Remove Item" bind-log="remove item LSTSBNEDGGEUSST9DZZX6B9FY:ACLP7L148NJAOU7YYA5IHNBS8E9YUOT2-57d02f0e031a9:P:C-0012:U:SPCMS"> <span class="icon"></span> </a>
+                                                </td>
+                                            </tr>
+                                            <!-- end ngRepeat: product in sp_products -->
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- end ngRepeat: (spTag, sp_products) in model.orderList.cart.serviceable -->
+                        </tbody>
+                    </table>
+                    <!-- end ngIf: model.orderList.cart.total_items_serviceable>0 -->
+                    <div ng-controller="GiftWrapCtrl" ng-hide="model.orderList.cart.total_items_serviceable==0" class="ng-scope">
+                        <div class="tpadding10 bmargin10 gift_wrap ng-hide" ng-show="giftWrap.model.isAvailable">
+                            <div class="padding10 gift_wrap_form ng-pristine ng-valid ng-hide" ng-show="giftWrap.form.show &amp;&amp; giftWrap.model.isAvailable" ng-model="giftWrapForm"> <a alt="close" title="close" class="unitExt close-btn" ng-click="giftWrap.form.show=false" bind-log="close giftwrap">X</a>
+                                <!-- ngRepeat: msg in giftWrap.model.msgs -->
+                                <form method="POST" name="gift_wrap_form" ng-submit="addGiftWrap()" class="ng-pristine ng-invalid ng-invalid-required">
+                                    <div class="class=" fk-label "=" "> <label for="gift_to ">To<sup>*</sup></label> </div> <input id="gift_to " name="to " class="fk-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength " ng-model="giftWrapForm.to " type="text " ng-required="true " ng-maxlength="40 " maxlength="40 " select-on="giftTo " required="required "> <div class="class=" fk-label"="">
+                                        <label for="gift_from">From<sup>*</sup></label>
+                                    </div>
+                                    <input id="gift_from" name="from" class="fk-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" ng-model="giftWrapForm.from" type="text" ng-maxlength="40" maxlength="40" ng-required="true" required="required">
+                                    <div class="class=" fk-label "=" "> <label for="gift_msg ">Your Message<sup>*</sup></label> </div> <div class="has-hints "> <textarea rows="3 " id="gift_msg " name="msg " ng-maxlength="140 " maxlength="140 " ng-model="giftWrapForm.msg " ng-required="true " class="fk-input ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength " placeholder="Add a personalized message (English only) " ng-keyup="updateCount() " required="required "></textarea> <div class="input-hints fk-font-11 bmargin10 ng-binding ">(140 characters)</div> </div> <div class="fk-font-11 bpadding10 font-color-medium ">
+ Regulations require invoices to be included with all shipments including gifts. Books are exempt, though.
+ </div> <div class="pure-g-r "> <div class="pure-u-1-2 "> <input type="submit " class="submit btn btn-blue " ng-disabled="gift_wrap_form.$invalid " value="Save " bind-log="add giftwrap " disabled="disabled "> </div> <div class="pure-u-1-2 "> <!-- ngIf: !giftWrap.added --><input type="reset " class="tmargin5 reset-btn ng-scope " value="Clear All " ng-if="!giftWrap.added " bind-log="clear giftwrap "><!-- end ngIf: !giftWrap.added --> <!-- ngIf: giftWrap.added --> </div> </div> </form> <div class="cls "></div> </div> <table width="100% " cellpadding="0 " cellspacing="0 " class="cart-table "> <tbody class="cart-body "> <tr> <td colspan="5 " class="cell gift_wrap_btn_cont "> <!-- ngIf: !giftWrap.added --><button class="btn btn-white gift_wrap_btn ng-scope " ng-click="showForm() " ng-if="!giftWrap.added " bind-log="open giftwrap form "> <span class="gift-icon rpadding5 "></span><span class="btn-text ">Add Gift Wrap</span> <!-- ngIf: giftWrap.amount==0 --><!-- ngIf: giftWrap.amount>0 --><span ng-if="giftWrap.amount>0" class="ng-scope ng-binding">for Rs.30</span>
+                                        <!-- end ngIf: giftWrap.amount>0 -->
+                                        </button>
+                                        <!-- end ngIf: !giftWrap.added -->
+                                        <!-- ngIf: giftWrap.added -->
+                                        </td>
+                                        <td class="cell subtotal-cell fk-font-15 fk-bold price text_right ng-binding ng-hide" ng-show="giftWrap.added"> <span class="gift-icon rpadding5"></span>Rs.30</td>
+                                        <td class="cell remove-cell ng-hide" ng-show="giftWrap.added">
+                                            <a class="remove fk-inline-block" title="Remove Gift Wrap" ng-click="removeGiftWrap()" bind-log="remove giftwrap"> <span class="icon"></span> </a>
+                                        </td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                    </div>
+                            </div>
+                            <div class="tpadding10 os-footer" ng-hide="model.orderList.cart.total_items_serviceable==0">
+                                <form name="alertForm" class="ng-pristine ng-valid ng-valid-required">
+                                    <div class="pure-g summary-mobile bmargin10 bpadding10">
+                                        <div class="pure-u-1">
+                                            <!-- ngRepeat: msg in order.msgs | filter:{relatedTo:'os_mobile'} -->
+                                            <div ng-class="{panel_disabled:send_sms_progress}"></div>
+                                            <div ng-show="account.loginIdentity=='EMAIL'" class="">
+                                                <label for="os_mobileNumber">Send Order Confirmation SMS alert to +91</label>
+                                                <input type="text" id="os_mobileNumber" name="mobileNumber" class="fk-input ng-pristine ng-valid ng-valid-maxlength ng-valid-pattern" ng-class="{show_error_msg:invalidMobileNumber}" ng-pattern="/^[7-9][0-9]{9}$/" ng-model="model.summary.mobile.value" select-on="mobile-alert" ng-maxlength="10" maxlength="10" size="10" ng-keyup="invalidMobileNumber=saveMobileNumber($event)" ng-blur="invalidMobileNumber=alertForm.mobileNumber.$invalid" ng-disabled="send_sms_progress">
+                                                <p class="fk-font-11 error-msg ng-hide" ng-show="invalidMobileNumber">Please enter a valid 10 digit mobile number</p>
+                                            </div>
+                                            <div ng-show="account.loginIdentity=='PHONE' &amp;&amp; !account.email_id" class="ng-hide">
+                                                <label for="os_emailId">Before making the payment, please share an Email-ID for generating invoice </label>
+                                                <input type="email" id="os_emailId" name="emailId" class="fk-input ng-pristine ng-valid-email ng-valid-pattern ng-valid ng-valid-required" ng-class="{show_error_msg:invalidEmail}" ng-required="true" ng-pattern="/^(([a-z0-9])+([a-z0-9\.\+_-])*@([a-z0-9_-])+([a-z0-9\._-]+)+\.[a-z]{2,6})$/" ng-model="model.summary.email" select-on="email-alert" ng-disabled="send_email_progress" required="required"> <a href="javascript:" class="lmargin10" ng-click="invalidEmail=saveEmail($event)">Save</a>
+                                                <p class="fk-font-11 error-msg email-error-msg ng-hide" ng-show="invalidEmail">Please enter a valid email</p>
+                                            </div>
+                                            <div ng-show="account.loginIdentity=='PHONE' &amp;&amp; account.email_id" class="ng-hide">
+                                                Order confirmation email will be sent to <strong class="ng-binding">arvind.prajapati20@gmail.com</strong> </div>
+                                        </div>
+                                    </div>
+                                    <div custom-fixed-box="" class="nav-bar ng-isolate-scope" ng-class="{fixed_footer: fixFooter}" current-state="fixFooter" parent-selector="order_summary_panel" find-bar-to-be-fixed="makeFooterBarFixed" show-fixed="true">
+                                        <div class="pure-g-r">
+                                            <div class="pure-u-1-3"> <a class="btn btn-orange btn-large btn-continue no-underline" href="javascript:void(0);" ng-click="!loading &amp;&amp; goToPay()" alt="Continue" bind-log="order continue" ng-disabled="restrictPayments">Continue</a> </div>
+                                            <div class="pure-u-2-3 text_right"> <span ng-show="model.summary.savings!=0" class="rpadding20">Your Total Savings: <i class="offer-color fk-bold ng-binding">Rs.200</i></span> <span class="total fk-font-15 rpadding10">Amount Payable: <i class="fk-font-26 ng-binding">Rs.699</i></span> </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+        </li>
+        <li ng-controller="PaymentController" class="ng-scope">
+            <div class="co-panel payment open" ng-class="{closed: !is_opened, open: is_opened}">
+                <div class="panel-heading">
+                    <h2 class="title ng-hide" ng-show="!is_opened"> <span ng-class="{panel_disabled: flag.payment.disabled}" class=""></span> <span>4. Payment Method</span> </h2>
+                    <div class="heading-bar">
+                        <!-- ngIf: !flag.loggedIn -->
+                        <div ng-class="{panel_disabled: flag.payment.disabled}" class=""></div>
+                        <h2 class="fk-inline-block title"><span>4. Payment Method</span></h2> </div>
+                </div>
+                <div class="panel-body collapse in" collapse="!is_opened" style="height: auto;">
+                    <div ng-class="{panel_disabled: flag.payment.disabled}" class=""></div>
+                    <!-- ngRepeat: msg in msgs -->
+                    <div ng-show="payment.paymentOptions != null" class="pure-g-r">
+                        <div class="pure-u-1-5 link-container">
+                            <ul class="tabs">
+                                <!-- ngRepeat: (mode, config) in payment.paymentOptions | orderObjectBy:'rank' -->
+                                <li ng-repeat="(mode, config) in payment.paymentOptions | orderObjectBy:'rank'" class="ng-scope">
+                                    <a ng-click="(paymentConfig.paymentType != config.mode) &amp;&amp; onPaymentModeChange(config.mode, true)" class="link" ng-class="(paymentConfig.paymentType == config.mode)?'selected':(paymentConfig.egv.paymentForm != null)?'disabled':''" bind-log="selected CreditCardPm payment">
+                                        <!-- ngIf: config.mode != 'PayzippyPm' --><i ng-if="config.mode != 'PayzippyPm'" class="icon CreditCardPm"></i>
+                                        <!-- end ngIf: config.mode != 'PayzippyPm' --><span ng-class="(config.mode == 'PayzippyPm')?'payzippy':'text'" class="ng-binding text">Credit Card</span> </a>
+                                </li>
+                                <!-- end ngRepeat: (mode, config) in payment.paymentOptions | orderObjectBy:'rank' -->
+                                <li ng-repeat="(mode, config) in payment.paymentOptions | orderObjectBy:'rank'" class="ng-scope">
+                                    <a ng-click="(paymentConfig.paymentType != config.mode) &amp;&amp; onPaymentModeChange(config.mode, true)" class="link" ng-class="(paymentConfig.paymentType == config.mode)?'selected':(paymentConfig.egv.paymentForm != null)?'disabled':''" bind-log="selected NetBankingPm payment">
+                                        <!-- ngIf: config.mode != 'PayzippyPm' --><i ng-if="config.mode != 'PayzippyPm'" class="icon NetBankingPm"></i>
+                                        <!-- end ngIf: config.mode != 'PayzippyPm' --><span ng-class="(config.mode == 'PayzippyPm')?'payzippy':'text'" class="ng-binding text">Net Banking</span> </a>
+                                </li>
+                                <!-- end ngRepeat: (mode, config) in payment.paymentOptions | orderObjectBy:'rank' -->
+                                <li ng-repeat="(mode, config) in payment.paymentOptions | orderObjectBy:'rank'" class="ng-scope">
+                                    <a ng-click="(paymentConfig.paymentType != config.mode) &amp;&amp; onPaymentModeChange(config.mode, true)" class="link" ng-class="(paymentConfig.paymentType == config.mode)?'selected':(paymentConfig.egv.paymentForm != null)?'disabled':''" bind-log="selected CreditCardEmiPm payment">
+                                        <!-- ngIf: config.mode != 'PayzippyPm' --><i ng-if="config.mode != 'PayzippyPm'" class="icon CreditCardEmiPm"></i>
+                                        <!-- end ngIf: config.mode != 'PayzippyPm' --><span ng-class="(config.mode == 'PayzippyPm')?'payzippy':'text'" class="ng-binding text">EMI</span> </a>
+                                </li>
+                                <!-- end ngRepeat: (mode, config) in payment.paymentOptions | orderObjectBy:'rank' -->
+                                <li ng-repeat="(mode, config) in payment.paymentOptions | orderObjectBy:'rank'" class="ng-scope">
+                                    <a ng-click="(paymentConfig.paymentType != config.mode) &amp;&amp; onPaymentModeChange(config.mode, true)" class="link" ng-class="(paymentConfig.paymentType == config.mode)?'selected':(paymentConfig.egv.paymentForm != null)?'disabled':''" bind-log="selected DebitCardPm payment">
+                                        <!-- ngIf: config.mode != 'PayzippyPm' --><i ng-if="config.mode != 'PayzippyPm'" class="icon DebitCardPm"></i>
+                                        <!-- end ngIf: config.mode != 'PayzippyPm' --><span ng-class="(config.mode == 'PayzippyPm')?'payzippy':'text'" class="ng-binding text">Debit Card</span> </a>
+                                </li>
+                                <!-- end ngRepeat: (mode, config) in payment.paymentOptions | orderObjectBy:'rank' -->
+                                <li ng-repeat="(mode, config) in payment.paymentOptions | orderObjectBy:'rank'" class="ng-scope">
+                                    <a ng-click="(paymentConfig.paymentType != config.mode) &amp;&amp; onPaymentModeChange(config.mode, true)" class="link selected" ng-class="(paymentConfig.paymentType == config.mode)?'selected':(paymentConfig.egv.paymentForm != null)?'disabled':''" bind-log="selected CodPm payment">
+                                        <!-- ngIf: config.mode != 'PayzippyPm' --><i ng-if="config.mode != 'PayzippyPm'" class="icon CodPm"></i>
+                                        <!-- end ngIf: config.mode != 'PayzippyPm' --><span ng-class="(config.mode == 'PayzippyPm')?'payzippy':'text'" class="ng-binding text">Cash on Delivery</span> </a>
+                                </li>
+                                <!-- end ngRepeat: (mode, config) in payment.paymentOptions | orderObjectBy:'rank' -->
+                                <li ng-repeat="(mode, config) in payment.paymentOptions | orderObjectBy:'rank'" class="ng-scope">
+                                    <a ng-click="(paymentConfig.paymentType != config.mode) &amp;&amp; onPaymentModeChange(config.mode, true)" class="link" ng-class="(paymentConfig.paymentType == config.mode)?'selected':(paymentConfig.egv.paymentForm != null)?'disabled':''" bind-log="selected GiftCardPm payment">
+                                        <!-- ngIf: config.mode != 'PayzippyPm' --><i ng-if="config.mode != 'PayzippyPm'" class="icon GiftCardPm"></i>
+                                        <!-- end ngIf: config.mode != 'PayzippyPm' --><span ng-class="(config.mode == 'PayzippyPm')?'payzippy':'text'" class="ng-binding text">Gift Card</span> </a>
+                                </li>
+                                <!-- end ngRepeat: (mode, config) in payment.paymentOptions | orderObjectBy:'rank' -->
+                            </ul>
+                        </div>
+                        <!-- ngIf: (paymentConfig.paymentType=='NetBankingPm' && payment.paymentOptions.NetBankingPm.isBanksListAvialable)||paymentConfig.paymentType=='CodPm' || paymentConfig.paymentType=='GiftCardPm' || paymentConfig.paymentType=='CouponBalPm' || paymentConfig.paymentType=='CouponBalPmNew' -->
+                        <div class="pure-u-4-5 multiLayout ng-scope" ng-if="(paymentConfig.paymentType=='NetBankingPm' &amp;&amp; payment.paymentOptions.NetBankingPm.isBanksListAvialable)||paymentConfig.paymentType=='CodPm' || paymentConfig.paymentType=='GiftCardPm' || paymentConfig.paymentType=='CouponBalPm' || paymentConfig.paymentType=='CouponBalPmNew'">
+                            <div class="pure-g-r">
+                                <div class="pure-u-3-4">
+                                    <div id="payment-details">
+                                        <div ng-switch="" on="paymentConfig.paymentType" class="titleContainer">
+                                            <!-- ngSwitchWhen: CodPm -->
+                                            <div ng-switch-when="CodPm" class="ng-scope">
+                                                <!-- ngRepeat: codConfig in payment.paymentOptions | filterObjectBy:{'mode' : 'CodPm'} -->
+                                                <div ng-repeat="codConfig in payment.paymentOptions | filterObjectBy:{'mode' : 'CodPm'}" class="cod ng-scope">
+                                                    <p class="paymentHeader">Pay using Cash-on-Delivery</p>
+                                                    <!-- ngRepeat: msg in codConfig.msgs -->
+                                                    <!-- ngRepeat: msg in paymentConfig.cod.msgs -->
+                                                    <!-- ngIf: (codConfig.details.status == 'ok' || codConfig.details.status == 'success' || codConfig.details.status == 'conflict') && paymentConfig.cod.captchaString != '' -->
+                                                    <div ng-if="(codConfig.details.status == 'ok' || codConfig.details.status == 'success' || codConfig.details.status == 'conflict') &amp;&amp; paymentConfig.cod.captchaString != ''" class="ng-scope">
+                                                        <!-- ngRepeat: details in payment.summary.adjustments | filter:{ 'name' : 'gift_wrap' } -->
+                                                        <!-- ngIf: codConfig.details.status == 'conflict' && !codConfig.conflict.isGWAvailable && codConfig.conflict.notAllowedItems.length>0 -->
+                                                        <form ng-submit="!loading &amp;&amp; !isPaymentModeDisabled('CodPm') &amp;&amp; pay('cod', {'Form' : codForm})" class="tmargin15 ng-pristine ng-invalid ng-invalid-required" name="codForm">
+                                                            <div id="captcha_form" ng-class="{disabledForm: codConfig.details.status == 'conflict'}">
+                                                                <div class="pure-g-r">
+                                                                    <div class="pure-u-5-12">
+                                                                        <div class="pure-g-r tpadding7 lpadding10">
+                                                                            <div class="pure-u-4-5 fk-text-center"> <img ng-src="../genImage.php?id=ae2243f19e30c57269b1eaedb5dc258a&amp;co_id=OD5070116641388630" src="../genImage.php?id=ae2243f19e30c57269b1eaedb5dc258a&amp;co_id=OD5070116641388630">
+                                                                                <input type="text" ng-disabled="(payment.summary.adjustments | filter:{ 'name' : 'gift_wrap' }).length > 0 || codConfig.details.status == 'conflict'" name="captchaInput" id="captchaInput" autocomplete="off" ng-maxlength="6" ng-required="true" maxlength="6" ng-pattern="/^[0-9a-zA-Z]+$/" class="fk-input tmargin8 ng-pristine ng-valid-maxlength ng-valid-pattern ng-invalid ng-invalid-required" ng-model="paymentConfig.cod.captchaValue" placeholder="Enter the characters" select-on="captcha_code" required="required"> </div>
+                                                                            <div class="pure-u-1-5">
+                                                                                <!-- ngIf: (payment.summary.adjustments | filter:{ 'name' : 'gift_wrap' }).length == 0 && codConfig.details.status != 'conflict' -->
+                                                                                <a ng-if="(payment.summary.adjustments | filter:{ 'name' : 'gift_wrap' }).length == 0 &amp;&amp; codConfig.details.status != 'conflict'" title="Get a new image" id="captcha_refresh" ng-click="generateCaptcha(false, false, 'CodPm')" class="ng-scope"></a>
+                                                                                <!-- end ngIf: (payment.summary.adjustments | filter:{ 'name' : 'gift_wrap' }).length == 0 && codConfig.details.status != 'conflict' -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="pure-u-7-12" id="verify">
+                                                                        <div id="verify-text"> <strong>Verify Order</strong>
+                                                                            <p class="tmargin5">Type the characters you see in the image on the left. Letters shown are not case-sensitive.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button ng-disabled="(payment.summary.adjustments | filter:{ 'name' : 'gift_wrap' }).length > 0 || isPaymentModeDisabled('CodPm') || codConfig.details.status == 'conflict'" class="btn btn-large tmargin20 btn-orange" type="submit">Confirm Order</button>
+                                                        </form>
+                                                    </div>
+                                                    <!-- end ngIf: (codConfig.details.status == 'ok' || codConfig.details.status == 'success' || codConfig.details.status == 'conflict') && paymentConfig.cod.captchaString != '' -->
+                                                </div>
+                                                <!-- end ngRepeat: codConfig in payment.paymentOptions | filterObjectBy:{'mode' : 'CodPm'} -->
+                                            </div>
+                                            <!-- ngSwitchWhen: NetBankingPm -->
+                                            <!-- ngSwitchWhen: GiftCardPm -->
+                                            <!-- ngSwitchWhen: CouponBalPm -->
+                                            <!-- ngSwitchWhen: CouponBalPmNew -->
+                                            <!-- ngSwitchDefault:  -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pure-u-1-4 third-col">
+                                    <div id="payment-summary">
+                                        <div id="payment-adjustments">
+                                            <div class="pure-g tmargin5">
+                                                <p class="pure-u-1-2 text_left">Total</p>
+                                                <p class="pure-u-1-2 text_right"><strong class="ng-binding"> Rs.699</strong></p>
+                                            </div>
+                                            <!-- ngRepeat: details in payment.summary.adjustments -->
+                                            <!-- ngRepeat: details in payment.summary.partialPayments -->
+                                        </div>
+                                        <!-- ngIf: ((paymentConfig.paymentType!='NetBankingPm' || payment.paymentOptions.NetBankingPm.isBanksListAvialable) && paymentConfig.paymentType!='DebitCardPm' && paymentConfig.paymentType!='CreditCardPm' && paymentConfig.paymentType!='PayzippyPm' && paymentConfig.paymentType!='DebitPinPm' && paymentConfig.paymentType!='CreditCardEmiPm') -->
+                                        <p id="total_amount" ng-if="((paymentConfig.paymentType!='NetBankingPm' || payment.paymentOptions.NetBankingPm.isBanksListAvialable) &amp;&amp; paymentConfig.paymentType!='DebitCardPm' &amp;&amp; paymentConfig.paymentType!='CreditCardPm' &amp;&amp; paymentConfig.paymentType!='PayzippyPm' &amp;&amp; paymentConfig.paymentType!='DebitPinPm' &amp;&amp; paymentConfig.paymentType!='CreditCardEmiPm')" class="ng-scope">
+                                            Amount Payable
+                                            <br> <strong id="amount" class="ng-binding">Rs.699</strong> </p>
+                                        <!-- end ngIf: ((paymentConfig.paymentType!='NetBankingPm' || payment.paymentOptions.NetBankingPm.isBanksListAvialable) && paymentConfig.paymentType!='DebitCardPm' && paymentConfig.paymentType!='CreditCardPm' && paymentConfig.paymentType!='PayzippyPm' && paymentConfig.paymentType!='DebitPinPm' && paymentConfig.paymentType!='CreditCardEmiPm') -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ngIf: paymentConfig.paymentType=='CodPm' || paymentConfig.paymentType=='GiftCardPm' -->
+                            <p class="note ng-scope" ng-if="paymentConfig.paymentType=='CodPm' || paymentConfig.paymentType=='GiftCardPm'">
+                                By placing the order, you have read and agreed to Flipkart.com
+                                <a target="FlipkartHelp" ng-click="showHelp('/s/terms?pop=1');" href="/s/terms">Terms of Use</a> and
+                                <a target="FlipkartHelp" ng-click="showHelp('/s/privacypolicy?pop=1');" href="/s/privacypolicy">Privacy Policy</a>.
+                            </p>
+                            <!-- end ngIf: paymentConfig.paymentType=='CodPm' || paymentConfig.paymentType=='GiftCardPm' -->
+                        </div>
+                        <!-- end ngIf: (paymentConfig.paymentType=='NetBankingPm' && payment.paymentOptions.NetBankingPm.isBanksListAvialable)||paymentConfig.paymentType=='CodPm' || paymentConfig.paymentType=='GiftCardPm' || paymentConfig.paymentType=='CouponBalPm' || paymentConfig.paymentType=='CouponBalPmNew' -->
+                        <!-- ngIf: paymentConfig.paymentType=='DebitCardPm' || (paymentConfig.paymentType=='NetBankingPm' && !payment.paymentOptions.NetBankingPm.isBanksListAvialable) || paymentConfig.paymentType=='CreditCardPm' || paymentConfig.paymentType=='CreditCardEmiPm' || paymentConfig.paymentType=='PayzippyPm' || paymentConfig.paymentType=='DebitPinPm' -->
+                        <script type="text/ng-template" id="instantcashback.html">
+                            <div class="modal-header">
+                                <h3 class="helpPopupHeader">Instant Cashback</h3> </div>
+                            <div class="modal-body">
+                                <p> <span ng-bind-html="promoInfo.displayText | unsafe"></span>
+                                    <br/> <span ng-if="promoInfo.list != ''">Available on <strong>{{promoInfo.list}}</strong>.</span> </p>
+                                <p class="helpPopupHeader tmargin15 bmargin15">How does Instant Cashback work?</p>
+                                <ul class="line">
+                                    <li class="unit size1of3">
+                                        <div class="lpadding10 rpadding10">
+                                            <p class="fk-font-bold">1. Go to ‘Payment Options’</p> <img class="tmargin10 bmargin10" src="https://img1a.flixcart.com//www/prod/images/spc/cart-9a958e71.png" />
+                                            <p class="fk-font-11">Once you click ‘Place Order’ in the cart, the ‘Secure Payment’ page will open. You’ll need to proceed stepwise from verifying your email details and shipping address through a review of your Order Summary finally to the ‘Payment Options’ stage.</p>
+                                        </div>
+                                    </li>
+                                    <li class="unit size1of3">
+                                        <div class="lpadding10 rpadding10">
+                                            <p class="fk-font-bold">2. Select the payment option</p>
+                                            <div class="tmargin10 bmargin10 helpImg {{promoInfo.mode}}"></div>
+                                            <p class="fk-font-11">In ‘Payment Options’ select {{promoInfo.offerMethod}} as the payment mode.</p>
+                                        </div>
+                                    </li>
+                                    <li class="lastUnit">
+                                        <div class="lpadding10 rpadding10">
+                                            <p class="fk-font-bold">3. Enter payment details</p> <img class="tmargin10 bmargin10" src="https://img1a.flixcart.com//www/prod/images/spc/RHS-93b5f6a5.png" />
+                                            <p class="fk-font-11">Once you provide the respective {{promoInfo.offerMethod}} details, the Instant Cashback will immediately reflect in the ‘Order Summary’. You only pay the discounted amount.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-blue" ng-click="cancel()">Close</button>
+                            </div>
+                        </script>
+                        <script type="text/ng-template" id="deferredcashback.html">
+                            <div class="modal-header">
+                                <h3 class="helpPopupHeader">Cashback Offer Details</h3> </div>
+                            <div class="modal-body">
+                                <p>
+                                    {{promoInfo.promoText}}
+                                    <span ng-if="promoInfo.promoSubText != ''">&nbsp;{{promoInfo.promoSubText}}</span> </p>
+                                <ul ng-if="promoInfo.promoTerms && promoInfo.promoTerms.length > 0" class="fk-ul-disc lmargin20 tmargin10">
+                                    <li ng-repeat="terms in promoInfo.promoTerms">{{terms}}</li>
+                                </ul>
+                                <p class="helpPopupHeader tmargin15 bmargin15">How does Cashback work?</p>
+                                <ul class="line">
+                                    <li class="unit size1of3">
+                                        <div class="lpadding10 rpadding10">
+                                            <p class="fk-font-bold">1. Go to ‘Payment Options’</p> <img class="tmargin10 bmargin10" src="https://img1a.flixcart.com//www/prod/images/spc/payment-013aefb4.png" />
+                                            <p class="fk-font-11">Once you click ‘Place Order’ in the cart, the ‘Secure Payment’ page will open. You’ll need to proceed stepwise from verifying your email details and shipping address through a review of your Order Summary finally to the ‘Payment Options’ stage.</p>
+                                        </div>
+                                    </li>
+                                    <li class="unit size1of3">
+                                        <div class="lpadding10 rpadding10">
+                                            <p class="fk-font-bold">2. Select the payment option</p> <img class="tmargin10 bmargin10" src="https://img1a.flixcart.com//www/prod/images/spc/EMI-98fae1ff.png" />
+                                            <p class="fk-font-11">In 'Payment Options' select eligible option as mentioned above in ‘Cashback Offer Details’ as the payment mode.</p>
+                                        </div>
+                                    </li>
+                                    <li class="lastUnit">
+                                        <div class="lpadding10 rpadding10">
+                                            <p class="fk-font-bold">3. Enter payment details</p>
+                                            <div class="fk-text-center"> <img class="tmargin10 bmargin10" src="https://img1a.flixcart.com//www/prod/images/spc/cashback-488f205e.png" /> </div>
+                                            <p class="fk-font-11">Now, provide details of the eligible Payment Option. The Cashback amount will be refunded to the payment source within the duration mentioned in the offer.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-blue" ng-click="cancel()">Close</button>
+                            </div>
+                        </script>
+                        <script type="text/ng-template" id="emiHelpPopup.html">
+                            <div class="modal-header">
+                                <h3 class="helpPopupHeader">EMI Details</h3> </div>
+                            <div class="modal-body" ng-bind-html="emiHelpPopup"></div>
+                            <div class="modal-footer">
+                                <button class="btn btn-blue" ng-click="cancel()">Close</button>
+                            </div>
+                        </script>
+                        <script type="text/ng-template" id="modalPopup.html">
+                            <div class="modal-header" ng-if="content.header && content.header != ''">
+                                <h3 class="helpPopupHeader" ng-bind-html="content.header | unsafe"></h3> </div>
+                            <div class="modal-body" ng-bind-html="content.msg | unsafe"></div>
+                            <div class="modal-footer" ng-if="!content.hideClose">
+                                <button class="btn btn-blue" ng-click="cancel()">{{actionText}}</button>
+                            </div>
+                        </script>
+                        <script type="text/ng-template" id="offerTandC.html">
+                            <div class="modal-TnC">
+                                <div class="header" ng-if="content.header && content.header != ''">
+                                    <h3 class="helpPopupHeader" ng-bind-html="content.header | unsafe"></h3> <span class="close-icon" ng-click="cancel()"></span> </div>
+                                <div class="body" ng-bind-html="content.msg | unsafe"></div>
+                            </div>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    </div>
