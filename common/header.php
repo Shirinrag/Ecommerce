@@ -1,4 +1,8 @@
-
+<?php
+      $curl=$this->link->hits('get-language',array(),'',0,'',0);
+      $curl = json_decode($curl,true);
+      $lang_name = $curl['lang_name'];
+?>
 <header id="header" class=" typeheader-1">
    <!-- Header Top -->
    <div class="header-top hidden-compact">
@@ -19,18 +23,12 @@
             <div class="header-top-right collapsed-block col-lg-5 col-md-4 col-sm-6 col-xs-8">
                <ul class="top-link list-inline lang-curr">
                   <li class="language">
-                     <div class="btn-group languages-block ">
-                        <form action="https://demo.smartaddons.com/templates/html/emarket/index.html" method="post" enctype="multipart/form-data" id="bt-language">
-                           <a class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                           <img src="<?php echo base_url();?>assets_frontend/image/catalog/flags/gb.png" alt="English" title="English">
-                           <span class="">English</span>
-                           <span class="fa fa-angle-down"></span>
-                           </a>
-                           <ul class="dropdown-menu">
-                              <li><a href="index-2.html"><img class="image_flag" src="<?php echo base_url();?>assets_frontend/image/catalog/flags/gb.png" alt="English" title="English" /> English </a></li>
-                              <li> <a href="index-2.html"> <img class="image_flag" src="<?php echo base_url();?>assets_frontend/image/catalog/flags/ar.png" alt="Arabic" title="Arabic" /> Arabic </a> </li>
-                           </ul>
-                        </form>
+                     <div class="btn-group languages-block ">                       
+                              <select class="form-control select2" id="fk_lang_id"><?php 
+                                    foreach ($lang_name as $lang_name_key => $lang_name_row) { ?>
+                                       <option value="<?= $lang_name_row['id']?>"><?= $lang_name_row['lang_name']?></option>
+                                    <?php } ?>
+                              </select>                           
                      </div>
                   </li>
                </ul>
