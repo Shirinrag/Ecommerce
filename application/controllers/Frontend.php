@@ -10,6 +10,7 @@ class Frontend extends CI_Controller {
 		$curl = json_decode($curl,true);
 		$data['slider'] = $curl['slider'];
 		$data['product_data'] = $curl['product_data'];
+		//print_r($data['product_data']);die();
 		$this->load->view('frontend/home',$data);
 	}
 

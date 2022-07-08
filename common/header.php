@@ -1,4 +1,9 @@
-
+<?php 
+$data=array('fk_lang_id'=>1);
+$curl=$this->link->hits('get-dynamic-menu',$data);
+$curl=json_decode($curl,TRUE);
+$cat_data = $curl['cat_data'];
+?>
 <header id="header" class=" typeheader-1">
    <!-- Header Top -->
    <div class="header-top hidden-compact">
@@ -223,27 +228,11 @@
                                        </a>
                                        <div class="sub-menu" style="width: 100%; display: none;">
                                           <div class="content">
+                                             
                                              <div class="row">
-                                                <div class="col-sm-12">
-                                                   <div class="row">
-                                                      <div class="col-md-3 img img1">
-                                                         <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/catalog/menu/megabanner/image-1.jpg" alt="banner1"></a>
-                                                      </div>
-                                                      <div class="col-md-3 img img2">
-                                                         <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/catalog/menu/megabanner/image-2.jpg" alt="banner2"></a>
-                                                      </div>
-                                                      <div class="col-md-3 img img3">
-                                                         <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/catalog/menu/megabanner/image-3.jpg" alt="banner3"></a>
-                                                      </div>
-                                                      <div class="col-md-3 img img4">
-                                                         <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/catalog/menu/megabanner/image-4.jpg" alt="banner4"></a>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                             <div class="row">
+                                                <?php foreach ($cat_data as $cat_key => $cat_row ){ ?> 
                                                 <div class="col-md-3">
-                                                   <a href="#" class="title-submenu">Automotive</a>
+                                                   <a href="#" class="title-submenu"><?php echo $cat_row['category_name'] ?></a>
                                                    <div class="row">
                                                       <div class="col-md-12 hover-menu">
                                                          <div class="menu">
@@ -257,50 +246,7 @@
                                                       </div>
                                                    </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                   <a href="#" class="title-submenu">Funitures</a>
-                                                   <div class="row">
-                                                      <div class="col-md-12 hover-menu">
-                                                         <div class="menu">
-                                                            <ul>
-                                                               <li><a href="#"  class="main-menu">Bathroom</a></li>
-                                                               <li><a href="#"  class="main-menu">Bedroom</a></li>
-                                                               <li><a href="#"  class="main-menu">Decor</a></li>
-                                                               <li><a href="#"  class="main-menu">Living room</a></li>
-                                                            </ul>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                   <a href="#" class="title-submenu">Jewelry &amp; Watches</a>
-                                                   <div class="row">
-                                                      <div class="col-md-12 hover-menu">
-                                                         <div class="menu">
-                                                            <ul>
-                                                               <li><a href="#"  class="main-menu">Earings</a></li>
-                                                               <li><a href="#"  class="main-menu">Wedding Rings</a></li>
-                                                               <li><a href="#"  class="main-menu">Men Watches</a></li>
-                                                            </ul>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                   <a href="#" class="title-submenu">Electronics</a>
-                                                   <div class="row">
-                                                      <div class="col-md-12 hover-menu">
-                                                         <div class="menu">
-                                                            <ul>
-                                                               <li><a href="#"  class="main-menu">Computer</a></li>
-                                                               <li><a href="#"  class="main-menu">Smartphone</a></li>
-                                                               <li><a href="#"  class="main-menu">Tablets</a></li>
-                                                               <li><a href="#"  class="main-menu">Monitors</a></li>
-                                                            </ul>
-                                                         </div>
-                                                      </div>
-                                                   </div>
-                                                </div>
+                                                <?php } ?>
                                              </div>
                                           </div>
                                        </div>
