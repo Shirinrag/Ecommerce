@@ -51,7 +51,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = 'u144953935_u144953935stz';
+$db['default']['database'] = 'ecommerce';
 
 
 // $db['default']['hostname'] = 'localhost';
