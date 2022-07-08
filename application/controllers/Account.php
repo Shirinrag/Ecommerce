@@ -50,8 +50,9 @@ class Account extends CI_Controller {
 
 		if($this->form_validation->run() == FALSE)
 		{
-			$data['error_msg'] = validation_errors();
-			redirect(base_url().'Account/registration',$data);
+			$errorMsg = $this->form_validation->error_array();
+            $msg = array('status' => false, 'message' => $this->_returnSingle($errorMsg));
+            echo json_encode($msg);
 		}
 		else{
 			$register_array=array('first_name'=>$this->input->post('first_name'),
@@ -65,9 +66,10 @@ class Account extends CI_Controller {
 			'app_build_no'=>'',
 			'password'=>$this->input->post('password'),
 			);
-			
+			print_r($register_array);die();
 			$data['curl'] = $this->link->hits('register_data',$register_array);
+			echo json_encode($data);
 		}
-		echo json_encode($data);
+		
 	}
 }

@@ -27,9 +27,10 @@
             </ul>
             <div class="row">
                <div id="content" class="col-sm-12">
+                  
                   <h2 class="title">Register Account</h2>
                   <p>If you already have an account with us, please login at the <a href="#">login page</a>.</p>
-                  <form action="<?php echo base_url(); ?>Account/do_registers" method="post" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
+                  <form action="" method="post" onsubmit="return validate_admin_login(this);" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
                      <fieldset id="account">
                         <legend>Your Personal Details</legend>
                         <div class="form-group required" style="display: none;">
@@ -45,31 +46,31 @@
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-firstname">First Name</label>
                            <div class="col-sm-10">
-                              <input type="text" name="firstname" value="" placeholder="First Name" id="input-firstname" class="form-control">
+                              <input type="text" name="first_name" value=""  placeholder="First Name" id="first_name" class="form-control">
                            </div>
                         </div>
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-lastname">Last Name</label>
                            <div class="col-sm-10">
-                              <input type="text" name="lastname" value="" placeholder="Last Name" id="input-lastname" class="form-control">
+                              <input type="text" name="last_name" value=""  placeholder="Last Name" id="last_name" class="form-control">
                            </div>
                         </div>
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-email">E-Mail</label>
                            <div class="col-sm-10">
-                              <input type="email" name="email" value="" placeholder="E-Mail" id="input-email" class="form-control">
+                              <input type="email" name="email" value="" placeholder="E-Mail" id="email" class="form-control">
                            </div>
                         </div>
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-telephone">Telephone</label>
                            <div class="col-sm-10">
-                              <input type="tel" name="telephone" value="" placeholder="Telephone" id="input-telephone" class="form-control">
+                              <input type="tel" name="contact_no" value="" placeholder="Telephone" id="contact_no" class="form-control">
                            </div>
                         </div>
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-password">Password</label>
                            <div class="col-sm-10">
-                              <input type="password" name="password" value="" placeholder="Password" id="input-password" class="form-control">
+                              <input type="password" name="password" value="" placeholder="Password" id="password" class="form-control">
                            </div>
                         </div>
                         <div class="form-group required">
