@@ -44,20 +44,13 @@
                            </div>
                         </div>
                         <div class="form-group required">
-                           <label class="col-sm-2 control-label" for="input-firstname">First Name</label>
+                           <label class="col-sm-2 control-label" for="input-firstname">User Name</label>
                            <div class="col-sm-10">
-                              <input type="text" name="first_name" placeholder="First Name" class="form-control">
-                                <span class="error_msg" id="first_name_error"></span>
+                              <input type="text" name="user_name" placeholder="User Name" class="form-control">
+                                <span class="error_msg" id="user_name_error"></span>
                            </div>
                         </div>
-                        <div class="form-group required">
-                           <label class="col-sm-2 control-label" for="input-lastname">Last Name</label>
-                           <div class="col-sm-10">
-                              <input type="text" name="last_name" placeholder="Last Name" id="last_name" class="form-control">
-                              <span class="error_msg" id="last_name_error"></span>
-                           </div>
-                             
-                        </div>
+                     
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-email">E-Mail</label>
                            <div class="col-sm-10">
@@ -107,13 +100,3 @@
   
 </html>
       <script src="<?= base_url();?>assets_frontend/custom_js/register.js"></script>
-
-<!-- <script type="text/javascript">
-    $("#telephone").keypress(function (e) {
-        var txt = String.fromCharCode(e.which);
-        if(!txt.match(/[0-9]/)){
-            return false;
-        }
-    })
-</script>
- -->

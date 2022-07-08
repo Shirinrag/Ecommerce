@@ -5,15 +5,12 @@ class Frontend extends CI_Controller {
 
 	public function index()
 	{
-
-		
-		// $data=array('fk_lang_id'=>1);
-		
-		// $response=$this->link->hits('get-home-page-data',$data);
-		// print_r($response);die;
-		// $data['topbanner']=json_decode($response,TRUE);
-		// print_r($data['topbanner']);die();
-		$this->load->view('frontend/home');
+		$data=array('fk_lang_id'=>1);
+		$curl=$this->link->hits('get-home-page-data',$data);
+		$curl = json_decode($curl,true);
+		$data['slider'] = $curl['slider'];
+		$data['product_data'] = $curl['product_data'];
+		$this->load->view('frontend/home',$data);
 	}
 
 	public function product_details()

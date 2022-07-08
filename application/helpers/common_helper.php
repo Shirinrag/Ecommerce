@@ -5,9 +5,4 @@
         $output['token'] = AUTHORIZATION::generateToken($tokenData);
         return $output['token'];
     }
-
-    
-
-   
-   
 ?>

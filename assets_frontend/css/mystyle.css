@@ -204,3 +204,8 @@ footer .copyright a {
 .main-right .col2 {
     width: 100% !important;
 } 
+
+.error_msg {
+    color: red;
+    font-size: 11px
+}
