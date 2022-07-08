@@ -355,7 +355,7 @@
                   <div id="sosearchpro" class="sosearchpro-wrapper so-search ">
                      <form method="GET" action="https://demo.smartaddons.com/templates/html/emarket/index.html">
                         <div id="search0" class="search input-group form-group">
-                           <div class="select_category filter_type  icon-select hidden-sm hidden-xs">
+                           <!-- <div class="select_category filter_type  icon-select hidden-sm hidden-xs">
                               <select class="no-border" name="category_id">
                                  <option value="0">All Categories</option>
                                  <option value="78">Apparel</option>
@@ -369,7 +369,7 @@
                                  <option value="26">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wedding Rings</option>
                                  <option value="27">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men Watches</option>
                               </select>
-                           </div>
+                           </div> -->
                            <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off" placeholder="Keyword here..." name="search">
                            <span class="input-group-btn">
                            <button type="submit" class="button-search btn btn-primary" name="submit_search"><i class="fa fa-search"></i></button>
