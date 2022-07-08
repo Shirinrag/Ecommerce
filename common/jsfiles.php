@@ -21,12 +21,26 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/toppanel.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/so_megamenu.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/addtocart.js"></script>  
-<script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/admin.js"></script>  
+<!-- <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/admin.js"></script>   -->
   <script src="<?=base_url()?>assets_frontend/js/button-inline-loader.js"></script>
+  <script src="<?= base_url();?>assets_frontend/js/toastr.min.js"></script>
 <script type="text/javascript">
+
 	
 	function error_msg(t) {
 	    for (var i in t) "" != t[i] ? $("#" + i + "_error").html(t[i]).show() : $("#" + i + "_error").html("").hide();
 	        $(".error_msg").delay(10000).fadeOut()
 	}
+
+	 function success_msg(t) {
+        toastr.success(t);
+    }
+
+    function success_error(t) {
+        toastr.error(t);
+    }
+
+    function success_warningt(t) {
+        toastr.warning(t);
+    }
 </script>

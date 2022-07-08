@@ -37,7 +37,7 @@ class Account extends CI_Controller {
             $contact_no = $this->input->post('contact_no');
             $password = $this->input->post('password');
 
-            $this->form_validation->set_rules('first_name','First Name', 'trim|required|alpha', array('required' => '%s is required.'));
+            $this->form_validation->set_rules('user_name','User Name', 'trim|required|alpha', array('required' => '%s is required.'));
             $this->form_validation->set_rules('email','Email', 'trim|valid_email', array('required' => '%s is required.'));
             $this->form_validation->set_rules('contact_no','Contact No', 'trim|required', array('required' => '%s is required.'));
             $this->form_validation->set_rules('password','Password', 'trim|required', array('required' => '%s is required.'));
@@ -57,16 +57,15 @@ class Account extends CI_Controller {
                     'password'=>$password
                 );
                 $curl = $this->link->hits('register_data',$curl_data);
-                echo '<pre>'; print_r($curl); exit;
-
                 $curl = json_decode($curl, TRUE);
                 if($curl['status']){
                     $response['status']='success';
                     $response['message']=$curl['message'];
+                    $response['url']= base_url().'account/login';
                 } else {
                     $response['status'] = 'failure';
                     $response['error'] = array(
-                     'email' => $curl['message'], 
+                     'contact_no' => $curl['message'], 
                     );
                 }
             } 

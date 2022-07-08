@@ -13,9 +13,8 @@ $('#user_register_form').submit(function (e) {
          if (response.status == 'success') {
             $('form#user_register_form').trigger('reset');
             $('#register_button').button('reset');
-            $('.chosen-select-deselect').val('').trigger('chosen:updated');
-            success_msg("Category Added Successfully");
-            $('#a_category_data').DataTable().ajax.reload();
+            window.location.replace(response['url']);
+            success_msg("Register Successfully");
          } else if (response.status == 'failure') {
             error_msg(response.error);
             $('#register_button').button('reset');
