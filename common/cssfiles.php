@@ -3,10 +3,6 @@
         ============================================ -->
         <title>Circuit Store</title>
         <meta charset="utf-8">
-       <!--  <meta name="keywords" content="html5 template, best html5 template, best html template, html5 basic template, multipurpose html5 template, multipurpose html template, creative html templates, creative html5 templates" />
-        <meta name="description" content="eMarket is a powerful Multi-purpose HTML5 Template with clean and user friendly design. It is definite a great starter for any eCommerce web project." />
-        <meta name="author" content="Magentech">
-        <meta name="robots" content="index, follow" /> -->
 
     <!-- Mobile specific metas
         ============================================ -->
@@ -37,4 +33,5 @@
     <link href="<?php echo base_url();?>assets_frontend/css/header/header1.css" rel="stylesheet">
     <link id="color_scheme" href="<?php echo base_url();?>assets_frontend/css/theme.css" rel="stylesheet"> 
     <link href="<?php echo base_url();?>assets_frontend/css/responsive.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets_frontend/css/mystyle.css" rel="stylesheet">
  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700' rel='stylesheet' type='text/css'>
