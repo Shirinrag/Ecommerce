@@ -22,6 +22,11 @@ header.typeheader-1 .search-header-w #sosearchpro .search {
     left: -70px !important;
 }
 }
+.yt-content-slide a img
+{
+    width: 100% !important;
+    height: 400px !important;
+}
 
 @media (max-width: 767px){
 header.typeheader-1 .search-header-w #sosearchpro .search input {
@@ -81,31 +86,104 @@ header.typeheader-1 .shopping_cart {
 }
 
 .typeheader-1 .container-megamenu.horizontal ul.megamenu > li > a {
-    color: #ff3c20 !important;
+    color: #fd7e14 !important;
+}
+
+.typeheader-1 #sosearchpro .search input {
+    border: 1px solid !important;
 }
 
 .typeheader-1 .wishlist-comp li a i {
-    color: #ff3c20 !important;
+    color: #fd7e14 !important;
 }
 
 .typeheader-1 .signin-w {
-    color: #ff3c20 !important;
+    color: #fd7e14 !important;
 }
 .typeheader-1 .signin-w ul li a {
-    color: #ff3c20 !important;
+    color: #fd7e14 !important;
 }
 
 .typeheader-1 .signin-w ul li a {
-     color: #ff3c20 !important;
+     color: #fd7e14 !important;
 }
 
 .typeheader-1 .telephone ul li a {
-   color: #ff3c20 !important;
+   color: #fd7e14 !important;
 }
 .typeheader-1 .telephone ul li a {
-    color: #ff3c20 !important;
+    color: #fd7e14 !important;
 }
 
 .typeheader-1 .wishlist-comp li a.top-link-wishlist:before {
-   color: #ff3c20 !important;
+   color: #fd7e14 !important;
 }
+.typefooter-1 .footer-top {
+    background-color: #1c144c !important;
+
+}
+.typefooter-1 .footer-bottom {
+    background-color: #1c144c !important;
+}
+footer .copyright a {
+    color: #fd7e14;
+}
+.typeheader-1 #sosearchpro .search button:hover {
+    background-color: #fd7e14 !important;
+}
+.typeheader-1 .shopping_cart .btn-shopping-cart .top_cart .icon-c {
+    background-color: #fd7e14 !important;
+}
+.typeheader-1 #sosearchpro .search button {
+    background-color: #fd7e14 !important;
+}
+
+.typeheader-1 .shopping_cart .btn-shopping-cart .top_cart .shopcart-inner {
+    color: #fd7e14 !important;
+}
+.typeheader-1 .shopping_cart .btn-shopping-cart .top_cart .shopcart-inner .total-shopping-cart .items_carts, .typeheader-1 .signin-w ul li a:hover {
+    color: #fd7e14 !important;
+}
+.typefooter-1 .newsletter-footer1 .newsletter .block_content form.signup .subcribe button:hover {
+    background-color: #fd7e14 !important;
+}
+footer .copyright a {
+    color: #fd7e14 !important;
+}
+.left-content-product .content-product-right .box-info-product .cart input:hover {
+    background: #1c144c !important;
+}
+.left-content-product .content-product-right .box-info-product .cart input {
+    background: #fd7e14 !important;
+}
+.left-content-product .content-product-right .box-info-product .add-to-links ul li a:hover {
+    border-color: #fd7e14 !important;
+    color: #fd7e14 !important;
+}
+.producttab .tabsslider.vertical-tabs ul.nav-tabs li.active a {
+    color: #fd7e14 !important;
+}
+.producttab .tabsslider.vertical-tabs ul.nav-tabs li.active {
+    border-left-color: #fd7e14 !important;
+}
+.producttab .tabsslider.vertical-tabs ul.nav-tabs li:hover a {
+    color: #1c144c !important;
+}
+.producttab .tabsslider.vertical-tabs ul.nav-tabs li:hover {
+    border-left-color: #fd7e14 !important;
+}
+.producttab .tabsslider.vertical-tabs ul.nav-tabs li.active:before {
+    background-color: #fd7e14 !important;
+}
+.producttab .tabsslider.vertical-tabs ul.nav-tabs li:hover:before {
+    background-color: #1c144c !important;
+}
+.typefooter-1 .newsletter-footer1 .newsletter .block_content form.signup .subcribe button {
+    background-color: #fd7e14 !important;
+}
+.typefooter-1 .module .modtitle:after {
+    background-color: #fd7e14 !important;
+}
+.main-right .col2 {
+    width: 100% !important;
+} 

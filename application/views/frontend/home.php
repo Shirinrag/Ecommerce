@@ -38,25 +38,25 @@
                </div>
                <div class="row">
                 
-                  <div class="col-lg-10 col-md-12 col-sm-8 col-xs-12 main-right">
+                  <div class="col-lg-12 col-md-12 col-sm-8 col-xs-12">
                      <div class="slider-container row">
-                        <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 col2">
+                        <div class="col-lg-12 col-md-8 col-sm-8 col-xs-12">
                            <div class="module sohomepage-slider ">
                               <div class="yt-content-slider"  data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
                                  <div class="yt-content-slide">
-                                    <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/catalog/slideshow/home1/slider-1.jpg" alt="slider1" class="img-responsive"></a>
+                                    <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/catalog/slideshow/home1/slider-1.jpg" alt="slider1" id="sliders" class="img-responsive sliders"></a>
                                  </div>
                                  <div class="yt-content-slide">
-                                    <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/catalog/slideshow/home1/slider-2.jpg" alt="slider2" class="img-responsive"></a>
+                                    <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/catalog/slideshow/home1/slider-2.jpg" alt="slider2" id="sliders" class="img-responsive sliders"></a>
                                  </div>
                                  <div class="yt-content-slide">
-                                    <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/catalog/slideshow/home1/slider-3.jpg" alt="slider3" class="img-responsive"></a>
+                                    <a href="#"><img src="<?php echo base_url();?>assets_frontend/image/catalog/slideshow/home1/slider-3.jpg" alt="slider3" id="sliders" class="img-responsive sliders"></a>
                                  </div>
                               </div>
                               <div class="loadeding"></div>
                            </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col3">
+                        <!-- <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col3">
                            <div class="modcontent clearfix">
                               <div class="banners banners1">
                                  <div class="b-img">
@@ -67,10 +67,10 @@
                                  </div>
                               </div>
                            </div>
-                        </div>
+                        </div> -->
                      </div>
                      <!-- Deals -->
-                     <div class="module deals-layout1">
+                     <div class="module deals-layout1" style="margin-top:50px;">
                       <!--  <h3 class="modtitle"><span>Daily Deals</span></h3> -->
                       <div class="modcontent">
                         <div id="so_deal_1" class="so-deal style2">
@@ -612,7 +612,7 @@
                <div class="product-item-container">
                   <div class="left-block">
                      <div class="product-image-container second_img">
-                        <a href="product.html" target="_self" title="Pastrami bacon">
+                        <a href="<?php echo base_url(); ?>Productdetails" target="_self" title="Pastrami bacon">
                           <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/9.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
                           <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/2.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
                        </a>
@@ -640,7 +640,7 @@
                     <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                     <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                  </div>
-                 <h4><a href="product.html" title="Pastrami bacon" target="_self">Pastrami bacon</a></h4>
+                 <h4><a href="<?php echo base_url(); ?>Productdetails" title="Pastrami bacon" target="_self">Pastrami bacon</a></h4>
                  <div class="price">$42.00</div>
               </div>
            </div>
