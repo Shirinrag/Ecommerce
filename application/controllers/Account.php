@@ -31,45 +31,48 @@ class Account extends CI_Controller {
 		$this->load->view('frontend/change_password');
 	}
 
-	public function do_registers()
-	{
-		$this->form_validation->set_rules('','Email','trim|required');
-		$this->form_validation->set_message('is_unique','The %s is already taken');
+	 public function user_register(){
+            $first_name = $this->input->post('first_name'); 
+            $last_name = $this->input->post('last_name');
+            $email = $this->input->post('email');
+            $contact_no = $this->input->post('contact_no');
+            $password = $this->input->post('password');
 
-		$this->form_validation->set_rules('telephone','Phone No','trim|required');
-		$this->form_validation->set_message('is_unique','The %s is already taken');
-
-		$this->form_validation->set_rules('firstname','First Name','trim|required');
-		$this->form_validation->set_message('is_unique','The %s is already taken');
-
-		$this->form_validation->set_rules('lastname','Last Name','trim|required');
-		$this->form_validation->set_message('is_unique','The %s is already taken');
-
-		$this->form_validation->set_rules('password','Password','required');
-		$this->form_validation->set_rules('confirm','Confirm','required|matches[password]');
-
-		if($this->form_validation->run() == FALSE)
-		{
-			$errorMsg = $this->form_validation->error_array();
-            $msg = array('status' => false, 'message' => $this->_returnSingle($errorMsg));
-            echo json_encode($msg);
-		}
-		else{
-			$register_array=array('first_name'=>$this->input->post('first_name'),
-			'last_name'=>$this->input->post('last_name'),
-			'email'=>$this->input->post('email'),
-			'contact_no'=>$this->input->post('contact_no'),
-			'device_type'=>'',
-			'device_id'=>'',
-			'terms_cond'=>'',
-			'app_version'=>'',
-			'app_build_no'=>'',
-			'password'=>$this->input->post('password'),
-			);
-			print_r($register_array);die();
-			$data['curl'] = $this->link->hits('register_data',$register_array);
-			echo json_encode($data);
-		}
-		
-	}
+            $this->form_validation->set_rules('first_name','First Name', 'trim|required|alpha', array('required' => '%s is required.'));
+            $this->form_validation->set_rules('last_name','Last Name', 'trim|required|alpha', array('required' => '%s is required.'));
+            $this->form_validation->set_rules('email','Email', 'trim|valid_email', array('required' => '%s is required.'));
+            $this->form_validation->set_rules('contact_no','Contact No', 'trim|required', array('required' => '%s is required.'));
+            $this->form_validation->set_rules('password','Password', 'trim|required', array('required' => '%s is required.'));
+            if ($this->form_validation->run() == FALSE) {
+                $response['status'] = 'failure';
+                $response['error'] = array(
+                    'first_name' => strip_tags(form_error('first_name')), 
+                    'last_name' => strip_tags(form_error('last_name')),           
+                    'email' => strip_tags(form_error('email')),
+                    'contact_no' => strip_tags(form_error('contact_no')),
+                    'password' => strip_tags(form_error('password')),
+                );
+            } else {
+                $curl_data = array(
+                    'first_name'=>$first_name,
+                    'last_name'=>$last_name,
+                    'email'=>$email,
+                    'contact_no'=>$contact_no,
+                    'password'=>$password
+                );
+                $curl = $this->link->hits('register_data',$curl_data);
+                $curl = json_decode($curl, TRUE);
+                echo '<pre>'; print_r($curl); exit;
+                if($curl['status']){
+                    $response['status']='success';
+                    $response['message']=$curl['message'];
+                } else {
+                    $response['status'] = 'failure';
+                    $response['error'] = array(
+                     'email' => $curl['message'], 
+                    );
+                }
+            } 
+        echo json_encode($response);
+    }
 }

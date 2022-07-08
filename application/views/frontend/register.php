@@ -30,7 +30,7 @@
                   
                   <h2 class="title">Register Account</h2>
                   <p>If you already have an account with us, please login at the <a href="#">login page</a>.</p>
-                  <form action="" method="post" onsubmit="return validate_admin_login(this);" enctype="multipart/form-data" class="form-horizontal account-register clearfix">
+                    <?php echo form_open('account/user_register', array('id' => 'user_register_form')) ?>
                      <fieldset id="account">
                         <legend>Your Personal Details</legend>
                         <div class="form-group required" style="display: none;">
@@ -46,49 +46,50 @@
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-firstname">First Name</label>
                            <div class="col-sm-10">
-                              <input type="text" name="first_name" value=""  placeholder="First Name" id="first_name" class="form-control">
+                              <input type="text" name="first_name" placeholder="First Name" class="form-control">
+                                <span class="error_msg" id="first_name_error"></span>
                            </div>
                         </div>
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-lastname">Last Name</label>
                            <div class="col-sm-10">
-                              <input type="text" name="last_name" value=""  placeholder="Last Name" id="last_name" class="form-control">
+                              <input type="text" name="last_name" placeholder="Last Name" id="last_name" class="form-control">
+                              <span class="error_msg" id="last_name_error"></span>
                            </div>
+                             
                         </div>
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-email">E-Mail</label>
                            <div class="col-sm-10">
-                              <input type="email" name="email" value="" placeholder="E-Mail" id="email" class="form-control">
+                              <input type="email" name="email"placeholder="E-Mail" id="email" class="form-control">
+                             <span class="error_msg" id="email_error"></span>
+
                            </div>
                         </div>
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-telephone">Telephone</label>
                            <div class="col-sm-10">
-                              <input type="tel" name="contact_no" value="" placeholder="Telephone" id="contact_no" class="form-control">
+                              <input type="text" name="contact_no" placeholder="Telephone" class="form-control">
+                             <span class="error_msg" id="contact_no_error"></span>
+
                            </div>
                         </div>
                         <div class="form-group required">
                            <label class="col-sm-2 control-label" for="input-password">Password</label>
                            <div class="col-sm-10">
-                              <input type="password" name="password" value="" placeholder="Password" id="password" class="form-control">
+                              <input type="password" name="password" placeholder="Password" class="form-control">
+                             <span class="error_msg" id="password_error"></span>
+
                            </div>
-                        </div>
-                        <div class="form-group required">
-                           <label class="col-sm-2 control-label" for="input-confirm">Password Confirm</label>
-                           <div class="col-sm-10">
-                              <input type="password" name="confirm" value="" placeholder="Password Confirm" id="input-confirm" class="form-control">
-                           </div>
-                        </div>
-                       
+                        </div>                       
                      </fieldset>
-                   
+                   <br>
                      <div class="buttons">
-                        <div class="pull-right">I have read and agree to the <a href="#" class="agree"><b>Pricing Tables</b></a>
-                           <input class="box-checkbox" type="checkbox" name="agree" value="1"> &nbsp;
-                           <input type="submit" value="Continue" class="btn btn-primary">
-                        </div>
+                        <div class="pull-right">                        
+                         <button class="btn btn-primary" id="register_button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Loading" type="submit">Submit</button>
                      </div>
-                  </form>
+                     </div>
+                   <?php echo form_close() ?>
                </div>
             </div>
          </div>
@@ -105,7 +106,9 @@
    </body>
   
 </html>
-<script type="text/javascript">
+      <script src="<?= base_url();?>assets_frontend/custom_js/register.js"></script>
+
+<!-- <script type="text/javascript">
     $("#telephone").keypress(function (e) {
         var txt = String.fromCharCode(e.which);
         if(!txt.match(/[0-9]/)){
@@ -113,3 +116,4 @@
         }
     })
 </script>
+ -->
