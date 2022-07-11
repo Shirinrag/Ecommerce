@@ -9,6 +9,7 @@
       <link rel="icon" href="favicon.ico" type="image/x-icon" />
       <link rel="stylesheet" type="text/css" id="theme" href="<?php echo base_url()?>assets-admin/css/theme-default.css"/>
       <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
       <style type="text/css">
          .form-horizontal .form-group {
          margin-right: 0px;
@@ -182,8 +183,7 @@
       <script src="<?php echo base_url();?>assets_admin/js/sweetalert.min.js"></script>
       <script src="<?php echo base_url();?>assets_admin/lib/select2/select2.js"></script>
       <script src="<?php echo base_url();?>assets_admin/lib/jquery-toggles/toggles.js"></script>
-      <script src="<?php echo base_url();?>assets_admin/lib/datatables/jquery.dataTables.js"></script>
-      <script src="<?php echo base_url();?>assets_admin/lib/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+       <script type="text/javascript" src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
 
 
