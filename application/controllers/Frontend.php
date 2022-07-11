@@ -8,6 +8,7 @@ class Frontend extends CI_Controller {
 		$data=array('fk_lang_id'=>1);
 		$curl=$this->link->hits('get-home-page-data',$data);
 		$curl = json_decode($curl,true);
+		// echo '<pre>'; print_r($curl); exit;
 		$data['slider'] = $curl['slider'];
 		$data['product_data'] = $curl['product_data'];
 		$data['popular'] = $curl['popular'];
