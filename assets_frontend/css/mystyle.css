@@ -2,8 +2,6 @@
     color: red;
     font-size: 11px
 }
-
-
 .no-margin {
   margin: 0 !important; }
   body.no-bgbody {
@@ -115,22 +113,16 @@ a:hover, .btn-link:hover {
 }
 
 .typeheader-1 .signin-w {
-    color: #fd7e14 !important;
+    color: #232f3e !important;
 }
 .typeheader-1 .signin-w ul li a {
-    color: #fd7e14 !important;
-}
-
-.typeheader-1 .signin-w ul li a {
-     color: #fd7e14 !important;
+    color: #232f3e !important;
 }
 
 .typeheader-1 .telephone ul li a {
-   color: #fd7e14 !important;
+   color: #232f3e !important;
 }
-.typeheader-1 .telephone ul li a {
-    color: #fd7e14 !important;
-}
+
 
 .typeheader-1 .wishlist-comp li a.top-link-wishlist:before {
    color: #1c144c !important;
@@ -159,7 +151,7 @@ footer .copyright a {
     color: #fd7e14 !important;
 }
 .typeheader-1 .shopping_cart .btn-shopping-cart .top_cart .shopcart-inner .total-shopping-cart .items_carts, .typeheader-1 .signin-w ul li a:hover {
-    color: #1c144c !important;
+    color: #fd7e14 !important;
 }
 .typefooter-1 .newsletter-footer1 .newsletter .block_content form.signup .subcribe button:hover {
     background-color: #fd7e14 !important;
