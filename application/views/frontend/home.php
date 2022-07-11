@@ -7,7 +7,7 @@
       <?php include('common/cssfiles.php');?>
       <style type="text/css">
          body{font-family:'Roboto', sans-serif}
-         }
+         
       </style>
    </head>
    <body class="common-home res layout-1">
@@ -89,7 +89,7 @@
                                                 <div class="caption">
                                                    <h4><a href="#" target="_self" title="<?php echo $product_row['product_name'];?>"><?php echo $product_row['product_name'];?></a></h4>
                                                    <p class="price">   
-                                                      <span class="price-old"><?php echo $product_row['product_price'];?></span>
+                                                      <span class="price-new"><?php echo '$ '.$product_row['product_price'];?></span>
                                                    </p>
                                                    <p class="desc"><?php echo htmlspecialchars_decode($product_row['description']) ;?></p>
                                                    <div class="item-available">
@@ -133,19 +133,21 @@
                      <!--banners 7-->
                   </div>
                   
+                  <!---populars -->
                   <div class="slider-brands col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                     <div class="related titleLine products-list grid module ">
-                        <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="no" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
-                       
-                        <div class="item">
-                        <?php foreach ($product_data as $product_key => $product_row ) { ?>   
+                  <h3 class="modtitle"><span>Populars</span></h3>
+                     <div class="related titleLine products-list grid module ">                    
+                        <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="no" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">                      
+                        <?php  foreach ($popular as $product_key => $product_row ) { ?>  
+                        <div class="item">                       
                               <div class="item-inner product-layout transition product-grid">
+                              
                                  <div class="product-item-container">
                                     <div class="left-block">
                                        <div class="product-image-container second_img">  
                                           <a href="product.html" target="_self" title="Pastrami bacon">
-                                          <img src="<?php echo $product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
-                                          <img src="<?php echo $product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
                                           </a>
                                        </div>
                                        <div class="button-group so-quickview cartinfo--left">
@@ -175,26 +177,29 @@
                                        </div>
                                     </div>
                                  </div>
+                                
                               </div>
                            </div>
                            <?php } ?>
                         </div>
-                       
                      </div>
                   </div>
+                 
+                  <!---Featured -->
                   <div class="slider-brands col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                     <div class="related titleLine products-list grid module ">
-                        <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="no" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
-                       
-                        <div class="item">
-                        <?php foreach ($product_data as $product_key => $product_row ) { ?>   
+                  <h3 class="modtitle"><span>Featured</span></h3>
+                     <div class="related titleLine products-list grid module ">                    
+                        <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="no" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">                      
+                        <?php  foreach ($featured as $product_key => $product_row ) { ?>  
+                        <div class="item">                       
                               <div class="item-inner product-layout transition product-grid">
+                              
                                  <div class="product-item-container">
                                     <div class="left-block">
                                        <div class="product-image-container second_img">  
                                           <a href="product.html" target="_self" title="Pastrami bacon">
-                                          <img src="<?php echo $product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
-                                          <img src="<?php echo $product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
                                           </a>
                                        </div>
                                        <div class="button-group so-quickview cartinfo--left">
@@ -224,14 +229,65 @@
                                        </div>
                                     </div>
                                  </div>
+                                
                               </div>
                            </div>
                            <?php } ?>
                         </div>
-                       
                      </div>
                   </div>
-                  
+
+                   <!---Best Selligs -->
+                  <div class="slider-brands col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <h3 class="modtitle"><span>Best Sellings</span></h3>
+                     <div class="related titleLine products-list grid module ">                    
+                        <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="no" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">                      
+                        <?php  foreach ($best_selling as $product_key => $product_row ) { ?>  
+                        <div class="item">                       
+                              <div class="item-inner product-layout transition product-grid">
+                              
+                                 <div class="product-item-container">
+                                    <div class="left-block">
+                                       <div class="product-image-container second_img">  
+                                          <a href="product.html" target="_self" title="Pastrami bacon">
+                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          </a>
+                                       </div>
+                                       <div class="button-group so-quickview cartinfo--left">
+                                          <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
+                                          <span>Add to cart </span>   
+                                          </button>
+                                          <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
+                                          </button>
+                                          <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
+                                          </button>
+                                          <!--quickview-->                                                      
+                                          <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                          <!--end quickview-->
+                                       </div>
+                                    </div>
+                                    
+                                    <div class="right-block">
+                                       <div class="caption">
+                                          <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                             <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                          </div>
+                                          <h4><a href="product.html" title="Pastrami bacon" target="_self"><?php echo $product_row['product_name']; ?></a></h4>
+                                          <div class="price"><?php echo $product_row['product_price']; ?></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                
+                              </div>
+                           </div>
+                           <?php } ?>
+                        </div>
+                     </div>
+                  </div>
 
                   <div class="slider-brands col-lg-12 col-md-12 col-sm-12 col-xs-12">
                      <div class="yt-content-slider contentslider" data-autoplay="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="8" data-items_column1="6" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes"

@@ -105,7 +105,17 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-sm-3 ">
+                                    <div class="form-group">
+                                    
+                                    <input type="checkbox" name="featured" value="1" <?php if($product_data[0]['featured']=='1'){ ?> checked="checked" <?php } ?>> Featured &nbsp;&nbsp;
 
+                                    <input type="checkbox" name="popular" value="1" <?php if($product_data[0]['popular']=='1'){ ?> checked="checked" <?php } ?>> Popular &nbsp;&nbsp;
+
+                                    <input type="checkbox" name="best_selling" value="1" <?php if($product_data[0]['best_selling']=='1'){ ?> checked="checked" <?php } ?>> Best Sellings &nbsp;&nbsp;
+
+                                    </div>
+                                    </div>
                                     <!-- <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Enter product name(ar)<span class="text-danger">*</span></label>

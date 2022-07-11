@@ -203,7 +203,7 @@ class Admin extends CI_Controller {
         if (isset($array_entity) && !empty($array_entity)) {
             $category_id = $array_entity['category_id'];
             $sub_category_name = $array_entity['sub_category_name'];
-            $sub_category_name_ar = $array_entity['sub_category_name_ar'];
+            //$sub_category_name_ar = $array_entity['sub_category_name_ar'];
             $sub_category_sort_order = $array_entity['sub_category_sort_order'];
             $fk_lang_id = $array_entity['fk_lang_id'];
             $sub_category_data = $this->model->getData("subcategory", array('sub_category_name' => $sub_category_name, 'status' => '1'));
@@ -211,7 +211,7 @@ class Admin extends CI_Controller {
                 $data['status'] = '0';
                 $data['msg'] = 'Category already exist.';
             } else {
-                $category_id = $this->model->insertData('subcategory', array('category_id' => $category_id, 'sub_category_name' => $sub_category_name, 'sub_category_name_ar' => $sub_category_name_ar, 'sort_order' => $sub_category_sort_order, 'fk_lang_id' => $fk_lang_id));
+                $category_id = $this->model->insertData('subcategory', array('category_id' => $category_id, 'sub_category_name' => $sub_category_name, 'sort_order' => $sub_category_sort_order, 'fk_lang_id' => $fk_lang_id));
                 if ($category_id > 0) {
                     $data['status'] = '1';
                     $data['msg'] = 'New sub category has been added successfully.';
@@ -242,12 +242,13 @@ class Admin extends CI_Controller {
             $sub_category_id = $array_entity['sub_category_id'];
             $category_id = $array_entity['category_id'];
             $sub_category_name = $array_entity['sub_category_name'];
-            $sub_category_name_ar = $array_entity['sub_category_name_ar'];
+            //$sub_category_name_ar = $array_entity['sub_category_name_ar'];
             $sub_category_sort_order = $array_entity['sub_category_sort_order'];
-            $this->model->updateData('subcategory', array('category_id' => $category_id, 'sub_category_name' => $sub_category_name, 'sub_category_name_ar' => $sub_category_name_ar, 'sort_order' => $sub_category_sort_order), array('sub_category_id' => $sub_category_id));
+            $this->model->updateData('subcategory', array('category_id' => $category_id, 'sub_category_name' => $sub_category_name, 'sort_order' => $sub_category_sort_order), array('sub_category_id' => $sub_category_id));
             $data['status'] = '1';
             $data['msg'] = 'Sub category has been updated successfully.';
-        } else {
+            //redirect(base_url().'admin/add_new_sub_category');
+         } else {
             $data['status'] = '0';
             $data['msg'] = 'Invalid sub category';
         }
@@ -401,6 +402,17 @@ class Admin extends CI_Controller {
         }
         echo json_encode($sub_cats);
     }
+    function getChildCategory(){
+        $postData = $_POST;
+        $sub_category_list = $this->model->getData('childcategory',array('status'=>'1'));
+        $sub_cats = array();
+        foreach ($sub_category_list as $key => $value) {
+            if($postData['sub_category_id'] == $value['sub_category_id']){
+                $sub_cats[] = $value;
+            }
+        }  
+         echo json_encode($sub_cats);
+     }
     function add_new_product() {
         $data['status'] = '';
         $data['msg'] = '';
@@ -413,6 +425,28 @@ class Admin extends CI_Controller {
         $data['lang_name'] = $this->model->selectWhereData('tbl_language', array(), array('id', 'lang_name'), false);
         $this->load->view('admin/includes/template', $data);
     }
+
+    function delete_gallery_product(){
+        $jsonObj = $_POST['jsonObj']; 
+        $array_data = json_decode($jsonObj,true); 
+        $array_entity = $array_data['product'];
+        if(isset($array_entity) && !empty($array_entity)){
+            $product_id = $array_entity['product_id'];
+            $img_path = $array_entity['img_path'];
+            if(unlink(FCPATH.$img_path)) {
+                echo 'File '.$img_path.' has been deleted';    
+            }else echo 'Could not delete '.$filename;
+            $this->model->deleteData('product_gallery',array('id'=>$product_id));    
+            $data['msg'] = 'product Image has been deleted successfully.';
+            
+        }else{
+            $data['status'] = '0';
+            $data['msg'] = 'Invalid product details';
+        }
+        redirect('admin/edit_product?product_id='.$product_id);
+        echo json_encode($data);
+    }
+    
     function submit_product() {
         $_POST['status'] = '1';
         $_POST['stock_status'] = '1';
@@ -482,8 +516,27 @@ class Admin extends CI_Controller {
         $_POST['stock_status'] = '1';
         $_POST['relatable_products'] = implode(",", $_POST['relatable_products']);
         $product_array = $_POST;
+        if($product_array['featured'] == '1')
+        { $product_array['featured']='1';
+        }else{ $product_array['featured']='0'; }
+
+        if($product_array['popular'] == '1')
+        { $product_array['popular']='1';
+        }else{ $product_array['popular']='0'; }
+
+        if($product_array['best_selling'] == '1')
+        { $product_array['best_selling']='1';
+        }else{ $product_array['best_selling']='0'; }
+
         $product_gallery = array();
-        $data = array();
+        $product_record = $this->model->getData('product_gallery', array('product_id' => $product_array['product_id']));
+        if($product_record[0]['img_url'] != '')
+        {
+            $product_array['image_name']=$product_record[0]['img_url'];
+        }else{
+            $product_array['image_name']='uploads/products/'.$_FILES['image_files']['name'][0];
+        }
+        
         $last_id = $this->model->updateData('product', $product_array, array('product_id' => $product_array['product_id']));
         $last_product_id = $product_array['product_id'];
         $countfiles = count($_FILES['image_files']['name']);
