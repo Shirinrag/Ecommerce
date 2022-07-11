@@ -17,7 +17,6 @@ function hits($link,$request,$token='',$type = 1)
             $url = $Base_API . $link;
         }
      
-         //$data = json_encode($data);
         $header = array("Authorization:".token_get());
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
