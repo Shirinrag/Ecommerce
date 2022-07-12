@@ -43,4 +43,5 @@
     function success_warningt(t) {
         toastr.warning(t);
     }
+    
 </script>

@@ -26,7 +26,7 @@
                               <div class="yt-content-slider"  data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="1" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="no" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
                                  <?php foreach ($slider as $slider_key => $slider_row) { ?>
                                     <div class="yt-content-slide">
-                                    <a href="#"><img src="<?php echo base_url();?><?=$slider_row['img_url']?>" alt="slider1" id="sliders" class="img-responsive sliders"></a>
+                                    <a href="#"><img src="<?=$slider_row['img_url']?>" alt="slider1" id="sliders" class="img-responsive sliders"></a>
                                  </div>
                                     
                                 <?php }?>
@@ -70,7 +70,7 @@
                                                    -22%
                                                    </span> -->
                                                    <a href="#" target="_self" title="product">
-                                                   <img src="<?php echo base_url().$product_row['image_name'];?>" alt="<?php echo $product_row['product_name'];?>" class="img-responsive">
+                                                   <img src="<?php echo $product_row['image_name'];?>" alt="<?php echo $product_row['product_name'];?>" class="img-responsive">
                                                    </a>
                                                    <div class="button-group so-quickview">
                                                       <button class="btn-button addToCart" title="Add to Cart" type="button" onclick="cart.add('69');"><i class="fa fa-shopping-basket"></i>  <span>Add to Cart</span>
@@ -146,8 +146,8 @@
                                     <div class="left-block">
                                        <div class="product-image-container second_img">  
                                           <a href="product.html" target="_self" title="Pastrami bacon">
-                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
-                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo $product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo $product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
                                           </a>
                                        </div>
                                        <div class="button-group so-quickview cartinfo--left">
@@ -198,8 +198,8 @@
                                     <div class="left-block">
                                        <div class="product-image-container second_img">  
                                           <a href="product.html" target="_self" title="Pastrami bacon">
-                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
-                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo $product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo $product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
                                           </a>
                                        </div>
                                        <div class="button-group so-quickview cartinfo--left">
@@ -250,8 +250,8 @@
                                     <div class="left-block">
                                        <div class="product-image-container second_img">  
                                           <a href="product.html" target="_self" title="Pastrami bacon">
-                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
-                                          <img src="<?php echo base_url().$product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo $product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <img src="<?php echo $product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
                                           </a>
                                        </div>
                                        <div class="button-group so-quickview cartinfo--left">
