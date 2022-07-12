@@ -109,8 +109,7 @@ class Admin extends CI_Controller {
                 $this->load->library('upload', $config);
                 if (!$this->upload->do_upload('image_file')) {
                     $error = array('error' => $this->upload->display_errors());
-                    $data['msg'] = $error['error'];
-                    $this->load->view('admin/add_new_category', $data);
+                    $this->load->view('upload_form', $error);
                 } else {
                     move_uploaded_file($_FILES['image_file']['tmp_name']);
                     $data = array('file_path' => $this->upload->data());
@@ -135,7 +134,6 @@ class Admin extends CI_Controller {
     }
     function edit_category() {
         $category_id = $this->input->get_post('category_id');
-        $this->load->model('superadmin_model');
         $data['category_data'] = $this->superadmin_model->get_category($category_id);
         $data['menu'] = 'category';
         $data['main_content'] = 'admin/edit_category'; //dashboard
@@ -230,7 +228,6 @@ class Admin extends CI_Controller {
     }
     function edit_sub_category() {
         $sub_category_id = $this->input->get_post('sub_category_id');
-        $this->load->model('superadmin_model');
         $data['subcategory_data'] = $this->superadmin_model->get_subcategory($sub_category_id);
         $data['category_data'] = $this->model->getData('category', array('status' => '1', 'fk_lang_id' => $data['subcategory_data'][0]['fk_lang_id']));
         $data['menu'] = 'subcategory';
@@ -327,7 +324,6 @@ class Admin extends CI_Controller {
     }
     function edit_child_category() {
         $child_category_id = $this->input->get_post('child_category_id');
-        $this->load->model('superadmin_model');
         $data['childcategory'] = $this->superadmin_model->get_child_category($child_category_id) [0];
         $data['category_data'] = $this->model->getData('category', array('status' => '1', 'fk_lang_id' => $data['childcategory']['fk_lang_id']));;
         $data['category_data_by_id'] = $this->model->getData('category', array('category_id' => $data['childcategory']['category_id']));
@@ -913,13 +909,13 @@ class Admin extends CI_Controller {
                 );
                 $supplier_id = $this->model->insertData('supplier_list',$insert_data);
     
-                foreach ($_POST['supplier_items'] as $key => $value) {
-                    $new_item = array(
-                        'supplier_id' => $supplier_id,
-                        'product_id' => $value
-                    );
-                    $this->model->insertData('supplier_items',$new_item);
-                }
+                // foreach ($_POST['supplier_items'] as $key => $value) {
+                //     $new_item = array(
+                //         'supplier_id' => $supplier_id,
+                //         'product_id' => $value
+                //     );
+                //     $this->model->insertData('supplier_items',$new_item);
+                // }
     
                 $data['status'] = '1';
                 $data['msg'] = 'Supplier added successfully.';
@@ -1151,12 +1147,12 @@ class Admin extends CI_Controller {
             $data['status'] = '1';
             $this->session->set_flashdata('msg','Supplier updated successfully.');
             redirect('Admin/supplier_list');
+        
         }else{
             $data['status'] = '0';
             $data['msg'] = 'Invalid supplier id.';
         }
         echo json_encode($data);
-        redirect('Admin/supplier_list');
     }
 }
 ?>
