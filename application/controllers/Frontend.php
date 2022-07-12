@@ -5,8 +5,9 @@ class Frontend extends CI_Controller {
 
 	public function index()
 	{
-		$data=array('fk_lang_id'=>1);
-		$curl=$this->link->hits('get-home-page-data',$data);
+		$session_data = $this->session->userdata('logged_in');
+		$curl_data = array('fk_lang_id' =>$session_data['lang_id'],);
+		$curl=$this->link->hits('get-home-page-data',$curl_data);
 		$curl = json_decode($curl,true);
 		// echo '<pre>'; print_r($curl); exit;
 		$data['slider'] = $curl['slider'];
@@ -16,6 +17,15 @@ class Frontend extends CI_Controller {
 		$data['best_selling'] = $curl['best_selling'];
 		
 		$this->load->view('frontend/home',$data);
+	}
+
+	function set_session_data()
+	{
+		$id = $this->input->post('new_value');
+		$curl_data = array('lang_id'=>$id);		
+		$this->session->set_userdata('logged_in', @$curl_data);
+        $session_data = $this->session->userdata('logged_in');
+		echo json_encode($curl_data);
 	}
 
 	public function product_details()

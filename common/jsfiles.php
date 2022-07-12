@@ -44,3 +44,41 @@
         toastr.warning(t);
     }
 </script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+            var new_value=$('#fk_lang_id :selected').val();
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>Frontend/set_session_data",
+                data: {
+                    new_value: new_value
+                },
+                dataType: "json",
+                cache: false,
+                success: function (result) {
+                    var lang_id = result.lang_id;
+                    // $('#lang_id_new').val(lang_id);
+                }
+            });
+         $(document).on("change", "#fk_lang_id", function() {
+                var fk_lang_id = $('#fk_lang_id').val();
+                $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>Frontend/set_session_data",
+                data: {
+                    new_value: fk_lang_id
+                },
+                dataType: "json",
+                cache: false,
+                success: function (result) {
+                    location.reload();
+                    var lang_id = result.lang_id;
+                    
+                }
+            });
+            
+        });
+    });
+
+</script>
