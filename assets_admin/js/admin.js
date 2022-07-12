@@ -325,6 +325,33 @@ function delete_product(ele,product_id){
 	return false;
 }
 
+function delete_gallery_product(ele,product_id,img_path){
+	if(confirm("Are you sure wanted to delete the selected product?")){
+		var user = {};
+		user.product = {};
+		user.product.product_id = product_id;
+		user.product.img_path = img_path;
+					
+		var q = JSON.stringify(user);
+		jQuery.ajax({
+			dataType: 'json',
+			type: "POST",
+			url: "delete_gallery_product",
+			data: {'jsonObj' : q},
+			cache: false,
+			beforeSend: function(){ 
+				jQuery(ele).html('..').prop('disabled', true);
+			},
+			success: function(res){
+				if(res.status=='1'){ // Success
+	          		jQuery(ele).closest('tr').remove();
+	          	}
+      		}
+  		});
+	}
+	return false;
+}
+
 
 
 
