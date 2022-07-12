@@ -134,6 +134,7 @@ class Admin extends CI_Controller {
     }
     function edit_category() {
         $category_id = $this->input->get_post('category_id');
+        $this->load->model('Superadmin_model');
         $data['category_data'] = $this->Superadmin_model->get_category($category_id);
         $data['menu'] = 'category';
         $data['main_content'] = 'admin/edit_category'; //dashboard
@@ -228,6 +229,7 @@ class Admin extends CI_Controller {
     }
     function edit_sub_category() {
         $sub_category_id = $this->input->get_post('sub_category_id');
+        $this->load->model('Superadmin_model');
         $data['subcategory_data'] = $this->Superadmin_model->get_subcategory($sub_category_id);
         $data['category_data'] = $this->model->getData('category', array('status' => '1', 'fk_lang_id' => $data['subcategory_data'][0]['fk_lang_id']));
         $data['menu'] = 'subcategory';
@@ -324,6 +326,7 @@ class Admin extends CI_Controller {
     }
     function edit_child_category() {
         $child_category_id = $this->input->get_post('child_category_id');
+        $this->load->model('Superadmin_model');
         $data['childcategory'] = $this->Superadmin_model->get_child_category($child_category_id) [0];
         $data['category_data'] = $this->model->getData('category', array('status' => '1', 'fk_lang_id' => $data['childcategory']['fk_lang_id']));;
         $data['category_data_by_id'] = $this->model->getData('category', array('category_id' => $data['childcategory']['category_id']));
