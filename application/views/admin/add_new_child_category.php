@@ -37,7 +37,7 @@
 
                         <div class="panel-heading nopaddingbottom"><h4 class="panel-title"><b>Add Child Category</b></h4></div>
                         <div class="panel-body">
-                            <form id="basicForm" action="<?php echo base_url('admin/save_child_category');?>" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_new_child_category(this);" method="post">
+                            <form id="basicForm" action="<?php echo base_url('Admin/save_child_category');?>" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_new_child_category(this);" method="post">
                                 <div class="alert alert-success" style="display:none;"></div>
                                 <div class="alert alert-danger" style="display:none;"></div>
 
@@ -138,7 +138,7 @@
                                             <td><?php echo $category['child_category_name_ar'];?></td>
                                             <td><?php echo $category['sort_order'];?></td>
                                             <td>
-                                               <span><a href="<?php echo base_url()."admin/edit_child_category?child_category_id=".$category['child_category_id']?>"><i class='fa fa-pencil'></i></a></span>
+                                               <span><a href="<?php echo base_url()."Admin/edit_child_category?child_category_id=".$category['child_category_id']?>"><i class='fa fa-pencil'></i></a></span>
                                                 <span><a href='#' onclick='delete_child_category(this,"<?php echo $category['child_category_id']; ?>")'><i class='fa fa-trash'></i></a></span>
                                             </td>
 
@@ -169,7 +169,7 @@
             </div>
             <div class="mb-footer">
                 <div class="pull-right">
-                    <a href="<?php echo base_url();?>admin/logout" class="btn btn-success btn-lg">Yes</a>
+                    <a href="<?php echo base_url();?>Admin/logout" class="btn btn-success btn-lg">Yes</a>
                     <button class="btn btn-default btn-lg mb-control-close">No</button>
                 </div>
             </div>
@@ -205,7 +205,7 @@
         var postData = {
             'category_id' : category_id
         }
-        $.post('<?php echo base_url('admin/getSubCategory')?>',postData,function(data){
+        $.post('<?php echo base_url('Admin/getSubCategory')?>',postData,function(data){
             var subcats = $.parseJSON(data);
             $('#sub_category_id').html('');
 
@@ -223,7 +223,7 @@
         var postData = {
             'fk_lang_id' : fk_lang_id
         }
-        $.post('<?php echo base_url('admin/getCategory')?>',postData,function(data){
+        $.post('<?php echo base_url('Admin/getCategory')?>',postData,function(data){
             var subcats = $.parseJSON(data);
             $('#category_id').html('');
 

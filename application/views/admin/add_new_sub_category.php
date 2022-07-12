@@ -131,7 +131,7 @@
                                             <!-- <td><?php echo $subcategory['sub_category_name_ar'];?></td> -->
                                              <td><?php echo $subcategory['sort_order'];?></td>
                                             <td>
-                                               <span><a href="<?php echo base_url()."admin/edit_sub_category?sub_category_id=".$subcategory['sub_category_id']?>"><i class='fa fa-pencil'></i></a></span>
+                                               <span><a href="<?php echo base_url()."Admin/edit_sub_category?sub_category_id=".$subcategory['sub_category_id']?>"><i class='fa fa-pencil'></i></a></span>
                                                 <span><a href='#' onclick='delete_sub_category(this,"<?php echo $subcategory['sub_category_id']; ?>")'><i class='fa fa-trash'></i></a></span>
                                             </td>
 
@@ -157,7 +157,7 @@
                </div>
                <div class="mb-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url();?>admin/logout" class="btn btn-success btn-lg">Yes</a>
+                     <a href="<?php echo base_url();?>Admin/logout" class="btn btn-success btn-lg">Yes</a>
                      <button class="btn btn-default btn-lg mb-control-close">No</button>
                   </div>
                </div>
@@ -192,7 +192,7 @@
         var postData = {
             'fk_lang_id' : fk_lang_id
         }
-        $.post('<?php echo base_url('admin/getCategory')?>',postData,function(data){
+        $.post('<?php echo base_url('Admin/getCategory')?>',postData,function(data){
             var subcats = $.parseJSON(data);
             $('#category_id').html('');
 

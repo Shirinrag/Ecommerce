@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="panel">
 
-                     <form id="basicForm" method="post" action="<?php echo base_url();?>admin/update_products" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_product(this);">
+                     <form id="basicForm" method="post" action="<?php echo base_url();?>Admin/update_products" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_product(this);">
                         <div class="panel-heading nopaddingbottom">
                             <h4 class="panel-title"><b>Edit Product</b></h4>
                             <button class="btn btn-success btn-quirk btn-wide mr5" style="float: right;margin-top: 2px;">Edit Product</button>
@@ -287,7 +287,7 @@
             </div>
             <div class="mb-footer">
                 <div class="pull-right">
-                    <a href="<?php echo base_url();?>admin/logout" class="btn btn-success btn-lg">Yes</a>
+                    <a href="<?php echo base_url();?>Admin/logout" class="btn btn-success btn-lg">Yes</a>
                     <button class="btn btn-default btn-lg mb-control-close">No</button>
                 </div>
             </div>
@@ -345,7 +345,7 @@
         var postData = {
             'category_id' : category_id
         }
-        $.post('<?php echo base_url('admin/getSubCategory')?>',postData,function(data){
+        $.post('<?php echo base_url('Admin/getSubCategory')?>',postData,function(data){
             var subcats = $.parseJSON(data);
             $('#select2-subcategory-container').html('Select Sub Category');
             $('#subcategory').html('');
@@ -373,7 +373,7 @@
             'sub_category_id' : sub_category_id
         }
 
-        $.post('<?php echo base_url('admin/getChildCategory')?>',postData,function(data){
+        $.post('<?php echo base_url('Admin/getChildCategory')?>',postData,function(data){
             var childcats = $.parseJSON(data);
             $('#select2-child_category_id-container').html('Select');
             $('#child_category_id').html('');

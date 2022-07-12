@@ -38,7 +38,7 @@
                     <div class="panel-heading nopaddingbottom"><h4 class="panel-title"><b>Add Banner</b></h4></div>
                     <div class="panel-body">
                         <hr>
-                        <form id="basicForm" method="post" action="<?php echo base_url();?>admin/upload_banner_image" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_banner(this);">
+                        <form id="basicForm" method="post" action="<?php echo base_url();?>Admin/upload_banner_image" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_banner(this);">
                             <?php if($this->session->flashdata('msg')) {?>
                                 <div class="alert alert-<?php echo $this->session->flashdata('class');?> alert-dismissible">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -125,7 +125,7 @@
                     </div>
                     <div class="mb-footer">
                         <div class="pull-right">
-                            <a href="<?php echo base_url();?>admin/logout" class="btn btn-success btn-lg">Yes</a>
+                            <a href="<?php echo base_url();?>Admin/logout" class="btn btn-success btn-lg">Yes</a>
                             <button class="btn btn-default btn-lg mb-control-close">No</button>
                         </div>
                     </div>

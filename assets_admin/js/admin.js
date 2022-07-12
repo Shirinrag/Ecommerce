@@ -1,79 +1,7 @@
 							// Raj Namdev
 
 
-function validate_add_product(ele) {
-	hide_message_box(ele);
 
-	var hasError=0;
-	var product_name = jQuery("#product_name").val();
-	// var product_name_ar = jQuery("#product_name_ar").val()
-	var product_category = jQuery("#product_category").val();
-	var subcategory = jQuery('#subcategory').val();
-	var product_unit = jQuery('#product_unit').val(); 
-	var is_superdeal = jQuery('#is_superdeal').val();
-	var pack_size = jQuery('#pack_size').val();
-	var product_price = jQuery('#product_price').val();
-	var product_offer_price = jQuery('#product_offer_price').val();
-	var product_purchase_price = jQuery('#product_purchase_price').val();
-	var stock_qty = jQuery('#stock_qty').val();
-	var product_barcode = jQuery('#product_barcode').val();
-	var product_code = jQuery('#product_code').val();
-	var image_name = jQuery('#image_name').val();
-	var fk_lang_id = jQuery('#fk_lang_id').val();
-	
-	if(jQuery.trim(product_name)=='') { showError("Please Enter Product Name", "product_name"); hasError = 1; } else { changeError("product_name"); }
-	if(jQuery.trim(product_name_ar)=='') { showError("Please Enter Product Name in ar", "product_name_ar"); hasError = 1; } else { changeError("product_name_ar"); }
-	if(jQuery.trim(product_category)=='') { showError("Please Select Category", "product_category"); hasError = 1; } else { changeError("product_category"); }
-	if(jQuery.trim(fk_lang_id)=='') { showError("Please Select Language", "fk_lang_id"); hasError = 1; } else { changeError("fk_lang_id"); }
-	if(jQuery.trim(subcategory)=='') { showError("Please Select Subcategory", "subcategory"); hasError = 1; } else { changeError("subcategory"); }
-	if(jQuery.trim(product_unit)=='') { showError("Please Select Product Unit", "product_unit"); hasError = 1; } else { changeError("product_unit"); }
-	if(jQuery.trim(is_superdeal)=='') { showError("Has product in superdeal?", "is_superdeal"); hasError = 1; } else { changeError("is_superdeal"); }
-	if(jQuery.trim(pack_size)=='') { showError("Please Enter Pack Size", "pack_size"); hasError = 1; } else { changeError("pack_size"); }
-	if(jQuery.trim(image_name)=='') { showError("Please upload Product Image", "image_name"); hasError = 1; } else { changeError("image_name"); }
-	if(jQuery.trim(product_code)=='') { showError("Please Enter Product Code", "product_code"); hasError = 1; } else { changeError("product_code"); }
-
-	if(jQuery.trim(product_price)=='') { 
-		showError("Please Enter Product Price", "product_price"); hasError = 1; 
-	}else if(!isNumDigit(product_price)){
-		showError("Please Enter Numeric values only", "product_price"); hasError = 1; 
-	} else { 
-		changeError("product_price"); 
-	}
-
-	if(jQuery.trim(product_offer_price)=='') { 
-		showError("Please Enter Product Offer Price", "product_offer_price"); hasError = 1; 
-	}else if(!isNumDigit(product_price)){
-		showError("Please Enter Numeric values only", "product_offer_price"); hasError = 1; 
-	} else { 
-		changeError("product_offer_price"); 
-	}
-
-	if(jQuery.trim(product_purchase_price)=='') { 
-		showError("Please Enter Purchase price", "product_purchase_price"); hasError = 1; 
-	}else if(!isNumDigit(product_price)){
-		showError("Please Enter Numeric values only", "product_purchase_price"); hasError = 1; 
-	} else { 
-		changeError("product_purchase_price"); 
-	}
-
-
-
-	if(jQuery.trim(product_unit)=='') { showError("Select Product unit", "product_unit"); hasError = 1; } else { changeError("product_unit"); }
-
-/*	if(jQuery.trim(product_image)=='') { 
-		showError("Please select .png,.jpg file", "product_image"); hasError = 1; 
-	}else if(!check_image_file('product_image')){
-		showError("Please select .png,.jpg file only", "product_image"); hasError = 1; 
-	} else { 
-		changeError("product_image"); 
-	}*/
-
-	if(hasError==1){
-		return false;
-	}else{
-		return true;
-	}  
-}
 
 
 function validate_update_sub_category(ele){
@@ -662,7 +590,7 @@ function validate_admin_login(ele){
 		jQuery.ajax({
 			dataType: 'json',
 			type: "POST",
-			url: "alogin/validate_login",
+			url: "Alogin/validate_login",
 			data: {'jsonObj' : q},
 			cache: false,
 			beforeSend: function(){ jQuery(".btn-quirk").text('Validating ...').prop('disabled', true);},
@@ -673,7 +601,7 @@ function validate_admin_login(ele){
 					jQuery(ele).find('.alert-success').css('display','block').html(res.msg); 
 					jQuery(ele).find('.alert-danger').css('display','none'); 
 					document.getElementById('frmadminlogin').reset();  
-					window.location.href="admin";
+					window.location.href="Admin";
 				}
 				else if(res.status=='1')
 				{
@@ -681,7 +609,7 @@ function validate_admin_login(ele){
 					jQuery(ele).find('.alert-danger').css('display','none'); 
 					document.getElementById('frmadminlogin').reset();  
 					/*window.location.href="customer";*/
-					window.location.href="admin";
+					window.location.href="Admin";
 				}
 				else
 				{ // Failed
@@ -2109,9 +2037,9 @@ function validate_add_supplier(ele) {
 	var pincode = jQuery("#pincode").val();
 
 	if(jQuery.trim(supplier_name)=='') { showError("Please enter supplier name", "supplier_name"); hasError = 1; } else { changeError("supplier_name"); }
-	if(jQuery.trim(phone_number)!='' && !$.isNumeric(phone_number)) { showError("Please enter numbers", "phone_number"); hasError = 1; } else { changeError("phone_number"); }
-	if(jQuery.trim(email_address)!='' && !isValidEmailAddress(email_address)) { showError("Please enter valid email", "email_address"); hasError = 1; } else { changeError("email_address"); }
-	if(jQuery.trim(pincode)!='' && !$.isNumeric(pincode)) { showError("Please enter numbers", "pincode"); hasError = 1; } else { changeError("pincode"); }
+	if(jQuery.trim(phone_number)=='' && !$.isNumeric(phone_number)) { showError("Please enter numbers", "phone_number"); hasError = 1; } else { changeError("phone_number"); }
+	if(jQuery.trim(email_address)=='' && !isValidEmailAddress(email_address)) { showError("Please enter valid email", "email_address"); hasError = 1; } else { changeError("email_address"); }
+	if(jQuery.trim(pincode)=='' && !$.isNumeric(pincode)) { showError("Please enter numbers", "pincode"); hasError = 1; } else { changeError("pincode"); }
 
 	if(hasError==1){
 		return false;
@@ -2153,12 +2081,12 @@ function validate_update_supplier(ele){
 }
 
 
-function update_supplier_status(ele,status,sup_id){
+function update_supplier_status(ele,status,id){
 	if(confirm("Are you sure, to update the selected supplier status ?")){
 		var data = {};
 		data.supplier = {};
 		data.supplier.status = status;
-		data.supplier.sup_id = sup_id;
+		data.supplier.id = id;
 		
 		var q = JSON.stringify(data);
 

@@ -66,7 +66,7 @@
 
                         
 
-                        <form id="basicForm" action="<?php echo base_url();?>admin/submit_product" method="post"  enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_product(this);">
+                        <form id="basicForm" action="<?php echo base_url();?>Admin/submit_product" method="post"  enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_product(this);">
                         <div class="col-md-5">
 	          	<div class="panel">
 

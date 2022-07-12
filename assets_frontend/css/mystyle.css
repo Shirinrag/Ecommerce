@@ -49,7 +49,8 @@ header.typeheader-1 .search-header-w .icon-search {
 
 @media (max-width: 767px){
 header.typeheader-1 .search-header-w #sosearchpro .search button {
-    left: 140px !important;
+    left: 137px !important;
+    width: 35px;
     margin-top: -50px !important;
 }
 header.typeheader-1 .shopping_cart {
@@ -200,4 +201,28 @@ footer .copyright a {
 .error_msg {
     color: red;
     font-size: 11px
+}
+header.typeheader-1 .search-header-w .icon-search i {
+    font-size: 18px;
+    color: #000;
+}
+
+
+@media (max-width: 767px){
+.megamenu-style-dev .navbar-default .horizontal .navbar-toggle {
+  
+   height: 0px !important;
+}}
+
+@media (max-width: 767px){
+header.typeheader-1 .logo {
+    text-align: center;
+    height: 130px !important;
+}}
+
+.typeheader-1 ul.top-link > li > a {
+    font-size: 12px;
+     color: #000 !important; 
+     width: 20% !important;
+    padding-left: 3px;
 }
