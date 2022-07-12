@@ -107,7 +107,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('model','superadmin_model','link');
+$autoload['model'] = array('model','Superadmin_model','link');
 
 
 /* End of file autoload.php */
