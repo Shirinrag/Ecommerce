@@ -38,7 +38,7 @@
                 <div class="panel-heading nopaddingbottom"><h4 class="panel-title"><b>Edit Category</b></h4></div>
                 <div class="panel-body">
                   <hr>
-                  <form id="basicForm" method="post" action="<?php echo base_url();?>admin/update_category" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_edit_category(this);">
+                  <form id="basicForm" method="post" action="<?php echo base_url();?>Admin/update_category" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_edit_category(this);">
                      <div class="alert alert-success" style="display:none;"></div>
                      <div class="alert alert-danger" style="display:none;"></div>
                      <div class="form-group">
@@ -96,7 +96,7 @@
          </div>
          <div class="mb-footer">
             <div class="pull-right">
-               <a href="<?php echo base_url();?>admin/logout" class="btn btn-success btn-lg">Yes</a>
+               <a href="<?php echo base_url();?>Admin/logout" class="btn btn-success btn-lg">Yes</a>
                <button class="btn btn-default btn-lg mb-control-close">No</button>
             </div>
          </div>

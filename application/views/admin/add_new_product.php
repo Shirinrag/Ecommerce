@@ -33,7 +33,7 @@
             <div class="page-content-wrap">
                <div class="row">
                   <div class="panel">
-                     <form id="basicForm" method="post" action="<?php echo base_url();?>admin/submit_product" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_product(this);">
+                     <form id="basicForm" method="post" action="<?php echo base_url();?>Admin/submit_product" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_product(this);">
                         <div class="panel-heading nopaddingbottom">
                            <h4 class="panel-title"><b>Add New Product</b></h4>
                            <button class="btn btn-success btn-quirk btn-wide mr5" style="float: right;margin-top: 2px;">Add New Product</button>
@@ -241,7 +241,7 @@
                </div>
                <div class="mb-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url();?>admin/logout" class="btn btn-success btn-lg">Yes</a>
+                     <a href="<?php echo base_url();?>Admin/logout" class="btn btn-success btn-lg">Yes</a>
                      <button class="btn btn-default btn-lg mb-control-close">No</button>
                   </div>
                </div>
@@ -292,7 +292,7 @@
                  'category_id' : category_id
              }
          
-             $.post('<?php echo base_url('admin/getSubCategory')?>',postData,function(data){
+             $.post('<?php echo base_url('Admin/getSubCategory')?>',postData,function(data){
                  var subcats = $.parseJSON(data);
                  $('#select2-subcategory-container').html('Select Sub Category');
                  $('#subcategory').html('');
@@ -310,7 +310,7 @@
                  'sub_category_id' : sub_category_id
              }
          
-             $.post('<?php echo base_url('admin/getChildCategory')?>',postData,function(data){
+             $.post('<?php echo base_url('Admin/getChildCategory')?>',postData,function(data){
                  var childcats = $.parseJSON(data);
                  $('#select2-child_category_id-container').html('Select');
                  $('#child_category_id').html('');
@@ -329,7 +329,7 @@
              var postData = {
                  'fk_lang_id' : fk_lang_id
              }
-             $.post('<?php echo base_url('admin/getCategory')?>',postData,function(data){
+             $.post('<?php echo base_url('Admin/getCategory')?>',postData,function(data){
                  var subcats = $.parseJSON(data);
                  $('#product_category').html('');
                  
@@ -340,6 +340,78 @@
                  $('#product_category').html(html);
              })
          }
+         function validate_add_product(ele) {
+	hide_message_box(ele);
+
+	var hasError=0;
+	var product_name = jQuery("#product_name").val();	
+	var product_category = jQuery("#product_category").val();
+	var subcategory = jQuery('#subcategory').val();
+	var product_unit = jQuery('#product_unit').val(); 
+	var is_superdeal = jQuery('#is_superdeal').val();
+	var pack_size = jQuery('#pack_size').val();
+	var product_price = jQuery('#product_price').val();
+	var product_offer_price = jQuery('#product_offer_price').val();
+	var product_purchase_price = jQuery('#product_purchase_price').val();
+	var stock_qty = jQuery('#stock_qty').val();
+	var product_barcode = jQuery('#product_barcode').val();
+	var product_code = jQuery('#product_code').val();
+	var image_name = jQuery('#image_name').val();
+	var fk_lang_id = jQuery('#fk_lang_id').val();
+	
+	if(jQuery.trim(product_name)=='') { showError("Please Enter Product Name", "product_name"); hasError = 1; } else { changeError("product_name"); }
+	if(jQuery.trim(product_category)=='') { showError("Please Select Category", "product_category"); hasError = 1; } else { changeError("product_category"); }
+	if(jQuery.trim(subcategory)=='') { showError("Please Select Subcategory", "subcategory"); hasError = 1; } else { changeError("subcategory"); }
+	if(jQuery.trim(product_unit)=='') { showError("Please Select Product Unit", "product_unit"); hasError = 1; } else { changeError("product_unit"); }
+	if(jQuery.trim(is_superdeal)=='') { showError("Has product in superdeal?", "is_superdeal"); hasError = 1; } else { changeError("is_superdeal"); }
+	if(jQuery.trim(pack_size)=='') { showError("Please Enter Pack Size", "pack_size"); hasError = 1; } else { changeError("pack_size"); }
+	if(jQuery.trim(image_name)=='') { showError("Please upload Product Image", "image_name"); hasError = 1; } else { changeError("image_name"); }
+	if(jQuery.trim(product_code)=='') { showError("Please Enter Product Code", "product_code"); hasError = 1; } else { changeError("product_code"); }
+   if(jQuery.trim(fk_lang_id)=='') { showError("Please Select Language", "fk_lang_id"); hasError = 1; } else { changeError("fk_lang_id"); }
+
+	if(jQuery.trim(product_price)=='') { 
+		showError("Please Enter Product Price", "product_price"); hasError = 1; 
+	}else if(!isNumDigit(product_price)){
+		showError("Please Enter Numeric values only", "product_price"); hasError = 1; 
+	} else { 
+		changeError("product_price"); 
+	}
+
+	if(jQuery.trim(product_offer_price)=='') { 
+		showError("Please Enter Product Offer Price", "product_offer_price"); hasError = 1; 
+	}else if(!isNumDigit(product_price)){
+		showError("Please Enter Numeric values only", "product_offer_price"); hasError = 1; 
+	} else { 
+		changeError("product_offer_price"); 
+	}
+
+	if(jQuery.trim(product_purchase_price)=='') { 
+		showError("Please Enter Purchase price", "product_purchase_price"); hasError = 1; 
+	}else if(!isNumDigit(product_price)){
+		showError("Please Enter Numeric values only", "product_purchase_price"); hasError = 1; 
+	} else { 
+		changeError("product_purchase_price"); 
+	}
+
+
+
+	if(jQuery.trim(product_unit)=='') { showError("Select Product unit", "product_unit"); hasError = 1; } else { changeError("product_unit"); }
+   if(jQuery.trim(fk_lang_id)=='') { showError("Select Language", "fk_lang_id"); hasError = 1; } else { changeError("fk_lang_id"); }
+
+/*	if(jQuery.trim(product_image)=='') { 
+		showError("Please select .png,.jpg file", "product_image"); hasError = 1; 
+	}else if(!check_image_file('product_image')){
+		showError("Please select .png,.jpg file only", "product_image"); hasError = 1; 
+	} else { 
+		changeError("product_image"); 
+	}*/
+
+	if(hasError==1){
+		return false;
+	}else{
+		return true;
+	}  
+}
       </script>
    </body>
 </html>

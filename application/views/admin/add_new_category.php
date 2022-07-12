@@ -38,7 +38,7 @@
                     <div class="panel-heading nopaddingbottom"><h4 class="panel-title"><b>Add Category</b></h4></div>
                     <div class="panel-body">
                         <hr>
-                        <form id="basicForm" method="post" action="<?php echo base_url();?>admin/save_category" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_new_category(this);">
+                        <form id="basicForm" method="post" action="<?php echo base_url();?>Admin/save_category" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_new_category(this);">
                             <?php if($this->session->flashdata('msg')) {?>
                                 <div class="alert alert-<?php echo $this->session->flashdata('class');?> alert-dismissible">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -126,7 +126,7 @@
                                             <td><img src="<?php echo base_url().$category['image_path'];?>" style="height: 100px;width: 100px;"></td>
                                             <th><?php echo $category['sort_order'];?></th>
                                             <td>
-                                               <span><a href="<?php echo base_url()."admin/edit_category?category_id=".$category['category_id']?>"><i class='fa fa-pencil'></i></a></span>
+                                               <span><a href="<?php echo base_url()."Admin/edit_category?category_id=".$category['category_id']?>"><i class='fa fa-pencil'></i></a></span>
                                                 <span><a href='#' onclick='delete_category(this,"<?php echo $category['category_id']; ?>")'><i class='fa fa-trash'></i></a></span>
                                             </td>
                                         </tr>
@@ -152,7 +152,7 @@
                     </div>
                     <div class="mb-footer">
                         <div class="pull-right">
-                            <a href="<?php echo base_url();?>admin/logout" class="btn btn-success btn-lg">Yes</a>
+                            <a href="<?php echo base_url();?>Admin/logout" class="btn btn-success btn-lg">Yes</a>
                             <button class="btn btn-default btn-lg mb-control-close">No</button>
                         </div>
                     </div>

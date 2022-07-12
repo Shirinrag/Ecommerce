@@ -35,7 +35,7 @@
 
                         <div class="panel-heading nopaddingbottom"><h4 class="panel-title"><b>Add Child Category</b></h4></div>
                         <div class="panel-body">
-                            <form id="basicForm" action="<?php echo base_url('admin/update_child_category');?>" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_update_child_category(this);" method="post">
+                            <form id="basicForm" action="<?php echo base_url('Admin/update_child_category');?>" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_update_child_category(this);" method="post">
                                 <div class="alert alert-success" style="display:none;"></div>
                                 <div class="alert alert-danger" style="display:none;"></div>
 
@@ -121,7 +121,7 @@
                </div>
                <div class="mb-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url();?>admin/logout" class="btn btn-success btn-lg">Yes</a>
+                     <a href="<?php echo base_url();?>Admin/logout" class="btn btn-success btn-lg">Yes</a>
                      <button class="btn btn-default btn-lg mb-control-close">No</button>
                   </div>
                </div>
@@ -165,7 +165,7 @@
         var postData = {
             'category_id' : category_id
         }
-        $.post('<?php echo base_url('admin/getSubCategory')?>',postData,function(data){
+        $.post('<?php echo base_url('Admin/getSubCategory')?>',postData,function(data){
             var subcats = $.parseJSON(data);
             $('#sub_category_id').html('');
 

@@ -99,9 +99,8 @@
                                                 <a href="javascript:void(0);" onclick="update_product_status(this,<?= $flag; ?>,<?= $value['product_id']; ?>)"><?= $status; ?></a>
                                             </td>
                                             <td>
-                                                <span><a href="<?php echo base_url()."admin/edit_product?product_id=".$value['product_id']?>"><i class='fa fa-pencil'></i></a></span> 
-                                                <span><a href='#' onclick='delete_product(this,"<?php echo 
-                                                $value['product_id']; ?>")'><i class='fa fa-trash'></i></a></span>
+                                                <span><a href="<?php echo base_url()."Admin/edit_product?product_id=".$value['product_id']?>"><i class='fa fa-pencil'></i></a></span> 
+                                                <span><a href='#' onclick='delete_product(this,"<?php echo $value['product_id']; ?>")'><i class='fa fa-trash'></i></a></span>
 
                                             </td>
                                         </tr>
