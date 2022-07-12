@@ -226,3 +226,16 @@ header.typeheader-1 .logo {
      width: 20% !important;
     padding-left: 3px;
 }
+
+@media (max-width: 767px){
+.megamenu-style-dev .navbar-default .horizontal .navbar-toggle .icon-bar {
+    background: none #000;
+    width: 20px;
+    height: 2px;
+    margin: 4px 0;
+    border-radius: 0;
+}}
+
+.megamenu-style-dev .navbar-default .horizontal .navbar-header {
+    margin-bottom: 30px !important;
+}
