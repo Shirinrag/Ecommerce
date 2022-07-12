@@ -74,17 +74,8 @@
                                     </select>
                                  </div>
                               </div>
-                           <div class="col-sm-3 ">
-                           <div class="form-group">
+                              
                           
-                           <input type="checkbox" name="featured" value="1" <?php if($product[0]['featured']=='1'){ ?> checked="checked" <?php } ?>> Featured &nbsp;&nbsp;
-
-                           <input type="checkbox" name="popular" value="1" <?php if($product[0]['popular']=='1'){ ?> checked="checked" <?php } ?>> Popular &nbsp;&nbsp;
-
-                           <input type="checkbox" name="best_selling" value="1" <?php if($product[0]['best_selling']=='1'){ ?> checked="checked" <?php } ?>> Best Sellings &nbsp;&nbsp;
-
-                           </div>
-                           </div>
                            </div>
                            <div class="row ml20 mb20">
                               <div class="col-sm-3 mr20">
@@ -140,7 +131,17 @@
                                        name="product_purchase_price" id="product_purchase_price">
                                  </div>
                               </div>
+                              <div class="col-sm-3 ">
+                           <div class="form-group">
                           
+                           <input type="checkbox" name="featured" value="1" <?php if($product[0]['featured']=='1'){ ?> checked="checked" <?php } ?>> Featured &nbsp;&nbsp;
+
+                           <input type="checkbox" name="popular" value="1" <?php if($product[0]['popular']=='1'){ ?> checked="checked" <?php } ?>> Popular &nbsp;&nbsp;
+
+                           <input type="checkbox" name="best_selling" value="1" <?php if($product[0]['best_selling']=='1'){ ?> checked="checked" <?php } ?>> Best Sellings &nbsp;&nbsp;
+
+                           </div>
+                           </div>
                            </div>
                            <div class="row ml20 mb20">
                               <div class="col-sm-2 mr20">
@@ -241,7 +242,7 @@
                </div>
                <div class="mb-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url();?>Admin/logout" class="btn btn-success btn-lg">Yes</a>
+                     <a href="<?php echo base_url();?>admin/logout" class="btn btn-success btn-lg">Yes</a>
                      <button class="btn btn-default btn-lg mb-control-close">No</button>
                   </div>
                </div>
@@ -263,7 +264,6 @@
       <script type="text/javascript" src="<?php echo base_url()?>assets-admin/js/actions.js"></script>
       <script src="<?php echo base_url();?>assets-admin/summernote/summernote.js"></script>
       <script src="<?php echo base_url();?>assets_admin/lib/jquery-validate/jquery.validate.js"></script>
-     
       <script src="<?php echo base_url();?>assets_admin/js/sweetalert.min.js"></script>
       <script src="<?php echo base_url();?>assets_admin/lib/jquery-maskedinput/jquery.maskedinput.js"></script>
       <script src="<?php echo base_url();?>assets_admin/lib/timepicker/jquery.timepicker.js"></script>
@@ -275,7 +275,8 @@
       <script src="<?php echo base_url();?>assets_admin/lib/select2/select2.js"></script>
       <script src="<?php echo base_url();?>assets_admin/lib/datatables/jquery.dataTables.js"></script>
       <script src="<?php echo base_url();?>assets_admin/lib/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-       <script src="<?php echo base_url();?>assets_admin/js/admin.js"></script>
+      <script src="<?php echo base_url();?>assets_admin/js/admin.js"></script>
+      
       <script type="text/javascript">
          $(document).ready(function(){
              $('#product_description,#terms_conditions').summernote({height: 50});
@@ -293,7 +294,7 @@
                  'category_id' : category_id
              }
          
-             $.post('<?php echo base_url('Admin/getSubCategory')?>',postData,function(data){
+             $.post('<?php echo base_url('admin/getSubCategory')?>',postData,function(data){
                  var subcats = $.parseJSON(data);
                  $('#select2-subcategory-container').html('Select Sub Category');
                  $('#subcategory').html('');
@@ -311,7 +312,7 @@
                  'sub_category_id' : sub_category_id
              }
          
-             $.post('<?php echo base_url('Admin/getChildCategory')?>',postData,function(data){
+             $.post('<?php echo base_url('admin/getChildCategory')?>',postData,function(data){
                  var childcats = $.parseJSON(data);
                  $('#select2-child_category_id-container').html('Select');
                  $('#child_category_id').html('');
@@ -330,7 +331,7 @@
              var postData = {
                  'fk_lang_id' : fk_lang_id
              }
-             $.post('<?php echo base_url('Admin/getCategory')?>',postData,function(data){
+             $.post('<?php echo base_url('admin/getCategory')?>',postData,function(data){
                  var subcats = $.parseJSON(data);
                  $('#product_category').html('');
                  
@@ -341,78 +342,6 @@
                  $('#product_category').html(html);
              })
          }
-         function validate_add_product(ele) {
-	hide_message_box(ele);
-
-	var hasError=0;
-	var product_name = jQuery("#product_name").val();	
-	var product_category = jQuery("#product_category").val();
-	var subcategory = jQuery('#subcategory').val();
-	var product_unit = jQuery('#product_unit').val(); 
-	var is_superdeal = jQuery('#is_superdeal').val();
-	var pack_size = jQuery('#pack_size').val();
-	var product_price = jQuery('#product_price').val();
-	var product_offer_price = jQuery('#product_offer_price').val();
-	var product_purchase_price = jQuery('#product_purchase_price').val();
-	var stock_qty = jQuery('#stock_qty').val();
-	var product_barcode = jQuery('#product_barcode').val();
-	var product_code = jQuery('#product_code').val();
-	var image_name = jQuery('#image_name').val();
-	var fk_lang_id = jQuery('#fk_lang_id').val();
-	
-	if(jQuery.trim(product_name)=='') { showError("Please Enter Product Name", "product_name"); hasError = 1; } else { changeError("product_name"); }
-	if(jQuery.trim(product_category)=='') { showError("Please Select Category", "product_category"); hasError = 1; } else { changeError("product_category"); }
-	if(jQuery.trim(subcategory)=='') { showError("Please Select Subcategory", "subcategory"); hasError = 1; } else { changeError("subcategory"); }
-	if(jQuery.trim(product_unit)=='') { showError("Please Select Product Unit", "product_unit"); hasError = 1; } else { changeError("product_unit"); }
-	if(jQuery.trim(is_superdeal)=='') { showError("Has product in superdeal?", "is_superdeal"); hasError = 1; } else { changeError("is_superdeal"); }
-	if(jQuery.trim(pack_size)=='') { showError("Please Enter Pack Size", "pack_size"); hasError = 1; } else { changeError("pack_size"); }
-	if(jQuery.trim(image_name)=='') { showError("Please upload Product Image", "image_name"); hasError = 1; } else { changeError("image_name"); }
-	if(jQuery.trim(product_code)=='') { showError("Please Enter Product Code", "product_code"); hasError = 1; } else { changeError("product_code"); }
-   if(jQuery.trim(fk_lang_id)=='') { showError("Please Select Language", "fk_lang_id"); hasError = 1; } else { changeError("fk_lang_id"); }
-
-	if(jQuery.trim(product_price)=='') { 
-		showError("Please Enter Product Price", "product_price"); hasError = 1; 
-	}else if(!isNumDigit(product_price)){
-		showError("Please Enter Numeric values only", "product_price"); hasError = 1; 
-	} else { 
-		changeError("product_price"); 
-	}
-
-	if(jQuery.trim(product_offer_price)=='') { 
-		showError("Please Enter Product Offer Price", "product_offer_price"); hasError = 1; 
-	}else if(!isNumDigit(product_price)){
-		showError("Please Enter Numeric values only", "product_offer_price"); hasError = 1; 
-	} else { 
-		changeError("product_offer_price"); 
-	}
-
-	if(jQuery.trim(product_purchase_price)=='') { 
-		showError("Please Enter Purchase price", "product_purchase_price"); hasError = 1; 
-	}else if(!isNumDigit(product_price)){
-		showError("Please Enter Numeric values only", "product_purchase_price"); hasError = 1; 
-	} else { 
-		changeError("product_purchase_price"); 
-	}
-
-
-
-	if(jQuery.trim(product_unit)=='') { showError("Select Product unit", "product_unit"); hasError = 1; } else { changeError("product_unit"); }
-   if(jQuery.trim(fk_lang_id)=='') { showError("Select Language", "fk_lang_id"); hasError = 1; } else { changeError("fk_lang_id"); }
-
-/*	if(jQuery.trim(product_image)=='') { 
-		showError("Please select .png,.jpg file", "product_image"); hasError = 1; 
-	}else if(!check_image_file('product_image')){
-		showError("Please select .png,.jpg file only", "product_image"); hasError = 1; 
-	} else { 
-		changeError("product_image"); 
-	}*/
-
-	if(hasError==1){
-		return false;
-	}else{
-		return true;
-	}  
-}
       </script>
    </body>
 </html>
