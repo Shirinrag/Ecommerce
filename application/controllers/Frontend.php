@@ -173,7 +173,7 @@ class Frontend extends CI_Controller {
 	{
 		$session_data = $this->session->userdata('user_logged_in');
 		$session_data1 = $this->session->userdata('logged_in');
-		$user_id = $session_data['op_user_id'];
+		$user_id = @$session_data['op_user_id'];
 		$fk_lang_id = $session_data1['lang_id'];
 		$product_id = base64_decode($_GET['id']);
         $curl_data = array('product_id' => $product_id, 'fk_lang_id' => $fk_lang_id,);
