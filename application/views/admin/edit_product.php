@@ -116,6 +116,25 @@
 
                                     </div>
                                     </div>
+                                    <div class="col-sm-2 mr20">
+                                    <div class="form-group">
+                                        <label>Enter Qty <span class="text-danger">*</span></label>
+                                        <input placeholder="" type="text" dir="ltl" class="form-control"
+                                        name="qty" id="qty" value="<?php echo $product_data[0]['qty']; ?>">
+                                    </div>
+                                    </div>
+
+                                    <div class="col-sm-3 ">
+                                        <div class="form-group">
+                                            <label>Select Supplier Name<span class="text-danger">*</span></label>
+                                            <select class="form-control"   id="supplier_id" name="supplier_id">
+                                            <option  value="">Select Supplier</option>
+                                            <?php foreach($supplier_list as $key => $value) { ?>
+                                                <option  value="<?php echo $value['id']; ?>" <?php if($value['id'] == $product_data[0]['supplier_id']){?>selected=selected<?php } ?>><?php echo $value['supplier_name']; ?></option>
+                                            <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <!-- <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Enter product name(ar)<span class="text-danger">*</span></label>
