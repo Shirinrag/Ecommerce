@@ -160,7 +160,7 @@
                                     <ul class="blank list-inline">
                                        <li class="wishlist">
                                           <a class="icon" data-toggle="tooltip" title=""
-                                             onclick="wishlist.add('50');" data-original-title="Add to Wish List"><i class="fa fa-heart"></i>
+                                             onclick="addwishlist(this)" data-original-title="Add to Wish List"><i class="fa fa-heart"></i>
                                           </a>
                                        </li>
                                       <!--  <li class="compare">
@@ -299,6 +299,7 @@
                               <div class="product-item-container">
                                  <div class="left-block">
                                     <div class="product-image-container second_img">
+                                       <input type="hidden" name="product_id" id="product_id" value="<?php echo base64_decode($_GET['id']);?>">
                                        <a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($related_product_details_row['product_id']) ?>" target="_self" title="Pastrami bacon">
                                        <img src="<?=$related_product_details_row['image_name']?>" class="img-1 img-responsive" alt="<?=$related_product_details_row['product_name']?>">
                                       
@@ -346,5 +347,6 @@
       <!-- Include Libs & Plugins
          ============================================ -->
       <?php include('common/jsfiles.php');?>
+      <script src="<?= base_url();?>assets_frontend/custom_js/wishlist.js"></script>
    </body>
 </html>

@@ -187,6 +187,32 @@ class Frontend extends CI_Controller {
 
 		$this->load->view('frontend/product',$data);
 	}
+
+    public function wishlist()
+    {
+      $product_id=$_POST['product_id'];
+      $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+      $curldata=array('product_id'=>$product_id,'user_id'=>$user_id);
+      $curl=$this->link->hits('save-wishlist',$curldata);
+      $curl = json_decode($curl, true);
+      if($curl['status']){
+        $response['status']='success';
+        $response['message']=$curl['message'];
+      }
+      else{
+        $response['status']='failed';
+        $response['message']=$curl['message'];
+      }
+      echo json_encode($response);
+    }
+
+    public function getwishlist()
+    {
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+        $curldata=array('user_id'=>$user_id);
+        $curl=$this->link->hits('get-all-whislist',$curldata);  
+        $this->load->view('frontend/product',$data);
+    }
     public function address_book()
 	{
 		$this->load->view('frontend/address_book');

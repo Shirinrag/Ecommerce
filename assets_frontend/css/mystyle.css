@@ -84,6 +84,7 @@ header.typeheader-1 .shopping_cart {
 
 .typeheader-1 .header-middle {
     background-color: #ffffff !important;
+    padding: 0px !important;
 }
 
 .typeheader-1 ul.top-link > li .btn-group .btn-link {
