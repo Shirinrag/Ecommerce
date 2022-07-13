@@ -31,7 +31,7 @@
                      <div class="account-border">
                         <div class="row">
                           
-                           <form action="#" method="post" enctype="multipart/form-data">
+                             <?php echo form_open('Frontend/otp_verify', array('id' => 'otp_verify_form')) ?>
                               <div class="col-sm-12 customer-login">
                                  <div class="well">
                                    
@@ -42,15 +42,14 @@
                                     </div>
                                     <div class="form-group">
                                        <label class="control-label " for="input-password">Otp</label>
-                                       <input type="password" name="otp" class="form-control" />
+                                       <input type="text" name="otp" class="form-control" />
                                     </div>
                                  </div>
                                  <div class="bottom-form">
-                                    <!-- <a href="#" class="forgot">Forgotten Password</a> -->
-                                    <input type="submit" value="Login" class="btn btn-default pull-right" />
+                                    <button class="btn btn-primary" id="register_button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Loading" type="submit">Submit</button>
                                  </div>
                               </div>
-                           </form>
+                             <?php echo form_close() ?>
                         </div>
                      </div>
                   </div>
@@ -281,6 +280,8 @@
     ============================================ -->
     <!-- Placed at the end of the document so the pages load faster -->
     <?php include('common/jsfiles.php');?>
+      <script src="<?= base_url();?>assets_frontend/custom_js/verify_otp.js"></script>
+
    </body>
  
 </html>
