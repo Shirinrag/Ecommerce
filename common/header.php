@@ -18,8 +18,8 @@
                      <a href="#" title="My Account " class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span class="hidden-xs">My Account </span>  <span class="fa fa-caret-down"></span>
                      </a>
                      <ul class="dropdown-menu ">
-                        <li><a href="Account/registration"><i class="fa fa-user"></i> Register</a></li>
-                        <li><a href="<?php echo base_url();?>Account/login"><i class="fa fa-pencil-square-o"></i> Login</a></li>
+                        <li><a href="Frontend/registration"><i class="fa fa-user"></i> Register</a></li>
+                        <li><a href="<?php echo base_url();?>Frontend/login"><i class="fa fa-pencil-square-o"></i> Login</a></li>
                      </ul>
                   </li>
                </ul>
@@ -172,9 +172,9 @@
                                                       <a href="#" class="title-submenu">My Account pages</a>
                                                       <div>
                                                          <ul class="row-list">
-                                                            <li><a href="<?php echo base_url(); ?>Account/login">Login Page</a></li>
-                                                            <li><a href="<?php echo base_url(); ?>Account/registration">Register Page</a></li>
-                                                            <li><a href="<?php echo base_url(); ?>Account">My Account</a></li>
+                                                            <li><a href="<?php echo base_url(); ?>Frontend/login">Login Page</a></li>
+                                                            <li><a href="<?php echo base_url(); ?>Frontend/registration">Register Page</a></li>
+                                                            <li><a href="<?php echo base_url(); ?>Frontend">My Account</a></li>
                                                             <li><a href="<?php echo base_url(); ?>Orderhistory">Order History</a></li>
                                                             <li><a href="<?php echo base_url(); ?>Orderhistory/orderinfo">Order Information</a></li>
                                                           <!--   <li><a href="return.html">Product Returns</a></li>
@@ -273,7 +273,7 @@
             <div class="middle-right col-lg-4 col-md-3 col-sm-6 col-xs-8">
                <div class="signin-w  hidden-sm hidden-xs">
                   <ul class="signin-link blank">
-                     <li class="log login"><i class="fa fa-lock"></i> <a class="link-lg" href="<?php echo base_url(); ?>Account/login">Login </a> or <a href="<?php echo base_url(); ?>Account/registration">Register</a></li>
+                     <li class="log login"><i class="fa fa-lock"></i> <a class="link-lg" href="<?php echo base_url(); ?>Frontend/login">Login </a> or <a href="<?php echo base_url(); ?>Frontend/registration">Register</a></li>
                   </ul>
                </div>
                <div class="telephone hidden-xs hidden-sm hidden-md">
