@@ -35,10 +35,6 @@ class Frontend extends CI_Controller {
             return TRUE;
         }
     }
-	public function product_details()
-	{
-		$this->load->view('frontend/product');
-	}
 	public function registration()
 	{
 		$this->load->view('frontend/register');
@@ -172,6 +168,25 @@ class Frontend extends CI_Controller {
         }
         echo json_encode($response);
     }
+
+    public function product_details()
+	{
+		$session_data = $this->session->userdata('user_logged_in');
+		$session_data1 = $this->session->userdata('logged_in');
+		$user_id = $session_data['op_user_id'];
+		$fk_lang_id = $session_data1['lang_id'];
+		$product_id = base64_decode($_GET['id']);
+        $curl_data = array('product_id' => $product_id, 'fk_lang_id' => $fk_lang_id,);
+      	$curl = $this->link->hits('product-details-on-id',$curl_data);
+      
+      	$curl = json_decode($curl, true);
+      	// echo '<pre>'; print_r($curl); exit;
+      	$data['product_details'] = $curl['product_details'];
+      	$data['related_product_details'] = $curl['related_product_details'];
+      	$data['fk_lang_id'] = $fk_lang_id;
+
+		$this->load->view('frontend/product',$data);
+	}
     public function address_book()
 	{
 		$this->load->view('frontend/address_book');
