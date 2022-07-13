@@ -229,7 +229,8 @@
                                              <div class="row">
                                               
                                                 <div class="col-md-3">
-                                                   <a href="#" class="title-submenu">Electronics</a>
+                                                   <?php foreach($cat_data as $key =>$value){?>
+                                                   <a href="#" class="title-submenu"><?php echo $value['category_name'] ?></a>
                                                    <div class="row">
                                                       <div class="col-md-12 hover-menu">
                                                          <div class="menu">
@@ -242,6 +243,7 @@
                                                          </div>
                                                       </div>
                                                    </div>
+                                                   <?php } ?>
                                                 </div>
                                                
                                              </div>

@@ -42,6 +42,16 @@
                      <div class="alert alert-success" style="display:none;"></div>
                      <div class="alert alert-danger" style="display:none;"></div>
                      <div class="form-group">
+
+                     <div class="col-sm-3 mr20">
+                     <div class="form-group">
+                                 <div class="col-sm-3 mr20">
+                                    <label>Language<span class="text-danger">*</span></label>
+                                    <div><span><?php echo $lang_id[0]['lang_name'];?></span>
+                                    </div>
+                                 </div>
+                              </div>
+                              </div>
                         
                         <div class="col-sm-3 mr20">
                            <label>Banner Image<span class="text-danger">*</span></label>
@@ -50,8 +60,23 @@
                         <div class="col-sm-3 mr20">
                           <img src="<?php echo base_url().$banner_data[0]['img_url'];?>" style="width: 100px;height: 100px;">
                           <input type="hidden" name="img_url" value="<?php echo $banner_data[0]['img_url'] ?>">
-                           <input type="hidden" name="bottom_id" value="<?php echo $banner_data[0]['bottom_id'] ?>">
+                           <input type="hidden" name="bottom_id" value="<?php echo $banner_data[0]['bottom_id'] ?>"
+                           >
+                           <input type="hidden" name="product_id" id="product_id" value="<?php echo $banner_data[0]['product_id'] ?>">
+                           <input type="hidden" name="fk_lang_id" id="fk_lang_id" value="<?php echo $banner_data[0]['fk_lang_id']?>">
                         </div>
+
+                        <div class="col-sm-3 ">
+                                        <div class="form-group">
+                                            <label>Select Product Name<span class="text-danger">*</span></label>
+                                            <select class="form-control"   id="product_id" name="product_id">
+                                            <option  value="">Select Product</option>
+                                            <?php foreach($product_list as $key => $value){?>
+                                             <option  value="<?php echo $value['product_id'] ?>" <?php if($value['product_id'] == $banner_data[0]['product_id']){?>selected=selected<?php } ?>><?php echo $value['product_name'] ?></option>
+                                             <?php } ?>
+                                            </select>
+                                        </div>
+                                </div>
                       
                        <div class="col-sm-3 mr20">
                           <button class="btn btn-success btn-quirk btn-wide mr5" style="margin-top: 20px;">Submit</button>

@@ -47,12 +47,33 @@
                             <?php }?>
                             
                             <div class="row ml20  mb20">
+
+                            <div class="col-sm-12 mr20">
+                                 <div class="form-group">
+                                    <label>Select Language<span class="text-danger">*</span></label>
+                                    <select class="form-control" name="fk_lang_id" id="fk_lang_id" onchange="getproductname()">
+                                       <option value=""></option>
+                                       <?php foreach ($lang_name as $lang_name_key => $lang_name_row) { ?>
+                                       <option value="<?= $lang_name_row['id']?>"><?= $lang_name_row['lang_name']?></option>
+                                       <?php } ?>
+                                    </select>
+                                 </div>
+                              </div>
                                 
                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
                                         <label>Banner Image<span class="text-danger">*</span></label>
                                         <input type="file" name="image_files[]" dir="rtl" accept="image/*" multiple id="image_file" class="form-control" required="" >
                                     </div>
+                                </div>
+                                <div class="col-sm-12 ">
+                                        <div class="form-group">
+                                            <label>Select Product Name<span class="text-danger">*</span></label>
+                                            <select class="form-control"   id="product_id" name="product_id">
+                                            <option  value="">Select Product</option>
+    
+                                            </select>
+                                        </div>
                                 </div>
                               <!--   <div class="col-sm-12 mr20">
                                     <div class="form-group">
@@ -153,8 +174,26 @@
         <script>
             $(document).ready(function() {
                 var dataTable = $('#category_list').DataTable();
-            });     
+            }); 
+               
+            function getproductname(){
+             var fk_lang_id = $('#fk_lang_id').val();
+             var postData = {
+                 'fk_lang_id' : fk_lang_id
+             }
+             $.post('<?php echo base_url('Admin/getproductname')?>',postData,function(data){
+                 var productdata = $.parseJSON(data);
+                 $('#product_id').html('');
+                 
+                 var html = '<option value="">Select Product</option>';
+                 $.each(productdata,function(i,val){
+                     html += '<option value="'+val.product_id+'">'+val.product_name+'</option>';
+                 })
+                 $('#product_id').html(html);
+             })
+         } 
         </script> 
+        
 
     </body>
 
