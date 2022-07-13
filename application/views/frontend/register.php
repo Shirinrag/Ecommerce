@@ -30,7 +30,7 @@
                   
                   <h2 class="title">Register Account</h2>
                   <p>If you already have an account with us, please login at the <a href="#">login page</a>.</p>
-                    <?php echo form_open('account/user_register', array('id' => 'user_register_form')) ?>
+                    <?php echo form_open('Frontend/user_register', array('id' => 'user_register_form')) ?>
                      <fieldset id="account">
                         <legend>Your Personal Details</legend>
                         <div class="form-group required" style="display: none;">
