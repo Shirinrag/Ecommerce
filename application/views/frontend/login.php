@@ -39,26 +39,28 @@
                                  <a href="#" class="btn btn-default pull-right">Continue</a>
                               </div>
                            </div>
-                           <form action="#" method="post" enctype="multipart/form-data">
+                           <?php echo form_open('Frontend/user_login', array('id' => 'user_login_form')) ?>
                               <div class="col-sm-6 customer-login">
                                  <div class="well">
                                     <h2><i class="fa fa-file-text-o" aria-hidden="true"></i> Returning Customer</h2>
                                     <p><strong>I am a returning customer</strong></p>
                                     <div class="form-group">
-                                       <label class="control-label " for="input-email">E-Mail Address</label>
-                                       <input type="text" name="email" value="" id="input-email" class="form-control" />
+                                       <label class="control-label " for="input-email">Contact No</label>
+                                       <input type="text" name="contact_no" class="form-control" />
+                                        <span class="error_msg" id="contact_no_error"></span>
                                     </div>
                                     <div class="form-group">
                                        <label class="control-label " for="input-password">Password</label>
-                                       <input type="password" name="password" value="" id="input-password" class="form-control" />
+                                       <input type="password" name="password" class="form-control" />
+                                        <span class="error_msg" id="password_error"></span>
                                     </div>
                                  </div>
                                  <div class="bottom-form">
-                                    <a href="#" class="forgot">Forgotten Password</a>
-                                    <input type="submit" value="Login" class="btn btn-default pull-right" />
+                                    <!-- <a href="#" class="forgot">Forgotten Password</a> -->
+                                     <button class="btn btn-primary" id="login_button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Loading" type="submit">Login</button>
                                  </div>
                               </div>
-                           </form>
+                            <?php echo form_close() ?>
                         </div>
                      </div>
                   </div>
@@ -294,6 +296,7 @@
     ============================================ -->
     <!-- Placed at the end of the document so the pages load faster -->
     <?php include('common/jsfiles.php');?>
+     <script src="<?= base_url();?>assets_frontend/custom_js/login.js"></script>
    </body>
  
 </html>

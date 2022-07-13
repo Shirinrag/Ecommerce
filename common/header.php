@@ -3,9 +3,9 @@
       $curl = json_decode($curl,true);
       $lang_name = $curl['lang_name'];
 
-      $curl1=$this->link->hits('get_dynamic_menu','1');
-      $curl1 = json_decode($curl1,true);
-      $data['cat_data'] = $curl1['cat_data'];
+      // $curl1=$this->link->hits('get_dynamic_menu',);
+      // $curl1 = json_decode($curl1,true);
+      // $data['cat_data'] = $curl1['cat_data'];
 ?>
 <header id="header" class=" typeheader-1">
    <!-- Header Top -->
@@ -275,7 +275,15 @@
             <div class="middle-right col-lg-4 col-md-3 col-sm-6 col-xs-8">
                <div class="signin-w  hidden-sm hidden-xs">
                   <ul class="signin-link blank">
-                     <li class="log login"><i class="fa fa-lock"></i> <a class="link-lg" href="<?php echo base_url(); ?>Frontend/login">Login </a> or <a href="<?php echo base_url(); ?>Frontend/registration">Register</a></li>
+                     <?php 
+                     $user_session_data=$this->session->userdata('user_logged_in'); 
+                     if(empty($user_session_data)){ ?>
+                         <li class="log login"><i class="fa fa-lock"></i> <a class="link-lg" href="<?php echo base_url(); ?>Frontend/login">Login </a> or <a href="<?php echo base_url(); ?>Frontend/registration">Register</a></li>
+                     <?php }else{ ?>
+                        <span><strong><?=$user_session_data['user_name']?></strong></span> | <a href="<?php echo base_url();?>Frontend/logout" style="font-size: 15px; color: #fd7e14; width: 20% !important;"><span ><strong>Logout</strong></span></a>
+                     <?php }
+                     ?>
+                    
                   </ul>
                </div>
                <div class="telephone hidden-xs hidden-sm hidden-md">

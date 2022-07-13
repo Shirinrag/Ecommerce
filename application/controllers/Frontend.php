@@ -39,12 +39,6 @@ class Frontend extends CI_Controller {
 	{
 		$this->load->view('frontend/product');
 	}
-
-	public function login()
-	{
-		$this->load->view('frontend/login');
-	}
-
 	public function registration()
 	{
 		$this->load->view('frontend/register');
@@ -95,6 +89,89 @@ class Frontend extends CI_Controller {
     	$response['contact_no']= base64_decode($_GET['contact_no']);
     	$this->load->view('frontend/verify_otp',$response);
     }
+    public function otp_verify()
+    {
+    	$otp = $this->input->post('otp');
+        $contact_no = $this->input->post('contact_no');
+         $this->form_validation->set_rules('contact_no','Contact No', 'trim|required', array('required' => '%s is required.'));
+         $this->form_validation->set_rules('otp','Otp', 'trim|required|numeric', array('required' => '%s is required.'));
+        if ($this->form_validation->run() == FALSE) {
+                $response['status'] = 'failure';
+                $response['error'] = array(
+                    'contact_no' => strip_tags(form_error('contact_no')),
+                    'otp' => strip_tags(form_error('otp')),
+                );
+            } else {
+  				$curl_data=array('contact_no'=>$contact_no,'otp'=>$otp);
+		        $curl = $this->link->hits('verify-otp', $curl_data);
+		        // echo '<pre>'; print_r($curl); exit;
+		        $curl = json_decode($curl, true);
+		        if ($curl['status']==1) {
+		            if (!empty($curl['data'])) {
+		                    $this->session->set_userdata('user_logged_in', @$curl['data']);
+		                    $session_data = $this->session->userdata('user_logged_in');
+		                    $response['status'] = 'success';
+		                    $response['url'] = base_url() . 'Frontend';
+		            }
+		        } else {
+		            $response['status'] = 'failure';
+		            $response['error'] = array('otp' => $curl['message'],);
+		        }
+      		}        
+        echo json_encode($response);
+    }
+    public function login()
+	{
+		$this->load->view('frontend/login');
+	}
+	 public function user_login() {
+        $this->form_validation->set_rules('contact_no', 'Contact No', 'required|trim', array('required' => 'You must provide a %s',));
+        $this->form_validation->set_rules('password', 'Password', 'trim|required', array('required' => 'You must provide a %s',));
+        if ($this->form_validation->run() == FALSE) {
+            $response['status'] = 'failure';
+            $response['error'] = array('contact_no' => strip_tags(form_error('contact_no')), 'password' => strip_tags(form_error('password')),);
+        } else {
+            // $prevpage = $this->input->post('prevpage');
+            $contact_no = $this->input->post('contact_no');
+            $password = $this->input->post('password');
+
+            $curl_data = array('contact_no' => $contact_no, 'password' => $password,);
+            $curl = $this->link->hits('login-data', $curl_data);
+            $curl = json_decode($curl, TRUE);
+            // echo '<pre>'; print_r($curl); exit;
+            if ($curl['status'] == 1) {
+                if (@$curl['data']) {
+                    $this->session->set_userdata('user_logged_in', @$curl['data']);
+            		$session_data = $this->session->userdata('user_logged_in')['op_user_id'];           
+            		$url = base_url() . 'Frontend';            
+                    $response['url'] = $url;
+                    $response['status'] = 'success';
+                }else{
+                    $response['status'] = "failure";
+                    $response['error'] = array('password' => 'Incorrect login details');
+                }
+            } else if($curl['status'] = "failure"){
+                if($curl['message']=="Otp Not Verified"){
+                    $response['status'] = "failure_1";
+                    $response['url']= base_url().'Frontend/verify_otp?contact_no="' . base64_encode($curl['contact_no']) . '"';                    
+                }else{
+                    $response['status'] = "failure";
+                    $response['error'] = array('password' => $curl['message'],);
+                }
+            } else if($curl['status']=='wrong_username'){
+				$response['status']='failure';  
+				$response['error'] = array( 
+            		'contact_no' =>$curl['message'],
+            	); 				
+			} else {
+		  		$response['status'] = 'failure';
+            	$response['error'] = array( 
+            		'password' =>$curl['message'],
+            	);
+		  	}
+        }
+        echo json_encode($response);
+    }
     public function address_book()
 	{
 		$this->load->view('frontend/address_book');
@@ -102,11 +179,15 @@ class Frontend extends CI_Controller {
 	public function change_password()
 	{
 		$this->load->view('frontend/change_password');
-	}
-     
+	}    
 	
     public function my_account()
 	{
 		$this->load->view('frontend/my-account');
 	}
+
+	 public function logout() {
+        $this->session->unset_userdata('user_logged_in');
+        redirect(base_url() . 'Frontend');
+    }
 }

@@ -95,8 +95,8 @@
          ============================================ -->
       <!-- Placed at the end of the document so the pages load faster -->
       <?php include('common/jsfiles.php');?> 
-         
+          <script src="<?= base_url();?>assets_frontend/custom_js/register.js"></script>
    </body>
   
 </html>
-      <script src="<?= base_url();?>assets_frontend/custom_js/register.js"></script>
+     
