@@ -36,18 +36,6 @@
                               <div class="loadeding"></div>
                            </div>
                         </div>
-                        <!-- <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 col3">
-                           <div class="modcontent clearfix">
-                              <div class="banners banners1">
-                                 <div class="b-img">
-                                    <a href="#"><img src="<?php //echo base_url();?>assets_frontend/image/catalog/banners/banner1.jpg" alt="banner1"></a>
-                                 </div>
-                                 <div class="b-img2">
-                                    <a href="#"><img src="<?php //echo base_url();?>assets_frontend/image/catalog/banners/banner2.jpg" alt="banner2"></a>
-                                 </div>
-                              </div>
-                           </div>
-                           </div> -->
                      </div>
                      <!-- Deals -->
                      
@@ -65,13 +53,13 @@
                                           <div class="inner">
                                              <div class="item-left col-lg-6 col-md-5 col-sm-5 col-xs-12">
                                                 <div class="image">
-                                                   
-                                                   <a href="#" target="_self" title="product">
-                                                   <img src="<?php //echo $product_row['image_name'];?>" alt="<?php// echo $product_row['product_name'];?>" class="img-responsive">
+                                                  
+                                                   <a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($product_row['product_id']) ?>" target="_self" title="product">
+                                                   <img src="<?php echo $product_row['image_name'];?>" alt="<?php echo $product_row['product_name'];?>" class="img-responsive">
                                                    </a>
                                                    <div class="button-group so-quickview">
                                                       <button class="btn-button addToCart" title="Add to Cart" type="button" onclick="cart.add('69');"><i class="fa fa-shopping-basket"></i>  <span>Add to Cart</span>
-                                                      </button>                                                        
+                                                      </button>                                                   
                                                       <button class="btn-button wishlist" type="button" title="Add to Wish List" onclick="wishlist.add('69');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
                                                       </button>
                                                       <button class="btn-button compare" type="button" title="Compare this Product" onclick="compare.add('69');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
@@ -84,32 +72,16 @@
                                              </div>
                                              <div class="item-right col-lg-6 col-md-7 col-sm-7 col-xs-12">
                                                 <div class="caption">
-                                                   <h4><a href="#" target="_self" title="<?php //echo $product_row['product_name'];?>"><?php //echo $product_row['product_name'];?></a></h4>
+                                                   <h4><a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($product_row['product_id']) ?>" target="_self" title="<?php echo $product_row['product_name'];?>"><?php echo $product_row['product_name'];?></a></h4>
                                                    <p class="price">   
                                                       <span class="price-new"><?php //echo '$ '.$product_row['product_purchase_price'];?></span>
                                                       <span class="price-n"><?php //echo '$ '.$product_row['product_price'];?></span>
                                                    </p>
                                                    <p class="desc"><?php //echo htmlspecialchars_decode($product_row['description']) ;?></p>
                                                    <div class="item-available">
-                                                      <div class="row">
-                                                         <p class="col-xs-6 a1">Available: <b>98</b> 
-                                                         </p>
-                                                         <p class="col-xs-6 a2">Sold: <b>32</b> 
-                                                         </p>
-                                                      </div>
-                                                      <div class="available"> <span class="color_width" data-title="75%" data-toggle="tooltip" title="75%" style="width: 75%"></span>
-                                                      </div>
+                                                      
                                                    </div>
-                                                  
-                                                    <div class="item-time-w">
-                                                      <div class="time-title"><span>Hurry Up!</span> Offer ends in:</div>
-                                                      <div class="item-time">
-                                                         <div class="item-timer">
-                                                            <div class="defaultCountdown-30"></div>
-                                                         </div>
-                                                      </div>
-                                                      </div>
-                                                 
+                                                   
                                                 </div>
                                              </div>
                                           </div>
@@ -140,7 +112,7 @@
                                  <div class="product-item-container">
                                     <div class="left-block">
                                        <div class="product-image-container second_img">  
-                                          <a href="product.html" target="_self" title="Pastrami bacon">
+                                          <a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($product_row['product_id']) ?>" target="_self" title="Pastrami bacon">
                                           <img src="<?php echo $product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
                                           <img src="<?php echo $product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
                                           </a>
@@ -192,7 +164,7 @@
                                  <div class="product-item-container">
                                     <div class="left-block">
                                        <div class="product-image-container second_img">  
-                                          <a href="product.html" target="_self" title="Pastrami bacon">
+                                          <a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($product_row['product_id']) ?>" target="_self" title="Pastrami bacon">
                                           <img src="<?php echo $product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
                                           <img src="<?php echo $product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
                                           </a>
@@ -237,16 +209,16 @@
                   <h3 class="modtitle"><span>Best Sellings</span></h3>
                      <div class="related titleLine products-list grid module ">                    
                         <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="no" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">                      
-                        <?php  foreach ($best_selling as $product_key => $product_row ) { ?>  
+                        <?php  foreach ($best_selling as $best_selling_key => $best_selling_row ) { ?>  
                         <div class="item">                       
                               <div class="item-inner product-layout transition product-grid">
                               
                                  <div class="product-item-container">
                                     <div class="left-block">
                                        <div class="product-image-container second_img">  
-                                          <a href="product.html" target="_self" title="Pastrami bacon">
-                                          <img src="<?php echo $product_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $product_row['image_name']?>">
-                                          <img src="<?php echo $product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
+                                          <a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($best_selling_row['product_id']) ?>" target="_self" title="Pastrami bacon">
+                                          <img src="<?php echo $best_selling_row['image_name']?>" class="img-1 img-responsive" alt="<?php echo $best_selling_row['image_name']?>">
+                                          <img src="<?php echo $best_selling_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $best_selling_row['image_name']?>">
                                           </a>
                                        </div>
                                        <div class="button-group so-quickview cartinfo--left">
@@ -271,8 +243,8 @@
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                           </div>
-                                          <h4><a href="product.html" title="Pastrami bacon" target="_self"><?php echo $product_row['product_name']; ?></a></h4>
-                                          <div class="price"><?php echo $product_row['product_price']; ?></div>
+                                          <h4><a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($best_selling_row['product_id']) ?>" title="Pastrami bacon" target="_self"><?php echo $best_selling_row['product_name']; ?></a></h4>
+                                          <div class="price"><?php echo $best_selling_row['product_price']; ?></div>
                                        </div>
                                     </div>
                                  </div>
