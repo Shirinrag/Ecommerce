@@ -241,6 +241,9 @@ header.typeheader-1 .logo {
 }
 .logout{
     font-size: 12px;
-     color: #fd7e14 !important
+     color: #fd7e14 !important;
      width: 20% !important;
+}
+.slider-brands {
+  margin-bottom: 0px !important; 
 }
