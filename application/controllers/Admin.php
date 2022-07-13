@@ -395,6 +395,7 @@ class Admin extends CI_Controller {
         }
         echo json_encode($category_data);
     }
+
     function getSubCategory() {
         $postData = $_POST;
         $sub_category_list = $this->model->getData('subcategory', array('status' => '1'));
@@ -422,6 +423,7 @@ class Admin extends CI_Controller {
         $data['msg'] = '';
         $data['menu'] = 'product';
         $data['categpry_list'] = $this->model->getData("category", array('status' => '1'));
+        $data['supplier_list'] = $this->model->getData("supplier_list", array('status' => '0'));
         $data['product_list'] = $this->model->getData("product", array('status' => '1'));
         $data['sub_category_list'] = $this->model->getData('subcategory', array('status' => '1'));
         $data['unit_list'] = $this->model->getData('product_unit', array('status' => '1'));
@@ -452,7 +454,6 @@ class Admin extends CI_Controller {
     }
     
     function submit_product() {
-
         if(empty($_POST)){
             redirect('Admin/add_new_product');
         }else{
@@ -484,8 +485,10 @@ class Admin extends CI_Controller {
                     $this->session->set_flashdata('msg', 'Product Name already exist.');
                     redirect('Admin/add_new_product');
                 } else {
+                    
                     $last_id = $product_id = $this->model->insertData('product', $product_array);
                     $last_product_id = $this->db->insert_id();
+                    $this->model->insertData('inventory',array('product_id' => $last_id,'qty' => $product_array['qty'],'supplier_id' => $product_array['supplier_id'],'created_at'=>date('Y-m-d H:i:s'),'status'=>'1'));
                     $countfiles = count($_FILES['image_files']['name']);
                     for ($i = 0;$i < $countfiles;$i++) {
                         if (!empty($_FILES['image_files']['name'][$i])) {
@@ -538,6 +541,7 @@ class Admin extends CI_Controller {
         }else{ $product_array['best_selling']='0'; }
 
         $product_gallery = array();
+        
         $product_record = $this->model->getData('product_gallery', array('product_id' => $product_array['product_id']));
         if($product_record[0]['img_url'] != '')
         {
@@ -545,9 +549,25 @@ class Admin extends CI_Controller {
         }else{
             $product_array['image_name']='uploads/products/'.$_FILES['image_files']['name'][0];
         }
-        
-        $last_id = $this->model->updateData('product', $product_array, array('product_id' => $product_array['product_id']));
-        $last_product_id = $product_array['product_id'];
+        $data['product_data'] = $this->model->getData('product', array('product_id' => $product_array['product_id']));
+        if($data['product_data'][0]['qty'] != $product_array['qty'])
+        {
+            $inventory=$this->model->selectWhereData('inventory',array('product_id' => $product_array['product_id'],'supplier_id' => $product_array['supplier_id'],'status'=>'1'),array('qty','id'));
+            $new_qty=$inventory['qty']+ $product_array['qty'];
+            
+            if($this->model->updateData('inventory',array('modified_at'=>date('Y-m-d H:i:s'),'status'=>'0'),array('id'=>$inventory['id'])))
+            {
+                $this->model->insertData('inventory',array('qty'=>$new_qty,'product_id' => $product_array['product_id'],'supplier_id' => $product_array['supplier_id'],'created_at'=>date('Y-m-d H:i:s'),'status'=>'1'));
+            }
+        }   
+        if($data['product_data'][0]['qty'] != $product_array['qty'])
+        {
+            $last_id = $this->model->updateData('product',array('qty'=>$new_qty), array('product_id' => $product_array['product_id']));
+        }
+        else{
+            $last_id = $this->model->updateData('product', $product_array, array('product_id' => $product_array['product_id']));
+        }
+            $last_product_id = $product_array['product_id'];
         $countfiles = count($_FILES['image_files']['name']);
         for ($i = 0;$i < $countfiles;$i++) {
             if (!empty($_FILES['image_files']['name'][$i])) {
@@ -791,6 +811,7 @@ class Admin extends CI_Controller {
         $data['menu'] = 'product';
         $product_id = $_GET['product_id'];
         $data['product_data'] = $this->model->getData('product', array('product_id' => $product_id));
+        $data['supplier_list'] = $this->model->getData("supplier_list", array('status' => '0'));
         $data['product_gallery'] = $this->model->getData('product_gallery', array('product_id' => $product_id));
         $data['unit_list_by_id'] = $this->model->getData("product_unit", array('status' => '1'));
         $data['subcat_by_id'] = $this->model->getData('subcategory', array('category_id' => $data['product_data'][0]['category_id']));
