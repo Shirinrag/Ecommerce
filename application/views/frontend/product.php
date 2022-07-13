@@ -120,7 +120,7 @@
                            </div>
                            <!-- Review ---->
                            <div class="box-review form-group">
-                              <div class="ratings">
+                             <!--  <div class="ratings">
                                  <div class="rating-box">
                                     <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                                     <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
@@ -128,56 +128,20 @@
                                     <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                                     <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                                  </div>
-                              </div>
-                              <a class="reviews_button" href="#" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">0 reviews</a>   | 
+                              </div> -->
+                             <!--  <a class="reviews_button" href="#" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">0 reviews</a>   |  -->
                               <a class="write_review_button" href="#" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Write a review</a>
                            </div>
                            <div class="product-label form-group">
                               <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
-                                 <span class="price-new" itemprop="price">$114.00</span>
-                                 <span class="price-old">$122.00</span>
+                                 <span class="price-new" itemprop="price">$ <?=$product_details['product_purchase_price']?></span>
+                                 <span class="price-old">$ <?=$product_details['product_price']?></span>
                               </div>
                               <div class="stock"><span>Availability:</span> <span class="status-stock">In Stock</span></div>
                            </div>
-                           <div class="product-box-desc">
-                              <div class="inner-box-desc">
-                                 <div class="price-tax"><span>Ex Tax:</span> $60.00</div>
-                                 <div class="reward"><span>Price in reward points:</span> 400</div>
-                                 <div class="brand"><span>Brand:</span><a href="#">Apple</a>        </div>
-                                 <div class="model"><span>Product Code:</span> Product 15</div>
-                                 <div class="reward"><span>Reward Points:</span> 100</div>
-                              </div>
-                           </div>
+                          
                            <div id="product">
-                              <h4>Available Options</h4>
-                              <div class="image_option_type form-group required">
-                                 <!-- <label class="control-label">Colors</label>
-                                    <ul class="product-options clearfix"id="input-option231">
-                                    <li class="radio">
-                                    <label>
-                                    <input class="image_radio" type="radio" name="option[231]" value="33"> 
-                                    <img src="<?php echo base_url();?>assets_frontend/image/demo/colors/blue.jpg" data-original-title="blue +$12.00" class="img-thumbnail icon icon-color">             <i class="fa fa-check"></i>
-                                    <label> </label>
-                                    </label>
-                                    </li>
-                                    <li class="radio">
-                                    <label>
-                                    <input class="image_radio" type="radio" name="option[231]" value="34"> 
-                                    <img src="<?php echo base_url();?>assets_frontend/image/demo/colors/brown.jpg" data-original-title="brown -$12.00" class="img-thumbnail icon icon-color">               <i class="fa fa-check"></i>
-                                    <label> </label>
-                                    </label>
-                                    </li>
-                                    <li class="radio">
-                                    <label>
-                                    <input class="image_radio" type="radio" name="option[231]" value="35"> <img src="<?php echo base_url();?>assets_frontend/image/demo/colors/green.jpg"
-                                    data-original-title="green +$12.00" class="img-thumbnail icon icon-color">              <i class="fa fa-check"></i>
-                                    <label> </label>
-                                    </label>
-                                    </li>
-                                    <li class="selected-option">
-                                    </li>
-                                    </ul> -->
-                              </div>
+                              
                               <div class="form-group box-info-product">
                                  <div class="option quantity">
                                     <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
@@ -223,309 +187,7 @@
                         </ul>
                         <div class="tab-content col-lg-10 col-sm-9 col-xs-12">
                            <div id="tab-1" class="tab-pane fade active in">
-                              <p>
-                                 The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there's no limit to what you can achieve. <br>
-                                 <br>
-                                 The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it's designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. <br>
-                                 <br>
-                                 Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple's ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. <br>
-                                 <br>
-                                 Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. <br>
-                                 <br>
-                                 The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.<br>
-                              </p>
-                              <h3>
-                                 Features:
-                              </h3>
-                              <p>
-                                 Unrivaled display performance
-                              </p>
-                              <ul>
-                                 <li>
-                                    30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.
-                                 </li>
-                                 <li>
-                                    Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.
-                                 </li>
-                                 <li>
-                                    Wide-format design for simultaneous display of two full pages of text and graphics.
-                                 </li>
-                                 <li>
-                                    Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks
-                                 </li>
-                                 <li>
-                                    Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.
-                                 </li>
-                                 <li>
-                                    Lightning-fast pixel response for full-motion digital video playback.
-                                 </li>
-                                 <li>
-                                    Support for 16.7 million saturated colors, for use in all graphics-intensive applications.
-                                 </li>
-                              </ul>
-                              <p>
-                                 Simple setup and operation
-                              </p>
-                              <ul>
-                                 <li>
-                                    Single cable with elegant breakout for connection to DVI, USB and FireWire ports
-                                 </li>
-                                 <li>
-                                    Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.
-                                 </li>
-                                 <li>
-                                    Two FireWire 400 ports to support iSight and other desktop peripherals
-                                 </li>
-                              </ul>
-                              <p>
-                                 Sleek, elegant design
-                              </p>
-                              <ul>
-                                 <li>
-                                    Huge virtual workspace, very small footprint.
-                                 </li>
-                                 <li>
-                                    Narrow Bezel design to minimize visual impact of using dual displays
-                                 </li>
-                                 <li>
-                                    Unique hinge design for effortless adjustment
-                                 </li>
-                                 <li>
-                                    Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)
-                                 </li>
-                              </ul>
-                              <h3>
-                                 Technical specifications
-                              </h3>
-                              <p>
-                                 <b>Screen size (diagonal viewable image size)</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    Apple Cinema HD Display: 30 inches (29.7-inch viewable)
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>Screen type</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>Resolutions</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    2560 x 1600 pixels (optimum resolution)
-                                 </li>
-                                 <li>
-                                    2048 x 1280
-                                 </li>
-                                 <li>
-                                    1920 x 1200
-                                 </li>
-                                 <li>
-                                    1280 x 800
-                                 </li>
-                                 <li>
-                                    1024 x 640
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>Display colors (maximum)</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    16.7 million
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>Viewing angle (typical)</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    170° horizontal; 170° vertical
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>Brightness (typical)</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    30-inch Cinema HD Display: 400 cd/m2
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>Contrast ratio (typical)</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    700:1
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>Response time (typical)</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    16 ms
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>Pixel pitch</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    30-inch Cinema HD Display: 0.250 mm
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>Screen treatment</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    Antiglare hardcoat
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>User controls (hardware and software)</b>
-                              </p>
-                              <ul>
-                                 <li>
-                                    Display Power,
-                                 </li>
-                                 <li>
-                                    System sleep, wake
-                                 </li>
-                                 <li>
-                                    Brightness
-                                 </li>
-                                 <li>
-                                    Monitor tilt
-                                 </li>
-                              </ul>
-                              <p>
-                                 <b>Connectors and cables</b><br>
-                                 Cable
-                              </p>
-                              <ul>
-                                 <li>
-                                    DVI (Digital Visual Interface)
-                                 </li>
-                                 <li>
-                                    FireWire 400
-                                 </li>
-                                 <li>
-                                    USB 2.0
-                                 </li>
-                                 <li>
-                                    DC power (24 V)
-                                 </li>
-                              </ul>
-                              <!-- <p>
-                                 Connectors</p>
-                                 <ul>
-                                 <li>
-                                    Two-port, self-powered USB 2.0 hub</li>
-                                 <li>
-                                    Two FireWire 400 ports</li>
-                                 <li>
-                                    Kensington security port</li>
-                                 </ul>
-                                 <p>
-                                 <b>VESA mount adapter</b><br>
-                                 Requires optional Cinema Display VESA Mount Adapter (M9649G/A)</p>
-                                 <ul>
-                                 <li>
-                                    Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions</li>
-                                 </ul>
-                                 <p>
-                                 <b>Electrical requirements</b></p>
-                                 <ul>
-                                 <li>
-                                    Input voltage: 100-240 VAC 50-60Hz</li>
-                                 <li>
-                                    Maximum power when operating: 150W</li>
-                                 <li>
-                                    Energy saver mode: 3W or less</li>
-                                 </ul>
-                                 <p>
-                                 <b>Environmental requirements</b></p>
-                                 <ul>
-                                 <li>
-                                    Operating temperature: 50° to 95° F (10° to 35° C)</li>
-                                 <li>
-                                    Storage temperature: -40° to 116° F (-40° to 47° C)</li>
-                                 <li>
-                                    Operating humidity: 20% to 80% noncondensing</li>
-                                 <li>
-                                    Maximum operating altitude: 10,000 feet</li>
-                                 </ul>
-                                 <p>
-                                 <b>Agency approvals</b></p>
-                                 <ul>
-                                 <li>
-                                    FCC Part 15 Class B</li>
-                                 <li>
-                                    EN55022 Class B</li>
-                                 <li>
-                                    EN55024</li>
-                                 <li>
-                                    VCCI Class B</li>
-                                 <li>
-                                    AS/NZS 3548 Class B</li>
-                                 <li>
-                                    CNS 13438 Class B</li>
-                                 <li>
-                                    ICES-003 Class B</li>
-                                 <li>
-                                    ISO 13406 part 2</li>
-                                 <li>
-                                    MPR II</li>
-                                 <li>
-                                    IEC 60950</li>
-                                 <li>
-                                    UL 60950</li>
-                                 <li>
-                                    CSA 60950</li>
-                                 <li>
-                                    EN60950</li>
-                                 <li>
-                                    ENERGY STAR</li>
-                                 <li>
-                                    TCO '03</li>
-                                 </ul>
-                                 <p>
-                                 <b>Size and weight</b><br>
-                                 30-inch Apple Cinema HD Display</p>
-                                 <ul>
-                                 <li>
-                                    Height: 21.3 inches (54.3 cm)</li>
-                                 <li>
-                                    Width: 27.2 inches (68.8 cm)</li>
-                                 <li>
-                                    Depth: 8.46 inches (21.5 cm)</li>
-                                 <li>
-                                    Weight: 27.5 pounds (12.5 kg)</li>
-                                 </ul>
-                                 <p>
-                                 <b>System Requirements</b></p>
-                                 <ul>
-                                 <li>
-                                    Mac Pro, all graphic options</li>
-                                 <li>
-                                    MacBook Pro</li>
-                                 <li>
-                                    Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better</li>
-                                 <li>
-                                    Power Mac G5 (PCI Express), all graphics options</li>
-                                 <li>
-                                    PowerBook G4 with dual-link DVI support</li>
-                                 <li>
-                                    Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup</li>
-                                          </ul> -->
+                                <?=$product_details['description']?>
                            </div>
                            <div id="tab-review" class="tab-pane fade">
                               <form>
@@ -628,277 +290,46 @@
                   <div class="related titleLine products-list grid module ">
                      <h3 class="modtitle">Related Products  </h3>
                      <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes" data-autoplay="no" data-autoheight="no" data-autowidth="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="3" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes" data-pagination="no" data-lazyload="yes" data-hoverpause="yes">
+                        <?php 
+                            foreach ($related_product_details as $related_product_details_key => $related_product_details_row) { ?>
+                                
+                         
                         <div class="item">
                            <div class="item-inner product-layout transition product-grid">
                               <div class="product-item-container">
                                  <div class="left-block">
                                     <div class="product-image-container second_img">
-                                       <a href="product.html" target="_self" title="Pastrami bacon">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/9.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/2.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
+                                       <a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($related_product_details_row['product_id']) ?>" target="_self" title="Pastrami bacon">
+                                       <img src="<?=$related_product_details_row['image_name']?>" class="img-1 img-responsive" alt="<?=$related_product_details_row['product_name']?>">
+                                      
                                        </a>
                                     </div>
-                                    <div class="button-group so-quickview cartinfo--left">
-                                       <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
-                                       <span>Add to cart </span>   
-                                       </button>
+                                   <!--  <div class="button-group so-quickview cartinfo--left">
+                                      
                                        <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
                                        </button>
-                                       <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
-                                       </button>
-                                       <!--quickview-->                                                      
-                                       <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
-                                       <!--end quickview-->
-                                    </div>
+                                      
+                                      
+                                    </div> -->
                                  </div>
                                  <div class="right-block">
                                     <div class="caption">
-                                       <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
+                                      <!--  <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
                                           <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
                                           <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
                                           <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                           <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                       </div>
-                                       <h4><a href="product.html" title="Pastrami bacon" target="_self">Pastrami bacon</a></h4>
-                                       <div class="price">$42.00</div>
+                                       </div> -->
+                                       <h4><a href="product.html" title="Pastrami bacon" target="_self"><?=$related_product_details_row['product_name']?></a></h4>
+                                       <div class="price">$<?=$related_product_details_row['product_purchase_price']?></div>
                                     </div>
                                  </div>
                               </div>
                            </div>
                         </div>
-                        <div class="item">
-                           <div class="item-inner product-layout transition product-grid">
-                              <div class="product-item-container">
-                                 <div class="left-block">
-                                    <div class="product-image-container second_img">
-                                       <a href="product.html" target="_self" title="Chicken swinesha">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/8.jpg" class="img-1 img-responsive" alt="image">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/3.jpg" class="img-2 img-responsive" alt="image">
-                                       </a>
-                                    </div>
-                                    <div class="box-label"> <span class="label-product label-sale"> -16% </span></div>
-                                    <div class="button-group so-quickview cartinfo--left">
-                                       <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
-                                       <span>Add to cart </span>   
-                                       </button>
-                                       <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
-                                       </button>
-                                       <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
-                                       </button>
-                                       <!--quickview-->                                                      
-                                       <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
-                                       <!--end quickview-->
-                                    </div>
-                                 </div>
-                                 <div class="right-block">
-                                    <div class="caption">
-                                       <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                       </div>
-                                       <div class="price"> <span class="price-new">$46.00</span>
-                                          <span class="price-old">$55.00</span>
-                                       </div>
-                                       <h4><a href="product.html" title="Chicken swinesha" target="_self">Chicken swinesha</a></h4>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="item">
-                           <div class="item-inner product-layout transition product-grid">
-                              <div class="product-item-container">
-                                 <div class="left-block">
-                                    <div class="product-image-container second_img">
-                                       <a href="product.html" target="_self" title="Kielbasa hamburg">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/5.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/6.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
-                                       </a>
-                                    </div>
-                                    <div class="box-label"> <span class="label-product label-new"> New </span></div>
-                                    <div class="button-group so-quickview cartinfo--left">
-                                       <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
-                                       <span>Add to cart </span>   
-                                       </button>
-                                       <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
-                                       </button>
-                                       <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
-                                       </button>
-                                       <!--quickview-->                                                      
-                                       <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
-                                       <!--end quickview-->
-                                    </div>
-                                 </div>
-                                 <div class="right-block">
-                                    <div class="caption">
-                                       <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                       </div>
-                                       <h4><a href="product.html" title="Kielbasa hamburg" target="_self">Kielbasa hamburg</a></h4>
-                                       <div class="price">$55.00</div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="item">
-                           <div class="item-inner product-layout transition product-grid">
-                              <div class="product-item-container">
-                                 <div class="left-block">
-                                    <div class="product-image-container second_img">
-                                       <a href="product.html" target="_self" title="Sausage cowbee">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/7.jpg" class="img-1 img-responsive" alt="image">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/4.jpg" class="img-2 img-responsive" alt="image">
-                                       </a>
-                                    </div>
-                                    <div class="button-group so-quickview cartinfo--left">
-                                       <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
-                                       <span>Add to cart </span>   
-                                       </button>
-                                       <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
-                                       </button>
-                                       <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
-                                       </button>
-                                       <!--quickview-->                                                      
-                                       <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
-                                       <!--end quickview-->
-                                    </div>
-                                 </div>
-                                 <div class="right-block">
-                                    <div class="caption">
-                                       <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                       </div>
-                                       <h4><a href="product.html" title="Sausage cowbeea" target="_self">Sausage cowbee</a></h4>
-                                       <div class="price">$60.00</div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="item">
-                           <div class="item-inner product-layout transition product-grid">
-                              <div class="product-item-container">
-                                 <div class="left-block">
-                                    <div class="product-image-container second_img">
-                                       <a href="product.html" target="_self" title="Kielbasa hamburg">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/2.jpg" class="img-1 img-responsive" alt="Pastrami bacon">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/6.jpg" class="img-2 img-responsive" alt="Pastrami bacon">
-                                       </a>
-                                    </div>
-                                    <div class="button-group so-quickview cartinfo--left">
-                                       <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
-                                       <span>Add to cart </span>   
-                                       </button>
-                                       <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
-                                       </button>
-                                       <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
-                                       </button>
-                                       <!--quickview-->                                                      
-                                       <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
-                                       <!--end quickview-->
-                                    </div>
-                                 </div>
-                                 <div class="right-block">
-                                    <div class="caption">
-                                       <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                       </div>
-                                       <h4><a href="product.html" title="Drumstick tempor" target="_self">Drumstick tempor</a></h4>
-                                       <div class="price">$75.00</div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="item">
-                           <div class="item-inner product-layout transition product-grid">
-                              <div class="product-item-container">
-                                 <div class="left-block">
-                                    <div class="product-image-container second_img">
-                                       <a href="product.html" target="_self" title="Balltip nullaelit">
-                                       <img src="image/catalog/demo/product/320/8.jpg" class="img-1 img-responsive" alt="image">
-                                       <img src="image/catalog/demo/product/320/2.jpg" class="img-2 img-responsive" alt="image">
-                                       </a>
-                                    </div>
-                                    <div class="box-label"> <span class="label-product label-new"> New </span></div>
-                                    <div class="button-group so-quickview cartinfo--left">
-                                       <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
-                                       <span>Add to cart </span>   
-                                       </button>
-                                       <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
-                                       </button>
-                                       <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
-                                       </button>
-                                       <!--quickview-->                                                      
-                                       <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
-                                       <!--end quickview-->
-                                    </div>
-                                 </div>
-                                 <div class="right-block">
-                                    <div class="caption">
-                                       <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                       </div>
-                                       <h4><a href="product.html" title="Balltip nullaelit" target="_self">Balltip nullaelit</a></h4>
-                                       <div class="price">$80.00</div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="item">
-                           <div class="item-inner product-layout transition product-grid">
-                              <div class="product-item-container">
-                                 <div class="left-block">
-                                    <div class="product-image-container second_img">
-                                       <a href="product.html" target="_self" title="Lamboudin ribeye">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/3.jpg" class="img-1 img-responsive" alt="image">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/320/9.jpg" class="img-2 img-responsive" alt="image">
-                                       </a>
-                                    </div>
-                                    <div class="button-group so-quickview cartinfo--left">
-                                       <button type="button" class="addToCart btn-button" title="Add to cart" onclick="cart.add('60 ');">  <i class="fa fa-shopping-basket"></i>
-                                       <span>Add to cart </span>   
-                                       </button>
-                                       <button type="button" class="wishlist btn-button" title="Add to Wish List" onclick="wishlist.add('60');"><i class="fa fa-heart"></i><span>Add to Wish List</span>
-                                       </button>
-                                       <button type="button" class="compare btn-button" title="Compare this Product " onclick="compare.add('60');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
-                                       </button>
-                                       <!--quickview-->                                                      
-                                       <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
-                                       <!--end quickview-->
-                                    </div>
-                                 </div>
-                                 <div class="right-block">
-                                    <div class="caption">
-                                       <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i></span>
-                                          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                       </div>
-                                       <h4><a href="product.html" title="Lamboudin ribeye" target="_self">Lamboudin ribeye</a></h4>
-                                       <div class="price">$63.00</div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
+                          <?php }
+                        ?>
+                       
                      </div>
                   </div>
                   <!-- end Related  Products-->
