@@ -36,6 +36,15 @@ class Superadmin_model extends CI_Model {
         return $query->result_array();
 	}
 
+	public function get_product($id='')
+	{
+		$this->db->select('product.*,tbl_language.lang_name');
+		$this->db->from('product');
+		$this->db->join('tbl_language','product.fk_lang_id=tbl_language.id','left');
+		$this->db->where('product.product_id',$id);
+		 $query=$this->db->get();
+        return $query->result_array();
+	}
 }
 ?>
 

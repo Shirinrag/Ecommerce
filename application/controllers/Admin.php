@@ -396,6 +396,18 @@ class Admin extends CI_Controller {
         echo json_encode($category_data);
     }
 
+    function getproductname() {
+        $postData = $_POST;
+        $product_list = $this->model->getData('product', array('status' => '1'));
+        $product_data = array();
+        foreach ($product_list as $key => $value) {
+            if ($postData['fk_lang_id'] == $value['fk_lang_id']) {
+                $product_data[] = $value;
+            }
+        }
+        echo json_encode($product_data);
+    }
+
     function getSubCategory() {
         $postData = $_POST;
         $sub_category_list = $this->model->getData('subcategory', array('status' => '1'));
@@ -424,10 +436,10 @@ class Admin extends CI_Controller {
         $data['menu'] = 'product';
         $data['categpry_list'] = $this->model->getData("category", array('status' => '1'));
         $data['supplier_list'] = $this->model->getData("supplier_list", array('status' => '0'));
-        $data['product_list'] = $this->model->getData("product", array('status' => '1'));
         $data['sub_category_list'] = $this->model->getData('subcategory', array('status' => '1'));
         $data['unit_list'] = $this->model->getData('product_unit', array('status' => '1'));
         $data['main_content'] = 'admin/add_new_product'; //dashboard
+        $data['product_list'] = $this->model->getData("product", array('status' => '1'));
         $data['lang_name'] = $this->model->selectWhereData('tbl_language', array(), array('id', 'lang_name'), false);
         $this->load->view('admin/includes/template', $data);
     }
@@ -766,6 +778,8 @@ class Admin extends CI_Controller {
     }
     function add_banner() {
         $data['menu'] = 'banner';
+        $data['product_list'] = $this->model->getData("product", array('status' => '1'));
+        $data['lang_name'] = $this->model->selectWhereData('tbl_language', array(), array('id', 'lang_name'), false);
         $data['banner_list'] = $this->model->getDataOrderBy('top_banner', array('status' => '1'), 'bottom_id', 'desc');
         $data['main_content'] = 'admin/add_banner';
         $this->load->view('admin/includes/template', $data);
@@ -788,7 +802,6 @@ class Admin extends CI_Controller {
                     $array_entity['img_url'] = 'uploads/' . $data['file_path']['file_name'];
                 }
             }
-            //print_r($array_entity);die();
             $this->model->updateData('top_banner', $array_entity, array('bottom_id' => $category_id));
             $data['class'] = 'success';
             $data['msg'] = 'Banner has been updated successfully.';
@@ -803,7 +816,10 @@ class Admin extends CI_Controller {
         $data['menu'] = 'banner';
         $bottom_id = $_GET['bottom_id'];
         $data['banner_data'] = $this->model->getData('top_banner', array('bottom_id' => $bottom_id));
-        //print_r($data['banner_data'] );die();
+        $this->load->model('superadmin_model');
+        $data['lang_id'] = $this->superadmin_model->get_product($data['banner_data'][0]['fk_lang_id']);
+        $data['product_list'] = $this->model->getData("product", array('status' => '1'));
+        $data['lang_name'] = $this->model->selectWhereData('tbl_language', array(), array('id', 'lang_name'), false);
         $data['main_content'] = 'admin/edit_banner';
         $this->load->view('admin/includes/template', $data);
     }

@@ -3,9 +3,13 @@
       $curl = json_decode($curl,true);
       $lang_name = $curl['lang_name'];
 
-      // $curl1=$this->link->hits('get_dynamic_menu',);
-      // $curl1 = json_decode($curl1,true);
-      // $data['cat_data'] = $curl1['cat_data'];
+      $session_data = $this->session->userdata('logged_in');
+		$curl_data = array('fk_lang_id' =>$session_data['lang_id'],);
+      $curl1=$this->link->hits('get-dynamic-menu',$curl_data);
+      $curl1 = json_decode($curl1,true);
+      $cat_data = $curl1['cat_data'];
+   //   echo "<pre>";
+   //   print_r($cat_data);die();
 ?>
 <header id="header" class=" typeheader-1">
    <!-- Header Top -->
@@ -225,26 +229,53 @@
                                        </a>
                                        <div class="sub-menu" style="width: 100%; display: none;">
                                           <div class="content">
-                                             
-                                             <div class="row">
-                                              
+                                            <div class="row">
+                                            <?php  foreach($cat_data as $cat_data_key => $cat_data_row){?>
+                                          
                                                 <div class="col-md-3">
-                                                   <a href="#" class="title-submenu">Electronics</a>
+                                                  
+                                                   <a href="#" class="title-submenu"><?php echo $cat_data_row['category_name'] ?></a>
                                                    <div class="row">
                                                       <div class="col-md-12 hover-menu">
                                                          <div class="menu">
                                                             <ul>
-                                                               <li><a href="#"  class="main-menu">Car Alarms and Security</a></li>
-                                                               <li><a href="#"  class="main-menu">Car Audio &amp; Speakers</a></li>
-                                                               <li><a href="#"  class="main-menu">Gadgets &amp; Auto Parts</a></li>
-                                                               <li><a href="#"  class="main-menu">More Car Accessories</a></li>
+                                                               <?php 
+                                                               $dump_key=0;
+                                                              
+                                                               foreach($cat_data_row['child_name'] as $key1 => $ch){
+                                                               
+                                                               $dump_key=$dump_key+1;
+                                                               $sub_id=explode('_',$key1);
+                                                               // echo "<pre>";print_r($sub_id);
+                                                              
+                                                               //    if(!empty($cat_data_row['child_name'][$key1])){
+                                                               //       $class_name ='menu-item-has-children';
+                                                               //   }else{
+                                                               //       $class_name ="";
+                                                               //   }
+                                                               
+                                                               ?>
+                                                               <li>
+                                                               <?php if ($dump_key==1) { ?>
+                                                               <?php } ?>
+                                                               <a href=""><?=$sub_id[0];?></a>
+                                                                     <ul class="sub-menu">
+                                                                     <?php  foreach($cat_data_row['child_name'][$key1] as $s){?>
+                                                                     <li class="menu-item-has-children"><a href=""><?=$s['child_category_name'];?></a>
+                                                                     </li>
+                                                                     <?php }?>
+                                                                     </ul>
+                                                               </li>
+                                                              <?php }?>
                                                             </ul>
                                                          </div>
                                                       </div>
                                                    </div>
+                                                
                                                 </div>
-                                               
+                                                <?php } ?>
                                              </div>
+                                           
                                           </div>
                                        </div>
                                     </li>
@@ -416,7 +447,7 @@
                <ul class="wishlist-comp hidden-md hidden-sm hidden-xs">
                  <!--  <li class="compare hidden-xs"><a href="#" class="top-link-compare" title="Compare "><i class="fa fa-refresh"></i></a>
                   </li> -->
-                  <li class="wishlist hidden-xs"><a href="#" id="wishlist-total" class="top-link-wishlist" title="Wish List (0) "><i class="fa fa-heart"></i></a>
+                  <li class="wishlist hidden-xs"><a href="<?php echo base_url();?>Frontend/getwishlist" id="wishlist-total" class="top-link-wishlist" title="Wish List (0) "><i class="fa fa-heart"></i></a>
                   </li>
                </ul>
             </div>

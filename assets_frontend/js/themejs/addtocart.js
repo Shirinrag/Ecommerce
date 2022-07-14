@@ -15,14 +15,18 @@
 		}
 	}
 
+	// function wishlist(t)
+	// {
+	// 	wishlist.add(t);
+	// }
 	var wishlist = {
 		'add': function(product_id) {
-			addProductNotice('Product added to Wishlist', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>You must <a href="#">login</a>  to save <a href="#">Apple Cinema 30"</a> to your <a href="#">wish list</a>!</h3>', 'success');
+			addProductNotice(product_id);
 		}
 	}
 	var compare = {
 		'add': function(product_id) {
-			addProductNotice('Product added to compare', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>Success: You have added <a href="#">Apple Cinema 30"</a> to your <a href="#">product comparison</a>!</h3>', 'success');
+			addProductNotice('Product added to compare', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>Success: You have added <a href="#">Added"</a> to your <a href="#">product comparison</a>!</h3>', 'success');
 		}
 	}
 
@@ -33,7 +37,7 @@
 		$.jGrowl.defaults.closer = false;
 		//Stop jGrowl
 		//$.jGrowl.defaults.sticky = true;
-		var tpl = thumb + '<h3>'+text+'</h3>';
+		var tpl = '';
 		$.jGrowl(tpl, {		
 			life: 4000,
 			header: title,

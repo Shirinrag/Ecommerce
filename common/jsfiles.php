@@ -80,5 +80,5 @@ $(document).ready(function(){
             
         });
     });
-
+    var bases_url="<?=base_url() ?>";
 </script>

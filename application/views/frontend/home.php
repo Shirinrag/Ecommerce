@@ -39,15 +39,14 @@
                      </div>
                      <!-- Deals -->
                      
-                     <div class="module deals-layout1" style="margin-top:50px;">
-                        <!--  <h3 class="modtitle"><span>Daily Deals</span></h3> -->
+                     <!-- <div class="module deals-layout1" style="margin-top:50px;">
                        
                         <div class="modcontent">
                       
                            <div id="so_deal_1" class="so-deal style2">
                            
                               <div class="extraslider-inner products-list yt-content-slider" data-rtl="yes" data-autoplay="no" data-autoheight="no" data-delay="4" data-speed="0.6" data-margin="30" data-items_column0="2" data-items_column1="1" data-items_column2="1"  data-items_column3="1" data-items_column4="1" data-arrows="yes" data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
-                              <?php foreach ($product_data as $product_key => $product_row ) { ?>
+                              <?php //foreach ($product_data as $product_key => $product_row ) { ?>
                               <div class="item">
                                     <div class="product-thumb">
                                        <div class="row">
@@ -66,18 +65,19 @@
                                                       <button class="btn-button compare" type="button" title="Compare this Product" onclick="compare.add('69');"><i class="fa fa-refresh"></i><span>Compare this Product</span>
                                                       </button>                                                    
                                                       <!--quickview-->                                                      
-                                                      <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                        
+                                                      <!-- <a class="iframe-link btn-button quickview quickview_handler visible-lg" href="quickview.html" title="Quick view" data-fancybox-type="iframe"><i class="fa fa-eye"></i><span>Quick view</span></a>                                                         -->
                                                       <!--end quickview-->
-                                                   </div>
+                                                   <!-- </div>
                                                 </div>
                                              </div>
                                              <div class="item-right col-lg-6 col-md-7 col-sm-7 col-xs-12">
                                                 <div class="caption">
                                                    <h4><a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($product_row['product_id']) ?>" target="_self" title="<?php echo $product_row['product_name'];?>"><?php echo $product_row['product_name'];?></a></h4>
                                                    <p class="price">   
-                                                      <span class="price-new"><?php echo '$ '.$product_row['product_price'];?></span>
+                                                      <span class="price-new"><?php //echo '$ '.$product_row['product_purchase_price'];?></span>
+                                                      <span class="price-n"><?php //echo '$ '.$product_row['product_price'];?></span>
                                                    </p>
-                                                   <p class="desc"><?php echo htmlspecialchars_decode($product_row['description']) ;?></p>
+                                                   <p class="desc"><?php //echo htmlspecialchars_decode($product_row['description']) ;?></p>
                                                    <div class="item-available">
                                                       
                                                    </div>
@@ -88,19 +88,16 @@
                                        </div>
                                     </div>                     
                                  </div>
-                                 <?php } ?>                             
+                                 <?php //} ?>                             
                               </div>
                               
                            </div>
                           
                         </div>
-                      
-                     </div>
+                       -->
+                     <!-- </div>  -->
                      
-                     <!-- End Deals -->
-                     <!-- Listing tabs -->
-                     <!-- end Listing tabs -->
-                     <!--banners 7-->
+                  
                   </div>
                   
                   <!---populars -->
@@ -259,7 +256,7 @@
                      </div>
                   </div>
 
-                  <div class="slider-brands col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <!-- <div class="slider-brands col-lg-12 col-md-12 col-sm-12 col-xs-12">
                      <div class="yt-content-slider contentslider" data-autoplay="no" data-delay="4" data-speed="0.6" data-margin="0" data-items_column0="8" data-items_column1="6" data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes"
                         data-pagination="no" data-lazyload="yes" data-loop="no">
                         <div class="item">
@@ -308,7 +305,7 @@
                            </a>
                         </div>
                      </div>
-                  </div>
+                  </div> -->
                </div>
             </div>
          </div>
