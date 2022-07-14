@@ -11,14 +11,6 @@
       $cat_data = $curl1['cat_data'];
       $wishlist_count=$curl1['wishlist_count'];
       $cart_count=$curl1['cart_count'];
-   //   echo "<pre>";
-   //   print_r($cat_data);die();
-
-   $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$session_data['lang_id']);
-   $curl=$this->link->hits('get-all-user-cart',$curldata); 
-   $curl1=json_decode($curl,true);
-   $cart_data=$curl1['cart_data'];
-   //print_r($cart_data);die();
 ?>
 <header id="header" class=" typeheader-1">
    <!-- Header Top -->

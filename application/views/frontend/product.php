@@ -135,7 +135,7 @@
                            </div>
                            <div class="product-label form-group">
                               <div class="product_page_price price" itemprop="offerDetails" itemscope="" itemtype="http://data-vocabulary.org/Offer">
-                                 <span class="price-new" itemprop="price">$ <?=$product_details['product_purchase_price']?></span>
+                                 <span class="price-new" itemprop="price">$ <?=$product_details['product_offer_price']?></span>
                                  <span class="price-old">$ <?=$product_details['product_price']?></span>
                               </div>
                               <div class="stock"><span>Availability:</span> <span class="status-stock">In Stock</span></div>
@@ -324,7 +324,7 @@
                                           <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                        </div> -->
                                        <h4><a href="product.html" title="Pastrami bacon" target="_self"><?=$related_product_details_row['product_name']?></a></h4>
-                                       <div class="price">$<?=$related_product_details_row['product_purchase_price']?></div>
+                                       <div class="price">$<?=$related_product_details_row['product_offer_price']?></div>
                                     </div>
                                  </div>
                               </div>
