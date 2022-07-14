@@ -248,3 +248,7 @@ header.typeheader-1 .logo {
 .slider-brands {
   margin-bottom: 0px !important; 
 }
+
+#map {
+  height: 100%;
+}

@@ -22,6 +22,9 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/so_megamenu.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/addtocart.js"></script>  
 <!-- <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/admin.js"></script>   -->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
   <script src="<?=base_url()?>assets_frontend/js/button-inline-loader.js"></script>
   <script src="<?= base_url();?>assets_frontend/js/toastr.min.js"></script>
 <script type="text/javascript">

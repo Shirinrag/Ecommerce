@@ -188,7 +188,7 @@
                                                          <ul class="row-list">
                                                             <li><a href="<?php echo base_url(); ?>Frontend/login">Login Page</a></li>
                                                             <li><a href="<?php echo base_url(); ?>Frontend/registration">Register Page</a></li>
-                                                            <li><a href="<?php echo base_url(); ?>Frontend">My Account</a></li>
+                                                            <li><a href="<?php echo base_url(); ?>Frontend/my_account">My Account</a></li>
                                                             <li><a href="<?php echo base_url(); ?>Orderhistory">Order History</a></li>
                                                             <li><a href="<?php echo base_url(); ?>Orderhistory/orderinfo">Order Information</a></li>
                                                           <!--   <li><a href="return.html">Product Returns</a></li>
@@ -347,21 +347,7 @@
                   <div id="sosearchpro" class="sosearchpro-wrapper so-search ">
                      <form method="GET" action="https://demo.smartaddons.com/templates/html/emarket/index.html">
                         <div id="search0" class="search input-group form-group">
-                           <!-- <div class="select_category filter_type  icon-select hidden-sm hidden-xs">
-                              <select class="no-border" name="category_id">
-                                 <option value="0">All Categories</option>
-                                 <option value="78">Apparel</option>
-                                 <option value="77">Cables &amp; Connectors</option>
-                                 <option value="82">Cameras &amp; Photo</option>
-                                 <option value="80">Flashlights &amp; Lamps</option>
-                                 <option value="81">Mobile Accessories</option>
-                                 <option value="79">Video Games</option>
-                                 <option value="20">Jewelry &amp; Watches</option>
-                                 <option value="76">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Earings</option>
-                                 <option value="26">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wedding Rings</option>
-                                 <option value="27">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Men Watches</option>
-                              </select>
-                           </div> -->
+                           
                            <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off" placeholder="Keyword here..." name="search">
                            <span class="input-group-btn">
                            <button type="submit" class="button-search btn btn-primary" name="submit_search"><i class="fa fa-search"></i></button>
@@ -460,7 +446,7 @@
                                     </tr>
                                  </tbody>
                               </table>
-                              <p class="text-right"> <a class="btn view-cart" href="<?php echo base_url();?>Cart"><i class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart" href="checkout.html"><i class="fa fa-share"></i>Checkout</a> 
+                              <p class="text-right"> <a class="btn view-cart" href="<?php echo base_url();?>Frontend/cart"><i class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart" href="checkout.html"><i class="fa fa-share"></i>Checkout</a> 
                               </p>
                            </div>
                         </li>

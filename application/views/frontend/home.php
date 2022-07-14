@@ -117,7 +117,7 @@
                                           <img src="<?php echo $product_row['image_name']?>" class="img-2 img-responsive" alt="<?php echo $product_row['image_name']?>">
                                           </a>
                                        </div>
-                                       
+                                      
                                     </div>
                                     
                                     <div class="right-block">
@@ -129,7 +129,7 @@
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                           </div>
                                           <h4><a href="product.html" title="Pastrami bacon" target="_self"><?php echo $product_row['product_name']; ?></a></h4>
-                                          <div class="price"><?php echo $product_row['product_price']; ?></div>
+                                          <div class="price">$ <?php echo $product_row['product_offer_price']; ?></div>
                                        </div>
                                     </div>
                                  </div>
@@ -170,7 +170,7 @@
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                           </div>
                                           <h4><a href="product.html" title="Pastrami bacon" target="_self"><?php echo $product_row['product_name']; ?></a></h4>
-                                          <div class="price"><?php echo $product_row['product_price']; ?></div>
+                                          <div class="price">$ <?php echo $product_row['product_offer_price']; ?></div>
                                        </div>
                                     </div>
                                  </div>
@@ -211,7 +211,7 @@
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                           </div>
                                           <h4><a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($best_selling_row['product_id']) ?>" title="Pastrami bacon" target="_self"><?php echo $best_selling_row['product_name']; ?></a></h4>
-                                          <div class="price"><?php echo $best_selling_row['product_price']; ?></div>
+                                          <div class="price">$ <?php echo $best_selling_row['product_offer_price']; ?></div>
                                        </div>
                                     </div>
                                  </div>
