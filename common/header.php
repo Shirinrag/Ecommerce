@@ -178,7 +178,7 @@
                                                          <ul class="row-list">
                                                             <li><a href="<?php echo base_url(); ?>Frontend/login">Login Page</a></li>
                                                             <li><a href="<?php echo base_url(); ?>Frontend/registration">Register Page</a></li>
-                                                            <li><a href="<?php echo base_url(); ?>Frontend">My Account</a></li>
+                                                            <li><a href="<?php echo base_url(); ?>Frontend/my_account">My Account</a></li>
                                                             <li><a href="<?php echo base_url(); ?>Orderhistory">Order History</a></li>
                                                             <li><a href="<?php echo base_url(); ?>Orderhistory/orderinfo">Order Information</a></li>
                                                           <!--   <li><a href="return.html">Product Returns</a></li>
