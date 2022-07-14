@@ -8,8 +8,8 @@ class Frontend extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
         $curl_data = array('fk_lang_id' =>$session_data['lang_id'],);
 		$curl=$this->link->hits('get-home-page-data',$curl_data);
-	
-		$curl = json_decode($curl,true);
+        $curl = json_decode($curl,true);
+		// echo '<pre>'; print_r($curl); exit;
 		$data['slider'] = $curl['slider'];
 		$data['product_data'] = $curl['product_data'];
 		$data['popular'] = $curl['popular'];
@@ -182,37 +182,18 @@ class Frontend extends CI_Controller {
 		$session_data = $this->session->userdata('user_logged_in');
 		$session_data1 = $this->session->userdata('logged_in');
 		$user_id = @$session_data['op_user_id'];
-		$fk_lang_id = @$session_data1['lang_id'];
+		$fk_lang_id = $session_data1['lang_id'];
 		$product_id = base64_decode($_GET['id']);
         $curl_data = array('product_id' => $product_id, 'fk_lang_id' => $fk_lang_id,);
       	$curl = $this->link->hits('product-details-on-id',$curl_data);
-      	
-      	$curl = json_decode($curl, true);
       
+      	$curl = json_decode($curl, true);
+      	// echo '<pre>'; print_r($curl); exit;
       	$data['product_details'] = $curl['product_details'];
       	$data['related_product_details'] = $curl['related_product_details'];
       	$data['fk_lang_id'] = $fk_lang_id;
 
 		$this->load->view('frontend/product',$data);
-	}
-
-	public function cart()
-	{
-		if ($this->session->userdata('user_logged_in')){
-			$session_data = $this->session->userdata('user_logged_in');
-			$session_data1 = $this->session->userdata('logged_in');
-			$user_id = @$session_data['op_user_id'];
-			$fk_lang_id = @$session_data1['lang_id'];
-			
-			$curl_data = array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id);
-	      	$curl = $this->link->hits('get-all-user-cart',$curl_data);
-	      	$curl = json_decode($curl, true);
-	      	$data['cart_data'] = $curl['cart_data'];
-	      	// echo '<pre>'; print_r($curl); exit;
-			$this->load->view('frontend/cart',$data);
-		} else {
-	    	redirect(base_url().'Frontend/login');
-	    }
 	}
 
     public function wishlist()
@@ -317,28 +298,7 @@ class Frontend extends CI_Controller {
     }
     public function address_book()
 	{
-		if ($this->session->userdata('user_logged_in')){
-			$session_data = $this->session->userdata('user_logged_in');
-			$session_data1 = $this->session->userdata('logged_in');
-			$user_id = @$session_data['op_user_id'];
-			$fk_lang_id = @$session_data1['lang_id'];
-			$this->load->view('frontend/address_book');
-		} else {
-	    	redirect(base_url().'Frontend/login');
-	    }
-	}
-	public function save_new_address()
-	{
-		if ($this->session->userdata('user_logged_in')){
-			$session_data = $this->session->userdata('user_logged_in');
-			$session_data1 = $this->session->userdata('logged_in');
-			$user_id = @$session_data['op_user_id'];
-			$fk_lang_id = @$session_data1['lang_id'];
-		} else {
-			$response['status'] = 'failure';
-			$response['url'] = base_url() . "Frontend";
-		}
-		echo json_encode($response);
+		$this->load->view('frontend/address_book');
 	}
 	public function change_password()
 	{
