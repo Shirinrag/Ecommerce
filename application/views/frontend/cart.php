@@ -40,11 +40,15 @@
                            </tr>
                         </thead>
                         <tbody>
+                           <?php 
+                              foreach ($cart_data as $cart_data_key => $cart_data_row) { ?>
+                               
+                             
                            <tr>
-                              <td class="text-center"><a href="product.html"><img width="70px" src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/funiture/8.jpg" alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop" class="img-thumbnail" /></a></td>
-                              <td class="text-left"><a href="product.html">Emasa rumas gacem</a><br />
+                              <td class="text-center"><a href="product.html"><img width="70px" src="<?=$cart_data_row['image_name']?>" alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop" class="img-thumbnail" /></a></td>
+                              <td class="text-left"><a href="product.html"><?=$cart_data_row['product_name']?></a><br />
                               </td>
-                              <td class="text-left">Pt 001</td>
+                              <td class="text-left"><?=$cart_data_row['product_code']?></td>
                               <td class="text-left" width="200px">
                                  <div class="input-group btn-block quantity">
                                     <input type="text" name="quantity" value="1" size="1" class="form-control" />
@@ -57,22 +61,8 @@
                               <td class="text-right">$120.00</td>
                               <td class="text-right">$120.00</td>
                            </tr>
-                           <tr>
-                              <td class="text-center"><a href="product.html"><img width="70px" src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/funiture/10.jpg" alt="Xitefun Causal Wear Fancy Shoes" title="Xitefun Causal Wear Fancy Shoes" class="img-thumbnail" /></a></td>
-                              <td class="text-left"><a href="product.html">Comas samer rumas</a></td>
-                              <td class="text-left">Pt 002</td>
-                              <td class="text-left" width="200px">
-                                 <div class="input-group btn-block quantity">
-                                    <input type="text" name="quantity" value="1" size="1" class="form-control" />
-                                    <span class="input-group-btn">
-                                     <button type="submit" data-toggle="tooltip" title="Update" class="btn btn-primary"><i class="fa fa-clone"></i></button>
-                                    <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-danger" onClick=""><i class="fa fa-times-circle"></i></button>
-                                    </span>
-                                 </div>
-                              </td>
-                              <td class="text-right">$150.00</td>
-                              <td class="text-right">$150.00</td>
-                           </tr>
+                           <?php }
+                           ?>
                         </tbody>
                      </table>
                   </div>

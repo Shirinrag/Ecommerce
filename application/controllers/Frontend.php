@@ -187,6 +187,22 @@ class Frontend extends CI_Controller {
 
 		$this->load->view('frontend/product',$data);
 	}
+
+	public function cart()
+	{
+		$session_data = $this->session->userdata('user_logged_in');
+		$session_data1 = $this->session->userdata('logged_in');
+		$user_id = @$session_data['op_user_id'];
+		$fk_lang_id = $session_data1['lang_id'];
+		
+		$curl_data = array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id);
+      	$curl = $this->link->hits('get-all-user-cart',$curl_data);
+      	$curl = json_decode($curl, true);
+      	$data['cart_data'] = $curl['cart_data'];
+      	// echo '<pre>'; print_r($curl); exit;
+		$this->load->view('frontend/cart',$data);
+	}
+
     public function address_book()
 	{
 		$this->load->view('frontend/address_book');
