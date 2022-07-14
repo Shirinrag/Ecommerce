@@ -368,7 +368,7 @@
                            <span class="icon-c">
                            <i class="fa fa-shopping-bag"></i>
                            </span>
-                           <div class="shopcart-inner">
+                           <div class="shopcart-inner refesh1">
                               <p class="text-shopping-cart">
                                  My cart
                               </p>
@@ -382,16 +382,18 @@
                         <li>
                            <table class="table table-striped">
                               <tbody>
+                                 <?php if(count($cart_data > 0)){
+                                    foreach($cart_data as $key => $value){ ?>
                                  <tr>
                                     <td class="text-center" style="width:70px">
                                        <a href="product.html">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/80/1.jpg" style="width:70px" alt="Yutculpa ullamcon" title="Yutculpa ullamco" class="preview">
+                                       <img src="<?php  echo $value['image_name'] ?>" style="width:70px" alt="Yutculpa ullamcon" title="Yutculpa ullamco" class="preview">
                                        </a>
                                     </td>
-                                    <td class="text-left"> <a class="cart_product_name" href="product.html">Yutculpa ullamco</a> 
+                                    <td class="text-left"> <a class="cart_product_name" href="product.html"><?php echo $value['product_name'] ?></a> 
                                     </td>
-                                    <td class="text-center">x1</td>
-                                    <td class="text-center">$80.00</td>
+                                    <td class="text-center"><?php echo $value['qty'] ?></td>
+                                    <td class="text-center"><?php echo $value['product_offer_price'] ?></td>
                                     <td class="text-right">
                                        <a href="product.html" class="fa fa-edit"></a>
                                     </td>
@@ -399,23 +401,8 @@
                                        <a onclick="cart.remove('2');" class="fa fa-times fa-delete"></a>
                                     </td>
                                  </tr>
-                                 <tr>
-                                    <td class="text-center" style="width:70px">
-                                       <a href="product.html">
-                                       <img src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/80/2.jpg" style="width:70px" alt="Xancetta bresao" title="Xancetta bresao" class="preview">
-                                       </a>
-                                    </td>
-                                    <td class="text-left"> <a class="cart_product_name" href="product.html">Xancetta bresao</a> 
-                                    </td>
-                                    <td class="text-center">x1</td>
-                                    <td class="text-center">$60.00</td>
-                                    <td class="text-right">
-                                       <a href="product.html" class="fa fa-edit"></a>
-                                    </td>
-                                    <td class="text-right">
-                                       <a onclick="cart.remove('1');" class="fa fa-times fa-delete"></a>
-                                    </td>
-                                 </tr>
+                                 <?php }
+                                 } ?>
                               </tbody>
                            </table>
                         </li>

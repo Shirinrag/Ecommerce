@@ -8,7 +8,7 @@ $(document).on('click', '.addtocart', function() {
         var productdata = $.parseJSON(data);
         if(productdata['status'] == 'success')
         {
-            $('.refesh').load(' .refesh');
+            $('.refesh1').load(' .refesh1');
          wishlist.add(productdata['message']);
         }
         else if(productdata['status'] == 'failed'){
