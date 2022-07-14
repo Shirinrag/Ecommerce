@@ -116,6 +116,7 @@
                         </div>
                         <div class="content-product-right col-md-7 col-sm-12 col-xs-12">
                            <div class="title-product">
+                           <input type="hidden" value="<?=$product_details['product_id']?>" id="<?=$product_details['product_id']?>">
                               <h1><?= $product_details['product_name'] ?></h1>
                            </div>
                            <!-- Review ---->
@@ -144,7 +145,7 @@
                               
                               <div class="form-group box-info-product">
                                 
-                                 <div class="option quantity">
+                                 <!-- <div class="option quantity">
                                     <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
                                        <label>Qty</label>
                                        <input class="form-control" type="text" name="quantity"
@@ -153,15 +154,15 @@
                                        <span class="input-group-addon product_quantity_down">−</span>
                                        <span class="input-group-addon product_quantity_up">+</span>
                                     </div>
-                                 </div>
+                                 </div> -->
                                  <div class="cart">
-                                    <input type="button" data-toggle="tooltip" title="" value="Add to Cart" data-loading-text="Loading..." id="button-cart" class="btn btn-mega btn-lg" onclick="cart.add('42', '1');" data-original-title="Add to Cart">
+                                    <input type="button" id="<?=$product_details['product_id'] ?>" data-toggle="tooltip" title="" value="Add to Cart" data-loading-text="Loading..."  class="btn btn-mega btn-lg addtocart" data-original-title="Add to Cart">
                                  </div>
                                  <div class="add-to-links wish_comp">
                                     <ul class="blank list-inline">
                                        <li class="wishlist">
-                                          <a class="icon" data-toggle="tooltip" title=""
-                                             onclick="addwishlist(this)" data-original-title="Add to Wish List"><i class="fa fa-heart"></i>
+                                          <a class="icon add_cart" data-toggle="tooltip" title="" id="<?=$product_details['product_id']?>"
+                                              data-original-title="Add to Wish List"><i class="fa fa-heart"></i>
                                           </a>
                                        </li>
                                       <!--  <li class="compare">
@@ -349,5 +350,6 @@
          ============================================ -->
       <?php include('common/jsfiles.php');?>
       <script src="<?= base_url();?>assets_frontend/custom_js/wishlist.js"></script>
+      <script src="<?= base_url();?>assets_frontend/custom_js/cart.js"></script>
    </body>
 </html>

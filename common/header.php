@@ -4,12 +4,22 @@
       $lang_name = $curl['lang_name'];
 
       $session_data = $this->session->userdata('logged_in');
-		$curl_data = array('fk_lang_id' =>$session_data['lang_id'],);
+      $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+		$curl_data = array('fk_lang_id' =>$session_data['lang_id'],'user_id'=>$user_id);
       $curl1=$this->link->hits('get-dynamic-menu',$curl_data);
       $curl1 = json_decode($curl1,true);
       $cat_data = $curl1['cat_data'];
+      $wishlist_count=$curl1['wishlist_count'];
+      $cart_count=$curl1['cart_count'];
    //   echo "<pre>";
    //   print_r($cat_data);die();
+
+   $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$session_data['lang_id']);
+   $curl=$this->link->hits('get-all-user-cart',$curldata); 
+   print_r($curl);die();
+   $curl1=json_decode($curl,true);
+   $cart_data=$curl1['cart_data'];
+   print_r($cart_data);die();
 ?>
 <header id="header" class=" typeheader-1">
    <!-- Header Top -->
@@ -18,7 +28,7 @@
          <div class="row">
             <div class="header-top-left col-lg-12 col-md-8 col-sm-6 col-xs-4">
                <ul class="top-link list-inline hidden-lg hidden-md">
-                  <li class="account" id="my_account">
+                  <li class="account" id="my_a  ccount">
                      <a href="#" title="My Account " class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span class="hidden-xs">My Account </span>  <span class="fa fa-caret-down"></span>
                      </a>
                      <ul class="dropdown-menu ">
@@ -72,7 +82,7 @@
                               <div class="container-mega">
                                  <ul class="megamenu" data-transition="slide" data-animationtime="250">
                                     <li class="home ">
-                                       <a href="<?php echo base_url(); ?>">
+                                       <a href="<?php echo base_url(); ?>Frontend">
                                           Home <!-- <b class="caret"></b> -->
                                        </a>
                                        <div class="sub-menu" style="width:100%;" >
@@ -368,7 +378,7 @@
                <!--cart-->
                <div class="shopping_cart">
                   <div id="cart" class="btn-shopping-cart">
-                     <a data-loading-text="Loading... " class="btn-group top_cart dropdown-toggle" data-toggle="dropdown" aria-expanded="true" >
+                     <a data-loading-text="Loading... " class="btn-group top_cart dropdown-toggle" data-toggle="dropdown" aria-expanded="true"  >
                         <div class="shopcart">
                            <span class="icon-c">
                            <i class="fa fa-shopping-bag"></i>
@@ -378,7 +388,7 @@
                                  My cart
                               </p>
                               <span class="total-shopping-cart cart-total-full">
-                              <span class="items_cart">02</span><span class="items_cart2"> item(s)</span><span class="items_carts"> - $162.00 </span>
+                              <span class="items_cart"><?php if($cart_count > 0){ echo $cart_count; }else{ echo '0';} ?></span><span class="items_cart2"> item(s)</span><span class="items_carts"> - $162.00 </span>
                               </span>
                            </div>
                         </div>
@@ -457,13 +467,36 @@
                      </ul>
                   </div>
                </div>
+
+               <div class="shopping_cart">
+                  <div id="cart" class="btn-shopping-cart">
+                     <a  class="btn-group top_cart dropdown-toggle" aria-expanded="true"href="<?php echo base_url();?>Frontend/wishlist_list" >
+                        <div class="shopcart">
+                           <span class="icon-c">
+                           <i class="fa fa-heart"></i>
+                           </span>
+                           <div class="shopcart-inner refesh">
+            
+                              <span class="total-shopping-cart cart-total-full">
+                              <span class="items_cart "><?php if($wishlist_count > 0){ echo $wishlist_count; }else{ echo '0';} ?></span>
+                              </span>
+                           </div>
+                        </div>
+                     </a>
+                    
+                  </div>
+               </div>
                <!--//cart-->
-               <ul class="wishlist-comp hidden-md hidden-sm hidden-xs">
+               <!-- <ul class="wishlist-comp hidden-md hidden-sm hidden-xs"> -->
                  <!--  <li class="compare hidden-xs"><a href="#" class="top-link-compare" title="Compare "><i class="fa fa-refresh"></i></a>
                   </li> -->
-                  <li class="wishlist hidden-xs"><a href="<?php echo base_url();?>Frontend/getwishlist" id="wishlist-total" class="top-link-wishlist" title="Wish List (0) "><i class="fa fa-heart"></i></a>
+                  
+                  <!-- <li class="wishlist hidden-xs"><a href="<?php //echo base_url();?>Frontend/wishlist_list" id="wishlist-total" class="top-link-wishlist" title="Wish List (0) "><i class="fa fa-heart"></i></a>
+                  
+                  
                   </li>
-               </ul>
+                  
+               </ul> -->
             </div>
          </div>
       </div>

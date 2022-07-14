@@ -40,24 +40,25 @@
 							<tr>
 								<td class="text-center">Image</td>
 								<td class="text-left">Product Name</td>
-								<td class="text-left">Model</td>
 								<td class="text-right">Stock</td>
 								<td class="text-right">Unit Price</td>
 								<td class="text-right">Action</td>
 							</tr>
 						</thead>
 						<tbody>
+							
 							<tr>
+								<?php foreach($wishlist_data as $key => $value) { ?>
 								<td class="text-center">
-									<a  href="product.html"><img width="70px" src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/80/2.jpg" alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop">
+									<input type="hidden" value="<?php echo $value['id']; ?>" id="wishlist_id">
+									<a  href=""><img width="70px" src="<?php echo $value['image_name']; ?>" alt="<?php echo $value['product_name']; ?>" title="<?php echo $value['product_name']; ?>">
 									</a>
 								</td>
-								<td class="text-left"><a href="product.html">iPad</a>
+								<td class="text-left"><a href="product.html"><?php echo $value['product_name']; ?></a>
 								</td>
-								<td class="text-left">Pt 001</td>
 								<td class="text-right">In Stock</td>
 								<td class="text-right">
-									<div class="price"> <span class="price-new">$45</span> <span class="price-old">$80</span></div>
+									<div class="price"> <span class="price-new"><?php echo '$ '.$value['product_purchase_price']; ?></span> <span class="price-old"><?php echo '$ '.$value['product_price']; ?></span></div>
 								
 								</td>
 								<td class="text-right">
@@ -66,31 +67,12 @@
 									onclick="cart.add('48');"
 									type="button" data-original-title="Add to Cart"><i class="fa fa-shopping-cart"></i>
 									</button>
-									<a class="btn btn-danger" title="" data-toggle="tooltip" href="#" data-original-title="Remove"><i class="fa fa-times"></i></a>
+									<a class="btn btn-danger romove_cart" title="" id=<?= $value['id'];?> data-toggle="tooltip"><i class="fa fa-times"></i></a>
 								</td>
 							</tr>
-							<tr>
-								<td class="text-center">
-									<a href="product.html"><img width="70px" src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/80/1.jpg" alt="Xitefun Causal Wear Fancy Shoes" title="Xitefun Causal Wear Fancy Shoes"></a>
-								</td>
-								<td class="text-left"><a href="product.html">Comas samer rumas</a>
-								</td>
-								<td class="text-left">Pt 002</td>
-								<td class="text-right">Pre-Order</td>
-								<td class="text-right">
-									<div class="price"> <span class="price-new">$85</span> </div>
-								</td>
-								<td class="text-right">
-									<button class="btn btn-primary"
-									title="" data-toggle="tooltip"
-									onclick="" type="button"
-									data-original-title="Add to Cart"><i class="fa fa-shopping-cart"></i>
-									</button>
-									<a class="btn btn-danger" title="" data-toggle="tooltip"
-									href="#" data-original-title="Remove"><i class="fa fa-times"></i>
-									</a>
-								</td>
-							</tr>
+						
+							<?php
+							} ?>
 						</tbody>
 					</table>
 				</div>
@@ -113,6 +95,7 @@
 ============================================ -->
 <!-- Placed at the end of the document so the pages load faster -->
 <?php include('common/jsfiles.php');?>	
+<script src="<?= base_url(); ?>assets_frontend/custom_js/wishlist.js"></script>
 </body>
 
 
