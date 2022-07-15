@@ -139,3 +139,9 @@ footer .copyright a {
 .typefooter-1 .newsletter-footer1 .newsletter .block_content form.signup .subcribe button {
     background-color: #fd7e14 !important;
 }
+
+.textellipse{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -121,6 +121,7 @@ class Frontend extends CI_Controller {
 		$this->load->view('frontend/login');
 	}
 	 public function user_login() {
+       
         $this->form_validation->set_rules('contact_no', 'Contact No', 'required|trim', array('required' => 'You must provide a %s',));
         $this->form_validation->set_rules('password', 'Password', 'trim|required', array('required' => 'You must provide a %s',));
         if ($this->form_validation->run() == FALSE) {
@@ -138,12 +139,23 @@ class Frontend extends CI_Controller {
                 if (@$curl['data']) {
                     $this->session->set_userdata('user_logged_in', @$curl['data']);
             		$session_data = $this->session->userdata('user_logged_in')['op_user_id']; 
-                    if(isset($_COOKIE['product_id']))
+                   
+                    if(isset($_COOKIE['add_to_wishlist_cookie']) !='')
                     {
+                        $curldata=array('product_id'=>$_COOKIE['add_to_wishlist_cookie'],'user_id'=>$session_data);
+                        $curl=$this->link->hits('save-wishlist',$curldata);
                         $url = base_url() . 'Frontend/wishlist_list';            
                         $response['url'] = $url;
                         $response['status'] = 'success';
-                    }   
+                    }  
+                    else if(isset($_COOKIE['add_to_cart_cookie']) !='')
+                    {
+                        $curldata=array('product_id'=>$_COOKIE['add_to_cart_cookie'],'user_id'=>$session_data);
+                        $curl=$this->link->hits('add-to-cart',$curldata);
+                        $url = base_url() . 'Frontend/cart';            
+                        $response['url'] = $url;
+                        $response['status'] = 'success';
+                    } 
                     else{
                         $url = base_url() . 'Frontend';            
                         $response['url'] = $url;
@@ -190,7 +202,8 @@ class Frontend extends CI_Controller {
       	$curl = json_decode($curl, true);
       	// echo '<pre>'; print_r($curl); exit;
       	$data['product_details'] = $curl['product_details'];
-      	$data['related_product_details'] = $curl['related_product_details'];
+        $data['cat_data'] = $curl['cat_data'];
+       	$data['related_product_details'] = $curl['related_product_details'];
       	$data['fk_lang_id'] = $fk_lang_id;
 
 		$this->load->view('frontend/product',$data);
@@ -198,15 +211,15 @@ class Frontend extends CI_Controller {
 
     public function wishlist()
     {
-      $product_id=$_POST['product_id'];
-      setcookie("product_id",$product_id,time() + (86400 * 30), "/");
+      $add_to_wishlist_cookie=$_POST['product_id'];
+      setcookie("add_to_wishlist_cookie",$add_to_wishlist_cookie);
       $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
      
       if(empty($user_id))
       {
         $response['url'] = base_url() . 'Frontend/Login';
       }else{
-        $curldata=array('product_id'=>$product_id,'user_id'=>$user_id);
+        $curldata=array('product_id'=>$add_to_wishlist_cookie,'user_id'=>$user_id);
         $curl=$this->link->hits('save-wishlist',$curldata);
         $curl = json_decode($curl, true);
         if($curl['status']){
@@ -224,15 +237,15 @@ class Frontend extends CI_Controller {
 
     public function addtocart()
     {
-      $product_id=$_POST['product_id'];
-      setcookie("product_id",$product_id,time() + (86400 * 30), "/");
+      $add_to_cart_cookie=$_POST['product_id'];
+      setcookie("add_to_cart_cookie",$add_to_cart_cookie);
       $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
      
       if(empty($user_id))
       {
         $response['url'] = base_url() . 'Frontend/Login';
       }else{
-        $curldata=array('product_id'=>$product_id,'user_id'=>$user_id);
+        $curldata=array('product_id'=>$add_to_cart_cookie,'user_id'=>$user_id);
         $curl=$this->link->hits('add-to-cart',$curldata);
         $curl = json_decode($curl, true);
         if($curl['status']){
@@ -258,7 +271,47 @@ class Frontend extends CI_Controller {
         $curl1=json_decode($curl,true);
         // echo '<pre>'; print_r($curl1); exit;
         $data['cart_data']=$curl1['cart_data'];
+        $data['cart_total_sum']=$curl1['sub_total'];
         $this->load->view('frontend/cart',$data);
+    }
+
+    public function deletecart()
+    {
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
+        $cart_id=$_POST['row_id'];
+        $curl_data=array('cart_id'=>$cart_id,'user_id'=>$user_id);
+        $curl=$this->link->hits('delete-cart',$curl_data); 
+        $curl1=json_decode($curl,true);
+        if($curl1['status']){
+            $response['status']='success';
+            $response['message']=$curl1['message'];
+          }
+          else{
+            $response['status']='failed';
+            $response['message']=$curl1['message'];
+          }
+          echo json_encode($response);
+    }
+
+    public function updatecarts()
+    {
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
+        $qty=$_POST['qty'];
+        $cart_id=$_POST['cartid'];
+        $productid=$_POST['productid'];
+        $curl_data=array('cart_id'=>$cart_id,'user_id'=>$user_id,'product_id'=>$productid,'quantity'=>$qty);
+        print_r($curl_data);die();
+        $curl=$this->link->hits('plus-minus-cart-count',$curl_data); 
+        $curl1=json_decode($curl,true);
+        if($curl1['status']){
+            $response['status']='success';
+            $response['message']=$curl1['message'];
+          }
+          else{
+            $response['status']='failed';
+            $response['message']=$curl1['message'];
+          }
+          echo json_encode($response);
     }
 
     public function wishlist_list()

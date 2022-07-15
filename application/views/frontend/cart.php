@@ -25,8 +25,11 @@
             </ul>
             <div class="row">
                <!--Middle Part Start-->
+           
                <div id="content" class="col-sm-12">
+                  
                   <h2 class="title">Shopping Cart</h2>
+                  <?php if(count($cart_data) > 0){ ?>
                   <div class="table-responsive form-group">
                      <table class="table table-bordered">
                         <thead>
@@ -42,31 +45,43 @@
                         <tbody>
                            <?php 
                               foreach ($cart_data as $cart_data_key => $cart_data_row) { ?>
-                               
-                             
                            <tr>
                               <td class="text-center"><a href="product.html"><img width="70px" src="<?=$cart_data_row['image_name']?>" alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop" class="img-thumbnail" /></a></td>
                               <td class="text-left"><a href="product.html"><?=$cart_data_row['product_name']?></a><br />
                               </td>
                               <td class="text-left"><?=$cart_data_row['product_code']?></td>
                               <td class="text-left" width="200px">
-                                 <div class="input-group btn-block quantity">
-                                    <input type="text" name="quantity" value="1" size="1" class="form-control" />
+                              <!-- <div class="option quantity">
+                                  <div class="input-group btn-block quantity input-group quantity-control" unselectable="on"  style="-webkit-user-select: none;">
+                                  <input type="hidden" name="product_id" id="<?= $cart_data_row['product_id']?>" value="<?= $cart_data_row['product_id']?>">
                                     <span class="input-group-btn">
-                                    <button type="submit" data-toggle="tooltip" title="Update" class="btn btn-primary"><i class="fa fa-clone"></i></button>
-                                    <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-danger" onClick=""><i class="fa fa-times-circle"></i></button>
+                                    <button class="btn update_qty input-group-addon product_quantity_down text-center"  id="<?= $cart_data_row['cart_id']?>" data-toggle="tooltip" onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)"  style="padding:16px;">-</button>
+                                    <input type="text" name="qty" value="<?= $cart_data_row['cart_qty']?>"  class="form-control qtys" readonly  style="width:100px;"/>
+                                    <button class="btn update_qty  input-group-addon product_quantity_up text-center" id="<?= $cart_data_row['cart_id']?>" data-toggle="tooltip" onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)"  style="padding:16px;">+</button>
                                     </span>
                                  </div>
+                              </div> -->
+                                
+                                 <div class="option quantity">
+                                    <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
+                                      
+                                       <button id="<?= $cart_data_row['cart_id']?>" class="input-group-addon product_quantity_down update_qty"  onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)">−</button>
+                                       <input class="form-control text-center qtys" type="text" name="quantity"
+                                          value="<?= $cart_data_row['cart_qty']?>" readonly>
+                                       <input type="hidden" name="product_id" value="50">
+                                       <button id="<?= $cart_data_row['cart_id']?>"  class="input-group-addon product_quantity_up update_qty"  onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)">+</button>
+                                    </div>
+                                 </div>
+                             
                               </td>
-                              <td class="text-right">$120.00</td>
-                              <td class="text-right">$120.00</td>
+                              <td class="text-right">$ <?=$cart_data_row['product_offer_price']?></td>
+                              <td class="text-right">$ <?=$cart_data_row['product_offer_price']?></td>
                            </tr>
-                           <?php }
-                           ?>
+                           <?php } ?>
                         </tbody>
                      </table>
                   </div>
-                  <h3 class="subtitle no-margin">What would you like to do next?</h3>
+                  <!-- <h3 class="subtitle no-margin">What would you like to do next?</h3>
                   <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
                   <div class="panel-group" id="accordion">
                      <div class="panel panel-default">
@@ -106,7 +121,7 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div> -->
                   <div class="row">
                      <div class="col-sm-4 col-sm-offset-8">
                         <table class="table table-bordered">
@@ -115,40 +130,45 @@
                                  <td class="text-right">
                                     <strong>Sub-Total:</strong>
                                  </td>
-                                 <td class="text-right">$168.71</td>
+                                 <td class="text-right">$ <?php echo $cart_total_sum; ?></td>
                               </tr>
                               <tr>
                                  <td class="text-right">
                                     <strong>Flat Shipping Rate:</strong>
                                  </td>
-                                 <td class="text-right">$4.69</td>
+                                 <td class="text-right">$0</td>
                               </tr>
                               <tr>
                                  <td class="text-right">
                                     <strong>Eco Tax (-2.00):</strong>
                                  </td>
-                                 <td class="text-right">$5.62</td>
+                                 <td class="text-right">$0</td>
                               </tr>
                               <tr>
                                  <td class="text-right">
                                     <strong>VAT (20%):</strong>
                                  </td>
-                                 <td class="text-right">$34.68</td>
+                                 <td class="text-right">$0</td>
                               </tr>
                               <tr>
                                  <td class="text-right">
                                     <strong>Total:</strong>
                                  </td>
-                                 <td class="text-right">$213.70</td>
+                                 <td class="text-right">$0</td>
                               </tr>
                            </tbody>
                         </table>
                      </div>
                   </div>
                   <div class="buttons">
+
                      <div class="pull-left"><a href="<?php echo base_url();?>" class="btn btn-primary">Continue Shopping</a></div>
                      <div class="pull-right"><a href="checkout.html" class="btn btn-primary">Checkout</a></div>
                   </div>
+                  <?php }else{ ?>
+                     <b><p class="text-center">Cart is Empty.</p></b>
+                  <?php } ?>
+
                </div>
                <!--Middle Part End -->
             </div>
@@ -161,9 +181,27 @@
       <!-- footer
          ============================================ -->
       <?php include('common/footer.php');?>
+
+<script type="text/javascript">
+function updatecart(obj,$cartid,$opt){
+	objRow = obj.parentNode;
+   var qty = $(objRow).find('.qtys').val() ;
+   var sum = parseInt(qty)+parseInt('1');
+   console.log(sum);
+   $.ajax({
+	type:"POST",
+	url:'<?php echo base_url(); ?>Frontend/updatecarts',
+	data: { qty:qty, cartid:$cartid ,productid:$opt},
+	success:function (result) {
+	 
+	}
+	});
+}
+</script> 
       <!-- Include Libs & Plugins
          ============================================ -->
       <?php include('common/jsfiles.php');?>
+     
    </body>
 
 </html>

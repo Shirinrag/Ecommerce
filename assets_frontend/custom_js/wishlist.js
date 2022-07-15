@@ -1,6 +1,7 @@
 
-  $(document).on('click', '.add_cart', function() {
+  $(document).on('click', '.add_wishlist', function() {
     var product_id = $(this).attr("id");
+    //alert(product_id);
     $.ajax({
         url: bases_url + "Frontend/wishlist",
         method: "POST",

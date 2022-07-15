@@ -19,7 +19,8 @@ $('#user_login_form').submit(function(e) {
          } else if (response.status == 'failure') {
             error_msg(response.error);
             $('#login_button').button('reset');
-         } else {
+         } 
+         else {
             window.location.replace(response['url']);
          }
       }

@@ -21,6 +21,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/toppanel.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/so_megamenu.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/addtocart.js"></script>  
+
 <!-- <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/admin.js"></script>   -->
 
   <script src="<?=base_url()?>assets_frontend/js/button-inline-loader.js"></script>
@@ -48,7 +49,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-            var new_value=$('#fk_lang_id :selected').val();
+            var new_value=$('#fk_lang_id').val();
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url(); ?>Frontend/set_session_data",
