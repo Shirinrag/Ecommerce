@@ -60,7 +60,7 @@
          <div class="row">
             <!-- Logo -->
             <div class="navbar-logo col-lg-2 col-md-2 col-sm-12 col-xs-12">
-               <div class="logo"><a href="index-2.html"><img src="<?php echo base_url();?>assets_frontend/image/logo.png" title="Your Store" alt="Your Store" style="margin-top: -40px !important;" /></a></div>
+               <div class="logo"><a href="<?php echo base_url(); ?>Frontend"><img src="<?php echo base_url();?>assets_frontend/image/logo.png" title="Your Store" alt="Your Store" style="margin-top: -40px !important;" /></a></div>
             </div>
             <!-- //end Logo -->
             <!-- Main menu -->
@@ -281,7 +281,7 @@
                      <form method="GET" action="https://demo.smartaddons.com/templates/html/emarket/index.html">
                         <div id="search0" class="search input-group form-group">
                            
-                           <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off" placeholder="Keyword here..." name="search">
+                           <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off" placeholder="Keyword here..." name="search" id="autouser">
                            <span class="input-group-btn">
                            <button type="submit" class="button-search btn btn-primary" name="submit_search"><i class="fa fa-search"></i></button>
                            </span>

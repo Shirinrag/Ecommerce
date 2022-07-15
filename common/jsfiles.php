@@ -84,5 +84,29 @@ $(document).ready(function(){
             
         });
     });
+
+    $( "#autouser" ).autocomplete({
+            source: function( request, response ) {
+          // Fetch data
+          $.ajax({
+            url: "<?=base_url()?>Frontend/get_search_data",
+            type: 'post',
+            dataType: "json",
+            data: {
+              search: request.term
+            },
+            success: function( data ) {
+              response( data );
+
+            }
+          });
+        },
+        select: function (event, ui) {
+          // Set selection
+          $('#autouser').val(ui.item.label); 
+          $(".search-form").submit();
+          return false;
+        }
+      });
     var bases_url="<?=base_url() ?>";
 </script>
