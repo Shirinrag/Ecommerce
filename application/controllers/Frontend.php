@@ -256,6 +256,7 @@ class Frontend extends CI_Controller {
         $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id);
         $curl=$this->link->hits('get-all-user-cart',$curldata); 
         $curl1=json_decode($curl,true);
+        // echo '<pre>'; print_r($curl1); exit;
         $data['cart_data']=$curl1['cart_data'];
         $this->load->view('frontend/cart',$data);
     }

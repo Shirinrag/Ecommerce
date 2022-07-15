@@ -170,7 +170,7 @@
                                                       <a href="#" class="title-submenu">Shopping pages</a>
                                                       <div>
                                                          <ul class="row-list">
-                                                            <li><a href="<?php echo base_url();?>Cart">Shopping Cart Page</a></li>
+                                                            <li><a href="<?php echo base_url();?>Frontend/cart">Shopping Cart Page</a></li>
                                                             <li><a href="<?php echo base_url();?>Checkout">Checkout Page</a></li>
                                                             <!-- <li><a href="compare.html">Compare Page</a></li> -->
                                                             <li><a href="<?php echo base_url();?>Wishlist">Wishlist Page</a></li>
