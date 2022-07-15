@@ -26,6 +26,7 @@
 
   <script src="<?=base_url()?>assets_frontend/js/button-inline-loader.js"></script>
   <script src="<?= base_url();?>assets_frontend/js/toastr.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
 <script type="text/javascript">
 
 	
@@ -49,7 +50,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-            var new_value=$('#fk_lang_id').val();
+            var new_value=$('#fk_lang_id :selected').val();
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url(); ?>Frontend/set_session_data",
@@ -81,8 +82,9 @@ $(document).ready(function(){
             });
             
         });
-    });
 
+        
+    });
     $( "#autouser" ).autocomplete({
             source: function( request, response ) {
           // Fetch data
@@ -95,16 +97,17 @@ $(document).ready(function(){
             },
             success: function( data ) {
               response( data );
-
+            console.log(data);
             }
           });
         },
         select: function (event, ui) {
           // Set selection
-          $('#autouser').val(ui.item.label); 
+          $('#autouser').val(ui.item.product_name); 
           $(".search-form").submit();
           return false;
         }
       });
+   
     var bases_url="<?=base_url() ?>";
 </script>

@@ -41,7 +41,7 @@
                <ul class="top-link list-inline lang-curr">
                   <li class="language">
                      <div class="btn-group languages-block ">                       
-                              <select class="form-control" id="fk_lang_id"><?php 
+                              <select class="form-control select2" id="fk_lang_id"><?php 
                                     foreach ($lang_name as $lang_name_key => $lang_name_row) { ?>
                                        <option value="<?= $lang_name_row['id']?>" <?php $session_data=$this->session->userdata('logged_in'); if($session_data['lang_id'] == $lang_name_row['id']){ ?> selected=selected <?php } ?>><?= $lang_name_row['lang_name']?></option>
                                     <?php } ?>
@@ -281,7 +281,7 @@
                      <form method="GET" action="https://demo.smartaddons.com/templates/html/emarket/index.html">
                         <div id="search0" class="search input-group form-group">
                            
-                           <input class="autosearch-input form-control" type="text" value="" size="50" autocomplete="off" placeholder="Keyword here..." name="search" id="autouser">
+                           <input class="autosearch-input form-control" type="search" value="" size="50" autocomplete="on" placeholder="Keyword here..." name="search" id="autouser">
                            <span class="input-group-btn">
                            <button type="submit" class="button-search btn btn-primary" name="submit_search"><i class="fa fa-search"></i></button>
                            </span>

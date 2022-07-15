@@ -30,15 +30,12 @@ class Frontend extends CI_Controller {
 
     public function get_search_data()
     {
-        $this->session->set_userdata('logged_in', @$curl_data);
         $session_data = $this->session->userdata('logged_in');
         $id = $this->input->post('search');
-        $curl_data = array('fk_lang_id' =>$session_data['lang_id'],);
-		$curl=$this->link->hits('product-details-on-search',$curl_data);
+        $curl_data = array('fk_lang_id' =>$session_data['lang_id'],'search_keyword' =>$id);
+      	$curl=$this->link->hits('product-details-on-search',$curl_data);
         $curl = json_decode($curl,true);
-		// echo '<pre>'; print_r($curl); exit;
-		
-		echo json_encode($curl_data);
+		echo json_encode($curl);
     }
 	public function alpha_dash_space($fullname){
         if (! preg_match('/^[a-zA-Z\s]+$/', $fullname)) {
