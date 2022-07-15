@@ -11,6 +11,12 @@
       $cat_data = $curl1['cat_data'];
       $wishlist_count=$curl1['wishlist_count'];
       $cart_count=$curl1['cart_count'];
+
+      $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$session_data['lang_id']);
+      $curl=$this->link->hits('get-all-user-cart',$curldata); 
+      $curls_data=json_decode($curl,true);
+      $cart_data=$curls_data['cart_data'];
+      //print_r($cart_data);die();
 ?>
 <header id="header" class=" typeheader-1">
    <!-- Header Top -->
@@ -76,7 +82,7 @@
                                        <a href="<?php echo base_url(); ?>Frontend">
                                           Home <!-- <b class="caret"></b> -->
                                        </a>
-                                       <div class="sub-menu" style="width:100%;" >
+                                       <div class="sub-menu" style="width:100%;left:-100px !important" >
                                           <div class="content" >
                                              <div class="row">
                                                 <div class="col-md-3">
@@ -361,16 +367,15 @@
                            <i class="fa fa-shopping-bag"></i>
                            </span>
                            <div class="shopcart-inner refesh1">
-                              <p class="text-shopping-cart">
-                                 My cart
-                              </p>
+                              
                               <span class="total-shopping-cart cart-total-full">
-                              <span class="items_cart"><?php if($cart_count > 0){ echo $cart_count; }else{ echo '0';} ?></span><span class="items_cart2"> item(s)</span><span class="items_carts"> - $162.00 </span>
+                              <span class="items_cart"><?php if($cart_count > 0){ echo $cart_count; }else{ echo '0';} ?></span>
                               </span>
                            </div>
                         </div>
                      </a>
-                     <ul class="dropdown-menu pull-right shoppingcart-box" role="menu">
+                     <div class="refeshlist">
+                     <ul class="dropdown-menu pull-right shoppingcart-box " role="menu">
                         <li>
                            <table class="table table-striped">
                               <tbody>
@@ -390,7 +395,7 @@
                                        <a href="product.html" class="fa fa-edit"></a>
                                     </td>
                                     <td class="text-right">
-                                       <a onclick="cart.remove('2');" class="fa fa-times fa-delete"></a>
+                                       <a id="<?=$value['cart_id'];?>" type="button" class="fa fa-times fa-delete romove_cart_details"></a>
                                     </td>
                                  </tr>
                                  <?php }
@@ -429,6 +434,7 @@
                            </div>
                         </li>
                      </ul>
+                              </div>
                   </div>
                </div>
 

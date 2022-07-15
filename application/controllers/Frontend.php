@@ -260,6 +260,43 @@ class Frontend extends CI_Controller {
         $this->load->view('frontend/cart',$data);
     }
 
+    public function deletecart()
+    {
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
+        $cart_id=$_POST['row_id'];
+        $curl_data=array('cart_id'=>$cart_id,'user_id'=>$user_id);
+        $curl=$this->link->hits('delete-cart',$curl_data); 
+        $curl1=json_decode($curl,true);
+        if($curl1['status']){
+            $response['status']='success';
+            $response['message']=$curl1['message'];
+          }
+          else{
+            $response['status']='failed';
+            $response['message']=$curl1['message'];
+          }
+          echo json_encode($response);
+    }
+
+    public function updatecart()
+    {
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
+        $cart_id=$_POST['cartid'];
+        $productid=$_POST['productid'];
+        $curl_data=array('cart_id'=>$cart_id,'user_id'=>$user_id,'product_id'=>$productid);
+        $curl=$this->link->hits('plus-minus-cart-count',$curl_data); 
+        $curl1=json_decode($curl,true);
+        if($curl1['status']){
+            $response['status']='success';
+            $response['message']=$curl1['message'];
+          }
+          else{
+            $response['status']='failed';
+            $response['message']=$curl1['message'];
+          }
+          echo json_encode($response);
+    }
+
     public function wishlist_list()
     {
         $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  

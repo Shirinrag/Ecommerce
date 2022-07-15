@@ -42,24 +42,35 @@
                         <tbody>
                            <?php 
                               foreach ($cart_data as $cart_data_key => $cart_data_row) { ?>
-                               
-                             
                            <tr>
                               <td class="text-center"><a href="product.html"><img width="70px" src="<?=$cart_data_row['image_name']?>" alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop" class="img-thumbnail" /></a></td>
                               <td class="text-left"><a href="product.html"><?=$cart_data_row['product_name']?></a><br />
                               </td>
                               <td class="text-left"><?=$cart_data_row['product_code']?></td>
                               <td class="text-left" width="200px">
-                                 <div class="input-group btn-block quantity">
-                                    <input type="text" name="quantity" value="1" size="1" class="form-control" />
+                                  <div class="input-group btn-block quantity input-group quantity-control" style="-webkit-user-select: none;">
+                                  <input type="hidden" name="product_id" id="<?= $cart_data_row['product_id']?>" value="<?= $cart_data_row['product_id']?>">
                                     <span class="input-group-btn">
-                                    <button type="submit" data-toggle="tooltip" title="Update" class="btn btn-primary"><i class="fa fa-clone"></i></button>
-                                    <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-danger" onClick=""><i class="fa fa-times-circle"></i></button>
+                                    <button class="btn update_qty input-group-addon product_quantity_down text-center"  id="<?= $cart_data_row['cart_id']?>" data-toggle="tooltip" onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)"  style="padding:16px;">-</button>
+                                    <input type="text" name="qty[]" value="1" size="1" class="form-control qty" readonly  style="width:100px;"/>
+                                    <button class="btn update_qty  input-group-addon product_quantity_down text-center" id="<?= $cart_data_row['cart_id']?>" data-toggle="tooltip" onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)"  style="padding:16px;">+</button>
                                     </span>
                                  </div>
+                                
+                                 <!-- <div class="option quantity">
+                                    <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
+                                      
+                                       <button class="input-group-addon product_quantity_down">−</button>
+                                       <input class="form-control text-center" type="text" name="quantity"
+                                          value="1" readonly>
+                                       <input type="hidden" name="product_id" value="50">
+                                       <button class="input-group-addon product_quantity_up">+</button>
+                                    </div>
+                                 </div> -->
+                             
                               </td>
-                              <td class="text-right">$120.00</td>
-                              <td class="text-right">$120.00</td>
+                              <td class="text-right">$ <?=$cart_data_row['product_offer_price']?></td>
+                              <td class="text-right">$ <?=$cart_data_row['product_offer_price']?></td>
                            </tr>
                            <?php }
                            ?>
@@ -161,9 +172,27 @@
       <!-- footer
          ============================================ -->
       <?php include('common/footer.php');?>
+
+      <!-- <script type="text/javascript">
+function updatecart(obj,$cartid,$opt){
+	objRow = obj.parentNode;
+    var qty = $(objRow).find('.qty').val();
+    console.log('qty'+qty);
+    console.log('cart_id'+$cartid+'product_id'+$opt);
+	$.ajax({
+	type:"POST",
+	url:'<?php //echo base_url(); ?>Frontend/updatecart',
+	data: { qty:qty, cartid:$cartid ,productid:$opt},
+	success:function (result) {
+	 
+	}
+	});
+}
+</script> -->
       <!-- Include Libs & Plugins
          ============================================ -->
       <?php include('common/jsfiles.php');?>
+     
    </body>
 
 </html>

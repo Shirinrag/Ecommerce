@@ -62,10 +62,10 @@
 								
 								</td>
 								<td class="text-right">
-									<button class="btn btn-primary"
+									<button class="btn btn-primary addtocart"
 									title="" data-toggle="tooltip"
-									onclick="cart.add('48');"
-									type="button" data-original-title="Add to Cart"><i class="fa fa-shopping-cart"></i>
+									id=<?= $value['product_id'];?>
+									 data-original-title="Add to Cart"><i class="fa fa-shopping-cart"></i>
 									</button>
 									<a class="btn btn-danger romove_cart" title="" id=<?= $value['id'];?> data-toggle="tooltip"><i class="fa fa-times"></i></a>
 								</td>
@@ -96,6 +96,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <?php include('common/jsfiles.php');?>	
 <script src="<?= base_url(); ?>assets_frontend/custom_js/wishlist.js"></script>
+<script src="<?= base_url(); ?>assets_frontend/custom_js/cart.js"></script>
 </body>
 
 
