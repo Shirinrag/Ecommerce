@@ -202,7 +202,8 @@ class Frontend extends CI_Controller {
       	$curl = json_decode($curl, true);
       	// echo '<pre>'; print_r($curl); exit;
       	$data['product_details'] = $curl['product_details'];
-      	$data['related_product_details'] = $curl['related_product_details'];
+        $data['cat_data'] = $curl['cat_data'];
+       	$data['related_product_details'] = $curl['related_product_details'];
       	$data['fk_lang_id'] = $fk_lang_id;
 
 		$this->load->view('frontend/product',$data);
@@ -270,6 +271,7 @@ class Frontend extends CI_Controller {
         $curl1=json_decode($curl,true);
         // echo '<pre>'; print_r($curl1); exit;
         $data['cart_data']=$curl1['cart_data'];
+        $data['cart_total_sum']=$curl1['sub_total'];
         $this->load->view('frontend/cart',$data);
     }
 
@@ -298,6 +300,7 @@ class Frontend extends CI_Controller {
         $cart_id=$_POST['cartid'];
         $productid=$_POST['productid'];
         $curl_data=array('cart_id'=>$cart_id,'user_id'=>$user_id,'product_id'=>$productid,'quantity'=>$qty);
+        print_r($curl_data);die();
         $curl=$this->link->hits('plus-minus-cart-count',$curl_data); 
         $curl1=json_decode($curl,true);
         if($curl1['status']){

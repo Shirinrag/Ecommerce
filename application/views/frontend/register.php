@@ -26,8 +26,8 @@
                <li><a href="#">Register</a></li>
             </ul>
             <div class="row">
-               <div id="content" class="col-sm-12">
-                  
+               <div id="content" class="col-sm-6">
+
                   <h2 class="title">Register Account</h2>
                   <p>If you already have an account with us, please login at the <a href="#">login page</a>.</p>
                     <?php echo form_open('Frontend/user_register', array('id' => 'user_register_form')) ?>

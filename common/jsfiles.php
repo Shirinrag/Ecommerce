@@ -51,7 +51,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-            var new_value=$('#fk_lang_id :selected').val();
+            var new_value=$('#fk_lang_id').val();
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url(); ?>Frontend/set_session_data",

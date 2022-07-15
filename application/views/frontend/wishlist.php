@@ -34,6 +34,7 @@
 			<!--Middle Part Start-->
 			<div id="content" class="col-sm-9">
 				<h2 class="title">My Wish List</h2>
+				<?php if(count($wishlist_data) > 0){?>
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover">
 						<thead>
@@ -76,10 +77,13 @@
 						</tbody>
 					</table>
 				</div>
+				<?php }else{?>
+					<b><p class="text-center">Wishlist is Empty.</p></b>
+				<?php } ?>
 			</div>
 
 			<!--Middle Part End-->
-			<?php include('common/myaccountsidepart.php');?>   
+			<?php //include('common/myaccountsidepart.php');?>   
 		</div>
 	</div>
 	<!-- //Main Container -->

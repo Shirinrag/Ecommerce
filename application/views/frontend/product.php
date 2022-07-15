@@ -29,62 +29,29 @@
                      <h3 class="modtitle">Categories</h3>
                      <div class="modcontent">
                         <div class="box-category">
+                           
+                              
+            
                            <ul id="cat_accordion" class="list-group">
+                           <?php foreach($cat_data as $key => $value){ 
+               
+                              ?>
                               <li class="hadchild">
-                                 <a href="category.html" class="cutom-parent">Smartphone & Tablets</a>   <span class="button-view  fa fa-plus-square-o"></span>
-                                 <ul style="display: block;">
-                                    <li><a href="category.html">Men's Watches</a></li>
-                                    <li><a href="category.html">Women's Watches</a></li>
-                                    <li><a href="category.html">Kids' Watches</a></li>
-                                    <li><a href="category.html">Accessories</a></li>
-                                 </ul>
-                              </li>
-                              <li class="hadchild">
-                                 <a class="cutom-parent" href="category.html">Electronics</a>   <span class="button-view  fa fa-plus-square-o"></span>
+                                 <a href="" class="cutom-parent"><?php echo $value['category_name']; ?></a>   <?php  if(!empty($value['sub_category_name'][0])){?><span class="button-view  fa fa-plus-square-o"></span><?php } ?>
                                  <ul style="display: none;">
-                                    <li><a href="category.html">Cycling</a></li>
-                                    <li><a href="category.html">Running</a></li>
-                                    <li><a href="category.html">Swimming</a></li>
-                                    <li><a href="category.html">Football</a></li>
-                                    <li><a href="category.html">Golf</a></li>
-                                    <li><a href="category.html">Windsurfing</a></li>
+                                 <?php foreach($value['sub_category_name'] as $key1 =>$value1){ ?>
+                                    
+                                    <li style="font-size:12px;"><a href=""><?php echo $value1; ?></a></li>
+  
+                                 <?php } ?>
+                                                                   
                                  </ul>
+                                 
                               </li>
-                              <li class="hadchild">
-                                 <a href="category.html" class="cutom-parent">Shoes</a>   <span class="button-view  fa fa-plus-square-o"></span>
-                                 <ul style="display: none;">
-                                    <li><a href="category.html">Sub Categories</a></li>
-                                    <li><a href="category.html">Sub Categories</a></li>
-                                    <li><a href="category.html">Sub Categories</a></li>
-                                    <li><a href="category.html">Sub Categories</a></li>
-                                    <li><a href="category.html">Sub Categories</a></li>
-                                 </ul>
-                              </li>
-                              <li class="hadchild">
-                                 <a href="category.html" class="cutom-parent">Watches</a>  <span class="button-view  fa fa-plus-square-o"></span>
-                                 <ul style="display: none;">
-                                    <li><a href="category.html">Men's Watches</a></li>
-                                    <li><a href="category.html">Women's Watches</a></li>
-                                    <li><a href="category.html">Kids' Watches</a></li>
-                                    <li><a href="category.html">Accessories</a></li>
-                                 </ul>
-                              </li>
-                              <li class="hadchild">
-                                 <a href="category.html" class="cutom-parent">Jewellery</a>    <span class="button-view  fa fa-plus-square-o"></span>
-                                 <ul style="display: none;">
-                                    <li><a href="category.html">Sub Categories</a></li>
-                                    <li><a href="category.html">Sub Categories</a></li>
-                                    <li><a href="category.html">Sub Categories</a></li>
-                                    <li><a href="category.html">Sub Categories</a></li>
-                                    <li><a href="category.html">Sub Categories</a></li>
-                                 </ul>
-                              </li>
-                              <li class=""><a href="category.html" class="cutom-parent">Health &amp; Beauty</a>  <span class="dcjq-icon"></span></li>
-                              <li class=""><a href="category.html" class="cutom-parent">Kids &amp; Babies</a>    <span class="dcjq-icon"></span></li>
-                              <li class=""><a href="category.html" class="cutom-parent">Sports</a>  <span class="dcjq-icon"></span></li>
-                              <li class=""><a href="category.html" class="cutom-parent">Home &amp; Garden</a><span class="dcjq-icon"></span></li>
-                              <li class=""><a href="category.html" class="cutom-parent">Wines &amp; Spirits</a>  <span class="dcjq-icon"></span></li>
+                              
+                              <?php } ?>
                            </ul>
+                          
                         </div>
                      </div>
                   </div>
@@ -138,7 +105,7 @@
                                  <span class="price-new" itemprop="price">$ <?=$product_details['product_offer_price']?></span>
                                  <span class="price-old">$ <?=$product_details['product_price']?></span>
                               </div>
-                              <div class="stock"><span>Availability:</span> <span class="status-stock">In Stock</span></div>
+                              <!-- <div class="stock"><span>Availability:</span> <span class="status-stock">In Stock</span></div> -->
                            </div>
                           
                            <div id="product">
@@ -184,8 +151,8 @@
                         <ul class="nav nav-tabs col-lg-2 col-sm-3">
                            <li class="active"><a data-toggle="tab" href="#tab-1">Description</a></li>
                            <li class="item_nonactive"><a data-toggle="tab" href="#tab-review">Reviews (1)</a></li>
-                           <li class="item_nonactive"><a data-toggle="tab" href="#tab-4">Tags</a></li>
-                           <li class="item_nonactive"><a data-toggle="tab" href="#tab-5">Custom Tab</a></li>
+                           <!-- <li class="item_nonactive"><a data-toggle="tab" href="#tab-4">Tags</a></li>
+                           <li class="item_nonactive"><a data-toggle="tab" href="#tab-5">Custom Tab</a></li> -->
                         </ul>
                         <div class="tab-content col-lg-10 col-sm-9 col-xs-12">
                            <div id="tab-1" class="tab-pane fade active in">
@@ -247,7 +214,7 @@
                               <a href="#">Monitor</a>,
                               <a href="#">Apple</a>             
                            </div>
-                           <div id="tab-5" class="tab-pane fade">
+                           <!-- <div id="tab-5" class="tab-pane fade">
                               <h3 class="custom-color">Take a trivial example which of us ever undertakes</h3>
                               <p>Lorem ipsum dolor sit amet, consetetur
                                  sadipscing elitr, sed diam nonumy eirmod
@@ -283,7 +250,7 @@
                                  clita kasd gubergren, no sea takimata
                                  sanctus est Lorem ipsum dolor sit amet.
                               </p>
-                           </div>
+                           </div> -->
                         </div>
                      </div>
                   </div>

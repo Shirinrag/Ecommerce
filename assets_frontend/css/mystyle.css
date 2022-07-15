@@ -257,3 +257,11 @@ header.typeheader-1 .logo {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.page-login .well {
+    min-height: 50px !important;
+
+}
+.producttab .tabsslider.vertical-tabs ul.nav-tabs {
+    min-height: 0px;
+  
+}

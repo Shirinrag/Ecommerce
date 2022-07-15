@@ -16,8 +16,9 @@
       $curl=$this->link->hits('get-all-user-cart',$curldata); 
       $curls_data=json_decode($curl,true);
       $cart_data=$curls_data['cart_data'];
-      // echo "<pre>";
-      // print_r($cart_data);die();
+      $cart_total_sum=$curls_data['sub_total'];
+      //  echo "<pre>";
+      //  print_r($cart_data);die();
 ?>
 <header id="header" class=" typeheader-1">
    <!-- Header Top -->
@@ -40,7 +41,7 @@
                <ul class="top-link list-inline lang-curr">
                   <li class="language">
                      <div class="btn-group languages-block ">                       
-                              <select class="form-control select2" id="fk_lang_id"><?php 
+                              <select class="form-control" id="fk_lang_id"><?php 
                                     foreach ($lang_name as $lang_name_key => $lang_name_row) { ?>
                                        <option value="<?= $lang_name_row['id']?>" <?php $session_data=$this->session->userdata('logged_in'); if($session_data['lang_id'] == $lang_name_row['id']){ ?> selected=selected <?php } ?>><?= $lang_name_row['lang_name']?></option>
                                     <?php } ?>
@@ -132,73 +133,7 @@
                                           </div>
                                        </div>
                                     </li>
-                                    <li class="with-sub-menu hover">
-                                       <p class="close-menu"></p>
-                                      <a href="#" class="clearfix">
-                                          <strong>Features</strong>
-                                          <img class="label-hot" src="<?php echo base_url();?>assets_frontend/image/catalog/menu/new-icon.png" alt="icon items">
-                                          <b class="caret"></b>
-                                          </a> 
-                                       <div class="sub-menu" style="width: 100%; right: auto;">
-                                          <div class="content" >
-                                             <div class="row">
-                                                <div class="col-md-3">
-                                                   <div class="column">
-                                                      <a href="#" class="title-submenu">Listing pages</a>
-                                                      <div>
-                                                         <ul class="row-list">
-                                                            <li><a href="<?php echo base_url(); ?>Category">Category Page 1 </a></li>
-                                                           <!--  <li><a href="category-v2.html">Category Page 2</a></li>
-                                                            <li><a href="category-v3.html">Category Page 3</a></li> -->
-                                                         </ul>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                   <div class="column">
-                                                      <a href="#" class="title-submenu">Product pages</a>
-                                                      <div>
-                                                         <ul class="row-list">
-                                                            <li><a href="<?php echo base_url();?>Productdetails">Product page 1</a></li>
-                                                           <!--  <li><a href="product-v2.html">Product page 2</a></li> -->
-                                                            <!-- <li><a href="product-v3.html">Image size - small</a></li> -->
-                                                         </ul>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                   <div class="column">
-                                                      <a href="#" class="title-submenu">Shopping pages</a>
-                                                      <div>
-                                                         <ul class="row-list">
-                                                            <li><a href="<?php echo base_url();?>Frontend/cart">Shopping Cart Page</a></li>
-                                                            <li><a href="<?php echo base_url();?>Checkout">Checkout Page</a></li>
-                                                            <!-- <li><a href="compare.html">Compare Page</a></li> -->
-                                                            <li><a href="<?php echo base_url();?>Wishlist">Wishlist Page</a></li>
-                                                         </ul>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                   <div class="column">
-                                                      <a href="#" class="title-submenu">My Account pages</a>
-                                                      <div>
-                                                         <ul class="row-list">
-                                                            <li><a href="<?php echo base_url(); ?>Frontend/login">Login Page</a></li>
-                                                            <li><a href="<?php echo base_url(); ?>Frontend/registration">Register Page</a></li>
-                                                            <li><a href="<?php echo base_url(); ?>Frontend/my_account">My Account</a></li>
-                                                            <li><a href="<?php echo base_url(); ?>Orderhistory">Order History</a></li>
-                                                            <li><a href="<?php echo base_url(); ?>Orderhistory/orderinfo">Order Information</a></li>
-                                                          <!--   <li><a href="return.html">Product Returns</a></li>
-                                                            <li><a href="gift-voucher.html">Gift Voucher</a></li> -->
-                                                         </ul>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                    </li>
+                                    
                                     <li class="with-sub-menu hover" >
                                        <p class="close-menu"></p>
                                        <!--  <a href="#" class="clearfix">
@@ -390,7 +325,7 @@
                                     </td>
                                     <td class="text-left"> <a class="cart_product_name" href="product.html"><?php echo $value['product_name'] ?></a> 
                                     </td>
-                                    <td class="text-center"><?php echo $value['qty'] ?></td>
+                                    <td class="text-center"><?php echo $value['cart_qty'] ?></td>
                                     <td class="text-center"><?php echo $value['product_offer_price'] ?></td>
                                     <td class="text-right">
                                        <a href="product.html" class="fa fa-edit"></a>
@@ -411,22 +346,22 @@
                                     <tr>
                                        <td class="text-left"><strong>Sub-Total</strong>
                                        </td>
-                                       <td class="text-right">$140.00</td>
+                                       <td class="text-right">$ <?php echo $cart_total_sum; ?></td>
                                     </tr>
                                     <tr>
                                        <td class="text-left"><strong>Eco Tax (-2.00)</strong>
                                        </td>
-                                       <td class="text-right">$2.00</td>
+                                       <td class="text-right">$0</td>
                                     </tr>
                                     <tr>
                                        <td class="text-left"><strong>VAT (20%)</strong>
                                        </td>
-                                       <td class="text-right">$20.00</td>
+                                       <td class="text-right">$0</td>
                                     </tr>
                                     <tr>
                                        <td class="text-left"><strong>Total</strong>
                                        </td>
-                                       <td class="text-right">$162.00</td>
+                                       <td class="text-right">$0</td>
                                     </tr>
                                  </tbody>
                               </table>
