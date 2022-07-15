@@ -252,3 +252,8 @@ header.typeheader-1 .logo {
 #map {
   height: 100%;
 }
+.textellipse{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

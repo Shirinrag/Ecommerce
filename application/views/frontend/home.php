@@ -67,7 +67,7 @@
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                           </div>
-                                          <strong><a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($product_row['product_id']) ?>" title="Pastrami bacon" target="_self"><?php echo $product_row['product_name']; ?></a></strong>
+                                          <strong ><a class="textellipse" href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($product_row['product_id']) ?>" title="Pastrami bacon" target="_self"><?php echo $product_row['product_name']; ?></a></strong>
                                           <div class="price">QAR <?php echo $product_row['product_offer_price']; ?></div>
                                        </div>
                                     </div>
@@ -108,7 +108,7 @@
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                           </div>
-                                          <strong><a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($product_row['product_id']) ?>" title="Pastrami bacon" target="_self"><?php echo $product_row['product_name']; ?></a></strong>
+                                          <strong><a class="textellipse" href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($product_row['product_id']) ?>" title="Pastrami bacon" target="_self"><?php echo $product_row['product_name']; ?></a></strong>
                                           <div class="price">QAR <?php echo $product_row['product_offer_price']; ?></div>
                                        </div>
                                     </div>
@@ -149,7 +149,7 @@
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                           </div>
-                                          <strong><a href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($best_selling_row['product_id']) ?>" title="Pastrami bacon" target="_self"><?php echo $best_selling_row['product_name']; ?></a></strong>
+                                          <strong><a class="textellipse" href="<?=base_url();?>Frontend/product_details?id=<?php echo base64_encode($best_selling_row['product_id']) ?>" title="Pastrami bacon" target="_self"><?php echo $best_selling_row['product_name']; ?></a></strong>
                                           <div class="price">QAR <?php echo $best_selling_row['product_offer_price']; ?></div>
                                        </div>
                                     </div>

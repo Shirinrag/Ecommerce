@@ -173,22 +173,20 @@
          ============================================ -->
       <?php include('common/footer.php');?>
 
-      <!-- <script type="text/javascript">
+<script type="text/javascript">
 function updatecart(obj,$cartid,$opt){
 	objRow = obj.parentNode;
     var qty = $(objRow).find('.qty').val();
-    console.log('qty'+qty);
-    console.log('cart_id'+$cartid+'product_id'+$opt);
 	$.ajax({
 	type:"POST",
-	url:'<?php //echo base_url(); ?>Frontend/updatecart',
+	url:'<?php echo base_url(); ?>Frontend/updatecarts',
 	data: { qty:qty, cartid:$cartid ,productid:$opt},
 	success:function (result) {
 	 
 	}
 	});
 }
-</script> -->
+</script> 
       <!-- Include Libs & Plugins
          ============================================ -->
       <?php include('common/jsfiles.php');?>

@@ -121,6 +121,7 @@ class Frontend extends CI_Controller {
 		$this->load->view('frontend/login');
 	}
 	 public function user_login() {
+       
         $this->form_validation->set_rules('contact_no', 'Contact No', 'required|trim', array('required' => 'You must provide a %s',));
         $this->form_validation->set_rules('password', 'Password', 'trim|required', array('required' => 'You must provide a %s',));
         if ($this->form_validation->run() == FALSE) {
@@ -138,12 +139,23 @@ class Frontend extends CI_Controller {
                 if (@$curl['data']) {
                     $this->session->set_userdata('user_logged_in', @$curl['data']);
             		$session_data = $this->session->userdata('user_logged_in')['op_user_id']; 
-                    if(isset($_COOKIE['product_id']))
+                   
+                    if(isset($_COOKIE['add_to_wishlist_cookie']) !='')
                     {
+                        $curldata=array('product_id'=>$_COOKIE['add_to_wishlist_cookie'],'user_id'=>$session_data);
+                        $curl=$this->link->hits('save-wishlist',$curldata);
                         $url = base_url() . 'Frontend/wishlist_list';            
                         $response['url'] = $url;
                         $response['status'] = 'success';
-                    }   
+                    }  
+                    else if(isset($_COOKIE['add_to_cart_cookie']) !='')
+                    {
+                        $curldata=array('product_id'=>$_COOKIE['add_to_cart_cookie'],'user_id'=>$session_data);
+                        $curl=$this->link->hits('add-to-cart',$curldata);
+                        $url = base_url() . 'Frontend/cart';            
+                        $response['url'] = $url;
+                        $response['status'] = 'success';
+                    } 
                     else{
                         $url = base_url() . 'Frontend';            
                         $response['url'] = $url;
@@ -198,15 +210,15 @@ class Frontend extends CI_Controller {
 
     public function wishlist()
     {
-      $product_id=$_POST['product_id'];
-      setcookie("product_id",$product_id,time() + (86400 * 30), "/");
+      $add_to_wishlist_cookie=$_POST['product_id'];
+      setcookie("add_to_wishlist_cookie",$add_to_wishlist_cookie);
       $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
      
       if(empty($user_id))
       {
         $response['url'] = base_url() . 'Frontend/Login';
       }else{
-        $curldata=array('product_id'=>$product_id,'user_id'=>$user_id);
+        $curldata=array('product_id'=>$add_to_wishlist_cookie,'user_id'=>$user_id);
         $curl=$this->link->hits('save-wishlist',$curldata);
         $curl = json_decode($curl, true);
         if($curl['status']){
@@ -224,15 +236,15 @@ class Frontend extends CI_Controller {
 
     public function addtocart()
     {
-      $product_id=$_POST['product_id'];
-      setcookie("product_id",$product_id,time() + (86400 * 30), "/");
+      $add_to_cart_cookie=$_POST['product_id'];
+      setcookie("add_to_cart_cookie",$add_to_cart_cookie);
       $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
      
       if(empty($user_id))
       {
         $response['url'] = base_url() . 'Frontend/Login';
       }else{
-        $curldata=array('product_id'=>$product_id,'user_id'=>$user_id);
+        $curldata=array('product_id'=>$add_to_cart_cookie,'user_id'=>$user_id);
         $curl=$this->link->hits('add-to-cart',$curldata);
         $curl = json_decode($curl, true);
         if($curl['status']){
@@ -279,12 +291,13 @@ class Frontend extends CI_Controller {
           echo json_encode($response);
     }
 
-    public function updatecart()
+    public function updatecarts()
     {
         $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
+        $qty=$_POST['qty'];
         $cart_id=$_POST['cartid'];
         $productid=$_POST['productid'];
-        $curl_data=array('cart_id'=>$cart_id,'user_id'=>$user_id,'product_id'=>$productid);
+        $curl_data=array('cart_id'=>$cart_id,'user_id'=>$user_id,'product_id'=>$productid,'quantity'=>$qty);
         $curl=$this->link->hits('plus-minus-cart-count',$curl_data); 
         $curl1=json_decode($curl,true);
         if($curl1['status']){

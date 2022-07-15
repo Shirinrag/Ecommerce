@@ -16,7 +16,8 @@
       $curl=$this->link->hits('get-all-user-cart',$curldata); 
       $curls_data=json_decode($curl,true);
       $cart_data=$curls_data['cart_data'];
-      //print_r($cart_data);die();
+      // echo "<pre>";
+      // print_r($cart_data);die();
 ?>
 <header id="header" class=" typeheader-1">
    <!-- Header Top -->
@@ -198,13 +199,13 @@
                                           </div>
                                        </div>
                                     </li>
-                                    <li class="with-sub-menu hover">
+                                    <li class="with-sub-menu hover" >
                                        <p class="close-menu"></p>
                                        <!--  <a href="#" class="clearfix">
                                           <strong>Pages</strong>
                                           <b class="caret"></b>
                                           </a> -->
-                                       <div class="sub-menu" style="width: 40%; ">
+                                       <div class="sub-menu" style="width: 40%;">
                                           <div class="content" >
                                              <div class="row">
                                                 <div class="col-md-6">
@@ -227,14 +228,14 @@
                                           </div>
                                        </div>
                                     </li>
-                                    <li class="with-sub-menu hover">
+                                    <li class="with-sub-menu hover" style="left:-100px !important">
                                        <p class="close-menu"></p>
                                        <a href="#" class="clearfix">
                                        <strong>Categories</strong>
                                        <img class="label-hot" src="<?php echo base_url();?>assets_frontend/image/catalog/menu/hot-icon.png" alt="icon items">
                                        <b class="caret"></b>
                                        </a>
-                                       <div class="sub-menu" style="width: 100%; display: none;">
+                                       <div class="sub-menu" style="width: 100%; display: none;left:-150px !important">
                                           <div class="content">
                                             <div class="row">
                                             <?php  foreach($cat_data as $cat_data_key => $cat_data_row){?>
@@ -379,7 +380,7 @@
                         <li>
                            <table class="table table-striped">
                               <tbody>
-                                 <?php if(count($cart_data > 0)){
+                                 <?php   if(count($cart_data > 0)){
                                     foreach($cart_data as $key => $value){ ?>
                                  <tr>
                                     <td class="text-center" style="width:70px">

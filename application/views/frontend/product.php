@@ -161,7 +161,7 @@
                                  <div class="add-to-links wish_comp">
                                     <ul class="blank list-inline">
                                        <li class="wishlist">
-                                          <a class="icon add_cart" data-toggle="tooltip" title="" id="<?=$product_details['product_id']?>"
+                                          <a class="icon add_wishlist" data-toggle="tooltip" title="" id="<?=$product_details['product_id']?>"
                                               data-original-title="Add to Wish List"><i class="fa fa-heart"></i>
                                           </a>
                                        </li>
