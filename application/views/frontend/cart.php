@@ -53,7 +53,7 @@
                               <td class="text-left" width="200px">
                               <!-- <div class="option quantity">
                                   <div class="input-group btn-block quantity input-group quantity-control" unselectable="on"  style="-webkit-user-select: none;">
-                                  <input type="hidden" name="product_id" id="<?= $cart_data_row['product_id']?>" value="<?= $cart_data_row['product_id']?>">
+                                  
                                     <span class="input-group-btn">
                                     <button class="btn update_qty input-group-addon product_quantity_down text-center"  id="<?= $cart_data_row['cart_id']?>" data-toggle="tooltip" onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)"  style="padding:16px;">-</button>
                                     <input type="text" name="qty" value="<?= $cart_data_row['cart_qty']?>"  class="form-control qtys" readonly  style="width:100px;"/>
@@ -63,14 +63,31 @@
                               </div> -->
                                 
                                  <div class="option quantity">
-                                    <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
+                                    <!-- <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
                                       
                                        <button id="<?= $cart_data_row['cart_id']?>" class="input-group-addon product_quantity_down update_qty"  onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)">−</button>
                                        <input class="form-control text-center qtys" type="text" name="quantity"
                                           value="<?= $cart_data_row['cart_qty']?>" readonly>
                                        <input type="hidden" name="product_id" value="50">
                                        <button id="<?= $cart_data_row['cart_id']?>"  class="input-group-addon product_quantity_up update_qty"  onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)">+</button>
-                                    </div>
+                                    </div> -->
+                                 
+                                       <input type="" name="cartid" class="cartid" value="<?= $cart_data_row['cart_id']?>">
+                                       <input type="" class="product_id" name="product_id" id="<?= $cart_data_row['product_id']?>" value="<?= $cart_data_row['product_id']?>">
+                                       <!-- skin 2 -->
+                                       <div class="num-block skin-2">
+                                         <div class="num-in">
+                                           <span class="minus dis" id="<?= $cart_data_row['cart_id']?>" ></span>
+                                           <input type="text" class="in-num" value="<?= $cart_data_row['cart_qty']?>" readonly>
+                                           <span class="plus" id="<?= $cart_data_row['cart_id']?>" ></span>
+                                         </div>
+                                       </div>
+                                       <!-- / skin 2 -->
+
+
+
+
+
                                  </div>
                              
                               </td>
@@ -182,25 +199,71 @@
          ============================================ -->
       <?php include('common/footer.php');?>
 
-<script type="text/javascript">
-function updatecart(obj,$cartid,$opt){
-	objRow = obj.parentNode;
-   var qty = $(objRow).find('.qtys').val() ;
-   var sum = parseInt(qty)+parseInt('1');
-   console.log(sum);
-   $.ajax({
-	type:"POST",
-	url:'<?php echo base_url(); ?>Frontend/updatecarts',
-	data: { qty:qty, cartid:$cartid ,productid:$opt},
-	success:function (result) {
-	 
-	}
-	});
-}
-</script> 
+
       <!-- Include Libs & Plugins
          ============================================ -->
       <?php include('common/jsfiles.php');?>
+
+      <script type="text/javascript">
+function updatecart(obj,$cartid,$opt){
+   objRow = obj.parentNode;
+   var qty = $(objRow).find('.in-num').val() ;
+   // var sum = parseInt(qty)+parseInt('1');
+   console.log(qty);
+   $.ajax({
+   type:"POST",
+   url:'<?php echo base_url(); ?>Frontend/updatecarts',
+   data: { qty:qty, cartid:$cartid ,productid:$opt},
+   success:function (result) {
+    
+   }
+   });
+}
+</script> 
+
+<script type="text/javascript">
+   $(document).ready(function() {
+
+      $('.num-in span').click(function () {
+           var cartid = $('.cartid').val();
+           var product_id = $('.product_id').val();
+            var $input = $(this).parents('.num-block').find('input.in-num');
+         
+            if($(this).hasClass('minus')) {
+               var count = parseFloat($input.val()) - 1;
+               count = count < 1 ? 1 : count;
+                console.log(count);
+               if (count < 2) {
+                  $(this).addClass('dis');
+               }else {
+                  $(this).removeClass('dis');
+               }
+               $input.val(count);
+            }
+             else {
+               var count = parseFloat($input.val()) + 1
+                  $input.val(count);
+                       console.log(count);
+               if (count > 1) {
+                 $(this).parents('.num-block').find(('.minus')).removeClass('dis');
+               }
+            }
+            $input.change();
+            return false;
+
+            $.ajax({
+   type:"POST",
+   url:'<?php echo base_url(); ?>Frontend/updatecarts',
+   data: { qty:$input, cartid:count ,productid:product_id},
+   success:function (result) {
+    
+   }
+   });
+  });
+  
+});
+// product +/-
+      </script>
      
    </body>
 

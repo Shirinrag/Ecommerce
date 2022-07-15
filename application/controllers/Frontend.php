@@ -367,6 +367,35 @@ class Frontend extends CI_Controller {
 	{
 		$this->load->view('frontend/address_book');
 	}
+	public function save_new_address()
+	{
+		 if ($this->session->userdata('user_logged_in')) {
+		 	$this->form_validation->set_rules('roomno', 'Room No', 'required|trim', array('required' => 'You must provide a %s',));
+        	$this->form_validation->set_rules('building', 'Building', 'trim|required', array('required' => 'You must provide a %s',));
+        	$this->form_validation->set_rules('city', 'City', 'trim|required', array('required' => 'You must provide a %s',));
+        	$this->form_validation->set_rules('postcode', 'City', 'trim|required', array('required' => 'You must provide a %s',));
+        	$this->form_validation->set_rules('address_type', 'Address Type', 'trim|required', array('required' => 'You must provide a %s',));
+
+
+	        if ($this->form_validation->run() == FALSE) {
+	            $response['status'] = 'failure';
+	            $response['error'] = array(
+	            	'roomno' => strip_tags(form_error('roomno')), 
+	            	'building' => strip_tags(form_error('building')),
+	            	'city' => strip_tags(form_error('city')),
+	            	'postcode' => strip_tags(form_error('postcode')),
+	            	'address_type' => strip_tags(form_error('address_type')),
+	            );
+	        } else {
+		 		// get_lat_long
+		 	}
+	 	 } else {
+	        $response['status'] = 'failure';
+	        $response['url'] = base_url() . "Frontend";
+	    }
+        echo json_encode($response);
+		
+	}
 	public function change_password()
 	{
 		$this->load->view('frontend/change_password');
@@ -375,6 +404,18 @@ class Frontend extends CI_Controller {
     public function my_account()
 	{
 		$this->load->view('frontend/my-account');
+	}
+
+	function getGeoCode($address)
+	{
+	        // geocoding api url
+	        $url = "http://maps.google.com/maps/api/geocode/json?address=$address";
+	        // send api request
+	        $geocode = file_get_contents($url);
+	        $json = json_decode($geocode);
+	        $data['lat'] = $json->results[0]->geometry->location->lat;
+	        $data['lng'] = $json->results[0]->geometry->location->lng;
+	        return $data;
 	}
 
 	 public function logout() {
