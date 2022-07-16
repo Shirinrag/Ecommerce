@@ -27,7 +27,7 @@
 
   <script src="<?=base_url()?>assets_frontend/js/button-inline-loader.js"></script>
   <script src="<?= base_url();?>assets_frontend/js/toastr.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+  <!-- <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script> -->
 <script type="text/javascript">
 
 	
@@ -131,32 +131,32 @@ $(document).ready(function(){
     //     }
     //   });
 
-    var search_option = {
-    url: function(phrase) {
-        return "<?=base_url()?>Frontend/get_search_data";
-    },
-    getValue: function(element) {
-        return element.product_name;
-    },
-    ajaxSettings: {
-        dataType: "json",
-        method: "POST",
-        data: {
-            dataType: "json"
-        }
-    },
-    preparePostData: function(data) {
-        data.phrase = $("#autouser").val();
-        return data;
-    },
-    list: {
-        match: {
-            enabled: true
-        }
-    },
-    requestDelay: 400
-};
-$("#autouser").easyAutocomplete(search_option);
+//     var search_option = {
+//     url: function(phrase) {
+//         return "<?=base_url()?>Frontend/get_search_data";
+//     },
+//     getValue: function(element) {
+//         return element.product_name;
+//     },
+//     ajaxSettings: {
+//         dataType: "json",
+//         method: "POST",
+//         data: {
+//             search: 'testproduct'
+//         }
+//     },
+//     preparePostData: function(data) {
+//         data.phrase = $("#autouser").val();
+//         return data;
+//     },
+//     list: {
+//         match: {
+//             enabled: true
+//         }
+//     },
+//     requestDelay: 400
+// };
+// $("#autouser").easyAutocomplete(search_option);
    
     var bases_url="<?=base_url() ?>";
 </script>

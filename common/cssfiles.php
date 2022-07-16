@@ -34,4 +34,6 @@
     <link id="color_scheme" href="<?php echo base_url();?>assets_frontend/css/theme.css" rel="stylesheet"> 
     <link href="<?php echo base_url();?>assets_frontend/css/responsive.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets_frontend/css/mystyle.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets_frontend/css/easy-autocomplete.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets_frontend/css/easy-autocomplete.themes.min.css" rel="stylesheet">
  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700' rel='stylesheet' type='text/css'>

@@ -33,19 +33,19 @@ class Frontend extends CI_Controller {
         $session_data = $this->session->userdata('logged_in');
         $id = $this->input->post('search');
         $curl_data = array('fk_lang_id' =>$session_data['lang_id'],'search_keyword' =>$id);
+           echo"<pre>"; print_r($curl_data);
       	$curl=$this->link->hits('product-details-on-search',$curl_data);
         //   echo"<pre>"; print_r($curl);
         $curl = json_decode($curl,true);
-    //    echo"<pre>"; print_r($curl);die();
+       
+        $sizeof_product_name_1 = sizeof($curl['product_details']);
+        foreach ($curl['product_details'] as $product_details_key => $product_details_row) {
+            $custom_key_1 = $sizeof_product_name_1 + $product_details_key;
+            $curl['product_details'][$custom_key_1]['product_details'] = $product_details_row['product_name'];
+        }
+       echo"<pre>"; print_r($curl['product_details'][$custom_key_1]['product_details']);die();
 
-        // $sizeof_product_name_1 = sizeof($curl['product_details']);
-        // foreach ($curl['product_details'] as $product_details_key => $product_details_row) {
-        //     $custom_key_1 = $sizeof_product_name_1 + $product_details_key;
-        //     $curl['product_details'][$custom_key_1]['product_name'] = $product_details_row['product_name'];
-        // }
-    //    echo"<pre>"; print_r($curl);die();
-
-        echo json_encode($curl['product_details']);
+        echo json_encode($curl['product_name']);
     }
 	public function alpha_dash_space($fullname){
         if (! preg_match('/^[a-zA-Z\s]+$/', $fullname)) {
@@ -332,6 +332,7 @@ class Frontend extends CI_Controller {
           echo json_encode($response);
     }
 
+
     public function wishlist_list()
     {
         $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
@@ -447,7 +448,28 @@ class Frontend extends CI_Controller {
 	
     public function my_account()
 	{
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+        $curldata=array('user_id'=>$user_id);
+        $curl=$this->link->hits('get-user-profile-data',$curldata); 
+        $curl1=json_decode($curl,true);
+        $data['user_profile']=$curl1['user_profile'];
 		$this->load->view('frontend/my-account');
+	}
+
+    public function category()
+	{
+        $category=base64_decode($_GET['catid']);
+        $session_data = $this->session->userdata('logged_in');
+        $curldata = array('fk_lang_id' =>$session_data['lang_id'],'category_id'=>$category); 
+        $curl=$this->link->hits('get-user-profile-data',$curldata); 
+        $curl1=json_decode($curl,true);
+        $data['user_profile']=$curl1['user_profile'];
+		$this->load->view('frontend/category');
+	}
+
+    public function orders()
+	{
+		$this->load->view('frontend/order-history');
 	}
 
 	 public function logout() {

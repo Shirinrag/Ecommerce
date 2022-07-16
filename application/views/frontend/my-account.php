@@ -32,20 +32,17 @@
                            <fieldset id="personal-details">
                               <legend>Personal Details</legend>
                               <div class="form-group required">
-                                 <label for="input-firstname" class="control-label">First Name</label>
-                                 <input type="text" class="form-control" id="input-firstname" placeholder="First Name" value="" name="firstname">
+                                 <label for="input-firstname" class="control-label">User Name</label>
+                                 <input type="text" class="form-control" id="input-firstname" placeholder="First Name" value="<?php echo $user_profile[0]['user_name']; ?>" name="firstname">
                               </div>
-                              <div class="form-group required">
-                                 <label for="input-lastname" class="control-label">Last Name</label>
-                                 <input type="text" class="form-control" id="input-lastname" placeholder="Last Name" value="" name="lastname">
-                              </div>
+                              
                               <div class="form-group required">
                                  <label for="input-email" class="control-label">E-Mail</label>
-                                 <input type="email" class="form-control" id="input-email" placeholder="E-Mail" value="" name="email">
+                                 <input type="email" class="form-control" id="input-email" placeholder="E-Mail" value="<?php echo $user_profile[0]['email']; ?>" name="email">
                               </div>
                               <div class="form-group required">
                                  <label for="input-telephone" class="control-label">Telephone</label>
-                                 <input type="tel" class="form-control" id="input-telephone" placeholder="Telephone" value="" name="telephone">
+                                 <input type="tel" class="form-control" id="input-telephone" placeholder="Telephone" value="<?php echo $user_profile[0]['contact_no']; ?>" name="telephone">
                               </div>
                           
                            </fieldset>
