@@ -2,15 +2,13 @@
 
 
 
-
-
 function validate_update_sub_category(ele){
 
 	var hasError = 0;
 	var sub_category_id = $("#sub_category_id").val();
 	var category_id = $("#category_id").val();
 	var sub_category_name = $("#sub_category_name").val();
-	// var sub_category_name_ar = $("#sub_category_name_ar").val();
+	var sub_category_name_ar = $("#sub_category_name_ar").val();
 	var sub_category_sort_order = $("#sub_category_sort_order").val();
 	
 	if(jQuery.trim(category_id)=='') {
@@ -24,11 +22,11 @@ function validate_update_sub_category(ele){
 		changeError("sub_category_name");
 	}
 
-	// if(jQuery.trim(sub_category_name_ar)==''){
-	// 	 showError("Please enter sub category name in ar","sub_category_name_ar"); hasError = 1; 
-	// }else{
-	// 	changeError("sub_category_name_ar");
-	// }
+	if(jQuery.trim(sub_category_name_ar)==''){
+		 showError("Please enter sub category name in ar","sub_category_name_ar"); hasError = 1; 
+	}else{
+		changeError("sub_category_name_ar");
+	}
 
 	if(jQuery.trim(sub_category_sort_order)==''){
 		 showError("Please enter sub category order","sub_category_sort_order"); hasError = 1; 
@@ -46,7 +44,7 @@ function validate_update_sub_category(ele){
 			user.product.sub_category_id = sub_category_id;
 			user.product.category_id = category_id;
 			user.product.sub_category_name = sub_category_name;
-			// user.product.sub_category_name_ar = sub_category_name_ar;
+			user.product.sub_category_name_ar = sub_category_name_ar;
 			user.product.sub_category_sort_order = sub_category_sort_order;
 						
 			var q = JSON.stringify(user);
@@ -112,9 +110,9 @@ function validate_new_child_category(ele){
 	var category_id = $("#category_id").val();
 	var sub_category_id = $("#sub_category_id").val();
 	var child_category_name = $("#child_category_name").val();
-	// var child_category_name_ar = $("#child_category_name_ar").val(); 
+	var child_category_name_ar = $("#child_category_name_ar").val(); 
 	var child_category_sort_order = $("#child_category_sort_order").val(); 
-	var fk_lang_id = $('#fk_lang_id').val();  
+	//var fk_lang_id = $('#fk_lang_id').val();  
 	if(jQuery.trim(category_id)=='') {
 	 showError("Please select category","category_id"); hasError = 1; 
 	}else {
@@ -134,20 +132,20 @@ function validate_new_child_category(ele){
 	}else{
 		changeError("child_category_name");
 	}
-	if(jQuery.trim(fk_lang_id)==''){
-		 showError("Please enter child category","fk_lang_id"); hasError = 1; 
-	}else{
-		changeError("fk_lang_id");
-	}
-
-	// if(jQuery.trim(child_category_name_ar)==''){
-	// 	 showError("Please enter child category name in ar","child_category_name_ar"); hasError = 1; 
+	// if(jQuery.trim(fk_lang_id)==''){
+	// 	 showError("Please enter child category","fk_lang_id"); hasError = 1; 
 	// }else{
-	// 	changeError("child_category_name_ar");
+	// 	changeError("fk_lang_id");
 	// }
 
+	if(jQuery.trim(child_category_name_ar)==''){
+		 showError("Please enter child category name in ar","child_category_name_ar"); hasError = 1; 
+	}else{
+		changeError("child_category_name_ar");
+	}
+
 	if(jQuery.trim(child_category_sort_order)==''){
-		 showError("Please enter child category name in ar","child_category_sort_order"); hasError = 1; 
+		 showError("Please enter child category Sort Order","child_category_sort_order"); hasError = 1; 
 	}else{
 		changeError("child_category_sort_order");
 	}
@@ -166,7 +164,7 @@ function validate_update_child_category(ele){
 	var category_id = $("#category_id").val();
 	var sub_category_id = $("#sub_category_id").val();
 	var child_category_name = $("#child_category_name").val();
-	// var child_category_name_ar = $("#child_category_name_ar").val(); 
+	//var child_category_name_ar = $("#child_category_name_ar").val(); 
 	
 	if(jQuery.trim(category_id)=='') {
 	 showError("Please select category","category_id"); hasError = 1; 
@@ -626,15 +624,15 @@ function validate_add_new_category(ele){
 	hide_message_box(ele);
 	var hasError = 0;
 	var category_name = $('#category_name').val(); 
-	// var category_name_ar = $('#category_name_ar').val();
+	var category_name_ar = $('#category_name_ar').val();
 	var image_file=$('#image_file').val()
 
 	if(jQuery.trim(category_name)=='') { 
 		showError("Please enter category name","category_name"); hasError = 1; 
 	}
-	// else if(jQuery.trim(category_name_ar)==''){
-	// 	showError("Please enter category name in ar","category_name_ar"); hasError = 1; 
-	// }
+	else if(jQuery.trim(category_name_ar)==''){
+		showError("Please enter category name in ar","category_name_ar"); hasError = 1; 
+	}
 	else if(jQuery.trim(image_file) == '')
 	{
 		showError("Please Select the File");
@@ -698,9 +696,11 @@ function validate_edit_category(ele){
 	var hasError = 0;
 	var category_id = $('#category_id').val();
 	var category_name = $('#category_name').val(); 
+	var category_name_ar = $('#category_name_ar').val();
 		
 	if(jQuery.trim(category_name)=='') { showError("Please enter category name","category_name"); hasError = 1; }else {changeError("category_name");}
 	if(jQuery.trim(category_id)=='') { alert("Category id is missing. Please refresh the page"); hasError = 1; }
+	if(jQuery.trim(category_name_ar)=='') { showError("Please enter category name in arr","category_name_ar"); hasError = 1; }else {changeError("category_name_ar");}
 	if(hasError==1){
 		return false;
 	}else{
@@ -743,9 +743,9 @@ function validate_new_sub_category(ele){
 	var hasError = 0;
 	var category_id = $('#category_id').val(); 
 	var sub_category_name = $('#sub_category_name').val(); 
-	// var sub_category_name_ar = $('#sub_category_name_ar').val();
+	 var sub_category_name_ar = $('#sub_category_name_ar').val();
 	var sub_category_sort_order = $('#sub_category_sort_order').val();  
-	var fk_lang_id = $('#fk_lang_id').val();  
+	//var fk_lang_id = $('#fk_lang_id').val();  
 	
 	if(jQuery.trim(category_id)=='') { showError("Please select category","category_id"); hasError = 1; }
 	else{
@@ -757,11 +757,11 @@ function validate_new_sub_category(ele){
 	 	changeError("sub_category_name");
 	 }
 
-	 // if(jQuery.trim(sub_category_name_ar)=='') {
-	 // showError("Please enter sub category name in ar","sub_category_name_ar"); hasError = 1; }
-	 // else {
-	 // 	changeError("sub_category_name_ar");
-	 // }
+	 if(jQuery.trim(sub_category_name_ar)=='') {
+	 showError("Please enter sub category name in ar","sub_category_name_ar"); hasError = 1; }
+	 else {
+	 	changeError("sub_category_name_ar");
+	 }
 
 	 if(jQuery.trim(sub_category_sort_order)=='') {
 
@@ -770,12 +770,12 @@ function validate_new_sub_category(ele){
 	 	changeError("sub_category_sort_order");
 	 }
 
-	 if(jQuery.trim(fk_lang_id)=='') {
+	//  if(jQuery.trim(fk_lang_id)=='') {
 
-	 showError("Please enter sub category Order","fk_lang_id"); hasError = 1; }
-	 else {
-	 	changeError("fk_lang_id");
-	 }
+	//  showError("Please enter sub category Order","fk_lang_id"); hasError = 1; }
+	//  else {
+	//  	changeError("fk_lang_id");
+	//  }
 
 	if(hasError==1){
 		return false;
@@ -785,12 +785,12 @@ function validate_new_sub_category(ele){
 			user.product = {};
 			user.product.category_id = category_id;
 			user.product.sub_category_name = sub_category_name;
-			// user.product.sub_category_name_ar = sub_category_name_ar;
+			user.product.sub_category_name_ar = sub_category_name_ar;
 			user.product.sub_category_sort_order = sub_category_sort_order;
-			user.product.fk_lang_id = fk_lang_id;
+			//user.product.fk_lang_id = fk_lang_id;
 						
 			var q = JSON.stringify(user);
-
+			console.log(q);
 			jQuery.ajax({
 				dataType: 'json',
 				type: "POST",

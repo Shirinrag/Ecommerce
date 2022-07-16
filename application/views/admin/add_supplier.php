@@ -105,21 +105,21 @@
 			                    
 			                    <div class="col-sm-4 mr20">
 				                 	<div class="form-group">
-				                    	<label>Address 1 </label>
+				                    	<label>Building </label>
 										<input type="text" class="form-control" name="address_1" id="address_1">
 				                    </div>
 				                </div>
 
 			                    <div class="col-sm-4 mr20">
 				                	<div class="form-group">
-				                    	<label>Address 2 </label>
+				                    	<label>Room No </label>
 										<input type="text" class="form-control" name="address_2" id="address_2" >
 				                    </div>
 				                </div>
 
 				                <div class="col-sm-2 mr20">
 				                	<div class="form-group">
-				                    	<label>Enter Area </label>
+				                    	<label>Street </label>
 										<input type="text" class="form-control" name="area_name" id="area_name" >
 				                    </div>
 				                </div>
@@ -135,12 +135,12 @@
 				                    </div>
 				                </div>
 
-			                    <div class="col-sm-2 mr20">
+			                    <!-- <div class="col-sm-2 mr20">
 				                	<div class="form-group">
 				                    	<label>State </label>
 										<input type="text" class="form-control" name="state" id="state" >
 				                    </div>
-				                </div>
+				                </div> -->
 
 				                <div class="col-sm-2 mr20">
 				                	<div class="form-group">
@@ -155,74 +155,15 @@
 							<div class="row ml20 mb20">
 								<div class="col-sm-3 mr20">
 				                 	<div class="form-group">
-				                    	<label>GST </label>
-				                    	<input type="text" class="form-control" name="gst_number" id="gst_number" >
-				                    	<input type="file" name="gst_file" id="gst_file" >
+				                    	<label>Invoice Upload </label>
+				                    	
+				                    	<input type="file" name="gst_file" id="gst_file" accept="application/pdf">
 				                    </div>
 				                </div>
-				                <div class="col-sm-3 mr20">
-				                 	<div class="form-group">
-				                    	<label>PAN </label>
-				                    	<input type="text" class="form-control" name="pan_number" id="pan_number" >
-				                    	<input type="file" name="pan_file" id="pan_file" >
-				                    </div>
-				                </div>
-								<div class="col-sm-4 mr20" style="display:none;">
-				                 	<div class="form-group">
-				                    	<label>Supplier Items </label>
-				                    	<br>
-				                    	<select name="supplier_items[]" id="supplier-items" multiple class="form-control"> 
-				                    		<?php foreach($product_list as $product){?>
-				                    			<option value="<?php echo $product['product_id']?>"><?php echo $product['product_name']?></option>
-				                    		<?php }?>
-				                    	</select>
-
-				                    </div>
-				                </div>
+				                
 							</div>
 							
-							<div class="row ml20 mb20">
-								<h5>Bank Details</h5>
-								<div class="col-sm-3 mr20">
-				                 	<div class="form-group">
-				                    	<label>Account Name</label>
-				                    	<input type="text" class="form-control" name="account_name" id="account_name" >
-				                    </div>
-				                </div>
-				                <div class="col-sm-3 mr20">
-				                 	<div class="form-group">
-				                    	<label>Account Number</label>
-				                    	<input type="text" class="form-control" name="account_no" id="account_no" >
-				                    </div>
-				                </div>
-								<div class="col-sm-4 mr20">
-				                 	<div class="form-group">
-				                    	<label>Bank Name </label>
-				                    	<input type="text" name="bank_name" id="bank_name" class="form-control" >
-				                    </div>
-				                </div>
-							</div>
-
-							<div class="row ml20 mb20">
-								<div class="col-sm-3 mr20">
-				                 	<div class="form-group">
-				                    	<label>Branch Name</label>
-				                    	<input type="text" class="form-control" name="branch_name" id="branch_name" >
-				                    </div>
-				                </div>
-				                <div class="col-sm-3 mr20">
-				                 	<div class="form-group">
-				                    	<label>IFSC Code</label>
-				                    	<input type="text" class="form-control" name="ifsc_code" id="ifsc_code" >
-				                    </div>
-				                </div>
-								<div class="col-sm-4 mr20">
-				                 	<div class="form-group">
-				                    	<label>Swift Code</label>
-				                    	<input type="text" name="swift_code" id="swift_code" class="form-control" >
-				                    </div>
-				                </div>
-							</div>
+						
 
 	              		</div>
 	               	</form>

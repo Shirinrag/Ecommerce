@@ -40,15 +40,7 @@
                                 <div class="alert alert-danger" style="display:none;"></div>
 
                                 <div class="row ml20  mb20">
-                                    <div class="col-sm-3 mr20">
-                                      <div class="form-group">
-                                         <div class="col-sm-3 mr20">
-                                            <label>Language<span class="text-danger">*</span></label>
-                                            <div><span><?php echo $childcategory['lang_name'];?></span>
-                                            </div>
-                                         </div>
-                                      </div>
-                                   </div>
+                                   
                                     <div class="col-sm-3 mr20">
                                          <div class="form-group">
                                           <input type="hidden" name="child_category_id" value="<?php echo $_GET['child_category_id']; ?>">

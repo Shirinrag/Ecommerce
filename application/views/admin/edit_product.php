@@ -53,21 +53,15 @@
                         </div>
                         <div class="panel-body">
                             <hr>
-                            <?php if($this->session->flashdata('msg')) {?>
+                          
+                                <div class="row ml20 mb20">
+                                    
+                                <?php if($this->session->flashdata('msg')) {?>
                                 <div class="alert alert-success alert-dismissible">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                     <?php echo $this->session->flashdata('msg'); ?></div>
                                 <?php }?>
-                                <div class="row ml20 mb20">
-                                    <div class="col-sm-3 mr20">
-                              <div class="form-group">
-                                 <div class="col-sm-3 mr20">
-                                    <label>Language<span class="text-danger">*</span></label>
-                                    <div><span><?php echo $lang_name[0]['lang_name'];?></span>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+                         
                                     <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Select Category<span class="text-danger">*</span></label>
@@ -135,6 +129,20 @@
                                             </select>
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-2 mr20">
+                                 <div class="form-group">
+                                    <label>Enter Currency In English<span class="text-danger">*</span></label>
+                                    <input type="text"  name="currency_in_english" dir="ltl" id="currency_in_english" value="<?php echo $product_data[0]['currency_in_english']; ?>" class="form-control">
+                                 </div>
+                                 
+                              </div>
+                              <div class="col-sm-2 ">
+                             <div class="form-group">
+                                    <label>Enter Currency In Arabic<span class="text-danger">*</span></label>
+                                    <input type="text"  name="currency_in_arabic" dir="ltl" id="currency_in_arabic" value="<?php echo $product_data[0]['currency_in_arabic']; ?>" class="form-control">
+                                 </div>
+                              </div>
                                     <!-- <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Enter product name(ar)<span class="text-danger">*</span></label>
@@ -257,7 +265,7 @@
                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
                                         <label>Enter Product Description </label>
-                                        <textarea class="form-control" dir="ltl" name="description" id="product_description" value="<?php echo $value['product_description'];?>"></textarea>
+                                        <textarea class="form-control summernote" dir="ltl" name="description" id="product_description" value="<?php echo $value['description'];?>"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -265,7 +273,7 @@
                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
                                         <label>Enter Product Description (ar)</label>
-                                        <textarea class="form-control" dir="ltl" name="description_ar" id="product_description" value="<?php echo $value['description_ar'];?>"></textarea>
+                                        <textarea class="form-control summernote" dir="ltl" name="description_ar" id="product_description" value="<?php echo $value['description_ar'];?>"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -343,13 +351,15 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $('#product_description,#terms_conditions').summernote({height: 50});
+        $('#product_desc_ar,#terms_conditions').summernote({height: 50});
         var cat_id = <?= $product_data[0]['category_id']; ?>         
         var subcatid = <?= $product_data[0]['sub_category_id']; ?>
         var childid = <?= $product_data[0]['child_category_id']; ?>
         getSubCategory();
         getChildCategory();
         var sub_category_id = $('#subcatid').val();
-        $('#product_description,#terms_conditions').summernote({height: 50});
+      
         $('#product_category').select2();
         //$('#subcategory').select2();
         //$('#child_category_id').select2();

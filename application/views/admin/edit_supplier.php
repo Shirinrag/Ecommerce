@@ -151,77 +151,16 @@
 								<div class="row ml20 mb20">
 								<div class="col-sm-3 mr20">
 				                 	<div class="form-group">
-				                    	<label>GST </label>
-				                    	<input type="text" value="<?php echo $supplier_data[0]['gst_number']; ?>" class="form-control" name="gst_number" id="gst_number" >
+				                    	<label>Invoice Upload </label>
 				                    	<span id="gst_file_name"><a href="<?php echo base_url().'uploads/gst_files/'.$supplier_data[0]['gst_file_name'];?>"><?php echo $supplier_data[0]['gst_file_name']; ?></a></span>
 				                    	<input type="hidden" name="gst_file_name" value="<?php echo $supplier_data[0]['gst_file_name']; ?>">
 				                    	<input type="file" name="gst_file" id="gst_file" >
 				                    </div>
 				                </div>
-				                <div class="col-sm-3 mr20">
-				                 	<div class="form-group">
-				                    	<label>PAN </label>
-				                    	<input type="text" value="<?php echo $supplier_data[0]['pan_number']; ?>" class="form-control" name="pan_number" id="pan_number" >
-				                    	<span id="pan_file_name"><a href="<?php echo base_url().'uploads/pan_files/'.$supplier_data[0]['pan_file_name'];?>"><?php echo $supplier_data[0]['pan_file_name']; ?></a></span>
-				                    	<input type="hidden" name="pan_file_name" value="<?php echo $supplier_data[0]['pan_file_name']; ?>">
-				                    	<input type="file" name="pan_file" id="pan_file" >
-				                    </div>
-				                </div>
-								<div class="col-sm-4 mr20" style="display:none;">
-				                 	<div class="form-group">
-				                    	<label>Supplier Items </label>
-				                    	<br>
-				                    	<select name="supplier_items[]" id="supplier-items" multiple class="form-control"> 
-				                    		<?php foreach($product_list as $product){?>
-				                    			<option <?php if(in_array($product['product_id'], $supplier_items)){ echo 'selected'; }?> value="<?php echo $product['product_id'];?>"><?php echo $product['product_name']?></option>
-				                    		<?php }?>
-				                    	</select>
-
-				                    </div>
-				                </div>
+				               
+								
 							</div>
-							<div class="row ml20 mb20">
-								<h5>Bank Details</h5>
-								<div class="col-sm-3 mr20">
-				                 	<div class="form-group">
-				                    	<label>Account Name</label>
-				                    	<input type="text" value="<?php echo $supplier_data[0]['account_name'];?>" class="form-control" name="account_name" id="account_name" >
-				                    </div>
-				                </div>
-				                <div class="col-sm-3 mr20">
-				                 	<div class="form-group">
-				                    	<label>Account Number</label>
-				                    	<input type="text" value="<?php echo $supplier_data[0]['account_no'];?>" class="form-control" name="account_no" id="account_no" >
-				                    </div>
-				                </div>
-								<div class="col-sm-4 mr20">
-				                 	<div class="form-group">
-				                    	<label>Bank Name </label>
-				                    	<input type="text" value="<?php echo $supplier_data[0]['bank_name'];?>" name="bank_name" id="bank_name" class="form-control" >
-				                    </div>
-				                </div>
-							</div>
-
-							<div class="row ml20 mb20">
-								<div class="col-sm-3 mr20">
-				                 	<div class="form-group">
-				                    	<label>Branch Name</label>
-				                    	<input type="text" value="<?php echo $supplier_data[0]['branch_name'];?>" class="form-control" name="branch_name" id="branch_name" >
-				                    </div>
-				                </div>
-				                <div class="col-sm-3 mr20">
-				                 	<div class="form-group">
-				                    	<label>IFSC Code</label>
-				                    	<input type="text" value="<?php echo $supplier_data[0]['ifsc_code'];?>" class="form-control" name="ifsc_code" id="ifsc_code" >
-				                    </div>
-				                </div>
-								<div class="col-sm-4 mr20">
-				                 	<div class="form-group">
-				                    	<label>Swift Code</label>
-				                    	<input type="text" value="<?php echo $supplier_data[0]['swift_code'];?>" name="swift_code" id="swift_code" class="form-control" >
-				                    </div>
-				                </div>
-							</div>
+							
 
 							<?php }else{ ?>
 								<div class="alert alert-danger"> Invalid Supplier Data</div>

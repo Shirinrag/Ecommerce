@@ -39,23 +39,28 @@
                 <div class="panel-body">
                   <hr>
                   <form id="basicForm" method="post" action="<?php echo base_url();?>Admin/update_category" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_edit_category(this);">
-                     <div class="alert alert-success" style="display:none;"></div>
-                     <div class="alert alert-danger" style="display:none;"></div>
+                  <?php if($this->session->flashdata('msg')) {?>
+                                <div class="alert alert-<?php echo $this->session->flashdata('class');?> alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <?php echo $this->session->flashdata('msg'); ?>
+                                </div>
+                            <?php }?>   
+                 
                      <div class="form-group">
-                        <div class="col-sm-3 mr20">
+                        <!-- <div class="col-sm-3 mr20">
                            <label>Language<span class="text-danger">*</span></label>
-                           <div><span><?php echo $category_data[0]['lang_name'];?></span>
+                           <div><span><?php //echo $category_data[0]['lang_name'];?></span>
                            </div>
-                        </div>
+                        </div> -->
                         <div class="col-sm-3 mr20">
                            <input type="hidden" name="category_id" id="category_id" value="<?php echo $category_data[0]['category_id'];?>">
                            <label>Enter category name<span class="text-danger">*</span></label>
                            <input type="text" name="category_name" id="category_name" dir="rtl" class="form-control" value="<?php echo $category_data[0]['category_name'];?>" required="">
                         </div>
-                        <!-- <div class="col-sm-3 mr20">
+                        <div class="col-sm-3 mr20">
                            <label>Enter category name(ar)<span class="text-danger">*</span></label>
                            <input type="text" name="category_name_ar" dir="rtl" id="category_name_ar" class="form-control"  value="<?php echo $category_data[0]['category_name_ar'];?>" required="">
-                        </div> -->
+                        </div>
                         <div class="col-sm-3 mr20">
                            <label>category Image<span class="text-danger">*</span></label>
                            <input type="file" name="image_file" dir="rtl" accept="image/*" id="image_file" class="form-control" required="" value="" >

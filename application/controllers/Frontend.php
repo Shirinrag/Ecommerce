@@ -34,8 +34,18 @@ class Frontend extends CI_Controller {
         $id = $this->input->post('search');
         $curl_data = array('fk_lang_id' =>$session_data['lang_id'],'search_keyword' =>$id);
       	$curl=$this->link->hits('product-details-on-search',$curl_data);
+        //   echo"<pre>"; print_r($curl);
         $curl = json_decode($curl,true);
-		echo json_encode($curl);
+    //    echo"<pre>"; print_r($curl);die();
+
+        // $sizeof_product_name_1 = sizeof($curl['product_details']);
+        // foreach ($curl['product_details'] as $product_details_key => $product_details_row) {
+        //     $custom_key_1 = $sizeof_product_name_1 + $product_details_key;
+        //     $curl['product_details'][$custom_key_1]['product_name'] = $product_details_row['product_name'];
+        // }
+    //    echo"<pre>"; print_r($curl);die();
+
+        echo json_encode($curl['product_details']);
     }
 	public function alpha_dash_space($fullname){
         if (! preg_match('/^[a-zA-Z\s]+$/', $fullname)) {

@@ -38,22 +38,17 @@
                         <div class="panel-heading nopaddingbottom"><h4 class="panel-title"><b>Add Child Category</b></h4></div>
                         <div class="panel-body">
                             <form id="basicForm" action="<?php echo base_url('Admin/save_child_category');?>" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_new_child_category(this);" method="post">
-                                <div class="alert alert-success" style="display:none;"></div>
-                                <div class="alert alert-danger" style="display:none;"></div>
+                          
+                          
 
                                 <div class="row ml20  mb20">
-                                     <div class="col-sm-3 mr20">
-                                    <div class="form-group">
-                                        <label>Select Language<span class="text-danger">*</span></label>
-                                        <select class="form-control" name="fk_lang_id" id="fk_lang_id" onchange="getCategory()">
-                                            <option value=""></option>
-                                            <?php foreach ($lang_name as $lang_name_key => $lang_name_row) { ?>
-                                              <option value="<?= $lang_name_row['id']?>"><?= $lang_name_row['lang_name']?></option>
-                                           <?php } ?>
-                                            
-                                        </select>
-                                    </div>
+                                <?php if($this->session->flashdata('msg')) {?>
+                                <div class="alert alert-<?php echo $this->session->flashdata('class');?> alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <?php echo $this->session->flashdata('msg'); ?>
                                 </div>
+                            <?php }?>   
+                                     
                                     <div class="col-sm-3 mr20">
                                         <div class="form-group">
                                             <label>Select category<span class="text-danger">*</span></label>

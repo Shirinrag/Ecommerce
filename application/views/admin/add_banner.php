@@ -39,6 +39,9 @@
                     <div class="panel-body">
                         <hr>
                         <form id="basicForm" method="post" action="<?php echo base_url();?>Admin/upload_banner_image" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_banner(this);">
+                           
+                            
+                            <div class="row ml20  mb20">
                             <?php if($this->session->flashdata('msg')) {?>
                                 <div class="alert alert-<?php echo $this->session->flashdata('class');?> alert-dismissible">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -46,19 +49,6 @@
                                 </div>
                             <?php }?>
                             
-                            <div class="row ml20  mb20">
-
-                            <div class="col-sm-12 mr20">
-                                 <div class="form-group">
-                                    <label>Select Language<span class="text-danger">*</span></label>
-                                    <select class="form-control" name="fk_lang_id" id="fk_lang_id" onchange="getproductname()">
-                                       <option value=""></option>
-                                       <?php foreach ($lang_name as $lang_name_key => $lang_name_row) { ?>
-                                       <option value="<?= $lang_name_row['id']?>"><?= $lang_name_row['lang_name']?></option>
-                                       <?php } ?>
-                                    </select>
-                                 </div>
-                              </div>
                                 
                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
@@ -71,7 +61,11 @@
                                             <label>Select Product Name<span class="text-danger">*</span></label>
                                             <select class="form-control"   id="product_id" name="product_id">
                                             <option  value="">Select Product</option>
-    
+                                            <?php if(isset($product_list) && !empty($product_list)){ 
+                                                foreach ($product_list as $category_key => $category_value) {?>
+                                                    <option value="<?php echo $category_value['product_id']; ?>"><?php echo $category_value['product_name']; ?></option>
+                                            <?php }
+                                            } ?>
                                             </select>
                                         </div>
                                 </div>
@@ -179,7 +173,7 @@
             function getproductname(){
              var fk_lang_id = $('#fk_lang_id').val();
              var postData = {
-                 'fk_lang_id' : fk_lang_id
+                 //'fk_lang_id' : fk_lang_id
              }
              $.post('<?php echo base_url('Admin/getproductname')?>',postData,function(data){
                  var productdata = $.parseJSON(data);
@@ -187,7 +181,7 @@
                  
                  var html = '<option value="">Select Product</option>';
                  $.each(productdata,function(i,val){
-                     html += '<option value="'+val.product_id+'">'+val.product_name+'</option>';
+                     //html += '<option value="'+val.product_id+'">'+val.product_name+'</option>';
                  })
                  $('#product_id').html(html);
              })

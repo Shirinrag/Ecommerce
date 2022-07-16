@@ -8,6 +8,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/datetimepicker/moment.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/jquery-ui/jquery.easy-autocomplete.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/modernizr/modernizr-2.6.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/minicolors/jquery.miniColors.min.js"></script>
 
@@ -85,29 +86,77 @@ $(document).ready(function(){
 
         
     });
-    $( "#autouser" ).autocomplete({
-            source: function( request, response ) {
-          // Fetch data
-          $.ajax({
-            url: "<?=base_url()?>Frontend/get_search_data",
-            type: 'post',
-            dataType: "json",
-            data: {
-              search: request.term
-            },
-            success: function( data ) {
-              response( data );
-            console.log(data);
-            }
-          });
-        },
-        select: function (event, ui) {
-          // Set selection
-          $('#autouser').val(ui.item.product_name); 
-          $(".search-form").submit();
-          return false;
+    // $( "#autouser" ).autocomplete({
+    //         source: function( request, response ) {
+    //       // Fetch data
+    //       $.ajax({
+    //         url: "<?=base_url()?>Frontend/get_search_data",
+    //         type: 'post',
+    //         dataType: "json",
+    //         data: {
+    //           search: request.term
+    //         },
+    //         success: function( data ) {
+              
+    //           response($.map(data, function (value, key) {
+    //             return {
+    //                 label: value.product_name,
+    //                 value: value.product_id,
+    //                 value1: value.image_name
+    //             }
+    //         }));
+    //         }
+    //       });
+    //     },
+    //     select: function (event, ui) {
+    //       // Set selection
+    //       $('#autouser').val(ui.item.label); 
+    //       $(".search-form").submit();
+    //       return false;
+    //     },
+    //     create: function () {
+    //         $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+    //             //var path ="<?=base_url() ?>"+ item.value1;
+                
+    //              return $('<li class="divSelection">')
+    //                 .append('<div>')
+    //                 //.append('<img class="" src="' + path + '" />')
+    //                 .append('<span>')
+    //                 .append(item.label)
+    //                 .append('</span>')
+    //                 .append('</div>')
+    //                 .append('</li>')
+    //                 .appendTo(ul); // customize your HTML
+    //         };
+    //     }
+    //   });
+
+    var search_option = {
+    url: function(phrase) {
+        return "<?=base_url()?>Frontend/get_search_data";
+    },
+    getValue: function(element) {
+        return element.product_name;
+    },
+    ajaxSettings: {
+        dataType: "json",
+        method: "POST",
+        data: {
+            dataType: "json"
         }
-      });
+    },
+    preparePostData: function(data) {
+        data.phrase = $("#autouser").val();
+        return data;
+    },
+    list: {
+        match: {
+            enabled: true
+        }
+    },
+    requestDelay: 400
+};
+$("#autouser").easyAutocomplete(search_option);
    
     var bases_url="<?=base_url() ?>";
 </script>

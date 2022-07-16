@@ -40,14 +40,15 @@
                         </div>
                         <div class="panel-body">
                            <hr>
+                         
+                           <div class="row ml20 mb20">
                            <?php if($this->session->flashdata('msg')) {?>
                            <div class="alert alert-success alert-dismissible">
                               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                               <?php echo $this->session->flashdata('msg'); ?>
                            </div>
                            <?php }?>
-                           <div class="row ml20 mb20">
-                            <div class="col-sm-3 mr20">
+                            <!-- <div class="col-sm-3 mr20">
                                  <div class="form-group">
                                     <label>Select Language<span class="text-danger">*</span></label>
                                     <select class="form-control" name="fk_lang_id" id="fk_lang_id" onchange="getCategory()">
@@ -57,12 +58,17 @@
                                        <?php } ?>
                                     </select>
                                  </div>
-                              </div>
+                              </div> -->
                               <div class="col-sm-3 mr20">
                                  <div class="form-group">
                                     <label>Select Category<span class="text-danger">*</span></label>
                                     <select class="form-control" onchange="getSubCategory()" id="product_category" name="category_id">
                                        <option disabled value="">Select Category</option>
+                                       <?php if(isset($categpry_list) && !empty($categpry_list)){ 
+                                                foreach ($categpry_list as $category_key => $category_value) {?>
+                                                    <option value="<?php echo $category_value['category_id']; ?>"><?php echo $category_value['category_name']; ?></option>
+                                            <?php }
+                                            } ?>
                                     </select>
                                  </div>
                               </div>
@@ -86,7 +92,21 @@
                            </div>
                            </div>
                            </div>
+                          
                            <div class="row ml20 mb20">
+                           <div class="col-sm-3 mr20">
+                                 <div class="form-group">
+                                    <label>Enter Currency In English<span class="text-danger">*</span></label>
+                                    <input type="text"  name="currency_in_english" dir="ltl" id="currency_in_english" class="form-control">
+                                 </div>
+                                 
+                              </div>
+                              <div class="col-sm-3 ">
+                             <div class="form-group">
+                                    <label>Enter Currency In Arabic<span class="text-danger">*</span></label>
+                                    <input type="text"  name="currency_in_arabic" dir="ltl" id="currency_in_arabic" class="form-control">
+                                 </div>
+                              </div>
                               <div class="col-sm-3 mr20">
                                  <div class="form-group">
                                     <label>Child category</label>
@@ -101,12 +121,12 @@
                                     <input type="text"  name="product_name" dir="ltl" id="product_name" class="form-control">
                                  </div>
                               </div>
-                             <!--  <div class="col-sm-3 mr20">
+                              <div class="col-sm-3 mr20">
                                  <div class="form-group">
                                     <label>Enter product name(ar)<span class="text-danger">*</span></label>
                                     <input type="text"  name="product_name_ar" dir="ltl" id="product_name_ar" class="form-control">
                                  </div>
-                              </div> -->
+                              </div>
                               
                               <div class="col-sm-2 mr20">
                                  <div class="form-group">
@@ -231,16 +251,16 @@
                            <div class="row ml20 mb20">
                               <div class="col-sm-12 mr20">
                                  <div class="form-group">
-                                    <label>Enter Product Description </label>
-                                    <textarea class="form-control" dir="ltl" name="description" id="product_description"></textarea>
+                                    <label>Enter Product Description<span class="text-danger">*</span> </label>
+                                    <textarea class="form-control" dir="ltl" name="description" id="product_desc"></textarea>
                                  </div>
                               </div>
                            </div>
                            <div class="row ml20 mb20">
                               <div class="col-sm-12 mr20">
                                  <div class="form-group">
-                                    <label>Enter Product Description (ar)</label>
-                                    <textarea class="form-control" dir="ltl" name="description_ar" id="product_description"></textarea>
+                                    <label>Enter Product Description (ar)<span class="text-danger">*</span></label>
+                                    <textarea class="form-control" dir="ltl" name="description_ar" id="product_desc_ar"></textarea>
                                  </div>
                               </div>
                            </div>
@@ -298,7 +318,17 @@
        <script src="<?php echo base_url();?>assets_admin/js/admin.js"></script>
       <script type="text/javascript">
          $(document).ready(function(){
-             $('#product_description,#terms_conditions').summernote({height: 50});
+             $('#product_desc,#terms_conditions').summernote({height: 50});
+             $('#product_category').select2();
+             $('#subcategory').select2();
+             $('#child_category_id').select2();
+             $('#product_unit').select2();
+             $('#relatable_products').select2();
+             
+         });
+
+         $(document).ready(function(){
+             $('#product_desc_ar,#terms_conditions').summernote({height: 50});
              $('#product_category').select2();
              $('#subcategory').select2();
              $('#child_category_id').select2();
@@ -381,7 +411,12 @@
 	var product_barcode = jQuery('#product_barcode').val();
 	var product_code = jQuery('#product_code').val();
 	var image_name = jQuery('#image_name').val();
-	var fk_lang_id = jQuery('#fk_lang_id').val();
+   var product_name_ar = jQuery("#product_name_ar").val();
+   var product_desc = jQuery("#product_desc").val();
+   var product_desc_ar = jQuery("#product_desc_ar").val();
+   var currency_in_english = jQuery("#currency_in_english").val();
+   var currency_in_arabic = jQuery("#currency_in_arabic").val();
+	//var fk_lang_id = jQuery('#fk_lang_id').val();
 	
 	if(jQuery.trim(product_name)=='') { showError("Please Enter Product Name", "product_name"); hasError = 1; } else { changeError("product_name"); }
 	if(jQuery.trim(product_category)=='') { showError("Please Select Category", "product_category"); hasError = 1; } else { changeError("product_category"); }
@@ -391,8 +426,10 @@
 	if(jQuery.trim(pack_size)=='') { showError("Please Enter Pack Size", "pack_size"); hasError = 1; } else { changeError("pack_size"); }
 	if(jQuery.trim(image_name)=='') { showError("Please upload Product Image", "image_name"); hasError = 1; } else { changeError("image_name"); }
 	if(jQuery.trim(product_code)=='') { showError("Please Enter Product Code", "product_code"); hasError = 1; } else { changeError("product_code"); }
-   if(jQuery.trim(fk_lang_id)=='') { showError("Please Select Language", "fk_lang_id"); hasError = 1; } else { changeError("fk_lang_id"); }
-
+   //if(jQuery.trim(fk_lang_id)=='') { showError("Please Select Language", "fk_lang_id"); hasError = 1; } else { changeError("fk_lang_id"); }
+   if(jQuery.trim(currency_in_english)=='') { showError("Please Enter Curreny in English", "currency_in_english"); hasError = 1; } else { changeError("currency_in_english"); }
+   if(jQuery.trim(currency_in_arabic)=='') { showError("Please Enter Currency in Arabic", "currency_in_arabic"); hasError = 1; } else { changeError("currency_in_arabic"); }
+   
 	if(jQuery.trim(product_price)=='') { 
 		showError("Please Enter Product Price", "product_price"); hasError = 1; 
 	}else if(!isNumDigit(product_price)){
@@ -417,10 +454,12 @@
 		changeError("product_purchase_price"); 
 	}
 
-
+   if(jQuery.trim(product_name_ar)=='') { showError("Please Enter Product Name in ar", "product_name_ar"); hasError = 1; } else { changeError("product_name_ar"); }
+   if(jQuery.trim(product_desc)=='') { showError("Please Enter Description", "product_desc"); hasError = 1; } else { changeError("product_desc"); }
+   if(jQuery.trim(product_desc_ar)=='') { showError("Please Enter Product Description in ar", "product_desc_ar"); hasError = 1; } else { changeError("product_desc_ar"); }
 
 	if(jQuery.trim(product_unit)=='') { showError("Select Product unit", "product_unit"); hasError = 1; } else { changeError("product_unit"); }
-   if(jQuery.trim(fk_lang_id)=='') { showError("Select Language", "fk_lang_id"); hasError = 1; } else { changeError("fk_lang_id"); }
+   //if(jQuery.trim(fk_lang_id)=='') { showError("Select Language", "fk_lang_id"); hasError = 1; } else { changeError("fk_lang_id"); }
 
 /*	if(jQuery.trim(product_image)=='') { 
 		showError("Please select .png,.jpg file", "product_image"); hasError = 1; 

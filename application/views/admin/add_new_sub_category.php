@@ -44,18 +44,7 @@
                             <div class="alert alert-danger" style="display:none;"></div>
                             
                             <div class="row ml20  mb20">
-                                <div class="col-sm-4 mr20">
-                                    <div class="form-group">
-                                        <label>Select Language<span class="text-danger">*</span></label>
-                                        <select class="form-control" name="fk_lang_id" id="fk_lang_id" onchange="getCategory()">
-                                            <option value=""></option>
-                                            <?php foreach ($lang_name as $lang_name_key => $lang_name_row) { ?>
-                                              <option value="<?= $lang_name_row['id']?>"><?= $lang_name_row['lang_name']?></option>
-                                           <?php } ?>
-                                            
-                                        </select>
-                                    </div>
-                                </div>
+                               
                                 <div class="col-sm-4 mr20">
                                     <div class="form-group">
                                         <label>Select category<span class="text-danger">*</span></label>
@@ -76,12 +65,12 @@
                                     </div>
                                 </div>
 
-                                <!-- <div class="col-sm-4 mr20">
+                                <div class="col-sm-4 mr20">
                                     <div class="form-group">
                                         <label>Enter Sub category(ar)<span class="text-danger">*</span></label>
                                         <input type="text" name="sub_category_name_ar"  dir="rtl"  id="sub_category_name_ar" class="form-control" required="">
                                     </div>
-                                </div> -->
+                                </div>
                                  <div class="col-sm-4 mr20">
                                     <div class="form-group">
                                         <label>Sort Order<span class="text-danger">*</span></label>
@@ -115,7 +104,7 @@
                                         <th>Sr No.</th>
                                         <th>Category Name</th>
                                         <th>Sub Category Name</th>
-                                        <!-- <th>Sub Category Name(ar)</th> -->
+                                        <th>Sub Category Name(ar)</th>
                                         <th>Sort Order</th>
                                         <th>Action</th>
                                     </tr>
@@ -128,7 +117,7 @@
                                             <td><?php echo ++$i;?></td>
                                             <td><?php echo $subcategory['category_name'];?></td>
                                             <td><?php echo $subcategory['sub_category_name'];?></td>
-                                            <!-- <td><?php echo $subcategory['sub_category_name_ar'];?></td> -->
+                                            <td><?php echo $subcategory['sub_category_name_ar'];?></td>
                                              <td><?php echo $subcategory['sort_order'];?></td>
                                             <td>
                                                <span><a href="<?php echo base_url()."Admin/edit_sub_category?sub_category_id=".$subcategory['sub_category_id']?>"><i class='fa fa-pencil'></i></a></span>

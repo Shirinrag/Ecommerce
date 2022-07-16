@@ -41,15 +41,15 @@
 	                		<div class="alert alert-danger" style="display:none;"></div>
 
 	                		<div class="row ml20 mb20">
-                            <div class="col-sm-4 mr20">
+                            <!-- <div class="col-sm-4 mr20">
                               <div class="form-group">
                                  <div class="col-sm-3 mr20">
                                     <label>Language<span class="text-danger">*</span></label>
-                                    <div><span><?php echo $subcategory_data[0]['lang_name'];?></span>
+                                    <div><span><?php// echo $subcategory_data[0]['lang_name'];?></span>
                                     </div>
                                  </div>
                               </div>
-                           </div>
+                           </div> -->
 			                    <div class="col-sm-4 mr20">
 
 	                				<div class="form-group">
@@ -73,12 +73,12 @@
 				                      	<input type="text" name="sub_category_name" id="sub_category_name" value="<?php echo $subcategory_data[0]['sub_category_name'] ?>" class="form-control" required="">
 				                    </div>
 				                </div>
-                            <!-- <div class="col-sm-4">
+                            <div class="col-sm-4">
                                  <div class="form-group">
                                  <label>Enter Sub category(ar)<span class="text-danger">*</span></label>
                                     <input type="text" name="sub_category_name_ar" id="sub_category_name_ar" value="<?php echo $subcategory_data[0]['sub_category_name_ar'] ?>" class="form-control" required="">
                                 </div>
-                            </div> -->
+                            </div>
                              <div class="col-sm-4 mr20">
                                     <div class="form-group">
                                         <label>Sort Order<span class="text-danger">*</span></label>

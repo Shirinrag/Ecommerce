@@ -200,20 +200,21 @@ class Admin extends CI_Controller {
     }
     function save_sub_category() {
         $jsonObj = $_POST['jsonObj'];
+        //print_r($jsonObj);die();
         $array_data = json_decode($jsonObj, true);
         $array_entity = $array_data['product'];
         if (isset($array_entity) && !empty($array_entity)) {
             $category_id = $array_entity['category_id'];
             $sub_category_name = $array_entity['sub_category_name'];
-            //$sub_category_name_ar = $array_entity['sub_category_name_ar'];
+            $sub_category_name_ar = $array_entity['sub_category_name_ar'];
             $sub_category_sort_order = $array_entity['sub_category_sort_order'];
-            $fk_lang_id = $array_entity['fk_lang_id'];
+           // $fk_lang_id = $array_entity['fk_lang_id'];
             $sub_category_data = $this->model->getData("subcategory", array('sub_category_name' => $sub_category_name, 'status' => '1'));
             if (isset($sub_category_data) && !empty($sub_category_data)) {
                 $data['status'] = '0';
                 $data['msg'] = 'Category already exist.';
             } else {
-                $category_id = $this->model->insertData('subcategory', array('category_id' => $category_id, 'sub_category_name' => $sub_category_name, 'sort_order' => $sub_category_sort_order, 'fk_lang_id' => $fk_lang_id));
+                $category_id = $this->model->insertData('subcategory', array('category_id' => $category_id, 'sub_category_name' => $sub_category_name, 'sort_order' => $sub_category_sort_order, 'sub_category_name_ar' => $sub_category_name_ar));
                 if ($category_id > 0) {
                     $data['status'] = '1';
                     $data['msg'] = 'New sub category has been added successfully.';
@@ -232,7 +233,7 @@ class Admin extends CI_Controller {
         $sub_category_id = $this->input->get_post('sub_category_id');
         $this->load->model('superadmin_model');
         $data['subcategory_data'] = $this->superadmin_model->get_subcategory($sub_category_id);
-        $data['category_data'] = $this->model->getData('category', array('status' => '1', 'fk_lang_id' => $data['subcategory_data'][0]['fk_lang_id']));
+        $data['category_data'] = $this->model->getData('category', array('status' => '1'));
         $data['menu'] = 'subcategory';
         $data['main_content'] = 'admin/edit_sub_category'; //dashboard
         $this->load->view('admin/includes/template', $data);
@@ -245,7 +246,7 @@ class Admin extends CI_Controller {
             $sub_category_id = $array_entity['sub_category_id'];
             $category_id = $array_entity['category_id'];
             $sub_category_name = $array_entity['sub_category_name'];
-            //$sub_category_name_ar = $array_entity['sub_category_name_ar'];
+            $sub_category_name_ar = $array_entity['sub_category_name_ar'];
             $sub_category_sort_order = $array_entity['sub_category_sort_order'];
             $this->model->updateData('subcategory', array('category_id' => $category_id, 'sub_category_name' => $sub_category_name, 'sort_order' => $sub_category_sort_order), array('sub_category_id' => $sub_category_id));
             $data['status'] = '1';
@@ -295,7 +296,7 @@ class Admin extends CI_Controller {
     }
     function add_new_child_category() {
         $data['menu'] = 'childcategory';
-        // $data['category_data']= $this->model->getDataOrderBy('category',array('status'=>'1'),'category_id','desc');
+         $data['category_data']= $this->model->getDataOrderBy('category',array('status'=>'1'),'category_id','desc');
         $data['child_category_list'] = $this->model->getDataOrderBy('childcategory', array('status' => '1'), 'child_category_id ', 'desc');
         foreach ($data['child_category_list'] as $key => $value) {
             $data['child_category_list'][$key]['category_name'] = $this->model->getValue('category', 'category_name', array('category_id' => $value['category_id']));
@@ -308,9 +309,16 @@ class Admin extends CI_Controller {
     function save_child_category() {
         $array_entity = $_POST;
         if (isset($array_entity) && !empty($array_entity)) {
-            $this->model->insertData('childcategory', $array_entity);
-            $data['status'] = '1';
-            $data['msg'] = 'Sub category has been updated successfully.';
+            $sub_category_id=$this->model->insertData('childcategory', $array_entity);
+            // $data['status'] = '1';
+            // $data['msg'] = 'Sub category has been updated successfully.';
+            if ($sub_category_id > 0) {
+                $data['class'] = 'success';
+                $data['msg'] = 'Sub category has been added successfully.';
+            } else {
+                $data['class'] = 'danger';
+                $data['msg'] = 'Something went wrong while submitting category.';
+            }
         } else {
             $data['status'] = '0';
             $data['msg'] = 'Invalid sub category';
@@ -324,12 +332,12 @@ class Admin extends CI_Controller {
         $data['category_data_by_id'] = $this->model->getData('category', array('category_id' => $data['childcategory']['category_id']));
         $data['subcategory_data_by_id'] = $this->model->getData('subcategory', array('sub_category_id' => $data['childcategory']['sub_category_id']));
         echo json_encode($data['subcategory_data_by_id'][0]['sub_category_name']);
-    }
+    }   
     function edit_child_category() {
         $child_category_id = $this->input->get_post('child_category_id');
         $this->load->model('superadmin_model');
         $data['childcategory'] = $this->superadmin_model->get_child_category($child_category_id) [0];
-        $data['category_data'] = $this->model->getData('category', array('status' => '1', 'fk_lang_id' => $data['childcategory']['fk_lang_id']));;
+        $data['category_data'] = $this->model->getData('category', array('status' => '1'));
         $data['category_data_by_id'] = $this->model->getData('category', array('category_id' => $data['childcategory']['category_id']));
         $data['subcategory_data_by_id'] = $this->model->getData('subcategory', array('sub_category_id' => $data['childcategory']['sub_category_id']));
         $data['menu'] = 'childcategory';
@@ -369,6 +377,22 @@ class Admin extends CI_Controller {
         }
         echo json_encode($data);
     }
+
+    function delete_sub_category() {
+        $jsonObj = $_POST['jsonObj'];
+        $array_data = json_decode($jsonObj, true);
+        $array_entity = $array_data['product'];
+        if (isset($array_entity) && !empty($array_entity)) {
+            $category_id = $array_entity['sub_category_id'];
+            $this->model->updateData('subcategory', array('status' => '0'), array('sub_category_id' => $category_id));
+            $data['status'] = '1';
+            $data['msg'] = 'subcategory has been deleted successfully.';
+        } else {
+            $data['status'] = '0';
+            $data['msg'] = 'Invalid product category';
+        }
+        echo json_encode($data);
+    }
     function delete_banner() {
         $jsonObj = $_POST['jsonObj'];
         $array_data = json_decode($jsonObj, true);
@@ -401,9 +425,9 @@ class Admin extends CI_Controller {
         $product_list = $this->model->getData('product', array('status' => '1'));
         $product_data = array();
         foreach ($product_list as $key => $value) {
-            if ($postData['fk_lang_id'] == $value['fk_lang_id']) {
+            
                 $product_data[] = $value;
-            }
+        
         }
         echo json_encode($product_data);
     }
@@ -473,6 +497,7 @@ class Admin extends CI_Controller {
                 $_POST['stock_status'] = '1';
                 $_POST['relatable_products'] = implode(",", $_POST['relatable_products']);
                 $product_array = $_POST;
+                //print_r($product_array);die();
                 $product_gallery = array();
                 $data = array();
                 if (!empty($_FILES['image_files']['name'][0])) {
@@ -897,33 +922,39 @@ class Admin extends CI_Controller {
             if($supplier_name!=''){
                 foreach ($_FILES as $key => $value) {
                     if($key == 'gst_file' ){
-                        $uploaddir = './uploads/gst_files/';
-                        $filename = rand().basename($_FILES['gst_file']['name']);
-                        $uploadfile = $uploaddir.$filename;
-    
-                        if (move_uploaded_file($_FILES['gst_file']['tmp_name'], $uploadfile)) {
-                          echo "File is valid, and was successfully uploaded.\n";
-                          $gst_file_name = $filename;
+                        $config['upload_path'] = './uploads/';
+                        $config['allowed_types'] = 'pdf';
+                        // $config['max_size']='2000';
+                        $this->load->library('upload', $config);
+                        if (!$this->upload->do_upload('gst_file')) {
+                            $error = array('error' => $this->upload->display_errors());
+                            $data['msg'] = $error['error'];
+                            $this->load->view('admin/add_new_product', $data);
                         } else {
-                           echo "Upload failed";
-                           $gst_file_name = "";
+                            $data = array('file_path' => $this->upload->data());
+                            $filename = rand().basename($_FILES['gst_file']['name']);
+                            $uploadfile = 'uploads/' . $filename;
+                            if (move_uploaded_file($_FILES['gst_file']['tmp_name'], $uploadfile)) {
+                                echo "File is valid, and was successfully uploaded.\n";
+                                $gst_file_name = $uploadfile;
+                              } else {
+                                 echo "Upload failed";
+                                 $gst_file_name = "";
+                              }
                         }
-                        
-                    }
-                    else if($key == 'pan_file'){
-                        $uploaddir = './uploads/pan_files/';
-                        $filename = rand().basename($_FILES['pan_file']['name']);
-                        $uploadfile = $uploaddir.$filename;
-                        
+                        // $uploaddir = './uploads/gst_files/';
+                        // $filename = rand().basename($_FILES['gst_file']['name']);
+                        // $uploadfile = $uploaddir.$filename;
     
-                        if (move_uploaded_file($_FILES['pan_file']['tmp_name'], $uploadfile)) {
-                          echo "File is valid, and was successfully uploaded.\n";
-                          $pan_file_name = $filename;
-                        } else {
-                           echo "Upload failed";
-                           $pan_file_name = "";
-                        }
+                        // if (move_uploaded_file($_FILES['gst_file']['tmp_name'], $uploadfile)) {
+                        //   echo "File is valid, and was successfully uploaded.\n";
+                        //   $gst_file_name = $filename;
+                        // } else {
+                        //    echo "Upload failed";
+                        //    $gst_file_name = "";
+                        // }
                     }
+                    
                 }
                 $insert_data = array(
                     'supplier_name'=>$supplier_name,
@@ -938,8 +969,6 @@ class Admin extends CI_Controller {
                     'pincode'=>$pincode,
                     'gst_number'=>$_POST['gst_number'],
                     'gst_file_name' => $gst_file_name,
-                    'pan_number'=>$_POST['pan_number'],
-                    'pan_file_name'=> $pan_file_name,
                     'account_name'=>$_POST['account_name'],
                     'account_no'=>$_POST['account_no'],
                     'bank_name'=>$_POST['bank_name'],
@@ -1086,40 +1115,31 @@ class Admin extends CI_Controller {
             
             if($_FILES['gst_file']['name'] != ''){
 
-                $uploaddir = './uploads/gst_files/';
-                $filename = rand().basename($_FILES['gst_file']['name']);
-                $uploadfile = $uploaddir.$filename;
-                
-
-                if (move_uploaded_file($_FILES['gst_file']['tmp_name'], $uploadfile)) {
-                  echo "File is valid, and was successfully uploaded.\n";
-                  $gst_file_name = $filename;
+                $config['upload_path'] = './uploads/';
+                $config['allowed_types'] = 'pdf';
+                // $config['max_size']='2000';
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('gst_file')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    $data['msg'] = $error['error'];
+                    $this->load->view('admin/add_new_product', $data);
                 } else {
-                   echo "Upload failed";
-                   $gst_file_name = "";
+                    $data = array('file_path' => $this->upload->data());
+                    $filename = rand().basename($_FILES['gst_file']['name']);
+                    $uploadfile = 'uploads/' . $filename;
+                    if (move_uploaded_file($_FILES['gst_file']['tmp_name'], $uploadfile)) {
+                        echo "File is valid, and was successfully uploaded.\n";
+                        $gst_file_name = $uploadfile;
+                      } else {
+                         echo "Upload failed";
+                         $gst_file_name = "";
+                      }
                 }
             }
             else{
                $gst_file_name =  $_POST['gst_file_name'];
             }
-            if($_FILES['pan_file']['name'] != ''){     
-                
-                $uploaddir = './uploads/pan_files/';
-                $filename = rand().basename($_FILES['pan_file']['name']);
-                $uploadfile = $uploaddir.$filename;
-                
-
-                if (move_uploaded_file($_FILES['pan_file']['tmp_name'], $uploadfile)) {
-                  echo "File is valid, and was successfully uploaded.\n";
-                  $pan_file_name = $filename;
-                } else {
-                   echo "Upload failed";
-                   $pan_file_name = "";
-                }
-            }
-            else{
-                $pan_file_name = $_POST['pan_file_name'];;
-            }
+          
             $update_data = array(
                 'supplier_name'=>$supplier_name,
                 'phone_number'=>$phone_number,
@@ -1133,8 +1153,6 @@ class Admin extends CI_Controller {
                 'pincode'=>$pincode,
                 'gst_number'=>$_POST['gst_number'],
                 'gst_file_name' => $gst_file_name,
-                'pan_number'=>$_POST['pan_number'],
-                'pan_file_name'=> $pan_file_name,
                 'account_name'=>$_POST['account_name'],
                 'account_no'=>$_POST['account_no'],
                 'bank_name'=>$_POST['bank_name'],

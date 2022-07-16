@@ -35,6 +35,7 @@
                         <li><a href="<?php echo base_url();?>Frontend/login"><i class="fa fa-pencil-square-o"></i> Login</a></li>
                      </ul>
                   </li>
+      
                </ul>
             </div>
             <div class="header-top-right collapsed-block col-lg-5 col-md-4 col-sm-6 col-xs-8">
@@ -255,7 +256,30 @@
                         <span><strong><?=$user_session_data['user_name']?></strong></span> | <a href="<?php echo base_url();?>Frontend/logout" style="font-size: 15px; color: #fd7e14; width: 20% !important;"><span ><strong>Logout</strong></span></a>
                      <?php }
                      ?>
-                    
+                                <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle newdrop" data-bs-toggle="dropdown">
+          <div class="cart-block">
+          <div class="cart-icon" style="margin-top: -30px !important;margin-left: -30px;!important">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="Icon-sc-1iwi4w1-0 cHrYdI hover" mr="8" iconsize="20" style="width: 25px !important;"><g clip-path="url(#user_svg__clip0)"><path d="M15.316 13.016c1.512-1.058 2.516-2.797 2.516-4.784A5.835 5.835 0 0012 2.4a5.835 5.835 0 00-5.832 5.832 5.79 5.79 0 002.517 4.784C4.343 14.291 1.2 17.996 1.2 22.37v.022c0 .896.843 1.609 1.825 1.609h17.95c.983 0 1.825-.713 1.825-1.61v-.02c0-4.375-3.143-8.08-7.484-9.354zM7.853 8.232a4.148 4.148 0 018.294 0 4.148 4.148 0 01-8.294 0zm13.122 14.083H3.025a.245.245 0 01-.14-.032c.054-4.45 4.126-8.057 9.115-8.057 4.99 0 9.05 3.596 9.115 8.057a.245.245 0 01-.14.032z" fill="#333"></path></g><defs><clipPath id="user_svg__clip0"><path fill="#fff" transform="translate(1.2 2.4)" d="M0 0h21.6v21.6H0z"></path></clipPath></defs></svg>
+          </div>
+          <?php //if ($this->session->userdata('user_data')!="") {?>
+          <div class="cart-item" style="width: 80px;white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;"><?php echo $admin_rs[0]['firstname']; ?></div>
+          <?php //}else{ ?>
+          
+          <?php// } ?>
+        </div>
+        </a>
+
+        <div class="dropdown-menu" >
+        <ul class="blank">
+          <?php if ($this->session->userdata('user_logged_in')['op_user_id'] != "") {?>
+            <li><a href="<?php echo base_url(); ?>profile" class="dropdown-item">My Account</a></li>
+            <li><a href="<?php echo base_url(); ?>profile/orders" class="dropdown-item">My Orders</a></li>
+        <?php } ?>
+          </ul>
+         </li>
                   </ul>
                </div>
                <div class="telephone hidden-xs hidden-sm hidden-md">

@@ -39,38 +39,28 @@
                     <div class="panel-body">
                         <hr>
                         <form id="basicForm" method="post" action="<?php echo base_url();?>Admin/save_category" enctype="multipart/form-data" class="form-horizontal" novalidate="novalidate" onsubmit="return validate_add_new_category(this);">
+                           
+                            
+                            <div class="row ml20  mb20">
                             <?php if($this->session->flashdata('msg')) {?>
                                 <div class="alert alert-<?php echo $this->session->flashdata('class');?> alert-dismissible">
                                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                     <?php echo $this->session->flashdata('msg'); ?>
                                 </div>
                             <?php }?>
-                            
-                            <div class="row ml20  mb20">
-                              <div class="col-sm-12 mr20">
-                                    <div class="form-group">
-                                        <label>Select Language<span class="text-danger">*</span></label>
-                                        <select class="form-control" name="fk_lang_id" id="fk_lang_id">
-                                            <option value=""></option>
-                                            <?php foreach ($lang_name as $lang_name_key => $lang_name_row) { ?>
-                                              <option value="<?= $lang_name_row['id']?>"><?= $lang_name_row['lang_name']?></option>
-                                           <?php } ?>
-                                            
-                                        </select>
-                                    </div>
-                                </div> 
+                             
                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
                                         <label>Enter category name<span class="text-danger">*</span></label>
                                         <input type="text" name="category_name" dir="rtl" id="category_name" class="form-control" required="">
                                     </div>
                                 </div>
-                                <!--  <div class="col-sm-12 mr20">
+                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
                                         <label>Enter category name(ar)<span class="text-danger">*</span></label>
                                         <input type="text" name="category_name_ar" dir="rtl" id="category_name_ar" class="form-control" required="">
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="col-sm-12 mr20">
                                     <div class="form-group">
                                         <label>category Image<span class="text-danger">*</span></label>
@@ -111,7 +101,7 @@
                                             <tr>
                                                 <th>Sr No.</th>
                                                 <th>Category Name</th>
-                                                <!-- <th>Category Name(ar)</th> -->
+                                                <th>Category Name(ar)</th>
                                                 <th>Image</th>
                                                 <th>Sort Order</th>
                                                 <th>Action</th>
@@ -122,7 +112,7 @@
                                         <tr>
                                             <td><?php echo ++$i;?></td>
                                             <td><?php echo $category['category_name'];?></td>
-                                            <!-- <td><?php echo $category['category_name_ar'];?></td> -->
+                                            <td><?php echo $category['category_name_ar'];?></td>
                                             <td><img src="<?php echo base_url().$category['image_path'];?>" style="height: 100px;width: 100px;"></td>
                                             <th><?php echo $category['sort_order'];?></th>
                                             <td>
