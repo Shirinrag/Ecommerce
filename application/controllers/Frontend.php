@@ -430,18 +430,6 @@ class Frontend extends CI_Controller {
 		$this->load->view('frontend/my-account');
 	}
 
-	function getGeoCode($address)
-	{
-	        // geocoding api url
-	        $url = "http://maps.google.com/maps/api/geocode/json?address=$address";
-	        // send api request
-	        $geocode = file_get_contents($url);
-	        $json = json_decode($geocode);
-	        $data['lat'] = $json->results[0]->geometry->location->lat;
-	        $data['lng'] = $json->results[0]->geometry->location->lng;
-	        return $data;
-	}
-
 	 public function logout() {
         $this->session->unset_userdata('user_logged_in');
         redirect(base_url() . 'Frontend');
