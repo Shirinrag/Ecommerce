@@ -217,10 +217,9 @@ class Frontend extends CI_Controller {
 		$fk_lang_id = $session_data1['lang_id'];
 		$product_id = base64_decode($_GET['id']);
         $curl_data = array('product_id' => $product_id, 'fk_lang_id' => $fk_lang_id,);
-      	$curl = $this->link->hits('product-details-on-id',$curl_data);
+        $curl = $this->link->hits('product-details-on-id',$curl_data);
       
       	$curl = json_decode($curl, true);
-      	// echo '<pre>'; print_r($curl); exit;
       	$data['product_details'] = $curl['product_details'];
         $data['cat_data'] = $curl['cat_data'];
        	$data['related_product_details'] = $curl['related_product_details'];
@@ -320,7 +319,6 @@ class Frontend extends CI_Controller {
         $cart_id=$_POST['cartid'];
         $productid=$_POST['productid'];
         $curl_data=array('cart_id'=>$cart_id,'user_id'=>$user_id,'product_id'=>$productid,'quantity'=>$qty);
-        print_r($curl_data);die();
         $curl=$this->link->hits('plus-minus-cart-count',$curl_data); 
         $curl1=json_decode($curl,true);
         if($curl1['status']){
@@ -377,6 +375,7 @@ class Frontend extends CI_Controller {
 	public function save_new_address()
 	{
 		 if ($this->session->userdata('user_logged_in')) {
+		 	 $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
 		 	$this->form_validation->set_rules('roomno', 'Room No', 'required|trim', array('required' => 'You must provide a %s',));
         	$this->form_validation->set_rules('building', 'Building', 'trim|required', array('required' => 'You must provide a %s',));
         	$this->form_validation->set_rules('city', 'City', 'trim|required', array('required' => 'You must provide a %s',));
@@ -394,8 +393,46 @@ class Frontend extends CI_Controller {
 	            	'address_type' => strip_tags(form_error('address_type')),
 	            );
 	        } else {
-		 		// get_lat_long
-		 	}
+	        	$roomno = $this->input->post('roomno');
+	        	$building = $this->input->post('building');
+	        	$city = $this->input->post('city');
+	        	$postcode = $this->input->post('postcode');
+	        	$address_type = $this->input->post('address_type');
+
+	        	$roomno = str_replace(" ","+",$roomno);
+	        	$building = str_replace(" ","+",$building);
+	        	$city = str_replace(" ","+",$city);
+	        	$postcode = str_replace(" ","+",$postcode);
+	        	$address = $roomno."+".$building."+".$city."+".$postcode;
+		 		$get_lat_long = get_lat_long($address);
+
+
+		 		$roomno = str_replace("+"," ",$roomno);
+	        	$building = str_replace("+"," ",$building);
+	        	$city = str_replace("+"," ",$city);
+	        	$postcode = str_replace("+"," ",$postcode);
+
+		 		$curl_data = array(
+		 			'roomno'=>$roomno,
+		 			'building'=>$building,
+		 			'street'=>$city,
+		 			'zone'=>$postcode,
+		 			'latitude'=>$get_lat_long['lat'],
+		 			'longitude'=>$get_lat_long['lng'],
+		 			'address_type'=>$address_type,
+		 			'user_id'=>$user_id,
+		 		);
+		 		$curl1=$this->link->hits('save-new-address',$curl_data); 
+        		$curl1=json_decode($curl1,true);
+
+        		if ($curl1['status']==1) {
+                    $response['status'] = 'success';
+                }else {
+                    $response['status'] = 'failure';
+                    $response['error'] = array('address_type' => $curl1['message'],);
+                }
+            }
+		 	
 	 	 } else {
 	        $response['status'] = 'failure';
 	        $response['url'] = base_url() . "Frontend";
@@ -411,18 +448,6 @@ class Frontend extends CI_Controller {
     public function my_account()
 	{
 		$this->load->view('frontend/my-account');
-	}
-
-	function getGeoCode($address)
-	{
-	        // geocoding api url
-	        $url = "http://maps.google.com/maps/api/geocode/json?address=$address";
-	        // send api request
-	        $geocode = file_get_contents($url);
-	        $json = json_decode($geocode);
-	        $data['lat'] = $json->results[0]->geometry->location->lat;
-	        $data['lng'] = $json->results[0]->geometry->location->lng;
-	        return $data;
 	}
 
 	 public function logout() {

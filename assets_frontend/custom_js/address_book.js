@@ -13,13 +13,13 @@ $('#save_new_address_form').submit(function (e) {
          if (response.status == 'success') {
             $('form#save_new_address_form').trigger('reset');
             $('#save_new_address_button').button('reset');
-            window.location.replace(response['url']);
-            success_msg("Register Successfully");
+            // window.location.replace(response['url']);
+            success_msg("Address Added Successfully");
          } else if (response.status == 'failure') {
             error_msg(response.error);
             $('#save_new_address_button').button('reset');
          } else {
-            window.location.replace(response['url']);
+            // window.location.replace(response['url']);
          }
       }
    });
