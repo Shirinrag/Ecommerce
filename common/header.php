@@ -175,7 +175,7 @@
                                           <div class="row">
                                              <?php  foreach($cat_data as $cat_data_key => $cat_data_row){?>
                                              <div class="col-md-3">
-                                                <a href="<?php echo base_url().'Frontend/category?catid='.$cat_data_row['category_id']; ?>" class="title-submenu"><?php echo $cat_data_row['category_name'] ?></a>
+                                                <a href="<?php echo base_url().'Frontend/category?catid='.base64_encode($cat_data_row['category_id']); ?>" class="title-submenu"><?php echo $cat_data_row['category_name'] ?></a>
                                                 <div class="row">
                                                    <div class="col-md-12 hover-menu">
                                                       <div class="menu">
@@ -199,10 +199,10 @@
                                                             <li>
                                                                <?php if ($dump_key==1) { ?>
                                                                <?php } ?>
-                                                               <a href=""><?=$sub_id[0];?></a>
+                                                               <a href="<?php echo base_url().'Frontend/sub_category?subcatid='.base64_encode($sub_id[1]); ?>"><?=$sub_id[0];?></a>
                                                                <ul class="sub-menu">
                                                                   <?php  foreach($cat_data_row['child_name'][$key1] as $s){?>
-                                                                  <li class="menu-item-has-children"><a href=""><?=$s['child_category_name'];?></a>
+                                                                  <li class="menu-item-has-children"><a href="<?php echo base_url().'Frontend/child_category?childcatid='.base64_encode($s['child_category_id']); ?>"><?=$s['child_category_name'];?></a>
                                                                   </li>
                                                                   <?php }?>
                                                                </ul>

@@ -41,7 +41,7 @@
 							<tr>
 								<td class="text-center">Image</td>
 								<td class="text-left">Product Name</td>
-								<td class="text-right">Stock</td>
+								<!-- <td class="text-right">Stock</td> -->
 								<td class="text-right">Unit Price</td>
 								<td class="text-right">Action</td>
 							</tr>
@@ -57,7 +57,7 @@
 								</td>
 								<td class="text-left"><a href="product.html"><?php echo $value['product_name']; ?></a>
 								</td>
-								<td class="text-right">In Stock</td>
+								<!-- <td class="text-right">In Stock</td> -->
 								<td class="text-right">
 									<div class="price"> <span class="price-new"><?php echo '$ '.$value['product_purchase_price']; ?></span> <span class="price-old"><?php echo '$ '.$value['product_price']; ?></span></div>
 								

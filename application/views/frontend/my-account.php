@@ -33,16 +33,16 @@
                               <legend>Personal Details</legend>
                               <div class="form-group required">
                                  <label for="input-firstname" class="control-label">User Name</label>
-                                 <input type="text" class="form-control" id="input-firstname" placeholder="First Name" value="<?php echo $user_profile[0]['user_name']; ?>" name="firstname">
+                                 <input type="text" class="form-control" id="input-firstname" placeholder="First Name" value="<?php echo $user_profile['user_name']; ?>" name="firstname">
                               </div>
                               
                               <div class="form-group required">
                                  <label for="input-email" class="control-label">E-Mail</label>
-                                 <input type="email" class="form-control" id="input-email" placeholder="E-Mail" value="<?php echo $user_profile[0]['email']; ?>" name="email">
+                                 <input type="email" class="form-control" id="input-email" placeholder="E-Mail" value="<?php echo $user_profile['email']; ?>" name="email">
                               </div>
                               <div class="form-group required">
                                  <label for="input-telephone" class="control-label">Telephone</label>
-                                 <input type="tel" class="form-control" id="input-telephone" placeholder="Telephone" value="<?php echo $user_profile[0]['contact_no']; ?>" name="telephone">
+                                 <input type="tel" class="form-control" id="input-telephone" placeholder="Telephone" value="<?php echo $user_profile['contact_no']; ?>" name="telephone">
                               </div>
                           
                            </fieldset>

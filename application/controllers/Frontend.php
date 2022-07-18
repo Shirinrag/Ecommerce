@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+ini_set("memory_limit", "-1");
 class Frontend extends CI_Controller {
 
 	public function index()
@@ -287,8 +287,8 @@ class Frontend extends CI_Controller {
         $fk_lang_id = $session_data['lang_id'];
         $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id);
         $curl=$this->link->hits('get-all-user-cart',$curldata); 
+  
         $curl1=json_decode($curl,true);
-        // echo '<pre>'; print_r($curl1); exit;
         $data['cart_data']=$curl1['cart_data'];
         $data['cart_total_sum']=$curl1['sub_total'];
         $this->load->view('frontend/cart',$data);
@@ -321,9 +321,13 @@ class Frontend extends CI_Controller {
         $curl_data=array('cart_id'=>$cart_id,'user_id'=>$user_id,'product_id'=>$productid,'quantity'=>$qty);
         $curl=$this->link->hits('plus-minus-cart-count',$curl_data); 
         $curl1=json_decode($curl,true);
+        $data['order_summary_info']=$curl1['order_summary_info'];
         if($curl1['status']){
             $response['status']='success';
             $response['message']=$curl1['message'];
+            $response['total']=$curl1['total'];
+            $response['order_summary_info']= $data['order_summary_info'];
+            //$response['subtotal']=$response['order_summary_info'][0]['subtotal'];
           }
           else{
             $response['status']='failed';
@@ -332,6 +336,19 @@ class Frontend extends CI_Controller {
           echo json_encode($response);
     }
 
+    public function checkout()
+    {
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+        $session_data = $this->session->userdata('logged_in');
+        $fk_lang_id = $session_data['lang_id'];
+        $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id);
+        $curl=$this->link->hits('check-out-api',$curldata); 
+        $curl1=json_decode($curl,true);
+       
+        $data['cart_product_details']=$curl1['cart_product_details'];
+        $data['user_address']=$curl1['user_address'];
+        $this->load->view('frontend/checkout',$data);
+    }
 
     public function wishlist_list()
     {
@@ -453,7 +470,7 @@ class Frontend extends CI_Controller {
         $curl=$this->link->hits('get-user-profile-data',$curldata); 
         $curl1=json_decode($curl,true);
         $data['user_profile']=$curl1['user_profile'];
-		$this->load->view('frontend/my-account');
+		$this->load->view('frontend/my-account',$data);
 	}
 
     public function category()
@@ -461,10 +478,38 @@ class Frontend extends CI_Controller {
         $category=base64_decode($_GET['catid']);
         $session_data = $this->session->userdata('logged_in');
         $curldata = array('fk_lang_id' =>$session_data['lang_id'],'category_id'=>$category); 
-        $curl=$this->link->hits('get-user-profile-data',$curldata); 
+        $curl=$this->link->hits('get-product-on-category',$curldata); 
         $curl1=json_decode($curl,true);
-        $data['user_profile']=$curl1['user_profile'];
-		$this->load->view('frontend/category');
+        $data['product_data']=$curl1['product_data'];
+        // echo "<pre>";
+        // print_r($data['product_data']);die();
+      	$this->load->view('frontend/category',$data);
+	}
+
+    public function sub_category()
+	{
+        $subcatid=base64_decode($_GET['subcatid']);
+        $session_data = $this->session->userdata('logged_in');
+        $curldata = array('fk_lang_id' =>$session_data['lang_id'],'sub_category_id'=>$subcatid); 
+        $curl=$this->link->hits('get-product-on-sub-category',$curldata); 
+        $curl1=json_decode($curl,true);
+        $data['product_data']=$curl1['product_data'];
+        //  echo "<pre>";
+        //  print_r($data['product_data']);die();
+      	$this->load->view('frontend/category',$data);
+	}
+
+    public function child_category()
+	{
+        $childcatid=base64_decode($_GET['childcatid']);
+        $session_data = $this->session->userdata('logged_in');
+        $curldata = array('fk_lang_id' =>$session_data['lang_id'],'child_category_id'=>$childcatid); 
+        $curl=$this->link->hits('get-product-on-child-category',$curldata); 
+        $curl1=json_decode($curl,true);
+        $data['product_data']=$curl1['product_data'];
+        //  echo "<pre>";
+        //  print_r($data['product_data']);die();
+      	$this->load->view('frontend/category',$data);
 	}
 
     public function orders()

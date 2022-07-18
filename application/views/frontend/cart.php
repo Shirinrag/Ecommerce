@@ -38,6 +38,7 @@
                               <td class="text-left">Product Name</td>
                               <td class="text-left">Model</td>
                               <td class="text-left">Quantity</td>
+                              <td class="text-left">Action</td>
                               <td class="text-right">Unit Price</td>
                               <td class="text-right">Total</td>
                            </tr>
@@ -63,36 +64,25 @@
                               </div> -->
                                 
                                  <div class="option quantity">
-                                    <!-- <div class="input-group quantity-control" unselectable="on" style="-webkit-user-select: none;">
-                                      
-                                       <button id="<?= $cart_data_row['cart_id']?>" class="input-group-addon product_quantity_down update_qty"  onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)">−</button>
-                                       <input class="form-control text-center qtys" type="text" name="quantity"
-                                          value="<?= $cart_data_row['cart_qty']?>" readonly>
-                                       <input type="hidden" name="product_id" value="50">
-                                       <button id="<?= $cart_data_row['cart_id']?>"  class="input-group-addon product_quantity_up update_qty"  onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)">+</button>
-                                    </div> -->
-                                 
-                                       <input type="" name="cartid" class="cartid" value="<?= $cart_data_row['cart_id']?>">
-                                       <input type="" class="product_id" name="product_id" id="<?= $cart_data_row['product_id']?>" value="<?= $cart_data_row['product_id']?>">
+                             
                                        <!-- skin 2 -->
                                        <div class="num-block skin-2">
                                          <div class="num-in">
-                                           <span class="minus dis" id="<?= $cart_data_row['cart_id']?>" ></span>
-                                           <input type="text" class="in-num" value="<?= $cart_data_row['cart_qty']?>" readonly>
-                                           <span class="plus" id="<?= $cart_data_row['cart_id']?>" ></span>
+                                           <span class="minus dis" id="<?= $cart_data_row['cart_id']?>" onClick="decrement_quantity(<?= $cart_data_row['cart_id']?>, '<?=$cart_data_row['product_offer_price']?>','<?=$cart_data_row['product_id']?>')"></span>
+                                           <input type="text"  id="input-quantity-<?= $cart_data_row['cart_id']?>" value="<?= $cart_data_row['cart_qty']?>" class="in-num" value="<?= $cart_data_row['cart_qty']?>" readonly>
+                                           <span class="plus" id="<?= $cart_data_row['cart_id']?>" onClick="increment_quantity(<?= $cart_data_row['cart_id']?>, '<?=$cart_data_row['product_offer_price']?>','<?=$cart_data_row['product_id']?>')"></span>
                                          </div>
                                        </div>
                                        <!-- / skin 2 -->
 
-
-
-
-
+                                       <div class="cart-item-container">
+                                       <p class="text-center" id="message_<?= $cart_data_row['cart_id']?>" style="font-size:12px;color:red;"></p>
                                  </div>
                              
                               </td>
+                              <td>	<a class="btn btn-danger romove_from_cart" title="" id=<?= $cart_data_row['cart_id'];?> data-toggle="tooltip"><i class="fa fa-times"></i></a></td>
                               <td class="text-right">$ <?=$cart_data_row['product_offer_price']?></td>
-                              <td class="text-right">$ <?=$cart_data_row['product_offer_price']?></td>
+                              <td class="text-right" id="product_offer_price_<?= $cart_data_row['cart_id']?>">$ <?=$cart_data_row['cartPrice']?></td>
                            </tr>
                            <?php } ?>
                         </tbody>
@@ -145,9 +135,9 @@
                            <tbody>
                               <tr>
                                  <td class="text-right">
-                                    <strong>Sub-Total:</strong>
+                                    <strong >Sub-Total:</strong>
                                  </td>
-                                 <td class="text-right">$ <?php echo $cart_total_sum; ?></td>
+                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
                               </tr>
                               <tr>
                                  <td class="text-right">
@@ -171,7 +161,7 @@
                                  <td class="text-right">
                                     <strong>Total:</strong>
                                  </td>
-                                 <td class="text-right">$0</td>
+                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
                               </tr>
                            </tbody>
                         </table>
@@ -180,7 +170,7 @@
                   <div class="buttons">
 
                      <div class="pull-left"><a href="<?php echo base_url();?>" class="btn btn-primary">Continue Shopping</a></div>
-                     <div class="pull-right"><a href="checkout.html" class="btn btn-primary">Checkout</a></div>
+                     <div class="pull-right"><a href="<?php echo base_url(); ?>Frontend/checkout" class="btn btn-primary">Checkout</a></div>
                   </div>
                   <?php }else{ ?>
                      <b><p class="text-center">Cart is Empty.</p></b>
@@ -203,23 +193,8 @@
       <!-- Include Libs & Plugins
          ============================================ -->
       <?php include('common/jsfiles.php');?>
-
-      <script type="text/javascript">
-function updatecart(obj,$cartid,$opt){
-   objRow = obj.parentNode;
-   var qty = $(objRow).find('.in-num').val() ;
-   // var sum = parseInt(qty)+parseInt('1');
-   console.log(qty);
-   $.ajax({
-   type:"POST",
-   url:'<?php echo base_url(); ?>Frontend/updatecarts',
-   data: { qty:qty, cartid:$cartid ,productid:$opt},
-   success:function (result) {
-    
-   }
-   });
-}
-</script> 
+      <script src="<?= base_url(); ?>assets_frontend/custom_js/cart.js"></script>
+  
 
 <script type="text/javascript">
    $(document).ready(function() {
@@ -232,7 +207,6 @@ function updatecart(obj,$cartid,$opt){
             if($(this).hasClass('minus')) {
                var count = parseFloat($input.val()) - 1;
                count = count < 1 ? 1 : count;
-                console.log(count);
                if (count < 2) {
                   $(this).addClass('dis');
                }else {
@@ -243,22 +217,25 @@ function updatecart(obj,$cartid,$opt){
              else {
                var count = parseFloat($input.val()) + 1
                   $input.val(count);
-                       console.log(count);
                if (count > 1) {
                  $(this).parents('.num-block').find(('.minus')).removeClass('dis');
                }
+               $.ajax({
+                  type:"POST",
+                  url:'<?php echo base_url(); ?>Frontend/updatecarts',
+                  data: { qty:$input, cartid:count ,productid:product_id},
+                  success:function (result) {
+                     if(result['status']=='false')
+                     {
+                        $('message').val(result['message'])
+                     }
+                  }
+                  });
             }
             $input.change();
             return false;
 
-            $.ajax({
-   type:"POST",
-   url:'<?php echo base_url(); ?>Frontend/updatecarts',
-   data: { qty:$input, cartid:count ,productid:product_id},
-   success:function (result) {
-    
-   }
-   });
+
   });
   
 });

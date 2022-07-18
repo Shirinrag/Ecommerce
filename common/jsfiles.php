@@ -142,7 +142,7 @@ $(document).ready(function(){
         dataType: "json",
         method: "POST",
         data: {
-            search: 'testproduct'
+            dataType: "json"
         }
     },
     preparePostData: function(data) {

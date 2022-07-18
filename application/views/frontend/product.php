@@ -37,11 +37,11 @@
                
                               ?>
                               <li class="hadchild">
-                                 <a href="" class="cutom-parent"><?php echo $value['category_name']; ?></a>   <?php  if(!empty($value['sub_category_name'][0])){?><span class="button-view  fa fa-plus-square-o"></span><?php } ?>
+                                 <a href="<?php echo base_url().'Frontend/category?catid='.base64_encode($value['category_id']); ?>" class="cutom-parent"><?php echo $value['category_name']; ?></a>   <?php  if(!empty($value['sub_category_name'][0])){?><span class="button-view  fa fa-plus-square-o"></span><?php } ?>
                                  <ul style="display: none;">
                                  <?php foreach($value['sub_category_name'] as $key1 =>$value1){ ?>
                                     
-                                    <li style="font-size:12px;"><a href=""><?php echo $value1; ?></a></li>
+                                    <li style="font-size:12px;"><a href="<?php echo base_url().'Frontend/sub_category?subcatid='.base64_encode($value1['sub_category_id']); ?>"><?php echo $value1; ?></a></li>
   
                                  <?php } ?>
                                                                    
