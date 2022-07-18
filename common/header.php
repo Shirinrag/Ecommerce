@@ -309,7 +309,7 @@
                   <div id="sosearchpro" class="sosearchpro-wrapper so-search ">
                      <form method="GET" action="https://demo.smartaddons.com/templates/html/emarket/index.html">
                         <div id="search0" class="search input-group form-group">
-                           <input class="autosearch-input form-control" type="search" value="" size="50" autocomplete="on" placeholder="Keyword here..." name="search" id="autouser">
+                           <input class="autosearch-input form-control" type="search"size="50" autocomplete="on" placeholder="Keyword here..." name="search" id="autouser">
                            <span class="input-group-btn">
                            <button type="submit" class="button-search btn btn-primary" name="submit_search"><i class="fa fa-search"></i></button>
                            </span>

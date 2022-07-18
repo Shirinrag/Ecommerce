@@ -31,11 +31,12 @@ class Frontend extends CI_Controller {
     public function get_search_data()
     {
         $session_data = $this->session->userdata('logged_in');
-        $id = $this->input->post('search');
-        $curl_data = array('fk_lang_id' =>$session_data['lang_id'],'search_keyword' =>$id);
-           echo"<pre>"; print_r($curl_data);
+        $search = $this->input->post('search');
+        echo '<pre>'; print_r($search); exit;
+        $curl_data = array('fk_lang_id' =>$session_data['lang_id'],'search_keyword' =>$search);
+
       	$curl=$this->link->hits('product-details-on-search',$curl_data);
-        //   echo"<pre>"; print_r($curl);
+          echo"<pre>"; print_r($curl);die;
         $curl = json_decode($curl,true);
        
         $sizeof_product_name_1 = sizeof($curl['product_details']);
@@ -43,7 +44,7 @@ class Frontend extends CI_Controller {
             $custom_key_1 = $sizeof_product_name_1 + $product_details_key;
             $curl['product_details'][$custom_key_1]['product_details'] = $product_details_row['product_name'];
         }
-       echo"<pre>"; print_r($curl['product_details'][$custom_key_1]['product_details']);die();
+       // echo"<pre>"; print_r($curl['product_details'][$custom_key_1]['product_details']);die();
 
         echo json_encode($curl['product_name']);
     }
