@@ -307,15 +307,15 @@
                <div class="search-header-w">
                   <div class="icon-search hidden-lg hidden-md hidden-sm"><i class="fa fa-search"></i></div>
                   <div id="sosearchpro" class="sosearchpro-wrapper so-search ">
-                     <form method="GET" action="https://demo.smartaddons.com/templates/html/emarket/index.html">
+                       <?php echo form_open('Frontend/search_data', array('id' => 'search_form')) ?>
                         <div id="search0" class="search input-group form-group">
-                           <input class="autosearch-input form-control" type="search" value="" size="50" autocomplete="on" placeholder="Keyword here..." name="search" id="autouser">
+                           <input class="autosearch-input form-control" type="text" size="50" autocomplete="on" placeholder="Keyword here..." id="autouser11">
                            <span class="input-group-btn">
-                           <button type="submit" class="button-search btn btn-primary" name="submit_search"><i class="fa fa-search"></i></button>
+                           <button type="submit" class="button-search btn btn-primary"><i class="fa fa-search"></i></button>
                            </span>
                         </div>
                         <input type="hidden" name="route" value="product/search" />
-                     </form>
+                    <?php echo form_close() ?>
                   </div>
                </div>
             </div>
