@@ -1,8 +1,10 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/jquery-2.2.4.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/unveil/1.3.0/jquery.unveil.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/owl-carousel/owl.carousel.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/libs.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/unveil/jquery.unveil.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/unveil/jquery.unveil.js"></script> 
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/countdown/jquery.countdown.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/dcjqaccordion/jquery.dcjqaccordion.2.8.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/datetimepicker/moment.js"></script>
@@ -12,9 +14,6 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/modernizr/modernizr-2.6.2.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/minicolors/jquery.miniColors.min.js"></script>
 
-<!-- Theme files
-============================================ -->
-
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/application.js"></script>
 
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/homepage.js"></script>
@@ -23,14 +22,14 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/so_megamenu.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/themejs/addtocart.js"></script>  
 
-<!-- <script type="text/javascript" src="<?php echo base_url();?>assets_frontend/js/admin.js"></script>   -->
-
   <script src="<?=base_url()?>assets_frontend/js/button-inline-loader.js"></script>
   <script src="<?= base_url();?>assets_frontend/js/toastr.min.js"></script>
-  <!-- <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script> -->
-<script type="text/javascript">
+     <script src="<?=base_url()?>assets/js/jquery.easy-autocomplete.min.js" type="text/javascript"></script>
+  <!-- jQuery UI -->
 
-	
+  <script type='text/javascript'>
+
+
 	function error_msg(t) {
 	    for (var i in t) "" != t[i] ? $("#" + i + "_error").html(t[i]).show() : $("#" + i + "_error").html("").hide();
 	        $(".error_msg").delay(10000).fadeOut()
@@ -86,77 +85,87 @@ $(document).ready(function(){
 
         
     });
-    // $( "#autouser" ).autocomplete({
-    //         source: function( request, response ) {
-    //       // Fetch data
-    //       $.ajax({
-    //         url: "<?=base_url()?>Frontend/get_search_data",
-    //         type: 'post',
-    //         dataType: "json",
-    //         data: {
-    //           search: request.term
-    //         },
-    //         success: function( data ) {
-              
-    //           response($.map(data, function (value, key) {
-    //             return {
-    //                 label: value.product_name,
-    //                 value: value.product_id,
-    //                 value1: value.image_name
-    //             }
-    //         }));
-    //         }
-    //       });
-    //     },
-    //     select: function (event, ui) {
-    //       // Set selection
-    //       $('#autouser').val(ui.item.label); 
-    //       $(".search-form").submit();
-    //       return false;
-    //     },
-    //     create: function () {
-    //         $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
-    //             //var path ="<?=base_url() ?>"+ item.value1;
-                
-    //              return $('<li class="divSelection">')
-    //                 .append('<div>')
-    //                 //.append('<img class="" src="' + path + '" />')
-    //                 .append('<span>')
-    //                 .append(item.label)
-    //                 .append('</span>')
-    //                 .append('</div>')
-    //                 .append('</li>')
-    //                 .appendTo(ul); // customize your HTML
-    //         };
-    //     }
-    //   });
+    var bases_url="<?=base_url() ?>";
 
-    var search_option = {
-    url: function(phrase) {
-        return "<?=base_url()?>Frontend/get_search_data";
-    },
-    getValue: function(element) {
-        return element.product_name;
-    },
-    ajaxSettings: {
-        dataType: "json",
-        method: "POST",
-        data: {
-            search: 'testproduct'
-        }
-    },
-    preparePostData: function(data) {
-        data.phrase = $("#autouser").val();
-        return data;
-    },
-    list: {
+      
+     // $("#autouser11").autocomplete({
+     //    source: function( request, response ) {      
+     //        $.ajax({
+     //            url: bases_url+"Frontend/get_search_data",
+     //            type: 'post',
+     //            dataType: "json",
+     //            data: {
+     //             search: request.term
+     //            },
+     //            success: function( data ) {
+     //               response(data);
+     //            }
+     //     });
+     //  },
+     //  select: function (event, ui) {
+     //   // Set selection
+     //   $('#autouser11').val(ui.item.product_name); // display the selected text
+      
+     //   return false;
+     //  },
+     //  focus: function(event, ui){
+     //     $("#autouser11").val(ui.item.product_name);      
+     //     return false;
+     //   },
+     // });
+      var options = {
+
+  url: function(phrase) {
+    return bases_url+"Frontend/get_search_data";
+  },
+
+  getValue: function(element) {
+
+    return element.product_name;
+  },
+
+  ajaxSettings: {
+    dataType: "json",
+    method: "POST",
+    data: {
+      dataType: "json"
+    }
+  },
+
+  list: {
         match: {
             enabled: true
         }
     },
-    requestDelay: 400
+
+  preparePostData: function(data) {
+    data.phrase = $("#autouser11").val();
+    return data;
+  },
+
+  requestDelay: 400
 };
-$("#autouser").easyAutocomplete(search_option);
-   
-    var bases_url="<?=base_url() ?>";
+
+$("#autouser11").easyAutocomplete(options);
+
+$('#search_form').submit(function(e) {
+
+    e.preventDefault();
+    var loginForm = $(this);
+    $.ajax({
+        dataType: 'json',
+        type: 'POST',
+        url: loginForm.attr('action'),
+        data: loginForm.serialize(),
+        
+      success: function (response) {
+         if (response.status == 'success') {
+            $('form#search_form').trigger('reset');          
+            window.location.replace(response['url']);
+            
+         } 
+      }
+    });
+});
+
 </script>

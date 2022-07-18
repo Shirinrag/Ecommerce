@@ -30,24 +30,14 @@ class Frontend extends CI_Controller {
 
     public function get_search_data()
     {
-        $session_data = $this->session->userdata('logged_in');
-        $search = $this->input->post('search');
-        echo '<pre>'; print_r($search); exit;
-        $curl_data = array('fk_lang_id' =>$session_data['lang_id'],'search_keyword' =>$search);
-
-      	$curl=$this->link->hits('product-details-on-search',$curl_data);
-          echo"<pre>"; print_r($curl);die;
-        $curl = json_decode($curl,true);
-       
-        $sizeof_product_name_1 = sizeof($curl['product_details']);
-        foreach ($curl['product_details'] as $product_details_key => $product_details_row) {
-            $custom_key_1 = $sizeof_product_name_1 + $product_details_key;
-            $curl['product_details'][$custom_key_1]['product_details'] = $product_details_row['product_name'];
-        }
-       // echo"<pre>"; print_r($curl['product_details'][$custom_key_1]['product_details']);die();
-
-        echo json_encode($curl['product_name']);
-    }
+ 		 $session_data = $this->session->userdata('logged_in');
+     	    $postData = $this->input->post();
+   	     $curl_data = array('fk_lang_id' =>$session_data['lang_id'],'search_keyword' =>$postData['phrase']);
+      		$curl=$this->link->hits('product-details-on-search',$curl_data);            
+      		$curl = json_decode($curl,true);
+      		$product_name = $curl['product_name'];        
+          	echo json_encode($product_name);
+	}
 	public function alpha_dash_space($fullname){
         if (! preg_match('/^[a-zA-Z\s]+$/', $fullname)) {
             $this->form_validation->set_message('alpha_dash_space', 'The %s field may only contain alpha characters & White spaces');
@@ -471,6 +461,11 @@ class Frontend extends CI_Controller {
     public function orders()
 	{
 		$this->load->view('frontend/order-history');
+	}
+
+	public function search_data()
+	{
+		
 	}
 
 	 public function logout() {
