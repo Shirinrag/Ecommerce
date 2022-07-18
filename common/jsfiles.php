@@ -87,27 +87,6 @@ $(document).ready(function(){
     });
     var bases_url="<?=base_url() ?>";
 
-<<<<<<< HEAD
-    var search_option = {
-    url: function(phrase) {
-        return "<?=base_url()?>Frontend/get_search_data";
-    },
-    getValue: function(element) {
-        return element.product_name;
-    },
-    ajaxSettings: {
-        dataType: "json",
-        method: "POST",
-        data: {
-            dataType: "json"
-        }
-    },
-    preparePostData: function(data) {
-        data.phrase = $("#autouser").val();
-        return data;
-    },
-    list: {
-=======
       
      // $("#autouser11").autocomplete({
      //    source: function( request, response ) {      
@@ -154,7 +133,6 @@ $(document).ready(function(){
   },
 
   list: {
->>>>>>> b8bf5093e60ffd4ad0539c02765e358eaefce804
         match: {
             enabled: true
         }

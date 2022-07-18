@@ -414,44 +414,7 @@
      <?php include('common/jsfiles.php');?>
 	 <script src="<?= base_url(); ?>assets_frontend/custom_js/cart.js"></script>
 	 <script src="<?= base_url();?>assets_frontend/custom_js/address_book.js"></script>
-	 <script
-      src="https://maps.googleapis.com/maps/api/js?key=<?php echo API_KEY; ?>&callback=initMap"
-      async defer></script>
-<script type="text/javascript">
-   var map;
-   var geocoder;     
-
-   function initMap() {
-      var mapLayer = document.getElementById("map-layer");
-      var centerCoordinates = new google.maps.LatLng(37.6, -95.665);
-      var defaultOptions = { center: centerCoordinates, zoom: 4 }
-
-      map = new google.maps.Map(mapLayer, defaultOptions);
-      geocoder = new google.maps.Geocoder();
-      
-      <?php 
-            if(!empty($countryResult)) 
-            {
-                foreach($countryResult as $k=>$v)
-                {   
-         ?>  
-            geocoder.geocode( { 'address': '<?php echo $_POST["room"].$_POST["building"].$_POST["city"].$_POST["zipcode"] ?>' }, function(LocationResult, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-               var latitude = LocationResult[0].geometry.location.lat();
-               var longitude = LocationResult[0].geometry.location.lng();
-            } 
-                  new google.maps.Marker({
-                       position: new google.maps.LatLng(latitude, longitude),
-                       map: map,
-                       title: '<?php echo $_POST["room"].$_POST["building"].$_POST["city"].$_POST["zipcode"] ?>'
-                   });
-         });
-       <?php
-                }
-            }
-       ?>      
-   }
-   </script>
+	
 	 <script type="text/javascript">
    $(document).ready(function() {
 
