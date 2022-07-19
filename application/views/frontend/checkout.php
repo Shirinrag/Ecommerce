@@ -1,41 +1,43 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
 <head>
-    
+
     <!-- Basic page needs
     ============================================ -->
-   <?php include('common/cssfiles.php');?>
+    <?php include('common/cssfiles.php');?>
     <style type="text/css">
-         body{font-family:'Roboto', sans-serif}
+    body {
+        font-family: 'Roboto', sans-serif
+    }
     </style>
 
 </head>
 
 <body class="res layout-1">
-    
-    <div id="wrapper" class="wrapper-fluid banners-effect-5">
-    
 
-    <!-- Header Container  -->
-    <?php include('common/header.php');?>
-    <!-- //Header Container  -->
-    
-	<!-- Main Container  -->
-	<div class="main-container container">
-		<ul class="breadcrumb">
-			<li><a href="#"><i class="fa fa-home"></i></a></li>
-			<li><a href="#">Checkout</a></li>
-			
-		</ul>
-		
-		<div class="row">
-			<!--Middle Part Start-->
-			<div id="content" class="col-sm-12">
-			  <h2 class="title">Checkout</h2>
-			  <div class="so-onepagecheckout row">
-				<!-- <div class="col-left col-sm-3">
+    <div id="wrapper" class="wrapper-fluid banners-effect-5">
+
+
+        <!-- Header Container  -->
+        <?php include('common/header.php');?>
+        <!-- //Header Container  -->
+
+        <!-- Main Container  -->
+        <div class="main-container container">
+            <ul class="breadcrumb">
+                <li><a href="#"><i class="fa fa-home"></i></a></li>
+                <li><a href="#">Checkout</a></li>
+
+            </ul>
+
+            <div class="row">
+                <!--Middle Part Start-->
+                <div id="content" class="col-sm-12">
+                    <h2 class="title">Checkout</h2>
+                    <div class="so-onepagecheckout row">
+                        <!-- <div class="col-left col-sm-3">
 				  <div class="panel panel-default">
 					<div class="panel-heading">
 					  <h4 class="panel-title"><i class="fa fa-sign-in"></i> Create an Account or Login</h4>
@@ -165,10 +167,10 @@
 						  </div>
 				  </div>
 				</div> -->
-				<div class="col-right col-sm-9">
-				  <div class="row">
-					<div class="col-sm-12">
-						<!--<div class="panel panel-default no-padding">
+                        <div class="col-right col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!--<div class="panel panel-default no-padding">
 							 <div class="col-sm-6 checkout-shipping-methods">
 								<div class="panel-heading">
 								  <h4 class="panel-title"><i class="fa fa-truck"></i> Delivery Method</h4>
@@ -206,113 +208,131 @@
 								</div>
 							</div> 
 						</div>-->
-					</div>
-				
-					<div class="col-sm-12">
-					  <div class="panel panel-default">
-						<div class="panel-heading">
-						  <h4 class="panel-title"><i class="fa fa-ticket"></i>Select Address <a  style="float:right;" id="add_address"><i class="fa fa-plus"></i></a></h4>
-						  
-						</div>
-						<div class="panel-body">
-							<?php  foreach($user_address as $key =>$values) {?>
-								<div class="radio">
-							  <label>
-								<input type="radio" value="<?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?>" name="account">
-								<?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label>
-							</div>
-							<?php } ?>
-							
-					
-					  </div>		  
-					  </div>
-					</div>
+                                </div>
 
-					<div class="col-sm-12" id="add_addresses" style="display:none;">
-					 
-				  <div class="panel panel-default">
-					<div class="panel-heading">
-					  <h4 class="panel-title"><i class="fa fa-book"></i> Add Address</h4>
-					</div>
-					<?php echo form_open('Frontend/save_new_address', array('id' => 'save_new_address_form')) ?>
-                     
-					  <div class="panel-body">
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title"><i class="fa fa-ticket"></i>Select Address <a
+                                                    style="float:right;" id="add_address"><i class="fa fa-plus"></i></a>
+                                            </h4>
 
-					  <fieldset id="shipping-address">
-                              <legend>Shipping Address</legend>
-                              <div class="form-group">
-                                 <label class="control-label">Address Type</label>
-                                 <select class="form-control select2" name="address_type" data-placeholder="Address Type">
-                                    <option value=""></option>
-                                    <option value="1">Home</option>
-                                    <option value="2">Office</option>
-                                    <option value="3">Others</option>
-                                    
-                                 </select>
-                                  <span class="error_msg" id="address_type_error"></span>
-                              </div>
-                              <div class="form-group">
-                                 <label for="input-company" class="control-label">Room No</label>
-                                 <input type="text" class="form-control"  placeholder="Room No" name="roomno" id="roomno">
-                                  <span class="error_msg" id="address_type_error"></span>
+                                        </div>
+                                        <div class="panel-body">
+                                            <?php  foreach($user_address as $key =>$values) {?>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio"
+                                                        value="<?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?>"
+                                                        name="account">
+                                                    <?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label>
+                                            </div>
+                                            <?php } ?>
 
-                              </div>
-                              <div class="form-group required">
-                                 <label for="input-address-1" class="control-label">Building</label>
-                                 <input type="text" class="form-control" placeholder="Building" name="building" id="building">
-                                  <span class="error_msg" id="building_error"></span>
 
-                              </div>
-                              <div class="form-group required">
-                                 <label for="input-city" class="control-label">Street</label>
-                                 <input type="text" class="form-control" id="city" placeholder="City" name="city">
-                                  <span class="error_msg" id="city_error"></span>
+                                        </div>
+                                    </div>
+                                </div>
 
-                              </div>
-                              <div class="form-group required">
-                                 <label for="input-postcode" class="control-label">Pincode</label>
-                                 <input type="text" class="form-control" id="postcode" placeholder="Post Code" name="postcode">
-                                  <span class="error_msg" id="postcode_error"></span>
+                                <div class="col-sm-12" id="add_addresses" style="display:none;">
 
-                              </div>
-                              </fieldset>
-						<div class="buttons clearfix">
-                        <div class="pull-left">
-                            <button class="btn btn-primary" id="save_new_address_button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Loading" type="submit">Submit</button>
-                        </div>
-                     </div>
-                  <?php echo form_close() ?>
-					  </div>	
-					  	  
-					  </div>
-					</div>
-					
-					<div class="col-sm-12">
-					  <div class="panel panel-default">
-						<div class="panel-heading">
-						  <h4 class="panel-title"><i class="fa fa-shopping-cart"></i> Shopping cart</h4>
-						</div>
-						  <div class="panel-body">
-							<div class="table-responsive">
-							  <table class="table table-bordered">
-								<thead>
-								  <tr>
-									<td class="text-center">Image</td>
-									<td class="text-left">Product Name</td>
-									<!-- <td class="text-left">Quantity</td> -->
-									<!-- <td class="text-left">Action</td> -->
-									<td class="text-right">Unit Price</td>
-									<td class="text-right">Total</td>
-								  </tr>
-								</thead>
-								<tbody>
-								<?php 
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title"><i class="fa fa-book"></i> Add Address</h4>
+                                        </div>
+                                        <?php echo form_open('Frontend/save_new_address', array('id' => 'save_new_address_form')) ?>
+
+                                        <div class="panel-body">
+
+                                            <fieldset id="shipping-address">
+                                                <legend>Shipping Address</legend>
+                                                <div class="form-group">
+                                                    <label class="control-label">Address Type</label>
+                                                    <select class="form-control select2" name="address_type"
+                                                        data-placeholder="Address Type">
+                                                        <option value=""></option>
+                                                        <option value="1">Home</option>
+                                                        <option value="2">Office</option>
+                                                        <option value="3">Others</option>
+
+                                                    </select>
+                                                    <span class="error_msg" id="address_type_error"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="input-company" class="control-label">Room No</label>
+                                                    <input type="text" class="form-control" placeholder="Room No"
+                                                        name="roomno" id="roomno">
+                                                    <span class="error_msg" id="address_type_error"></span>
+
+                                                </div>
+                                                <div class="form-group required">
+                                                    <label for="input-address-1" class="control-label">Building</label>
+                                                    <input type="text" class="form-control" placeholder="Building"
+                                                        name="building" id="building">
+                                                    <span class="error_msg" id="building_error"></span>
+
+                                                </div>
+                                                <div class="form-group required">
+                                                    <label for="input-city" class="control-label">Street</label>
+                                                    <input type="text" class="form-control" id="city" placeholder="City"
+                                                        name="city">
+                                                    <span class="error_msg" id="city_error"></span>
+
+                                                </div>
+                                                <div class="form-group required">
+                                                    <label for="input-postcode" class="control-label">Pincode</label>
+                                                    <input type="text" class="form-control" id="postcode"
+                                                        placeholder="Post Code" name="postcode">
+                                                    <span class="error_msg" id="postcode_error"></span>
+
+                                                </div>
+                                            </fieldset>
+                                            <div class="buttons clearfix">
+                                                <div class="pull-left">
+                                                    <button class="btn btn-primary" id="save_new_address_button"
+                                                        data-loading-text="<i class='fa fa-spinner fa-spin'></i> Loading"
+                                                        type="submit">Submit</button>
+                                                </div>
+                                            </div>
+                                            <?php echo form_close() ?>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title"><i class="fa fa-shopping-cart"></i> Shopping cart
+                                            </h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <td class="text-center">Image</td>
+                                                            <td class="text-left">Product Name</td>
+                                                            <!-- <td class="text-left">Quantity</td> -->
+                                                            <!-- <td class="text-left">Action</td> -->
+                                                            <td class="text-right">Unit Price</td>
+                                                            <td class="text-right">Total</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php 
                               foreach ($cart_product_details as $cart_data_key => $cart_data_row) { ?>
-								  <tr>
-                              <td class="text-center"><a href="product.html"><img width="70px" src="<?=$cart_data_row['image_name']?>" alt="Aspire Ultrabook Laptop" title="Aspire Ultrabook Laptop" class="img-thumbnail" /></a></td>
-                              <td class="text-left"><a href="product.html"><?=$cart_data_row['product_name']?></a><br />
-                              </td>
-                              <!--<td class="text-left" width="200px">
+                                                        <tr>
+                                                            <td class="text-center"><a href="product.html"><img
+                                                                        width="70px"
+                                                                        src="<?=$cart_data_row['image_name']?>"
+                                                                        alt="Aspire Ultrabook Laptop"
+                                                                        title="Aspire Ultrabook Laptop"
+                                                                        class="img-thumbnail" /></a></td>
+                                                            <td class="text-left"><a
+                                                                    href="product.html"><?=$cart_data_row['product_name']?></a><br />
+                                                            </td>
+                                                            <!--<td class="text-left" width="200px">
                            
                                 
                                   <div class="option quantity">
@@ -330,52 +350,57 @@
                                  </div> 
                              
                               </td>-->
-                               <td class="text-right">$ <?=$cart_data_row['product_offer_price']?></td>
-                              <td class="text-right" id="product_offer_price_<?= $cart_data_row['cart_id']?>">$ <?=$cart_data_row['cartPrice']?></td>
-                           </tr>
-								  <?php } ?>
-								</tbody>
-								<tfoot>
-								<tbody>
-                              <tr>
-                                 <td class="text-right" colspan="3">
-                                    <strong >Sub-Total:</strong>
-                                 </td>
-                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
-                              </tr>
-                              <tr>
-                                 <td class="text-right" colspan="3">
-                                    <strong>Flat Shipping Rate:</strong>
-                                 </td>
-                                 <td class="text-right">$0</td>
-                              </tr>
-                              <tr>
-                                 <td class="text-right" colspan="3">
-                                    <strong>Eco Tax (-2.00):</strong>
-                                 </td>
-                                 <td class="text-right">$0</td>
-                              </tr>
-                              <tr>
-                                 <td class="text-right" colspan="3">
-                                    <strong>VAT (20%):</strong>
-                                 </td>
-                                 <td class="text-right">$0</td>
-                              </tr>
-                              <tr>
-                                 <td class="text-right" colspan="3">
-                                    <strong>Total:</strong>
-                                 </td>
-                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
-                              </tr>
-                           </tbody>
-								</tfoot>
-							  </table>
-							</div>
-						  </div>
-					  </div>
-					</div>
-					<div class="col-sm-12">
-					  <!-- <div class="panel panel-default">
+                                                            <td class="text-right">$
+                                                                <?=$cart_data_row['product_offer_price']?></td>
+                                                            <td class="text-right"
+                                                                id="product_offer_price_<?= $cart_data_row['cart_id']?>">
+                                                                $ <?=$cart_data_row['cartPrice']?></td>
+                                                        </tr>
+                                                        <?php } ?>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="text-right" colspan="3">
+                                                                    <strong>Sub-Total:</strong>
+                                                                </td>
+                                                                <td class="text-right" id="subtotal">$
+                                                                    <?php echo $cart_total_sum; ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-right" colspan="3">
+                                                                    <strong>Flat Shipping Rate:</strong>
+                                                                </td>
+                                                                <td class="text-right">$0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-right" colspan="3">
+                                                                    <strong>Eco Tax (-2.00):</strong>
+                                                                </td>
+                                                                <td class="text-right">$0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-right" colspan="3">
+                                                                    <strong>VAT (20%):</strong>
+                                                                </td>
+                                                                <td class="text-right">$0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-right" colspan="3">
+                                                                    <strong>Total:</strong>
+                                                                </td>
+                                                                <td class="text-right" id="subtotal">$
+                                                                    <?php echo $cart_total_sum; ?></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <!-- <div class="panel panel-default">
 						<div class="panel-heading">
 						  <h4 class="panel-title"><i class="fa fa-pencil"></i> Add Comments About Your Order</h4>
 						</div>
@@ -392,81 +417,83 @@
 							</div>
 						  </div>
 					  </div> -->
-					</div>
-				  </div>
-				</div>
-			  </div>
-			</div>
-			<!--Middle Part End -->
-			
-		</div>
-	</div>
-	<!-- //Main Container -->
-	
-	<!-- Footer Container -->
-     <?php include('common/footer.php');?>
-    <!-- //end Footer Container -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Middle Part End -->
+
+            </div>
+        </div>
+        <!-- //Main Container -->
+
+        <!-- Footer Container -->
+        <?php include('common/footer.php');?>
+        <!-- //end Footer Container -->
 
     </div>
-	
-	
 
-<!-- Include Libs & Plugins
+
+
+    <!-- Include Libs & Plugins
 	============================================ -->
     <!-- Placed at the end of the document so the pages load faster -->
-     <?php include('common/jsfiles.php');?>
-	 <script src="<?= base_url(); ?>assets_frontend/custom_js/cart.js"></script>
-	 <script src="<?= base_url();?>assets_frontend/custom_js/address_book.js"></script>
-	
-	 <script type="text/javascript">
-   $(document).ready(function() {
+    <?php include('common/jsfiles.php');?>
+    <script src="<?= base_url(); ?>assets_frontend/custom_js/cart.js"></script>
+    <script src="<?= base_url();?>assets_frontend/custom_js/address_book.js"></script>
 
-      $('.num-in span').click(function () {
-           var cartid = $('.cartid').val();
-           var product_id = $('.product_id').val();
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        $('.num-in span').click(function() {
+            var cartid = $('.cartid').val();
+            var product_id = $('.product_id').val();
             var $input = $(this).parents('.num-block').find('input.in-num');
-         
-            if($(this).hasClass('minus')) {
-               var count = parseFloat($input.val()) - 1;
-               count = count < 1 ? 1 : count;
-               if (count < 2) {
-                  $(this).addClass('dis');
-               }else {
-                  $(this).removeClass('dis');
-               }
-               $input.val(count);
-            }
-             else {
-               var count = parseFloat($input.val()) + 1
-                  $input.val(count);
-               if (count > 1) {
-                 $(this).parents('.num-block').find(('.minus')).removeClass('dis');
-               }
-               $.ajax({
-                  type:"POST",
-                  url:'<?php echo base_url(); ?>Frontend/updatecarts',
-                  data: { qty:$input, cartid:count ,productid:product_id},
-                  success:function (result) {
-                     if(result['status']=='false')
-                     {
-                        $('message').val(result['message'])
-                     }
-                  }
-                  });
+
+            if ($(this).hasClass('minus')) {
+                var count = parseFloat($input.val()) - 1;
+                count = count < 1 ? 1 : count;
+                if (count < 2) {
+                    $(this).addClass('dis');
+                } else {
+                    $(this).removeClass('dis');
+                }
+                $input.val(count);
+            } else {
+                var count = parseFloat($input.val()) + 1
+                $input.val(count);
+                if (count > 1) {
+                    $(this).parents('.num-block').find(('.minus')).removeClass('dis');
+                }
+                $.ajax({
+                    type: "POST",
+                    url: '<?php echo base_url(); ?>Frontend/updatecarts',
+                    data: {
+                        qty: $input,
+                        cartid: count,
+                        productid: product_id
+                    },
+                    success: function(result) {
+                        if (result['status'] == 'false') {
+                            $('message').val(result['message'])
+                        }
+                    }
+                });
             }
             $input.change();
             return false;
 
 
-  });
+        });
 
-  $('#add_address').click(function () {
-      $('#add_addresses').css("display","block");
-  });
-  
-});
-// product +/-
-      </script>
+        $('#add_address').click(function() {
+            $('#add_addresses').css("display", "block");
+        });
+
+    });
+    // product +/-
+    </script>
 </body>
 
 </html>

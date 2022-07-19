@@ -390,20 +390,6 @@ class Model extends CI_Model {
 		$this->db->truncate(); 
     }
 
-     function wallet_balance($user_id=''){
-        //calculate user's wallet amount and update it
-        $str_debit = "SELECT SUM(wallet_amount) as debit_total FROM wallet_txn WHERE status='1' AND txn_type='2' AND user_id='".$user_id."'";
-        $debit_data = $this->model->getSqlData($str_debit);
-        $debit_total = (isset($debit_data) && !empty($debit_data)) ? $debit_data[0]['debit_total'] : '0';
-
-        $str_credit = "SELECT SUM(wallet_amount) as credit_total FROM wallet_txn WHERE status='1' AND txn_type='1' AND user_id='".$user_id."'";
-        $credit_data = $this->model->getSqlData($str_credit);
-        $credit_total = (isset($credit_data) && !empty($credit_data)) ? $credit_data[0]['credit_total'] : '0';
-
-        $total_wallet_balance = $credit_total-$debit_total;
-        return $total_wallet_balance;
-    }
-
     function generate_next_id($tablename,$field,$series='req'){
     	$query = $this->db->select($field)
     	->from($tablename)
