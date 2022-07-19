@@ -347,16 +347,30 @@ class Frontend extends CI_Controller {
     {
         $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
         $session_data = $this->session->userdata('logged_in');
+        $fk_product_id = $_POST['fk_product_id'];
+        $order_id = mt_rand(0,5);
+        $fk_address_id = $_POST['fk_address_id'];
+        $quantity = $_POST['quantity'];
+        $unit_price = $_POST['unit_price'];
+        $total = $_POST['total'];
+        $sub_total = $_POST['sub_total'];
+        $grand_total = $_POST['grand_total'];
         $fk_lang_id = $session_data['lang_id'];
-        $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id);
-        $curl=$this->link->hits('check-out-api',$curldata); 
+      
+        $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id,'fk_product_id'=>json_encode($fk_product_id),'order_id'=>$order_id,'fk_address_id'=>$fk_address_id,
+       'quantity'=>json_encode($quantity),'unit_price'=>json_encode($unit_price),'total'=>json_encode($total),'sub_total'=>$sub_total,'grand_total'=>$grand_total);
+        $curl=$this->link->hits('add-payment-data',$curldata); 
+        
         $curl1=json_decode($curl,true);
        
-        $data['cart_product_details']=$curl1['cart_product_details'];
-        $data['user_address']=$curl1['user_address'];
-        $data['cart_total']=$curl1['total'];
-        //echo $data['cart_total_sum'];die();
-        $this->load->view('frontend/checkout',$data);
+        redirect(base_url() . 'Frontend/payment');
+    }
+
+    public function payment()
+    {
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+       
+        $this->load->view('frontend/payment');
     }
 
     public function wishlist_list()
@@ -467,6 +481,76 @@ class Frontend extends CI_Controller {
         echo json_encode($response);
 		
 	}
+
+    public function edit_new_address()
+    {
+        if ($this->session->userdata('user_logged_in')) {
+            print_r($this->session->userdata('user_logged_in'));die();
+            $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
+           $this->form_validation->set_rules('roomno', 'Room No', 'required|trim', array('required' => 'You must provide a %s',));
+          $this->form_validation->set_rules('building', 'Building', 'trim|required', array('required' => 'You must provide a %s',));
+          $this->form_validation->set_rules('city', 'City', 'trim|required', array('required' => 'You must provide a %s',));
+          $this->form_validation->set_rules('postcode', 'City', 'trim|required', array('required' => 'You must provide a %s',));
+          $this->form_validation->set_rules('address_type', 'Address Type', 'trim|required', array('required' => 'You must provide a %s',));
+
+
+          if ($this->form_validation->run() == FALSE) {
+              $response['status'] = 'failure';
+              $response['error'] = array(
+                  'roomno' => strip_tags(form_error('roomno')), 
+                  'building' => strip_tags(form_error('building')),
+                  'city' => strip_tags(form_error('city')),
+                  'postcode' => strip_tags(form_error('postcode')),
+                  'address_type' => strip_tags(form_error('address_type')),
+              );
+          } else {
+              $roomno = $this->input->post('roomno');
+              $building = $this->input->post('building');
+              $city = $this->input->post('city');
+              $postcode = $this->input->post('postcode');
+              $address_type = $this->input->post('address_type');
+              $id = $this->input->post('id');
+
+              $roomno = str_replace(" ","+",$roomno);
+              $building = str_replace(" ","+",$building);
+              $city = str_replace(" ","+",$city);
+              $postcode = str_replace(" ","+",$postcode);
+              $address = $roomno."+".$building."+".$city."+".$postcode;
+              $get_lat_long = get_lat_long($address);
+
+
+             $roomno = str_replace("+"," ",$roomno);
+              $building = str_replace("+"," ",$building);
+              $city = str_replace("+"," ",$city);
+              $postcode = str_replace("+"," ",$postcode);
+
+               $curl_data = array(
+                   'roomno'=>$roomno,
+                   'building'=>$building,
+                   'street'=>$city,
+                   'zone'=>$postcode,
+                   'latitude'=>$get_lat_long['lat'],
+                   'longitude'=>$get_lat_long['lng'],
+                   'address_type'=>$address_type,
+                   'id'=>$id,
+               );
+               $curl1=$this->link->hits('update-address',$curl_data); 
+               $curl1=json_decode($curl1,true);
+
+              if ($curl1['status']==1) {
+                  $response['status'] = 'success';
+              }else {
+                  $response['status'] = 'failure';
+                  $response['error'] = array('address_type' => $curl1['message'],);
+              }
+          }
+           
+        } else {
+          $response['status'] = 'failure';
+          $response['url'] = base_url() . "Frontend";
+      }
+      echo json_encode($response);
+    }
 	public function change_password()
 	{
 		$this->load->view('frontend/change_password');
