@@ -234,7 +234,10 @@
 					<div class="panel-heading">
 					  <h4 class="panel-title"><i class="fa fa-book"></i> Add Address</h4>
 					</div>
+					<?php echo form_open('Frontend/save_new_address', array('id' => 'save_new_address_form')) ?>
+                     
 					  <div class="panel-body">
+
 					  <fieldset id="shipping-address">
                               <legend>Shipping Address</legend>
                               <div class="form-group">
@@ -273,7 +276,7 @@
 
                               </div>
                               </fieldset>
-							  <div class="buttons clearfix">
+						<div class="buttons clearfix">
                         <div class="pull-left">
                             <button class="btn btn-primary" id="save_new_address_button" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Loading" type="submit">Submit</button>
                         </div>
