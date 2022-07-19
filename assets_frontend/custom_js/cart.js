@@ -130,28 +130,55 @@ function decrement_quantity(cart_id, price,product_id) {
     }
 }
 
+ $(document).ready(function() {
 
-// $(document).on('click', '.update_qty', function() {
-    
-//     var product_id = $('product_id').val();
-//     var row_id = $(this).attr("id");
-//     console.log(product_id+':'+row_id);
-//     $.ajax({
-//         url: bases_url + "Frontend/updatecartqty",
-//         method: "POST",
-//         data: { row_id: row_id },
-//         success: function(data) {
-//         var productdata = $.parseJSON(data);
-//         if(productdata['status'] == 'success')
-//         {
-//          wishlist.add(productdata['message']);
-//          location.reload();
-//         }
-//         else if(productdata['status'] == 'failed'){
-//          wishlist.add(productdata['message']);
-//          location.reload();
-        
-//         }
-//         }
-//     });
-// });
+                <
+                script type = "text/javascript" >
+                    $(document).ready(function() {
+
+                        $('.num-in span').click(function() {
+                            var cartid = $('.cartid').val();
+                            var product_id = $('.product_id').val();
+                            var $input = $(this).parents('.num-block').find('input.in-num');
+
+                            if ($(this).hasClass('minus')) {
+                                var count = parseFloat($input.val()) - 1;
+                                count = count < 1 ? 1 : count;
+                                if (count < 2) {
+                                    $(this).addClass('dis');
+                                } else {
+                                    $(this).removeClass('dis');
+                                }
+                                $input.val(count);
+                            } else {
+                                var count = parseFloat($input.val()) + 1
+                                $input.val(count);
+                                if (count > 1) {
+                                    $(this).parents('.num-block').find(('.minus')).removeClass('dis');
+                                }
+                                $.ajax({
+                                    type: "POST",
+                                    url: '<?php echo base_url(); ?>Frontend/updatecarts',
+                                    data: {
+                                        qty: $input,
+                                        cartid: count,
+                                        productid: product_id
+                                    },
+                                    success: function(result) {
+                                        if (result['status'] == 'false') {
+                                            $('message').val(result['message'])
+                                        }
+                                    }
+                                });
+                            }
+                            $input.change();
+                            return false;
+
+
+                        });
+
+                        $('#add_address').click(function() {
+                            $('#add_addresses').css("display", "block");
+                        });
+
+                    });

@@ -29,13 +29,13 @@ class Admin extends CI_Controller {
         redirect(base_url() . "Admin");
     }
     function index() {
-        $str_total_earning = "SELECT ROUND(SUM(after_discounted_amount),2) as total FROM order_data WHERE  DATE(order_date_time) = '" . date('Y-m-d') . "'";
+        $str_total_earning = "SELECT ROUND(SUM(subtotal),2) as total FROM order_data WHERE  DATE(order_date_time) = '" . date('Y-m-d') . "'";
         $data['todays_earning'] = $this->model->getSqlData($str_total_earning);
         $from_date = date('Y-m-d');
         $to_date = date('Y-m-d', strtotime("-7 day", strtotime($from_date)));
-        $this_week_earning = "SELECT ROUND(SUM(after_discounted_amount),2) as total FROM order_data WHERE order_source='3' AND  (DATE(order_date_time) BETWEEN '" . $to_date . "' AND '" . $from_date . "')";
+        $this_week_earning = "SELECT ROUND(SUM(subtotal),2) as total FROM order_data WHERE order_source='3' AND  (DATE(order_date_time) BETWEEN '" . $to_date . "' AND '" . $from_date . "')";
         $data['this_week_earning'] = $this->model->getSqlData($this_week_earning);
-        $str_graph_query = "SELECT DATE(order_date_time) as order_date,ROUND(SUM(after_discounted_amount),2) as total FROM order_data 
+        $str_graph_query = "SELECT DATE(order_date_time) as order_date,ROUND(SUM(subtotal),2) as total FROM order_data 
             WHERE order_source='3' AND  (DATE(order_date_time) BETWEEN '" . $to_date . "' AND '" . $from_date . "')
                 GROUP BY DATE(order_date_time)";
         $graph_data = $this->model->getSqlData($str_graph_query);
@@ -51,31 +51,31 @@ class Admin extends CI_Controller {
         $m = 0;
         $order_count = [];
         foreach ($order_data as $key => $value) {
-            if ($value['status'] == '1') {
-                $i++;
-            }
-            if ($value['status'] == '2') {
-                $j++;
-            }
-            if ($value['status'] == '2') {
-                $k++;
-            }
-            if ($value['status'] == '0') {
-                $l++;
-            }
+            // if ($value['status'] == '1') {
+            //     $i++;
+            // }
+            // if ($value['status'] == '2') {
+            //     $j++;
+            // }
+            // if ($value['status'] == '2') {
+            //     $k++;
+            // }
+            // if ($value['status'] == '0') {
+            //     $l++;
+            // }
         }
-        $order_count[] = ['New Orders', $i];
-        $order_count[] = ['Out For Delivery', $j];
-        $order_count[] = ['Delivered', $k];
-        $order_count[] = ['Cancelled', $l];
-        $data['order_count'] = $order_count;
+        // $order_count[] = ['New Orders', $i];
+        // $order_count[] = ['Out For Delivery', $j];
+        // $order_count[] = ['Delivered', $k];
+        // $order_count[] = ['Cancelled', $l];
+        // $data['order_count'] = $order_count;
         $data['branches'] = $this->model->getData('branch');
         // First day of the current month.
         $query_date = date('Y-m-d');
         $first_date = date('Y-m-01', strtotime($query_date));
         // Last day of the month.
         $last_date = date('Y-m-t', strtotime($query_date));
-        $total_month_earning = "SELECT ROUND(SUM(after_discounted_amount),2) as total FROM order_data WHERE order_source='3' AND  (DATE(order_date_time) BETWEEN '" . $first_date . "' AND '" . $last_date . "')";
+        $total_month_earning = "SELECT ROUND(SUM(subtotal),2) as total FROM order_data WHERE order_source='3' AND  (DATE(order_date_time) BETWEEN '" . $first_date . "' AND '" . $last_date . "')";
         $data['total_month_earning'] = $this->model->getSqlData($total_month_earning);
         $data['menu'] = 'dashboard';
         $data['main_content'] = 'admin/dashboard'; //dashboard
