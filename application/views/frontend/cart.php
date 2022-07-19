@@ -144,45 +144,28 @@
                         </div>
                      </div>
                   </div> -->
-                    <div class="row">
-                        <div class="col-sm-4 col-sm-offset-8">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-right">
-                                            <strong>Sub-Total:</strong>
-                                        </td>
-                                        <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right">
-                                            <strong>Flat Shipping Rate:</strong>
-                                        </td>
-                                        <td class="text-right">$0</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right">
-                                            <strong>Eco Tax (-2.00):</strong>
-                                        </td>
-                                        <td class="text-right">$0</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right">
-                                            <strong>VAT (20%):</strong>
-                                        </td>
-                                        <td class="text-right">$0</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right">
-                                            <strong>Total:</strong>
-                                        </td>
-                                        <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="buttons">
+                  <div class="row">
+                     <div class="col-sm-4 col-sm-offset-8">
+                        <table class="table table-bordered">
+                           <tbody>
+                              <tr>
+                                 <td class="text-right">
+                                    <strong >Sub-Total:</strong>
+                                 </td>
+                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
+                              </tr>
+                             
+                              <tr>
+                                 <td class="text-right">
+                                    <strong>Total:</strong>
+                                 </td>
+                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  <div class="buttons">
 
                         <div class="pull-left"><a href="<?php echo base_url();?>" class="btn btn-primary">Continue
                                 Shopping</a></div>

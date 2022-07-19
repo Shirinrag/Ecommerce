@@ -812,4 +812,7 @@ a.ui-button:active,
     box-sizing: border-box;
     text-align: center;
 }
-
+ .radio {
+    border: 1px solid !important;
+    padding: 20px !important;
+}

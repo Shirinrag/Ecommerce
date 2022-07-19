@@ -16,7 +16,9 @@
    $curl=$this->link->hits('get-all-user-cart',$curldata); 
    $curls_data=json_decode($curl,true);
    $cart_data=$curls_data['cart_data'];
-   $cart_total_sum=$curls_data['sub_total'];
+   $cart_total_sum=$curls_data['cartPrice'];
+   $cart_total=$curls_data['sub_total'];
+
    //  echo "<pre>";
    //  print_r($cart_data);die();
    ?>
@@ -416,45 +418,46 @@
                                                 </tr>
                                                 <?php }
                                        } ?>
-                                            </tbody>
-                                        </table>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <table class="table table-bordered">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="text-left"><strong>Sub-Total</strong>
-                                                        </td>
-                                                        <td class="text-right">$ <?php echo $cart_total_sum; ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left"><strong>Eco Tax (-2.00)</strong>
-                                                        </td>
-                                                        <td class="text-right">$0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left"><strong>VAT (20%)</strong>
-                                                        </td>
-                                                        <td class="text-right">$0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-left"><strong>Total</strong>
-                                                        </td>
-                                                        <td class="text-right">$0</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <p class="text-right"> <a class="btn view-cart"
-                                                    href="<?php echo base_url();?>Frontend/cart"><i
-                                                        class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp;
-                                                <a class="btn btn-mega checkout-cart" href="checkout.html"><i
-                                                        class="fa fa-share"></i>Checkout</a>
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                                 </tbody>
+                              </table>
+                           </li>
+                           <li>
+                              <div>
+                                 <table class="table table-bordered">
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-left"><strong>Sub-Total</strong>
+                                          </td>
+                                          <td class="text-right">$ <?php echo $cart_total; ?></td>
+                                       </tr>
+                                      
+                                       <tr>
+                                          <td class="text-left"><strong>Total</strong>
+                                          </td>
+                                          <td class="text-right"><?php echo $cart_total; ?></td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <p class="text-right"> <a class="btn view-cart" href="<?php echo base_url();?>Frontend/cart"><i class="fa fa-shopping-cart"></i>View Cart</a>&nbsp;&nbsp;&nbsp; <a class="btn btn-mega checkout-cart" href="<?php echo base_url();?>Frontend/checkout"><i class="fa fa-share"></i>Checkout</a> 
+                                 </p>
+                              </div>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="shopping_cart">
+                  <div id="cart" class="btn-shopping-cart">
+                     <a  class="btn-group top_cart dropdown-toggle" aria-expanded="true"href="<?php echo base_url();?>Frontend/wishlist_list" >
+                        <div class="shopcart">
+                           <span class="icon-c">
+                           <i class="fa fa-heart"></i>
+                           </span>
+                           <div class="shopcart-inner refesh">
+                              <span class="total-shopping-cart cart-total-full">
+                              <span class="items_cart "><?php if($wishlist_count > 0){ echo $wishlist_count; }else{ echo '0';} ?></span>
+                              </span>
+                           </div>
                         </div>
                     </div>
                     <div class="shopping_cart">

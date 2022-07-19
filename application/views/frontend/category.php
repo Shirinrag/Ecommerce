@@ -124,13 +124,74 @@
                                     <li><a href="">&gt;|</a></li>
                                 </ul>
                             </div> -->
+                        </div>
+                    </div>
+                    <!-- //end Filters -->
+        			<!--changed listings-->
+                    <div class="products-list row nopadding-xs so-filter-gird">
+                    <?php if(count($product_data) > 0) {?>
+                    <?php   foreach($product_data as $key => $value){ ?>                 
+        				<div class="product-layout col-lg-15 col-md-4 col-sm-6 col-xs-12">
+                         
+                            <div class="product-item-container">
+                                <div class="left-block">
+                                    <div class="product-image-container second_img">
+                                        <a href="product.html" target="_self" title="<?php echo $value['product_name'];?>">
+                                            <img src="<?php echo $value['image_name'];?>" class="img-1 img-responsive" alt="<?php echo $value['imagename'];?> ?>">
+                                        </a>
+                                    </div>
+                                   
+        
+                                </div>
+                                <div class="right-block">
+                                    <div class="caption">
+                                        <div class="rating">    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                            <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+                                        </div>
+                                        <h4><a href="" class="textellipse" title="<?php echo $value['product_name'];?>" target="_self"><?php echo $value['product_name'];?></a></h4>
+                                        <div class="price"> <span class="price-new"><?php echo $value['currency_in_english'];?> <?php echo $value['product_offer_price'];?></span>
+                                            <span class="price-old"><?php echo $value['currency_in_english'];?> <?php echo $value['product_purchase_price'];?></span>
+                                        </div>
+                                        <div class="description item-desc">
+                                            <!-- <p><?php echo $value['description'];?></p> -->
+                                        </div>
+                                       
+                                    </div>
+                                </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <!-- //end Filters -->
                         <!--changed listings-->
                         <div class="products-list row nopadding-xs so-filter-gird">
                             <?php   foreach($product_data as $key => $value){ ?>
                             <div class="product-layout col-lg-15 col-md-4 col-sm-6 col-xs-12">
+=======
+                        <?php } ?>
+                        <?php }else{ ?>
+                            <div class="product-layout col-lg-15 col-md-4 col-sm-6 col-xs-12">
+                               <b><p  style="color:red;">Products are Unavaiable.</p></b>
+                            </div>
+                       <?php  }?>
+                    </div>
+        			<!--// End Changed listings-->
+        			<!-- Filters -->
+        			<div class="product-filter product-filter-bottom filters-panel">
+                        <div class="row">
+                            <div class="col-sm-6 text-left"></div>
+                            <div class="col-sm-6 text-right">Showing 1 to 15 of 15 (1 Pages)</div>
+                        </div>
+                    </div>
+        			<!-- //end Filters -->
+        			
+        		</div>
+        		
+        	</div>
+        	
+>>>>>>> d7d766829ab5eaebdf1e31d4ddd4069c3e1bd0b6
 
                                 <div class="product-item-container">
                                     <div class="left-block">
