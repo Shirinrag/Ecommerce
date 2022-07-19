@@ -63,7 +63,7 @@ body {
                               <div class="form-group">
                                  <label for="input-company" class="control-label">Room No</label>
                                  <input type="text" class="form-control"  placeholder="Room No" name="roomno" id="roomno">
-                                  <span class="error_msg" id="address_type_error"></span>
+                                  <span class="error_msg" id="roomno_error"></span>
 
                               </div>
                               <div class="form-group required">

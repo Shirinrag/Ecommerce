@@ -92,50 +92,10 @@
 				  </div>
 				  </div>
 				</div>
-				<form action="<?php echo base_url(); ?>Frontend/confirmorder" method="post">
+				<?php echo form_open('Frontend/confirmorder', array('id' => 'confirmorderform')) ?>
 				<div class="col-right col-sm-9">
 				  <div class="row">
-					<div class="col-sm-12">
-						<!--<div class="panel panel-default no-padding">
-							 <div class="col-sm-6 checkout-shipping-methods">
-								<div class="panel-heading">
-								  <h4 class="panel-title"><i class="fa fa-truck"></i> Delivery Method</h4>
-								</div>
-								<div class="panel-body ">
-									<p>Please select the preferred shipping method to use on this order.</p>
-									<div class="radio">
-									  <label>
-										<input type="radio" checked="checked" name="Free Shipping">
-										Free Shipping - $0.00</label>
-									</div>
-									<div class="radio">
-									  <label>
-										<input type="radio" name="Flat Shipping Rate">
-										Flat Shipping Rate - $7.50</label>
-									</div>
-									
-								</div>
-							</div>
-							<div class="col-sm-6  checkout-payment-methods">
-								<div class="panel-heading">
-								  <h4 class="panel-title"><i class="fa fa-credit-card"></i> Payment Method</h4>
-								</div>
-								<div class="panel-body">
-									<p>Please select the preferred payment method to use on this order.</p>
-									<div class="radio">
-									  <label>
-										<input type="radio" checked="checked" name="Cash On Delivery">Cash On Delivery</label>
-									</div>
-									
-									<div class="radio">
-									  <label>
-										<input type="radio" name="Paypal">Paypal</label>
-									</div>
-								</div>
-							</div> 
-						</div>-->
-					</div>
-				
+					
 					<div class="col-sm-12">
 					  <div class="panel panel-default">
 						<div class="panel-heading">
@@ -146,10 +106,11 @@
 							<?php  foreach($user_address as $key =>$values) {?>
 								<div class="radio">
 							  <label>
-								<input type="radio" value="<?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?>" name="account">
-								<input type="radio" value="<?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?>" name="account"><?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label><a  style="float:right;" class="btn" id="edit_address" data-toggle="modal" data-target="#myModal_<?php echo $values['id']?>"><i class="fa fa-edit"></i></a>
-								<input type="hidden" name="fk_address_id" value="<?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?>">
+								
+								<input type="radio" name="fk_address_id" value="<?php echo $values['id']; ?>"><?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label><a  style="float:right;" class="btn" id="edit_address" data-toggle="modal" data-target="#myModal_<?php echo $values['id']?>"><i class="fa fa-edit"></i></a>
+								
 							</div>
+						
 					<div id="myModal_<?php echo $values['id']?>" class="modal fade" role="dialog">
 					 <div class="modal-dialog">
 							
@@ -203,12 +164,13 @@
 							 </fieldset>
 							 <div class="buttons clearfix">
 					   <div class="pull-left">
-						   <button class="btn btn-primary"  data-loading-text="<i class='fa fa-spinner fa-spin'></i> Loading" type="submit">Submit</button>
+						   <button class="btn btn-primary"   data-loading-text="<i class='fa fa-spinner fa-spin'></i> Loading" type="submit">Submit</button>
 					   	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						</div>
-						</form>
+							</form>
+						
 					</div>
-					
+
 						</div>
 						
 						</div>
@@ -216,8 +178,9 @@
 					</div>
 					</div>
 							<?php } ?>
-						
-					  </div>		  
+							
+					  </div>
+					  <span class="error_msg" id="fk_address_id_error"></span>		  
 					  </div>
 					</div>
 					</div>
@@ -300,7 +263,7 @@
 							</div>
 							<div class="buttons">
 							  <div class="pull-right">
-								<input type="submit" class="btn btn-primary" id="confirmorder" value="Confirm Order" >
+								<input type="submit" class="btn btn-primary" id="confirmorderbtn" value="Confirm Order" >
 							  </div>
 							</div>
 						  </div>
@@ -328,6 +291,7 @@
 					</div>
 				  </div>
 				</div>
+				<?php echo form_close() ?>
 			  </div>
 			</div>
 			<!--Middle Part End -->

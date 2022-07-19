@@ -137,14 +137,14 @@
                                  <td class="text-right">
                                     <strong >Sub-Total:</strong>
                                  </td>
-                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
+                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total; ?></td>
                               </tr>
                              
                               <tr>
                                  <td class="text-right">
                                     <strong>Total:</strong>
                                  </td>
-                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
+                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total; ?></td>
                               </tr>
                            </tbody>
                         </table>

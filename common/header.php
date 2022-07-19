@@ -310,7 +310,7 @@
                   <div class="icon-search hidden-lg hidden-md hidden-sm"><i class="fa fa-search"></i></div>
                   <div id="sosearchpro" class="sosearchpro-wrapper so-search ">
                        <?php echo form_open('Frontend/search_data', array('id' => 'search_form')) ?>
-                        <div id="search0" class="search input-group form-group">
+                        <div id="search0" class="search input-group form-group" >
                            <input class="autosearch-input form-control" type="text" size="50" autocomplete="on" placeholder="Keyword here..." id="autouser11">
                            <span class="input-group-btn">
                            <button type="submit" class="button-search btn btn-primary"><i class="fa fa-search"></i></button>
@@ -381,7 +381,7 @@
                                        <tr>
                                           <td class="text-left"><strong>Total</strong>
                                           </td>
-                                          <td class="text-right"><?php echo $cart_total; ?></td>
+                                          <td class="text-right">$ <?php echo $cart_total; ?></td>
                                        </tr>
                                     </tbody>
                                  </table>

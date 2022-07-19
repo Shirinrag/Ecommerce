@@ -275,14 +275,20 @@ class Frontend extends CI_Controller {
     {
         $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
         $session_data = $this->session->userdata('logged_in');
-        $fk_lang_id = $session_data['lang_id'];
-        $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id);
-        $curl=$this->link->hits('get-all-user-cart',$curldata); 
-  
-        $curl1=json_decode($curl,true);
-        $data['cart_data']=$curl1['cart_data'];
-        $data['cart_total_sum']=$curl1['sub_total'];
-        $this->load->view('frontend/cart',$data);
+        if($user_id != '')
+        {
+            $fk_lang_id = $session_data['lang_id'];
+            $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id);
+            $curl=$this->link->hits('get-all-user-cart',$curldata); 
+      
+            $curl1=json_decode($curl,true);
+            $data['cart_total_sum']=$curls_data['cartPrice'];
+            $data['cart_total']=$curls_data['sub_total'];
+            $this->load->view('frontend/cart',$data);
+        }else{
+            redirect(base_url().'Frontend');
+        }
+       
     }
 
     public function deletecart()
@@ -329,11 +335,13 @@ class Frontend extends CI_Controller {
 
     public function checkout()
     {
+       
         $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
         $session_data = $this->session->userdata('logged_in');
         $fk_lang_id = $session_data['lang_id'];
         $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id);
         $curl=$this->link->hits('check-out-api',$curldata); 
+        
         $curl1=json_decode($curl,true);
        
         $data['cart_product_details']=$curl1['cart_product_details'];
@@ -345,31 +353,63 @@ class Frontend extends CI_Controller {
 
     public function confirmorder()
     {
-        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
-        $session_data = $this->session->userdata('logged_in');
-        $fk_product_id = $_POST['fk_product_id'];
-        $order_id = mt_rand(0,5);
-        $fk_address_id = $_POST['fk_address_id'];
-        $quantity = $_POST['quantity'];
-        $unit_price = $_POST['unit_price'];
-        $total = $_POST['total'];
-        $sub_total = $_POST['sub_total'];
-        $grand_total = $_POST['grand_total'];
-        $fk_lang_id = $session_data['lang_id'];
-      
-        $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id,'fk_product_id'=>json_encode($fk_product_id),'order_id'=>$order_id,'fk_address_id'=>$fk_address_id,
-       'quantity'=>json_encode($quantity),'unit_price'=>json_encode($unit_price),'total'=>json_encode($total),'sub_total'=>$sub_total,'grand_total'=>$grand_total);
-        $curl=$this->link->hits('add-payment-data',$curldata); 
-        
-        $curl1=json_decode($curl,true);
+        if ($this->session->userdata('user_logged_in')) {
+            $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
+           $this->form_validation->set_rules('fk_address_id', 'Address', 'required|trim', array('required' => 'You must provide a %s',));
+         
+
+          if ($this->form_validation->run() == FALSE) {
+              $response['status'] = 'failure';
+              $response['error'] = array(
+                  'fk_address_id' => strip_tags(form_error('fk_address_id')), 
+              );
+          } else {
+            $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+            $session_data = $this->session->userdata('logged_in');
+            $fk_product_id = $_POST['fk_product_id'];
+            $order_id = mt_rand(10000,99999);
+            $fk_address_id = $_POST['fk_address_id'];
+            $quantity = $_POST['quantity'];
+            $unit_price = $_POST['unit_price'];
+            $total = $_POST['total'];
+            $sub_total = $_POST['sub_total'];
+            $grand_total = $_POST['grand_total'];
+            $fk_lang_id = $session_data['lang_id'];
+
+            $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id,'fk_product_id'=>json_encode($fk_product_id),'order_id'=>$order_id,'fk_address_id'=>$fk_address_id,
+            'quantity'=>json_encode($quantity),'unit_price'=>json_encode($unit_price),'total'=>json_encode($total),'sub_total'=>$sub_total,'grand_total'=>$grand_total);
+             $curl=$this->link->hits('add-payment-data',$curldata); 
+             
+             $curl1=json_decode($curl,true);
+             
+              if ($curl1['status']==1) {
+                  $response['status'] = 'success';
+                  $response['url']=base_url() . 'Frontend/payment?orderid='.base64_encode($order_id);
+              }else {
+                  $response['status'] = 'failure';
+                  $response['error'] = array('address_type' => $curl1['message'],);
+              }
+          }
+           
+        } else {
+          $response['status'] = 'failure';
+          $response['url'] = base_url() . "Frontend";
+      }
+      echo json_encode($response);
        
-        redirect(base_url() . 'Frontend/payment');
+               
+                //redirect(base_url() . 'Frontend/payment?orderid='.base64_encode($order_id));
+          
+       
     }
 
     public function payment()
     {
+        $orderid=base64_decode($_GET['orderid']);
         $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
-       
+        $curldata=array('order_id'=>$orderid);
+        $curl=$this->link->hits('get-confirm-order-details',$curldata); 
+        $curl1=json_decode($curl,true);
         $this->load->view('frontend/payment');
     }
 
@@ -417,7 +457,7 @@ class Frontend extends CI_Controller {
 	{
 		 if ($this->session->userdata('user_logged_in')) {
 		 	 $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
-		 	$this->form_validation->set_rules('roomno', 'Room No', 'required|trim', array('required' => 'You must provide a %s',));
+		 	$this->form_validation->set_rules('roomno', 'Room No', 'trim|required', array('required' => 'You must provide a %s',));
         	$this->form_validation->set_rules('building', 'Building', 'trim|required', array('required' => 'You must provide a %s',));
         	$this->form_validation->set_rules('city', 'City', 'trim|required', array('required' => 'You must provide a %s',));
         	$this->form_validation->set_rules('postcode', 'City', 'trim|required', array('required' => 'You must provide a %s',));
@@ -464,8 +504,8 @@ class Frontend extends CI_Controller {
 		 			'user_id'=>$user_id,
 		 		);
 		 		$curl1=$this->link->hits('save-new-address',$curl_data); 
-        		$curl1=json_decode($curl1,true);
-
+               $curl1=json_decode($curl1,true);
+               
         		if ($curl1['status']==1) {
                     $response['status'] = 'success';
                 }else {
