@@ -63,7 +63,7 @@
                                             <option  value="">Select Product</option>
                                             <?php if(isset($product_list) && !empty($product_list)){ 
                                                 foreach ($product_list as $category_key => $category_value) {?>
-                                                    <option value="<?php echo $category_value['product_id']; ?>"><?php echo $category_value['product_name']; ?></option>
+                                                    <option value="<?php echo $category_value['category_id']; ?>"><?php echo $category_value['category_name']; ?></option>
                                             <?php }
                                             } ?>
                                             </select>

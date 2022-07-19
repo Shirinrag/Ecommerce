@@ -803,7 +803,7 @@ class Admin extends CI_Controller {
     }
     function add_banner() {
         $data['menu'] = 'banner';
-        $data['product_list'] = $this->model->getData("product", array('status' => '1'));
+        $data['product_list'] = $this->model->getData("category", array('status' => '1'));
         $data['lang_name'] = $this->model->selectWhereData('tbl_language', array(), array('id', 'lang_name'), false);
         $data['banner_list'] = $this->model->getDataOrderBy('top_banner', array('status' => '1'), 'bottom_id', 'desc');
         $data['main_content'] = 'admin/add_banner';
