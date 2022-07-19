@@ -8,7 +8,7 @@ class Frontend extends CI_Controller {
 		$session_data = $this->session->userdata('logged_in');
         $curl_data = array('fk_lang_id' =>$session_data['lang_id'],);
 		$curl=$this->link->hits('get-home-page-data',$curl_data);
-        $curl = json_decode($curl,true);
+		$curl = json_decode($curl,true);
 		// echo '<pre>'; print_r($curl); exit;
 		$data['slider'] = $curl['slider'];
 		$data['product_data'] = $curl['product_data'];
