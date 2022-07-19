@@ -338,6 +338,24 @@ class Frontend extends CI_Controller {
        
         $data['cart_product_details']=$curl1['cart_product_details'];
         $data['user_address']=$curl1['user_address'];
+        $data['cart_total']=$curl1['total'];
+        //echo $data['cart_total_sum'];die();
+        $this->load->view('frontend/checkout',$data);
+    }
+
+    public function confirmorder()
+    {
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+        $session_data = $this->session->userdata('logged_in');
+        $fk_lang_id = $session_data['lang_id'];
+        $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id);
+        $curl=$this->link->hits('check-out-api',$curldata); 
+        $curl1=json_decode($curl,true);
+       
+        $data['cart_product_details']=$curl1['cart_product_details'];
+        $data['user_address']=$curl1['user_address'];
+        $data['cart_total']=$curl1['total'];
+        //echo $data['cart_total_sum'];die();
         $this->load->view('frontend/checkout',$data);
     }
 

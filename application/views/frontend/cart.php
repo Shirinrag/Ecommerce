@@ -139,24 +139,7 @@
                                  </td>
                                  <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
                               </tr>
-                              <tr>
-                                 <td class="text-right">
-                                    <strong>Flat Shipping Rate:</strong>
-                                 </td>
-                                 <td class="text-right">$0</td>
-                              </tr>
-                              <tr>
-                                 <td class="text-right">
-                                    <strong>Eco Tax (-2.00):</strong>
-                                 </td>
-                                 <td class="text-right">$0</td>
-                              </tr>
-                              <tr>
-                                 <td class="text-right">
-                                    <strong>VAT (20%):</strong>
-                                 </td>
-                                 <td class="text-right">$0</td>
-                              </tr>
+                             
                               <tr>
                                  <td class="text-right">
                                     <strong>Total:</strong>

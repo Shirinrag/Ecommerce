@@ -219,7 +219,7 @@
 								<div class="radio">
 							  <label>
 								<input type="radio" value="<?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?>" name="account">
-								<?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label>
+								<input type="radio" value="<?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?>" name="account"><?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label>
 							</div>
 							<?php } ?>
 							
@@ -341,35 +341,23 @@
                                  <td class="text-right" colspan="3">
                                     <strong >Sub-Total:</strong>
                                  </td>
-                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
+                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total; ?></td>
                               </tr>
-                              <tr>
-                                 <td class="text-right" colspan="3">
-                                    <strong>Flat Shipping Rate:</strong>
-                                 </td>
-                                 <td class="text-right">$0</td>
-                              </tr>
-                              <tr>
-                                 <td class="text-right" colspan="3">
-                                    <strong>Eco Tax (-2.00):</strong>
-                                 </td>
-                                 <td class="text-right">$0</td>
-                              </tr>
-                              <tr>
-                                 <td class="text-right" colspan="3">
-                                    <strong>VAT (20%):</strong>
-                                 </td>
-                                 <td class="text-right">$0</td>
-                              </tr>
+                             
                               <tr>
                                  <td class="text-right" colspan="3">
                                     <strong>Total:</strong>
                                  </td>
-                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total_sum; ?></td>
+                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total; ?></td>
                               </tr>
                            </tbody>
 								</tfoot>
 							  </table>
+							</div>
+							<div class="buttons">
+							  <div class="pull-right">
+								<input type="submit" class="btn btn-primary" id="confirmorder" value="Confirm Order" >
+							  </div>
 							</div>
 						  </div>
 					  </div>
@@ -417,7 +405,6 @@
      <?php include('common/jsfiles.php');?>
 	 <script src="<?= base_url(); ?>assets_frontend/custom_js/cart.js"></script>
 	 <script src="<?= base_url();?>assets_frontend/custom_js/address_book.js"></script>
-	
 	 <script type="text/javascript">
    $(document).ready(function() {
 
