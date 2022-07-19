@@ -411,7 +411,11 @@ class Frontend extends CI_Controller {
     }
     public function address_book()
 	{
-		$this->load->view('frontend/address_book');
+        if ($this->session->userdata('user_logged_in')) {
+		  $this->load->view('frontend/address_book');
+        }else{
+            redirect('Frontend');
+        }
 	}
 	public function save_new_address()
 	{
@@ -485,7 +489,7 @@ class Frontend extends CI_Controller {
     public function edit_new_address()
     {
         if ($this->session->userdata('user_logged_in')) {
-            print_r($this->session->userdata('user_logged_in'));die();
+         
             $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
            $this->form_validation->set_rules('roomno', 'Room No', 'required|trim', array('required' => 'You must provide a %s',));
           $this->form_validation->set_rules('building', 'Building', 'trim|required', array('required' => 'You must provide a %s',));
@@ -539,6 +543,7 @@ class Frontend extends CI_Controller {
 
               if ($curl1['status']==1) {
                   $response['status'] = 'success';
+                  redirect('Frontend/checkout');
               }else {
                   $response['status'] = 'failure';
                   $response['error'] = array('address_type' => $curl1['message'],);

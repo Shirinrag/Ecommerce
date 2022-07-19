@@ -460,32 +460,8 @@
                            </div>
                         </div>
                     </div>
-                    <div class="shopping_cart">
-                        <div id="cart" class="btn-shopping-cart">
-                            <a class="btn-group top_cart dropdown-toggle" aria-expanded="true"
-                                href="<?php echo base_url();?>Frontend/wishlist_list">
-                                <div class="shopcart">
-                                    <span class="icon-c">
-                                        <i class="fa fa-heart"></i>
-                                    </span>
-                                    <div class="shopcart-inner refesh">
-                                        <span class="total-shopping-cart cart-total-full">
-                                            <span
-                                                class="items_cart "><?php if($wishlist_count > 0){ echo $wishlist_count; }else{ echo '0';} ?></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!--//cart-->
-                    <!-- <ul class="wishlist-comp hidden-md hidden-sm hidden-xs"> -->
-                    <!--  <li class="compare hidden-xs"><a href="#" class="top-link-compare" title="Compare "><i class="fa fa-refresh"></i></a>
-                  </li> -->
-                    <!-- <li class="wishlist hidden-xs"><a href="<?php //echo base_url();?>Frontend/wishlist_list" id="wishlist-total" class="top-link-wishlist" title="Wish List (0) "><i class="fa fa-heart"></i></a>
-                  </li>
-                  
-                  </ul> -->
+                    
+                 
                 </div>
             </div>
         </div>
