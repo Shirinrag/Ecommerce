@@ -33,7 +33,7 @@
                                         data-pagination="yes" data-lazyload="yes" data-loop="no" data-hoverpause="yes">
                                         <?php foreach ($slider as $slider_key => $slider_row) { ?>
                                         <div class="yt-content-slide">
-                                            <a href="#"><img src="<?=$slider_row['img_url']?>" alt="slider1"
+                                            <a href="<?php echo base_url().'Frontend/category?catid='. base64_encode($slider_row['product_id'])?>"><img src="<?=$slider_row['img_url']?>" alt="slider1"
                                                     id="sliders" class="img-responsive sliders"></a>
                                         </div>
 

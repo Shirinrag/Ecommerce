@@ -236,17 +236,19 @@
                                                                                         <?php } ?>
                                                                                         <a
                                                                                             href="<?php echo base_url().'Frontend/sub_category?subcatid='.base64_encode($sub_id[1]); ?>"><?=$sub_id[0];?></a>
-                                                                                        <ul class="sub-menu">
+                                                                                            <?php if(count($cat_data_row['child_name'][$key1]) > 0){ ?>
+                                                                                            <ul class="sub-menu">
                                                                                             <?php  foreach($cat_data_row['child_name'][$key1] as $s){?>
                                                                                             <li
                                                                                                 class="menu-item-has-children">
                                                                                                 <a
                                                                                                     href="<?php echo base_url().'Frontend/child_category?childcatid='.base64_encode($s['child_category_id']); ?>"><?=$s['child_category_name'];?></a>
                                                                                             </li>
-                                                                                            <?php }?>
+                                                                                            <?php } ?>
                                                                                         </ul>
+                                                                                        <?php } ?>
                                                                                     </li>
-                                                                                    <?php }?>
+                                                                                    <?php } ?>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -299,7 +301,7 @@
                                 <a href="#" class="nav-link dropdown-toggle newdrop" data-bs-toggle="dropdown">
                                     <div class="cart-block">
                                         <div class="cart-icon"
-                                            style="margin-top: -30px !important;margin-left: -30px;!important">
+                                            style="margin-top: -5px !important;margin-left: -30px;!important">
                                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                                                 class="Icon-sc-1iwi4w1-0 cHrYdI hover" mr="8" iconsize="20"
                                                 style="width: 25px !important;">
@@ -445,11 +447,14 @@
                         </ul>
                      </div>
                   </div>
+
+                  
                </div>
                <div class="shopping_cart">
-                  <div id="cart" class="btn-shopping-cart">
-                     <a  class="btn-group top_cart dropdown-toggle" aria-expanded="true"href="<?php echo base_url();?>Frontend/wishlist_list" >
-                        <div class="shopcart">
+                        <div id="cart" class="btn-shopping-cart">
+                            <a data-loading-text="Loading... " class="btn-group top_cart"
+                                aria-expanded="true" href="<?php echo base_url()?>Frontend/wishlist_list">
+                                <div class="shopcart">
                            <span class="icon-c">
                            <i class="fa fa-heart"></i>
                            </span>
@@ -459,10 +464,11 @@
                               </span>
                            </div>
                         </div>
-                    </div>
-                    
-                 
-                </div>
+                            </a>
+                        
+                     </div>
+                  </div>
+             
             </div>
         </div>
     </div>

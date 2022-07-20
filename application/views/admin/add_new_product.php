@@ -252,7 +252,7 @@
                               <div class="col-sm-12 mr20">
                                  <div class="form-group">
                                     <label>Enter Product Description<span class="text-danger">*</span> </label>
-                                    <textarea class="form-control" dir="ltl" name="description" id="product_desc"></textarea>
+                                    <textarea class="form-control" dir="ltl" name="description" id="description"></textarea>
                                  </div>
                               </div>
                            </div>
@@ -260,7 +260,7 @@
                               <div class="col-sm-12 mr20">
                                  <div class="form-group">
                                     <label>Enter Product Description (ar)<span class="text-danger">*</span></label>
-                                    <textarea class="form-control" dir="ltl" name="description_ar" id="product_desc_ar"></textarea>
+                                    <textarea class="form-control" dir="ltl" name="description_ar" id="description_ar"></textarea>
                                  </div>
                               </div>
                            </div>
@@ -318,7 +318,7 @@
        <script src="<?php echo base_url();?>assets_admin/js/admin.js"></script>
       <script type="text/javascript">
          $(document).ready(function(){
-             $('#product_desc,#terms_conditions').summernote({height: 50});
+             $('#description,#terms_conditions').summernote({height: 50});
              $('#product_category').select2();
              $('#subcategory').select2();
              $('#child_category_id').select2();
@@ -328,7 +328,7 @@
          });
 
          $(document).ready(function(){
-             $('#product_desc_ar,#terms_conditions').summernote({height: 50});
+             $('#description_ar,#terms_conditions').summernote({height: 50});
              $('#product_category').select2();
              $('#subcategory').select2();
              $('#child_category_id').select2();
@@ -412,8 +412,8 @@
 	var product_code = jQuery('#product_code').val();
 	var image_name = jQuery('#image_name').val();
    var product_name_ar = jQuery("#product_name_ar").val();
-   var product_desc = jQuery("#product_desc").val();
-   var product_desc_ar = jQuery("#product_desc_ar").val();
+   var description = jQuery("#description").val();
+   var description_ar = jQuery("#description_ar").val();
    var currency_in_english = jQuery("#currency_in_english").val();
    var currency_in_arabic = jQuery("#currency_in_arabic").val();
 	//var fk_lang_id = jQuery('#fk_lang_id').val();
@@ -440,7 +440,7 @@
 
 	if(jQuery.trim(product_offer_price)=='') { 
 		showError("Please Enter Product Offer Price", "product_offer_price"); hasError = 1; 
-	}else if(!isNumDigit(product_price)){
+	}else if(!isNumDigit(product_offer_price)){
 		showError("Please Enter Numeric values only", "product_offer_price"); hasError = 1; 
 	} else { 
 		changeError("product_offer_price"); 
@@ -448,15 +448,15 @@
 
 	if(jQuery.trim(product_purchase_price)=='') { 
 		showError("Please Enter Purchase price", "product_purchase_price"); hasError = 1; 
-	}else if(!isNumDigit(product_price)){
+	}else if(!isNumDigit(product_purchase_price)){
 		showError("Please Enter Numeric values only", "product_purchase_price"); hasError = 1; 
 	} else { 
 		changeError("product_purchase_price"); 
 	}
 
    if(jQuery.trim(product_name_ar)=='') { showError("Please Enter Product Name in ar", "product_name_ar"); hasError = 1; } else { changeError("product_name_ar"); }
-   if(jQuery.trim(product_desc)=='') { showError("Please Enter Description", "product_desc"); hasError = 1; } else { changeError("product_desc"); }
-   if(jQuery.trim(product_desc_ar)=='') { showError("Please Enter Product Description in ar", "product_desc_ar"); hasError = 1; } else { changeError("product_desc_ar"); }
+   if(jQuery.trim(description)=='') { showError("Please Enter Description", "description"); hasError = 1; } else { changeError("description"); }
+   if(jQuery.trim(description_ar)=='') { showError("Please Enter Product Description in ar", "description_ar"); hasError = 1; } else { changeError("description_ar"); }
 
 	if(jQuery.trim(product_unit)=='') { showError("Select Product unit", "product_unit"); hasError = 1; } else { changeError("product_unit"); }
    //if(jQuery.trim(fk_lang_id)=='') { showError("Select Language", "fk_lang_id"); hasError = 1; } else { changeError("fk_lang_id"); }

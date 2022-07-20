@@ -9,7 +9,7 @@ class Frontend extends CI_Controller {
         $curl_data = array('fk_lang_id' =>$session_data['lang_id'],);
 		$curl=$this->link->hits('get-home-page-data',$curl_data);
 		$curl = json_decode($curl,true);
-		// echo '<pre>'; print_r($curl); exit;
+		
 		$data['slider'] = $curl['slider'];
 		$data['product_data'] = $curl['product_data'];
 		$data['popular'] = $curl['popular'];
@@ -399,8 +399,49 @@ class Frontend extends CI_Controller {
        
                
                 //redirect(base_url() . 'Frontend/payment?orderid='.base64_encode($order_id));
-          
-       
+    }
+
+    public function pay_ment_mode()
+    {
+        if ($this->session->userdata('user_logged_in')) {
+            $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
+            $this->form_validation->set_rules('paymode', 'Payment Mode', 'required|trim', array('required' => 'You must provide a %s',));
+            
+          if ($this->form_validation->run() == FALSE) {
+              $response['status'] = 'failure';
+              $response['error'] = array(
+                  'paymode' => strip_tags(form_error('paymode')), 
+              );
+             
+          } else {
+            $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+            $session_data = $this->session->userdata('logged_in');
+            $fk_product_id = json_encode($_POST['fk_product_id']);
+            $order_no = $_POST['order_id'];
+            $fk_address_id = $_POST['fk_address_id'];
+            $quantity = json_encode($_POST['quantity']);
+            $unit_price = json_encode($_POST['unit_price']);
+            $total = json_encode($_POST['total']);
+            $sub_total = $_POST['sub_total'];
+            $grand_total = $_POST['grand_total'];
+            
+            $curldata=array('user_id'=>$user_id,'fk_product_id'=>$fk_product_id,'order_no'=>$order_no,'fk_address_id'=>$fk_address_id,
+            'quantity'=>$quantity,'unit_price'=>$unit_price,'total'=>$total,'sub_total'=>$sub_total,'grand_total'=>$grand_total);
+            $curl=$this->link->hits('order-place',$curldata); 
+            // print_r($curl);die();
+            $curl1=json_decode($curl,true);
+             
+              if ($curl1['status']==1) {
+                  $response['status'] = 'success';
+                  $response['url']=base_url() . 'Frontend/orderhistory';
+              }else {
+                  $response['status'] = 'failure';
+                  $response['error'] = array('address_type' => $curl1['message'],);
+              }
+          }
+        }
+        //print_r($response)
+          echo json_encode($response);
     }
 
     public function payment()
@@ -410,7 +451,20 @@ class Frontend extends CI_Controller {
         $curldata=array('order_id'=>$orderid);
         $curl=$this->link->hits('get-confirm-order-details',$curldata); 
         $curl1=json_decode($curl,true);
-        $this->load->view('frontend/payment');
+     
+        $data['order_details']=$curl1['order_details'];
+        $this->load->view('frontend/payment',$data);
+    }
+
+    public function orderhistory()
+    {
+        // $orderid=base64_decode($_GET['orderid']);
+        // $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+        // $curldata=array('order_id'=>$orderid);
+        // $curl=$this->link->hits('get-confirm-order-details',$curldata); 
+        // print_r($curl);die();
+        // $curl1=json_decode($curl,true);
+        $this->load->view('frontend/order-history');
     }
 
     public function wishlist_list()
@@ -614,9 +668,11 @@ class Frontend extends CI_Controller {
     public function category()
 	{
         $category=base64_decode($_GET['catid']);
+     
         $session_data = $this->session->userdata('logged_in');
         $curldata = array('fk_lang_id' =>$session_data['lang_id'],'category_id'=>$category); 
         $curl=$this->link->hits('get-product-on-category',$curldata); 
+      
         $curl1=json_decode($curl,true);
         $data['product_data']=$curl1['product_data'];
         // echo "<pre>";
@@ -630,6 +686,7 @@ class Frontend extends CI_Controller {
         $session_data = $this->session->userdata('logged_in');
         $curldata = array('fk_lang_id' =>$session_data['lang_id'],'sub_category_id'=>$subcatid); 
         $curl=$this->link->hits('get-product-on-sub-category',$curldata); 
+
         $curl1=json_decode($curl,true);
         $data['product_data']=$curl1['product_data'];
         //  echo "<pre>";

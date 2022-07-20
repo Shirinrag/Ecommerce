@@ -130,10 +130,7 @@ function decrement_quantity(cart_id, price,product_id) {
     }
 }
 
- $(document).ready(function() {
-
-                <
-                script type = "text/javascript" >
+ 
                     $(document).ready(function() {
 
                         $('.num-in span').click(function() {
@@ -182,3 +179,31 @@ function decrement_quantity(cart_id, price,product_id) {
                         });
 
                     });
+
+
+                    $('#PaymentModeForm').submit(function (e) {
+                        e.preventDefault();
+                        var PaymentModeForm = $(this);
+                        $.ajax({
+                           dataType: 'json',
+                           type: 'POST',
+                           url: PaymentModeForm.attr('action'),
+                           data: PaymentModeForm.serialize(),
+                           beforeSend: function () {
+                              $('#save_payment_mode_button').button('loading');
+                           },
+                           success: function (response) {
+                              if (response.status == 'success') {
+                                 $('form#PaymentModeForm').trigger('reset');
+                                 $('#save_payment_mode_button').button('reset');
+                                 window.location.replace(response['url']);
+                                 success_msg("Payment Done Successfully");
+                              } else if (response.status == 'failure') {
+                                 error_msg(response.error);
+                                 $('#save_payment_mode_button').button('reset');
+                              } else {
+                                 // window.location.replace(response['url']);
+                              }
+                           }
+                        });
+                     });

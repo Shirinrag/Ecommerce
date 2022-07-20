@@ -24,7 +24,7 @@ $('#save_new_address_form').submit(function (e) {
       }
    });
 });
-
+/**confirm Order */
 $('#confirmorderform').submit(function (e) {
    e.preventDefault();
    var save_new_address_form = $(this);

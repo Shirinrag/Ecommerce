@@ -153,9 +153,9 @@ class Admin extends CI_Controller {
                 $this->load->library('upload', $config);
                 if (!$this->upload->do_upload('image_file')) {
                     $error = array('error' => $this->upload->display_errors());
-                    $this->load->view('upload_form', $error);
+                    $this->load->view('admin/edit_category', $error);
                 } else {
-                    move_uploaded_file($_FILES['image_file']['tmp_name']);
+                    move_uploaded_file($_FILES['image_path']['tmp_name']);
                     $data = array('file_path' => $this->upload->data());
                     $array_entity['image_path'] = 'uploads/' . $data['file_path']['file_name'];
                 }
