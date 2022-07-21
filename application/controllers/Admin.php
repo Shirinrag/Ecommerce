@@ -1179,13 +1179,14 @@ class Admin extends CI_Controller {
     {
          $this->load->model('superadmin_model');
          $order_data = $this->superadmin_model->Order_details();
-         echo '<pre>'; print_r($order_data); exit;
-        $this->load->view('admin/Order_history');
+         $data['order_data'] = $order_data;
+
+        $this->load->view('admin/Order_history',$data);
     }
 
-    public function display_all_order_datatable()
+    public function Order_details()
     {
-
+        $this->load->view('admin/Order_details',$data);
 
     }
 }
