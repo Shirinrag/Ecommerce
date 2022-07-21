@@ -51,3 +51,28 @@ $('#confirmorderform').submit(function (e) {
       }
    });
 });
+
+ $(document).on('click', '.edit_address', function() {
+     var id = $(this).attr("id");
+      $.ajax({
+         url: bases_url + 'Frontend/get_address_on_id',
+         method: "POST",
+         data: {
+             id: id
+         },
+         dataType: "json",
+         success: function(data) {
+             if (data.status == 'success') {
+                 var info = data.address_data;
+                 $('#id').val(info['id']);
+                 $('#edit_address_type').val(info['address_type']);
+                 $('#edit_roomno').val(info['roomno']);
+                 $('#edit_building').val(info['building']);                
+                 $('#edit_city').val(info['street']);
+                 $('#edit_zone').val(info['zone']);
+             } else {
+                 window.location.replace(response['url']);
+             }
+         }
+     });
+ });

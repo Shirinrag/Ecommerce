@@ -61,7 +61,7 @@
                                     <div class="form-group">
                                         <label for="input-company" class="control-label">Room No</label>
                                         <input type="text" class="form-control" placeholder="Room No" name="roomno"
-                                            id="roomno">
+                                           >
                                         <span class="error_msg" id="address_type_error"></span>
 
                                     </div>
@@ -102,47 +102,6 @@
                         <div class="col-right col-sm-9">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <!--<div class="panel panel-default no-padding">
-							 <div class="col-sm-6 checkout-shipping-methods">
-								<div class="panel-heading">
-								  <h4 class="panel-title"><i class="fa fa-truck"></i> Delivery Method</h4>
-								</div>
-								<div class="panel-body ">
-									<p>Please select the preferred shipping method to use on this order.</p>
-									<div class="radio">
-									  <label>
-										<input type="radio" checked="checked" name="Free Shipping">
-										Free Shipping - $0.00</label>
-									</div>
-									<div class="radio">
-									  <label>
-										<input type="radio" name="Flat Shipping Rate">
-										Flat Shipping Rate - $7.50</label>
-									</div>
-									
-								</div>
-							</div>
-							<div class="col-sm-6  checkout-payment-methods">
-								<div class="panel-heading">
-								  <h4 class="panel-title"><i class="fa fa-credit-card"></i> Payment Method</h4>
-								</div>
-								<div class="panel-body">
-									<p>Please select the preferred payment method to use on this order.</p>
-									<div class="radio">
-									  <label>
-										<input type="radio" checked="checked" name="Cash On Delivery">Cash On Delivery</label>
-									</div>
-									
-									<div class="radio">
-									  <label>
-										<input type="radio" name="Paypal">Paypal</label>
-									</div>
-								</div>
-							</div> 
-						</div>-->
-                                </div>
-
-                                <div class="col-sm-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title"><i class="fa fa-ticket"></i>Select Address <a
@@ -154,112 +113,9 @@
                                             <?php  foreach($user_address as $key =>$values) {?>
                                             <div class="radio">
                                                 <label>
-                                                <input type="radio" name="fk_address_id" value="<?php echo $values['id']; ?>"><?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label><a  style="float:right;" class="btn" id="edit_address" data-toggle="modal" data-target="#myModal_<?php echo $values['id']?>"><i class="fa fa-edit"></i></a>
+                                                <input type="radio" name="fk_address_id" value="<?php echo $values['id']; ?>"><?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label><a  style="float:right;" class="btn edit_address" id="<?php echo $values['id']; ?>" data-toggle="modal" data-target=".edit_address_model"><i class="fa fa-edit"></i></a>
 								                          </div>
-                                            <div id="myModal_<?php echo $values['id']?>" class="modal fade"
-                                                role="dialog">
-                                                <div class="modal-dialog">
-
-                                                    <!-- Modal content-->
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal">&times;</button>
-                                                            <h4 class="modal-title">Edit Address</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form
-                                                                action="<?php echo base_url(); ?>Frontend/edit_new_address"
-                                                                method="post">
-
-                                                                <fieldset id="shipping-address">
-                                                                    <legend>Shipping Address</legend>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">Address
-                                                                            Type</label>
-                                                                        <select class="form-control select2"
-                                                                            name="address_type"
-                                                                            data-placeholder="Address Type">
-                                                                            <option value=""></option>
-                                                                            <option value="1"
-                                                                                <?php if($values['address_type'] == '1'){?>
-                                                                                selected=selected <?php } ?>>Home
-                                                                            </option>
-                                                                            <option value="2"
-                                                                                <?php if($values['address_type'] == '2'){?>
-                                                                                selected=selected <?php } ?>>Office
-                                                                            </option>
-                                                                            <option value="3"
-                                                                                <?php if($values['address_type'] == '3'){?>
-                                                                                selected=selected <?php } ?>>Others
-                                                                            </option>
-
-                                                                        </select>
-                                                                        <span class="error_msg"
-                                                                            id="address_type_error"></span>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <input type="hidden" class="form-control"
-                                                                            name="id"
-                                                                            value="<?php echo $values['id']; ?>">
-                                                                        <label for="input-company"
-                                                                            class="control-label">Room No</label>
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="Room No" name="roomno"
-                                                                            id="roomno"
-                                                                            value="<?php echo $values['roomno']; ?>">
-                                                                        <span class="error_msg"
-                                                                            id="address_type_error"></span>
-
-                                                                    </div>
-                                                                    <div class="form-group required">
-                                                                        <label for="input-address-1"
-                                                                            class="control-label">Building</label>
-                                                                        <input type="text" class="form-control"
-                                                                            placeholder="Building" name="building"
-                                                                            id="building"
-                                                                            value="<?php echo $values['building']; ?>">
-                                                                        <span class="error_msg"
-                                                                            id="building_error"></span>
-
-                                                                    </div>
-                                                                    <div class="form-group required">
-                                                                        <label for="input-city"
-                                                                            class="control-label">Street</label>
-                                                                        <input type="text" class="form-control"
-                                                                            id="city" placeholder="City" name="city"
-                                                                            value="<?php echo $values['street']; ?>">
-                                                                        <span class="error_msg" id="city_error"></span>
-
-                                                                    </div>
-                                                                    <div class="form-group required">
-                                                                        <label for="input-postcode"
-                                                                            class="control-label">Pincode</label>
-                                                                        <input type="text" class="form-control"
-                                                                            id="postcode" placeholder="Post Code"
-                                                                            name="postcode"
-                                                                            value="<?php echo $values['zone']; ?>">
-                                                                        <span class="error_msg"
-                                                                            id="postcode_error"></span>
-
-                                                                    </div>
-                                                                </fieldset>
-                                                                <div class="buttons clearfix">
-                                                                    <div class="pull-left">
-                                                                        <button class="btn btn-primary"
-                                                                            data-loading-text="<i class='fa fa-spinner fa-spin'></i> Loading"
-                                                                            type="submit">Submit</button>
-                                                                        <button type="button" class="btn btn-default"
-                                                                            data-dismiss="modal">Close</button>
-                                                                    </div>
-                                                            </form>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
+                                            
                                         </div>
                                         <?php } ?>
 
@@ -370,25 +226,6 @@
                             </div>
                     </form>
                 </div>
-                <div class="col-sm-12">
-                    <!-- <div class="panel panel-default">
-						<div class="panel-heading">
-						  <h4 class="panel-title"><i class="fa fa-pencil"></i> Add Comments About Your Order</h4>
-						</div>
-						  <div class="panel-body">
-							<textarea rows="4" class="form-control" id="confirm_comment" name="comments"></textarea>
-							<br>
-							<label class="control-label" for="confirm_agree">
-							  <input type="checkbox" checked="checked" value="1" required="" class="validate required" id="confirm_agree" name="confirm agree">
-							  <span>I have read and agree to the <a class="agree" href="#"><b>Terms &amp; Conditions</b></a></span> </label>
-							<div class="buttons">
-							  <div class="pull-right">
-								<input type="button" class="btn btn-primary" id="button-confirm" value="Confirm Order">
-							  </div>
-							</div>
-						  </div>
-					  </div> -->
-                </div>
             </div>
         </div>
         <?php echo form_close() ?>
@@ -406,7 +243,7 @@
 
     </div>
 
-    <div id="myModal_<?php echo $values['id']?>" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade edit_address_model" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -423,49 +260,40 @@
                             <div class="form-group">
                                 <label class="control-label">Address
                                     Type</label>
-                                <select class="form-control select2" name="address_type"
+                                <select class="form-control select2" name="edit_address_type" id="edit_address_type"
                                     data-placeholder="Address Type">
                                     <option value=""></option>
-                                    <option value="1" <?php if($values['address_type'] == '1'){?> selected=selected
-                                        <?php } ?>>Home
-                                    </option>
-                                    <option value="2" <?php if($values['address_type'] == '2'){?> selected=selected
-                                        <?php } ?>>Office
-                                    </option>
-                                    <option value="3" <?php if($values['address_type'] == '3'){?> selected=selected
-                                        <?php } ?>>Others
-                                    </option>
+                                    <option value="1" >Home</option>
+                                    <option value="2">Office</option>
+                                    <option value="3">Others</option>
 
                                 </select>
                                 <span class="error_msg" id="address_type_error"></span>
                             </div>
                             <div class="form-group">
-                                <input type="hidden" class="form-control" name="id"
-                                    value="<?php echo $values['id']; ?>">
+                                <input type="hidden" class="form-control" name="id" id="id" >
                                 <label for="input-company" class="control-label">Room No</label>
-                                <input type="text" class="form-control" placeholder="Room No" name="roomno" id="roomno"
-                                    value="<?php echo $values['roomno']; ?>">
+                                <input type="text" class="form-control" placeholder="Room No" name="edit_roomno" id="edit_roomno">
                                 <span class="error_msg" id="address_type_error"></span>
 
                             </div>
                             <div class="form-group required">
                                 <label for="input-address-1" class="control-label">Building</label>
-                                <input type="text" class="form-control" placeholder="Building" name="building"
-                                    id="building" value="<?php echo $values['building']; ?>">
+                                <input type="text" class="form-control" placeholder="Building" name="edit_building"
+                                    id="edit_building">
                                 <span class="error_msg" id="building_error"></span>
 
                             </div>
                             <div class="form-group required">
                                 <label for="input-city" class="control-label">Street</label>
-                                <input type="text" class="form-control" id="city" placeholder="City" name="city"
-                                    value="<?php echo $values['street']; ?>">
+                                <input type="text" class="form-control" id="edit_city" placeholder="City" name="edit_city">
                                 <span class="error_msg" id="city_error"></span>
 
                             </div>
                             <div class="form-group required">
                                 <label for="input-postcode" class="control-label">Pincode</label>
-                                <input type="text" class="form-control" id="postcode" placeholder="Post Code"
-                                    name="postcode" value="<?php echo $values['zone']; ?>">
+                                <input type="text" class="form-control" id="edit_zone" placeholder="Post Code"
+                                    name="edit_zone">
                                 <span class="error_msg" id="postcode_error"></span>
 
                             </div>
