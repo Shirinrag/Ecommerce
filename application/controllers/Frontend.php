@@ -474,7 +474,7 @@ class Frontend extends CI_Controller {
         $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
         $curldata=array('id'=>$order_id);
         $curl=$this->link->hits('order-history-on-order-id',$curldata); 
-        print_r($curl);die();
+        //print_r($curl);die();
         $curl1=json_decode($curl,true);
         $data['order_history_info']=$curl1['order_history'];
     
@@ -728,7 +728,20 @@ class Frontend extends CI_Controller {
 
 	public function search_data()
 	{
-		
+		$product_name=$_POST['search'];
+        $curldata = array('product_name'=>$product_name); 
+        $curl=$this->link->hits('get-product-name-data',$curldata); 
+        $curl1=json_decode($curl,true);
+        $data['product_details']=$curl1['product_details'];
+        if ($curl1['status']==1) {
+            $response['status'] = 'success';
+            $response['url'] =  base_url().'Frontend/product_details?id="' . base64_encode($data['product_details']['product_id']) . '"';
+        }
+        else {
+            $response['status'] = 'failure';
+            $response['error'] = array('error' => $curl1['message'],);
+        }
+        echo json_encode($response);
 	}
 
 	 public function logout() {

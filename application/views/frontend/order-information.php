@@ -42,10 +42,10 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td style="width: 50%;" class="text-left"> <b>Order ID:</b> <?php echo $order_history_info[0]['id'];?>
+							<td style="width: 50%;" class="text-left"> <b>Order ID:</b> <?php echo $order_history_info['id'];?>
 								<br>
-								<b>Date Added:</b> <?php echo $order_history_info[0]['date'];?></td>
-							<td style="width: 50%;" class="text-left"> <b>Payment Method:</b> <?php echo $order_history_info[0]['id'];?>
+								<b>Date Added:</b> <?php echo $order_history_info['date'];?></td>
+							<td style="width: 50%;" class="text-left"> <b>Payment Method:</b> <?php echo $order_history_info['payment_type'];?>
 								<br>
 								<!-- <b>Shipping Method:</b> Flat Shipping Rate </td> -->
 						</tr>
@@ -60,16 +60,16 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="text-left"><?php echo $order_history_info[0]['user_name'];?>
+							<td class="text-left"><?php echo $order_history_info['user_name'];?>
 								<br>
-								<br>Room No:<?php echo $order_history_info[0]['roomno'];?>
-								<br><?php echo $order_history_info[0]['building'];?>.','.<?php echo $order_history_info[0]['street'];?>
-								<br><?php echo $order_history_info[0]['zone'];?></td>
-							<td class="text-left"><?php echo $order_history_info[0]['user_name'];?>
+								<br>Room No:<?php echo $order_history_info['roomno'];?>
+								<br><?php echo $order_history_info['building'];?>,<?php echo $order_history_info['street'];?>
+								<br><?php echo $order_history_info['zone'];?></td>
+							<td class="text-left"><?php echo $order_history_info['user_name'];?>
 							<br>
-								<br>Room No:<?php echo $order_history_info[0]['roomno'];?>
-								<br><?php echo $order_history_info[0]['building'];?>.','.<?php echo $order_history_info[0]['street'];?>
-								<br><?php echo $order_history_info[0]['zone'];?></td>
+								<br>Room No:<?php echo $order_history_info['roomno'];?>
+								<br><?php echo $order_history_info['building'];?>,<?php echo $order_history_info['street'];?>
+								<br><?php echo $order_history_info['zone'];?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -78,61 +78,44 @@
 						<thead>
 							<tr>
 								<td class="text-left">Product Name</td>
-								<td class="text-left">Model</td>
 								<td class="text-right">Quantity</td>
 								<td class="text-right">Price</td>
 								<td class="text-right">Total</td>
-								<td style="width: 20px;"></td>
+								
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td class="text-left"><?php echo $order_history_info[0]['roomno'];?></td>
-								<td class="text-left"><?php echo $order_history_info[0]['roomno'];?></td>
-								<td class="text-right"><?php echo $order_history_info[0]['roomno'];?></td>
-								<td class="text-right"><?php echo $order_history_info[0]['roomno'];?></td>
-								<td class="text-right">$123.20</td>
-								<td style="white-space: nowrap;" class="text-right"> <a class="btn btn-primary" title="" data-toggle="tooltip" href="#" data-original-title="Reorder"><i class="fa fa-shopping-cart"></i></a>
-									<a class="btn btn-danger" title="" data-toggle="tooltip" href="return.html" data-original-title="Return"><i class="fa fa-reply"></i></a>
-								</td>
+								<td class="text-left"><?php echo $order_history_info['product_name'];?></td>
+								<td class="text-right"><?php echo $order_history_info['quantity'];?></td>
+								<td class="text-right"><?php echo $order_history_info['unit_price'];?></td>
+								<td class="text-right"><?php echo $order_history_info['total'];?></td>
+								
 							</tr>
 
 						</tbody>
 						<tfoot>
 							<tr>
-								<td colspan="3"></td>
+								<td colspan="2"></td>
 								<td class="text-right"><b>Sub-Total</b>
 								</td>
-								<td class="text-right">$101.00</td>
-								<td></td>
+								<td class="text-right"><?php echo $order_history_info['unit_price'];?></td>
+								
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td colspan="3"></td>
 								<td class="text-right"><b>Flat Shipping Rate</b>
 								</td>
-								<td class="text-right">$5.00</td>
+								<td class="text-right"><?php echo $order_history_info['sub_total'];?></td>
 								<td></td>
-							</tr>
+							</tr> -->
+							
 							<tr>
-								<td colspan="3"></td>
-								<td class="text-right"><b>Eco Tax (-2.00)</b>
-								</td>
-								<td class="text-right">$6.00</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3"></td>
-								<td class="text-right"><b>VAT (20%)</b>
-								</td>
-								<td class="text-right">$21.20</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="3"></td>
+								<td colspan="2"></td>
 								<td class="text-right"><b>Total</b>
 								</td>
-								<td class="text-right">$133.20</td>
-								<td></td>
+								<td class="text-right"><?php echo $order_history_info['grand_total'];?></td>
+								
 							</tr>
 						</tfoot>
 					</table>
@@ -147,23 +130,16 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="text-left">20/06/2016</td>
-							<td class="text-left">Processing</td>
+							<td class="text-left"><?php echo $order_history_info['date'];?></td>
+							<td class="text-left"><?php echo $order_history_info['order_status'];?></td>
 						</tr>
-						<tr>
-							<td class="text-left">21/06/2016</td>
-							<td class="text-left">Shipped</td>
-						</tr>
-						<tr>
-							<td class="text-left">24/06/2016</td>
-							<td class="text-left">Complete</td>
-						</tr>
+						
 					</tbody>
 				</table>
-				<div class="buttons clearfix">
+				<!-- <div class="buttons clearfix">
 					<div class="pull-right"><a class="btn btn-primary" href="#">Continue</a>
 					</div>
-				</div>
+				</div> -->
 
 
 

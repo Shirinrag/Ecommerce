@@ -363,7 +363,7 @@
                             <?php echo form_open('Frontend/search_data', array('id' => 'search_form')) ?>
                             <div id="search0" class="search input-group form-group">
                                 <input class="autosearch-input form-control" type="text" size="50" autocomplete="on"
-                                    placeholder="Keyword here..." id="autouser11">
+                                    placeholder="Keyword here..." id="autouser11" name="search" value="">
                                 <span class="input-group-btn">
                                     <button type="submit" class="button-search btn btn-primary"><i
                                             class="fa fa-search"></i></button>
@@ -372,6 +372,7 @@
                             <input type="hidden" name="route" value="product/search" />
                             <?php echo form_close() ?>
                         </div>
+                        
                     </div>
                 </div>
                 <!-- //end Search -->
