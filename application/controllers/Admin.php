@@ -75,7 +75,7 @@ class Admin extends CI_Controller {
         $first_date = date('Y-m-01', strtotime($query_date));
         // Last day of the month.
         $last_date = date('Y-m-t', strtotime($query_date));
-        $total_month_earning = "SELECT ROUND(SUM(subtotal),2) as total FROM order_data WHERE order_source='3' AND  (DATE(order_date_time) BETWEEN '" . $first_date . "' AND '" . $last_date . "')";
+        $total_month_earning = "SELECT ROUND(SUM(sub_total),2) as total FROM order_data WHERE order_source='3' AND  (DATE(order_date_time) BETWEEN '" . $first_date . "' AND '" . $last_date . "')";
         $data['total_month_earning'] = $this->model->getSqlData($total_month_earning);
         $data['menu'] = 'dashboard';
         $data['main_content'] = 'admin/dashboard'; //dashboard
@@ -1164,45 +1164,6 @@ class Admin extends CI_Controller {
             // print_array($update_data);
             $this->model->updateData('supplier_list',$update_data,array('id'=>$sup_id));
 
-            // $vitems = $_POST['supplier_items'];
-            // $vsupplier_items = array();
-            // foreach ($vitems as $key => $value) {
-            //    $item = $this->model->getData('supplier_items',array('supplier_id'=>$sup_id,'product_id'=>$value));
-            //    $vsupplier_items[] = !empty($item[0])? $item[0] : array('sitem_id'=>'','product_id'=>$value);
-            // }
-            // $dsupplier_items = $this->model->getData('supplier_items',array('supplier_id'=>$sup_id));
-
-            // $ditem_array = array();
-            // foreach ($dsupplier_items as $key => $value) {
-            //     $ditem_array[] = $value['sitem_id'];
-            // }
-
-            // $vitem_array = array();
-            // foreach ($vsupplier_items as $key => $value) {
-            //     $vitem_array[] = $value['sitem_id'];
-            // }
-
-            // foreach ($vsupplier_items as $key => $value) {
-
-            //     if(in_array($value['sitem_id'], $ditem_array)){
-            //         $this->model->updateData('supplier_items',$value,array('sitem_id'=>$value['sitem_id']));
-            //     }
-            //     else{
-            //         $newitem = array('supplier_id'=>$sup_id,'product_id'=>$value['product_id']);
-            //         $this->model->insertData('supplier_items',$newitem);
-            //     }
-            // }
-            // foreach ($dsupplier_items as $key => $value) {
-
-
-            //     if(in_array($value['sitem_id'], $vitem_array)){
-            //         //No action
-            //     }
-            //     else{
-            //         $this->model->deleteData('supplier_items',array('sitem_id'=>$value['sitem_id']));
-            //     }
-            // }
-
             $data['status'] = '1';
             $this->session->set_flashdata('msg','Supplier updated successfully.');
             redirect('Admin/supplier_list');
@@ -1212,6 +1173,20 @@ class Admin extends CI_Controller {
         }
         echo json_encode($data);
         redirect('Admin/supplier_list');
+    }
+
+    public function Order_history()
+    {
+         $this->load->model('superadmin_model');
+         $order_data = $this->superadmin_model->Order_details();
+         echo '<pre>'; print_r($order_data); exit;
+        $this->load->view('admin/Order_history');
+    }
+
+    public function display_all_order_datatable()
+    {
+
+
     }
 }
 ?>
