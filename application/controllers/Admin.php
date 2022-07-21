@@ -29,13 +29,13 @@ class Admin extends CI_Controller {
         redirect(base_url() . "Admin");
     }
     function index() {
-        $str_total_earning = "SELECT ROUND(SUM(subtotal),2) as total FROM order_data WHERE  DATE(order_date_time) = '" . date('Y-m-d') . "'";
+        $str_total_earning = "SELECT ROUND(SUM(sub_total),2) as total FROM order_data WHERE  DATE(order_date_time) = '" . date('Y-m-d') . "'";
         $data['todays_earning'] = $this->model->getSqlData($str_total_earning);
         $from_date = date('Y-m-d');
         $to_date = date('Y-m-d', strtotime("-7 day", strtotime($from_date)));
-        $this_week_earning = "SELECT ROUND(SUM(subtotal),2) as total FROM order_data WHERE order_source='3' AND  (DATE(order_date_time) BETWEEN '" . $to_date . "' AND '" . $from_date . "')";
+        $this_week_earning = "SELECT ROUND(SUM(sub_total),2) as total FROM order_data WHERE order_source='3' AND  (DATE(order_date_time) BETWEEN '" . $to_date . "' AND '" . $from_date . "')";
         $data['this_week_earning'] = $this->model->getSqlData($this_week_earning);
-        $str_graph_query = "SELECT DATE(order_date_time) as order_date,ROUND(SUM(subtotal),2) as total FROM order_data 
+        $str_graph_query = "SELECT DATE(order_date_time) as order_date,ROUND(SUM(sub_total),2) as total FROM order_data 
             WHERE order_source='3' AND  (DATE(order_date_time) BETWEEN '" . $to_date . "' AND '" . $from_date . "')
                 GROUP BY DATE(order_date_time)";
         $graph_data = $this->model->getSqlData($str_graph_query);

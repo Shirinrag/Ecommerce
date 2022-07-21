@@ -41,43 +41,27 @@
 								<td class="text-left">Product Name</td>
 								<td class="text-center">Order ID</td>
 								<td class="text-center">Qty</td>
-								<td class="text-center">Status</td>
-								<td class="text-center">Date Added</td>
 								<td class="text-right">Total</td>
 								<td></td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<?php if(count($order_history) > 0 ){ foreach($order_history as $key => $values){?>
+								<tr>
 								<td class="text-center">
-									<a href="product.html"><img width="85" class="img-thumbnail" title="Aspire Ultrabook Laptop" alt="Aspire Ultrabook Laptop" src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/funiture/1.jpg">
+									<a href=""><img width="85" class="img-thumbnail" title="Aspire Ultrabook Laptop" alt="Aspire Ultrabook Laptop" src="<?php echo base_url().$values['image_name'];?>">
 									</a>
 								</td>
-								<td class="text-left"><a href="product.html">Aspire Ultrabook Laptop</a>
+								<td class="text-left"><a href=""><?php echo $values['product_name']; ?></a>
 								</td>
-								<td class="text-center">#214521</td>
-								<td class="text-center">1</td>
-								<td class="text-center">Shipped</td>
-								<td class="text-center">21/06/2016</td>
-								<td class="text-right">$228.00</td>
-								<td class="text-center"><a class="btn btn-info" title="" data-toggle="tooltip" href="<?php echo base_url(); ?>Orderhistory/orderinfo" data-original-title="View"><i class="fa fa-eye"></i></a>
-								</td>
-							</tr>
-							<tr>
-								<td class="text-center">
-									<a href="product.html"><img  width="85" class="img-thumbnail" title="Xitefun Causal Wear Fancy Shoes" alt="Xitefun Causal Wear Fancy Shoes" src="<?php echo base_url();?>assets_frontend/image/catalog/demo/product/funiture/4.jpg">
-									</a>
-								</td>
-								<td class="text-left"><a href="product.html">Xitefun Causal Wear Fancy Shoes</a>
-								</td>
-								<td class="text-center">#1565245</td>
-								<td class="text-center">1</td>
-								<td class="text-center">Shipped</td>
-								<td class="text-center">20/06/2016</td>
-								<td class="text-right">$133.20</td>
-								<td class="text-center"><a class="btn btn-info" title="" data-toggle="tooltip" href="<?php echo base_url(); ?>Orderhistory/orderinfo" data-original-title="View"><i class="fa fa-eye"></i></a>
+								<td class="text-center"><?php echo $values['order_number']; ?></td>
+								<td class="text-center"><?php echo $values['quantity']; ?></td>
+								<td class="text-center"><?php echo $values['grand_total']; ?></td>
+			
+								<td class="text-center"><a class="btn btn-info" title="" data-toggle="tooltip" href="<?php echo base_url(); ?>Frontend/orderinfo?orderid=<?php echo base64_encode($values['id']); ?>" data-original-title="View"><i class="fa fa-eye"></i></a>
 								</td>
 							</tr>
+							<?php } } ?>
 						</tbody>
 					</table>
 				</div>

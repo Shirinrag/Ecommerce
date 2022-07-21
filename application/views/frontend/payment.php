@@ -66,7 +66,7 @@
 									<span class="error_msg" id="pay_mode_error"></span>	
 									<div class="radio">
 									  <label>
-										<input type="radio" name="paymode" value="cod">Cash On Delivery</label>
+										<input type="radio" name="paymode" value="COD">Cash On Delivery</label>
 									</div>
 									
 									<div class="radio">

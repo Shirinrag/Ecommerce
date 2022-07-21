@@ -417,18 +417,19 @@ class Frontend extends CI_Controller {
             $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
             $session_data = $this->session->userdata('logged_in');
             $fk_product_id = json_encode($_POST['fk_product_id']);
-            $order_no = $_POST['order_id'];
+            $order_id = $_POST['order_id'];
+            $order_no = $_POST['order_no'];
             $fk_address_id = $_POST['fk_address_id'];
             $quantity = json_encode($_POST['quantity']);
             $unit_price = json_encode($_POST['unit_price']);
             $total = json_encode($_POST['total']);
             $sub_total = $_POST['sub_total'];
             $grand_total = $_POST['grand_total'];
+            $paymode = $_POST['paymode'];
             
-            $curldata=array('user_id'=>$user_id,'fk_product_id'=>$fk_product_id,'order_no'=>$order_no,'fk_address_id'=>$fk_address_id,
-            'quantity'=>$quantity,'unit_price'=>$unit_price,'total'=>$total,'sub_total'=>$sub_total,'grand_total'=>$grand_total);
+            $curldata=array('user_id'=>$user_id,'fk_product_id'=>$fk_product_id,'order_id'=>$order_id,'order_no'=>$order_no,'fk_address_id'=>$fk_address_id,
+            'quantity'=>$quantity,'unit_price'=>$unit_price,'total'=>$total,'sub_total'=>$sub_total,'grand_total'=>$grand_total,'payment_type'=>$paymode);
             $curl=$this->link->hits('order-place',$curldata); 
-            // print_r($curl);die();
             $curl1=json_decode($curl,true);
              
               if ($curl1['status']==1) {
@@ -436,7 +437,7 @@ class Frontend extends CI_Controller {
                   $response['url']=base_url() . 'Frontend/orderhistory';
               }else {
                   $response['status'] = 'failure';
-                  $response['error'] = array('address_type' => $curl1['message'],);
+                  $response['error'] = array('payment_type' => $curl1['message'],);
               }
           }
         }
@@ -458,13 +459,26 @@ class Frontend extends CI_Controller {
 
     public function orderhistory()
     {
-        // $orderid=base64_decode($_GET['orderid']);
-        // $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
-        // $curldata=array('order_id'=>$orderid);
-        // $curl=$this->link->hits('get-confirm-order-details',$curldata); 
-        // print_r($curl);die();
-        // $curl1=json_decode($curl,true);
-        $this->load->view('frontend/order-history');
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+        $curldata=array('user_id'=>$user_id);
+        $curl=$this->link->hits('order-history',$curldata); 
+        $curl1=json_decode($curl,true);
+        $data['order_history']=$curl1['order_history'];
+    
+        $this->load->view('frontend/order-history',$data);
+    }
+
+    public function orderinfo()
+    {
+        $order_id=base64_decode($_GET['orderid']);
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+        $curldata=array('id'=>$order_id);
+        $curl=$this->link->hits('order-history-on-order-id',$curldata); 
+        print_r($curl);die();
+        $curl1=json_decode($curl,true);
+        $data['order_history_info']=$curl1['order_history'];
+    
+        $this->load->view('frontend/order-information',$data);
     }
 
     public function wishlist_list()
