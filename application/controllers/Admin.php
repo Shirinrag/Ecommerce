@@ -1186,6 +1186,11 @@ class Admin extends CI_Controller {
 
     public function Order_details()
     {
+        $id = $_GET['id'];
+         $this->load->model('superadmin_model');
+         $order_data = $this->superadmin_model->order_history_on_order_id($id);
+         $data['order_data'] = $order_data;
+         // echo '<pre>'; print_r($data); exit;
         $this->load->view('admin/Order_details',$data);
 
     }

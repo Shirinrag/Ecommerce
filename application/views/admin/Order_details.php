@@ -11,15 +11,6 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" id="theme"
         href="<?php echo base_url()?>assets-admin/css/theme-default.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-    <style type="text/css">
-   /* .form-horizontal .form-group {
-        margin-right: 0px;
-        margin-left: 0px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }*/
-    </style>
 </head>
 
 <body>
@@ -54,43 +45,47 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <label>Order Id</label>
-                                    <div><span>ykyklklyk</span></div>                                    
+                                    <div><span><?=$order_data['order_id']?></span></div>                                    
                                 </div>
                                 <div class="col-md-4">
                                     <label>User Name</label>
-                                    <div><span>dffsffdffd</span></div>                                    
+                                    <div><span><?=$order_data['user_name']?></span></div>                                    
                                 </div>
                                 <div class="col-md-4">
                                     <label>Product Name</label>
-                                    <div><span>fdffdfdff</span></div>                                    
+                                    <div><span><?=$order_data['product_name']?></span></div>                                    
                                 </div>
                                 <div class="col-md-4">
                                     <label>Quantity</label>
-                                    <div><span>1</span></div>                                    
+                                    <div><span><?=$order_data['quantity']?></span></div>                                    
                                 </div>
                                 <div class="col-md-4">
                                     <label>Unit Price</label>
-                                    <div><span>100</span></div>                                    
+                                    <div><span><?=$order_data['unit_price']?></span></div>                                    
                                 </div>
                                 <div class="col-md-4">
                                     <label>Total</label>
-                                    <div><span>150</span></div>                                    
+                                    <div><span><?=$order_data['total']?></span></div>                                    
                                 </div>
                                 <div class="col-md-4">
                                     <label>Payment Mode</label>
-                                    <div><span>COD</span></div>                                    
+                                    <div><span><?=$order_data['payment_type']?></span></div>                                    
                                 </div>
                                 <div class="col-md-4">
                                     <label>Order Date</label>
-                                    <div><span>20/07/2022</span></div>                                    
+                                    <div><span><?=$order_data['date']?></span></div>                                    
                                 </div>
                                 <div class="col-md-4">
                                     <label>Order Status</label>
-                                    <div><span>Order Place</span></div>                                    
+                                    <div><select>
+                                        <option value=""></option>
+                                        <option value="1">Order Placed</option>
+                                        <option value="2"></option>
+                                    </select></div>                                    
                                 </div>
                                 <div class="col-md-4">
                                     <label>Shipping Address</label>
-                                    <div><span></span></div>                                    
+                                    <div><span><?=$order_data['roomno'].", ".$order_data['building'].", ".$order_data['street'].", ".$order_data['zone']?></span></div>                                    
                                 </div>
                             </div>
                         </div>
