@@ -49,7 +49,7 @@
 								<div class="panel-body">
 									<?php  foreach($order_details as $key =>$values) { ?>
 									<input type="hidden" value="<?php echo $values['order_id']; ?>" name="order_id" >
-									<input type="hidden" value="<?php echo $values['order_no']; ?>" name="order_no" >
+									<input type="hidden" value="<?php echo $values['order_no']; ?>" name="order_no[]" >
 									<input type="hidden" value="<?php echo $values['fk_product_id']; ?>" name="fk_product_id[]" >
 									<input type="hidden" value="<?php echo $values['fk_user_id']; ?>" name="fk_user_id[]" >
 									<input type="hidden" value="<?php echo $values['fk_address_id']; ?>" name="fk_address_id" >

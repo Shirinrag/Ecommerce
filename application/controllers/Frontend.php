@@ -429,6 +429,7 @@ class Frontend extends CI_Controller {
             
             $curldata=array('user_id'=>$user_id,'fk_product_id'=>$fk_product_id,'order_id'=>$order_id,'order_no'=>$order_no,'fk_address_id'=>$fk_address_id,
             'quantity'=>$quantity,'unit_price'=>$unit_price,'total'=>$total,'sub_total'=>$sub_total,'grand_total'=>$grand_total,'payment_type'=>$paymode);
+            print_r($curldata);die();
             $curl=$this->link->hits('order-place',$curldata); 
             $curl1=json_decode($curl,true);
              
@@ -758,5 +759,13 @@ class Frontend extends CI_Controller {
 	 public function logout() {
         $this->session->unset_userdata('user_logged_in');
         redirect(base_url() . 'Frontend');
+    }
+
+    public function save_rating()
+    {
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+        $product_id = $this->input->post('product_id');
+        $rating = $this->input->post('rating');
+
     }
 }
