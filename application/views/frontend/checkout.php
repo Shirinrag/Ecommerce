@@ -114,10 +114,10 @@
                                             <div class="radio">
                                                 <label>
                                                 <input type="radio" name="fk_address_id" value="<?php echo $values['id']; ?>"><?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label><a  style="float:right;" class="btn edit_address" id="<?php echo $values['id']; ?>" data-toggle="modal" data-target=".edit_address_model"><i class="fa fa-edit"></i></a>
-								                          </div>
-                                            
+								            </div>
+                                            <?php } ?>
                                         </div>
-                                        <?php } ?>
+                                        
 
                                     </div>
                                     <span class="error_msg" id="fk_address_id_error"></span>	
