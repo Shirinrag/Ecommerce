@@ -17,3 +17,8 @@
         <script src="<?php echo base_url();?>assets_admin/lib/jquery-validate/jquery.validate.js"></script>
         <script src="<?php echo base_url();?>assets_admin/js/quirk.js"></script>
         <script src="<?php echo base_url();?>assets_admin/js/admin.js"></script>
+
+        <script type="text/javascript">
+                
+               
+        </script>
