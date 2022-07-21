@@ -83,7 +83,7 @@
                         </div>
                         <div class="content-product-right col-md-7 col-sm-12 col-xs-12">
                            <div class="title-product">
-                           <input type="hidden" value="<?=$product_details['product_id']?>" id="<?=$product_details['product_id']?>">
+                           <input type="hidden" value="<?=$product_details['product_id']?>" id="product_id">
                               <h1><?= $product_details['product_name'] ?></h1>
                            </div>
                            <!-- Review ---->
@@ -170,14 +170,16 @@
                                           <tr>
                                              <td colspan="2">
                                                 <p>Best this product opencart</p>
-                                                <div class="ratings">
-                                                   <div class="rating-box">
-                                                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                      <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                                   </div>
+                                                <div id="rating_div" style="margin-bottom: 10px;">
+                                                <div class="star-rating">
+                                                <span class="fa fa-star-o" data-rating="1" style="font-size:20px;"></span>
+                                                <span class="fa fa-star-o" data-rating="2" style="font-size:20px;"></span>
+                                                <span class="fa fa-star-o" data-rating="3" style="font-size:20px;"></span>
+                                                <span class="fa fa-star-o" data-rating="4" style="font-size:20px;"></span>
+                                                <span class="fa fa-star-o" data-rating="5" style="font-size:20px;"></span>
+                                                <input type="hidden" name="whatever3" class="rating-value" value="1">
+                                                <p><button type="button" class="btn btn btn-normal btn-sm" id="srr_rating" style="padding:10px;margin-top: 5px;">Submit</button></p>
+                                                </div>
                                                 </div>
                                              </td>
                                           </tr>
@@ -185,8 +187,8 @@
                                     </table>
                                     <div class="text-right"></div>
                                  </div>
-                                 <h2 id="review-title">Write a review</h2>
-                                 <div class="contacts-form">
+                                 <!-- <h2 id="review-title">Write a review</h2> -->
+                                 <!-- <div class="contacts-form">
                                     <div class="form-group"> <span class="icon icon-user"></span>
                                        <input type="text" name="name" class="form-control" value="Your Name" onblur="if (this.value == '') {this.value = 'Your Name';}" onfocus="if(this.value == 'Your Name') {this.value = '';}"> 
                                     </div>
@@ -207,7 +209,7 @@
                                           value="5"> &nbsp;<span>Good</span>
                                     </div>
                                     <div class="buttons clearfix"><a id="button-review" class="btn buttonGray">Continue</a></div>
-                                 </div>
+                                 </div> -->
                               </form>
                            </div>
                            <div id="tab-4" class="tab-pane fade">
@@ -318,5 +320,6 @@
       <?php include('common/jsfiles.php');?>
       <script src="<?= base_url();?>assets_frontend/custom_js/wishlist.js"></script>
       <script src="<?= base_url();?>assets_frontend/custom_js/cart.js"></script>
+      <script src="<?= base_url();?>assets_frontend/custom_js/rating.js"></script>
    </body>
 </html>

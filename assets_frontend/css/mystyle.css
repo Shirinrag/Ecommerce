@@ -830,3 +830,8 @@ a.ui-button:active,
     border: 1px solid !important;
     padding: 20px !important;
 }
+
+.typeheader-1 .lang-curr1 {
+    float: left;
+    margin-left: -50px !important;
+}

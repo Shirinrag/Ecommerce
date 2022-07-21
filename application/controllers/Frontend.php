@@ -760,4 +760,12 @@ class Frontend extends CI_Controller {
         $this->session->unset_userdata('user_logged_in');
         redirect(base_url() . 'Frontend');
     }
+
+    public function save_rating()
+    {
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+        $product_id = $this->input->post('product_id');
+        $rating = $this->input->post('rating');
+
+    }
 }
