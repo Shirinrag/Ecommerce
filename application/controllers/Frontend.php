@@ -599,28 +599,28 @@ class Frontend extends CI_Controller {
         if ($this->session->userdata('user_logged_in')) {
          
             $user_id=$this->session->userdata('user_logged_in')['op_user_id'];
-           $this->form_validation->set_rules('roomno', 'Room No', 'required|trim', array('required' => 'You must provide a %s',));
-          $this->form_validation->set_rules('building', 'Building', 'trim|required', array('required' => 'You must provide a %s',));
-          $this->form_validation->set_rules('city', 'City', 'trim|required', array('required' => 'You must provide a %s',));
-          $this->form_validation->set_rules('postcode', 'City', 'trim|required', array('required' => 'You must provide a %s',));
-          $this->form_validation->set_rules('address_type', 'Address Type', 'trim|required', array('required' => 'You must provide a %s',));
+           $this->form_validation->set_rules('edit_roomno', 'Room No', 'required|trim', array('required' => 'You must provide a %s',));
+          $this->form_validation->set_rules('edit_building', 'edit_Building', 'trim|required', array('required' => 'You must provide a %s',));
+          $this->form_validation->set_rules('edit_city', 'edit_City', 'trim|required', array('required' => 'You must provide a %s',));
+          $this->form_validation->set_rules('edit_zone', 'edit_City', 'trim|required', array('required' => 'You must provide a %s',));
+          $this->form_validation->set_rules('edit_address_type', 'Address Type', 'trim|required', array('required' => 'You must provide a %s',));
 
 
           if ($this->form_validation->run() == FALSE) {
               $response['status'] = 'failure';
               $response['error'] = array(
-                  'roomno' => strip_tags(form_error('roomno')), 
-                  'building' => strip_tags(form_error('building')),
-                  'city' => strip_tags(form_error('city')),
-                  'postcode' => strip_tags(form_error('postcode')),
-                  'address_type' => strip_tags(form_error('address_type')),
+                  'edit_roomno' => strip_tags(form_error('edit_roomno')), 
+                  'edit_building' => strip_tags(form_error('edit_building')),
+                  'edit_city' => strip_tags(form_error('edit_city')),
+                  'edit_zone' => strip_tags(form_error('edit_zone')),
+                  'edit_address_type' => strip_tags(form_error('edit_address_type')),
               );
           } else {
-              $roomno = $this->input->post('roomno');
-              $building = $this->input->post('building');
-              $city = $this->input->post('city');
-              $postcode = $this->input->post('postcode');
-              $address_type = $this->input->post('address_type');
+              $roomno = $this->input->post('edit_roomno');
+              $building = $this->input->post('edit_building');
+              $city = $this->input->post('edit_city');
+              $postcode = $this->input->post('edit_zone');
+              $address_type = $this->input->post('edit_address_type');
               $id = $this->input->post('id');
 
               $roomno = str_replace(" ","+",$roomno);
@@ -730,6 +730,17 @@ class Frontend extends CI_Controller {
 	{
 		
 	}
+
+    public function get_address_on_id()
+    {
+            $id = $this->input->post('id');
+            $curl_data = array('id' => $id);
+            $curl = $this->link->hits('get-address-on-id', $curl_data);
+            $curl = json_decode($curl, TRUE);
+            $response['status'] = 'success';
+            $response['address_data'] = $curl['address_data'];
+            echo json_encode($response);
+    }
 
 	 public function logout() {
         $this->session->unset_userdata('user_logged_in');
