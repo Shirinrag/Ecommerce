@@ -58,18 +58,7 @@
                                     </td>
                                     <td class="text-left"><?=$cart_data_row['product_code']?></td>
                                     <td class="text-left" width="200px">
-                                        <!-- <div class="option quantity">
-                                  <div class="input-group btn-block quantity input-group quantity-control" unselectable="on"  style="-webkit-user-select: none;">
-                                  
-                                    <span class="input-group-btn">
-                                    <button class="btn update_qty input-group-addon product_quantity_down text-center"  id="<?= $cart_data_row['cart_id']?>" data-toggle="tooltip" onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)"  style="padding:16px;">-</button>
-                                    <input type="text" name="qty" value="<?= $cart_data_row['cart_qty']?>"  class="form-control qtys" readonly  style="width:100px;"/>
-                                    <button class="btn update_qty  input-group-addon product_quantity_up text-center" id="<?= $cart_data_row['cart_id']?>" data-toggle="tooltip" onclick="updatecart(this, <?php echo $cart_data_row['cart_id']; ?>, <?php echo $cart_data_row['product_id']; ?>)"  style="padding:16px;">+</button>
-                                    </span>
-                                 </div>
-                              </div> -->
-
-                                        <div class="option quantity">
+                                      <div class="option quantity">
 
                                             <!-- skin 2 -->
                                             <div class="num-block skin-2">
@@ -93,7 +82,7 @@
 
                                     </td>
                                     <td> <a class="btn btn-danger romove_from_cart" title=""
-                                            id=<?= $cart_data_row['cart_id'];?> data-toggle="tooltip"><i
+                                            id="<?= $cart_data_row['cart_id'];?>" data-toggle="tooltip"><i
                                                 class="fa fa-times"></i></a></td>
                                     <td class="text-right">$ <?=$cart_data_row['product_offer_price']?></td>
                                     <td class="text-right" id="product_offer_price_<?= $cart_data_row['cart_id']?>">$

@@ -45,12 +45,17 @@
                     <ul class="top-link list-inline lang-curr">
                         <li class="language">
                             <div class="btn-group languages-block ">
-                                <select class="form-control " id="fk_lang_id">
+                                <select class="form-control" id="fk_lang_id">
                                     <?php 
-                              foreach ($lang_name as $lang_name_key => $lang_name_row) { ?>
-                                    <option value="<?= $lang_name_row['id']?>"
-                                        <?php $session_data=$this->session->userdata('logged_in'); if($session_data['lang_id'] == $lang_name_row['id']){ ?>
-                                        selected=selected <?php } ?>><?= $lang_name_row['lang_name']?></option>
+                                        $selected = "";
+                                        $session_data=$this->session->userdata('logged_in');
+                                        foreach ($lang_name as $lang_name_key => $lang_name_row) {                                            
+                                             if($session_data['lang_id'] == $lang_name_row['id']){ 
+                                                $selected="selected";
+                                             }else{
+                                                $selected="";
+                                             } ?>
+                                            <option value="<?= $lang_name_row['id']?>" <?=$selected?>><?= $lang_name_row['lang_name']?></option>
                                     <?php } ?>
                                 </select>
                             </div>
