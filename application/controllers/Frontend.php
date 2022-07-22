@@ -30,9 +30,9 @@ class Frontend extends CI_Controller {
 
     public function get_search_data()
     {
- 		 $session_data = $this->session->userdata('logged_in');
+ 		    $session_data = $this->session->userdata('logged_in');
      	    $postData = $this->input->post();
-   	     $curl_data = array('fk_lang_id' =>$session_data['lang_id'],'search_keyword' =>$postData['phrase']);
+   	        $curl_data = array('fk_lang_id' =>$session_data['lang_id'],'search_keyword' =>$postData['phrase']);
       		$curl=$this->link->hits('product-details-on-search',$curl_data);            
       		$curl = json_decode($curl,true);
       		$product_name = $curl['product_name'];        
@@ -418,7 +418,7 @@ class Frontend extends CI_Controller {
             $session_data = $this->session->userdata('logged_in');
             $fk_product_id = json_encode($_POST['fk_product_id']);
             $order_id = $_POST['order_id'];
-            $order_no = $_POST['order_no'];
+            $order_no = json_encode($_POST['order_no']);
             $fk_address_id = $_POST['fk_address_id'];
             $quantity = json_encode($_POST['quantity']);
             $unit_price = json_encode($_POST['unit_price']);
@@ -764,9 +764,27 @@ class Frontend extends CI_Controller {
 
     public function save_rating()
     {
-        $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
-        $product_id = $this->input->post('product_id');
-        $rating = $this->input->post('rating');
-
+        $user_id=$this->session->userdata('user_logged_in')['op_user_id']; 
+        if($user_id != '')
+        {
+            $product_id = $this->input->post('product_id');
+            $rating = $this->input->post('ratings');
+            $curldata = array('user_id'=>$user_id,'product_id'=>$product_id,'ratings'=>$rating); 
+            $curl=$this->link->hits('save-ratings',$curldata); 
+            $curl1=json_decode($curl,true);
+            if ($curl1['status']==1) {
+                $response['status'] = 'success';
+                $response['message'] =  $curl1['message'];
+            }
+            else {
+                $response['status'] = 'failure';
+                $response['error'] = array('error' => $curl1['message'],);
+            }
+            echo json_encode($response);
+        } 
+        else{
+            redirect(base_url().'Frontend');
+        }
+       
     }
 }

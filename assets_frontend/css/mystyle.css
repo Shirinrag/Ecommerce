@@ -230,12 +230,22 @@ header.typeheader-1 .search-header-w .icon-search i {
    /* height: 0px !important; */
 }}
 
+
+
 @media (max-width: 767px){
 header.typeheader-1 .logo {
     text-align: center;
     height: 130px !important;
     margin-top: 20px;
-}}
+}
+.top-link .list-inline .lang-curr1
+{
+    float: left !important;
+}
+.top-link .list-inline .hidden-lg .hidden-md{
+    float: right !important;
+}
+}
 
 .typeheader-1 ul.top-link > li > a {
     font-size: 12px;

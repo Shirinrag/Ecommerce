@@ -364,7 +364,7 @@
                             <?php echo form_open('Frontend/search_data', array('id' => 'search_form')) ?>
                             <div id="search0" class="search input-group form-group">
                                 <input class="autosearch-input form-control" type="text" size="50" autocomplete="on"
-                                    placeholder="Keyword here..." id="autouser11">
+                                    placeholder="Keyword here..." id="autouser11" value="" name="search">
                                 <span class="input-group-btn">
                                     <button type="submit" class="button-search btn btn-primary"><i
                                             class="fa fa-search"></i></button>
@@ -817,9 +817,9 @@
                 <div class="bottom2 col-lg-7 col-md-6 col-sm-6" style="float:right;">
                     <div class="search-header-w">
                         <div class="icon-search hidden-lg hidden-md hidden-sm"><i class="fa fa-search"></i></div>
-                        <div id="sosearchpro" class="sosearchpro-wrapper so-search ">
+                        <div id="sosearchpro1" class="sosearchpro-wrapper so-search1 ">
                             <?php echo form_open('Frontend/search_data', array('id' => 'search_form')) ?>
-                            <div id="search0" class="search input-group form-group">
+                            <div id="search0" class="search1 input-group form-group">
                                 <input class="autosearch-input form-control" type="text" size="50" autocomplete="on"
                                     placeholder="Keyword here..." id="autouser11" dir="rtl">
                                 <span class="input-group-btn">
