@@ -13,6 +13,7 @@ $('#save_new_address_form').submit(function (e) {
          if (response.status == 'success') {
             $('form#save_new_address_form').trigger('reset');
             $('#save_new_address_button').button('reset');
+            location.reload();
             // window.location.replace(response['url']);
             success_msg("Address Added Successfully");
          } else if (response.status == 'failure') {

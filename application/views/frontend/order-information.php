@@ -41,8 +41,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td style="width: 50%;" class="text-left"> <b>Order ID:</b> <?php echo $order_history_info['id'];?>
+						<tr><?php print_r($order_history_info);die();?>
+							<td style="width: 50%;" class="text-left"> <b>Order ID:</b> <?php echo $order_history_info['order_number'];?>
 								<br>
 								<b>Date Added:</b> <?php echo $order_history_info['date'];?></td>
 							<td style="width: 50%;" class="text-left"> <b>Payment Method:</b> <?php echo $order_history_info['payment_type'];?>
