@@ -1208,5 +1208,10 @@ class Admin extends CI_Controller {
         $response['status']="success";
         echo json_encode($response);
     }
+
+    public function inventory()
+    {
+        $this->load->view('admin/inventory',$data);
+    }
 }
 ?>
