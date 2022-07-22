@@ -81,10 +81,29 @@ class Superadmin_model extends CI_Model {
         return $result;
     }
 
-    // public function display_inventory_data()
-    // {
-    // 	$this->db->select('')
-    // }
+    public function display_inventory_data()
+    {
+    	$this->db->select('product.product_name,GROUP_CONCAT(inventory.add_qty) as add_qty,GROUP_CONCAT(inventory.qty) as qty,GROUP_CONCAT(inventory.deduct_qty) as deduct_qty, GROUP_CONCAT(inventory.id) as id, GROUP_CONCAT(inventory.date) as date');
+    	$this->db->from('inventory');
+    	$this->db->join('product','product.product_id=inventory.product_id','left');
+    	 $this->db->group_by('product.product_id'); 
+        $this->db->order_by('inventory.id','DESC');
+    	  $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
+  // public function display_inventory_data()
+  // {
+  //  $this->db->select('product.product_name,GROUP_CONCAT(inventory.add_qty) as add_qty,GROUP_CONCAT(if(inventory.qty IS NULL or inventory.qty='','0',inventory.qty)) as qty,GROUP_CONCAT(if(inventory.deduct_qty IS NULL or inventory.deduct_qty='','0',inventory.deduct_qty)) as deduct_qty, GROUP_CONCAT(inventory.id) as id, GROUP_CONCAT(inventory.date) as date');
+  //  $this->db->from('inventory');
+  //  $this->db->join('product','product.product_id=inventory.product_id','left');
+  //  $this->db->group_by('product.product_id');
+  //     $this->db->order_by('inventory.id','DESC');
+  //   $query = $this->db->get();
+  //     $result = $query->result_array();
+  //     return $result;
+  // }
 }
 ?>
 

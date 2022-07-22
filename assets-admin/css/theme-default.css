@@ -7341,3 +7341,12 @@ li.ext_zip {
 .x-navigation-minimized .xn-logo{
 display:none;
 }
+
+td.details-control {
+    background: url("<?=base_url();?>assets_admin/images/details_open.png") no-repeat center center;
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    background: url("<?=base_url();?>assets_admin/images/details_close.png") no-repeat center center;
+}
