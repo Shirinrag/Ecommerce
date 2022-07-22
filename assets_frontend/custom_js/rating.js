@@ -17,16 +17,16 @@ SetRatingStar();
 
 $("#srr_rating").click(function() {
 var $star_rating = $('.star-rating .fa');
-var rating = parseInt($star_rating.siblings('input.rating-value').val());
+var ratings = parseInt($star_rating.siblings('input.rating-value').val());
 //var remk= $('#remark').val();
 var product_id= $('#product_id').val();
-if(rating>0){
+if(ratings>0){
 // if(remk !=''){
 $.ajax({
   url: bases_url+"Frontend/save_rating",
   type: "POST",
   data: {
-      rating: rating,
+    ratings: ratings,
       //remark:remk,
       product_id:product_id
 

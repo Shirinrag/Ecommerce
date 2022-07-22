@@ -84,6 +84,8 @@ function increment_quantity(cart_id, price, product_id) {
                         $('#product_offer_price_' + cart_id).html(get_affiliate_category_on_source_link_row['subtotal']);
                     });
                     $('#subtotal').html(productdata['total']);
+                    $('#subtotal1').html(productdata['total']);
+                    location.reload();
                 }
             } else {
                 $("#message_"+cart_id).text(productdata['message']);
@@ -123,6 +125,8 @@ function decrement_quantity(cart_id, price, product_id) {
                             $('#product_offer_price_' + cart_id).html(get_affiliate_category_on_source_link_row['subtotal']);
                         });
                         $('#subtotal').html(productdata['total']);
+                        $('#subtotal1').html(productdata['total']);
+                        location.reload();
                     }
                 }
 

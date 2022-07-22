@@ -148,7 +148,7 @@
                                  <td class="text-right">
                                     <strong>Total:</strong>
                                  </td>
-                                 <td class="text-right" id="subtotal">$ <?php echo $cart_total; ?></td>
+                                 <td class="text-right" id="subtotal1">$ <?php echo $cart_total; ?></td>
                               </tr>
                            </tbody>
                         </table>

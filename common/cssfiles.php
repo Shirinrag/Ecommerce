@@ -32,5 +32,6 @@
 
     <link href="<?php echo base_url();?>assets_frontend/css/responsive.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets_frontend/css/mystyle.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets_frontend/css/reverse.css" rel="stylesheet">
 
 <link href="<?=base_url()?>assets_frontend/css/easy-autocomplete.css" rel="stylesheet" type="text/css">
