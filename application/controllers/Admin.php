@@ -1213,5 +1213,12 @@ class Admin extends CI_Controller {
     {
         $this->load->view('admin/inventory',$data);
     }
+
+    public function display_inventory_data()
+    {
+        $this->load->model('superadmin_model');
+         $order_data = $this->superadmin_model->display_inventory_data();
+         $data['order_data'] = $order_data;
+    }
 }
 ?>

@@ -48,10 +48,17 @@
                             <div class="btn-group languages-block ">
                                 <select class="form-control" id="fk_lang_id">
                                     <?php 
+                                     $session_data=$this->session->userdata('logged_in');
+                                        if(!empty(@$session_data['lang_id']))
+                                        {
+                                            $selected_id = $session_data['lang_id'];
+                                        } else {
+                                            $selected_id = 1;
+                                        }
                                         $selected = "";
-                                        $session_data=$this->session->userdata('logged_in');
+                                        
                                         foreach ($lang_name as $lang_name_key => $lang_name_row) {                                            
-                                             if($session_data['lang_id'] == $lang_name_row['id']){ 
+                                             if($lang_name_row['id'] == $selected_id){ 
                                                 $selected="selected";
                                              }else{
                                                 $selected="";
@@ -505,10 +512,16 @@
                             <div class="btn-group languages-block ">
                                 <select class="form-control" id="fk_lang_id">
                                     <?php 
+                                     $session_data=$this->session->userdata('logged_in');
+                                        if(!empty(@$session_data['lang_id'])){
+                                            $selected_id = $session_data['lang_id'];
+                                        } else {
+                                            $selected_id = 1;
+                                        }
                                         $selected = "";
-                                        $session_data=$this->session->userdata('logged_in');
+                                        
                                         foreach ($lang_name as $lang_name_key => $lang_name_row) {                                            
-                                             if($session_data['lang_id'] == $lang_name_row['id']){ 
+                                             if($lang_name_row['id'] == $selected_id){ 
                                                 $selected="selected";
                                              }else{
                                                 $selected="";

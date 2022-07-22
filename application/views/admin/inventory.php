@@ -65,30 +65,7 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php 
-                                            $i=0;
-                                                foreach ($order_data as $order_data_key => $order_data_row) { ?>
-                                    <tr>
-                                        <td><?= ++$i;?></td>
-                                        <td><?=$order_data_row['order_id'] ?></td>
-                                        <td><?=$order_data_row['user_name'] ?></td>
-                                        <td><?=$order_data_row['product_name'] ?></td>
-                                        <td><?=$order_data_row['quantity'] ?></td>
-                                        <td><?=$order_data_row['unit_price'] ?></td>
-                                        <td><?=$order_data_row['total'] ?></td>
-
-                                        <td>
-                                            <span><a
-                                                    href="<?php echo base_url()."Admin/Order_details?id=".$order_data_row['id']?>"><i
-                                                        class='fa fa-pencil'></i></a></span>
-                                            <!--  <span><a href='#' onclick='delete_category(this,"<?php echo $category['category_id']; ?>")'><i class='fa fa-trash'></i></a></span> -->
-                                        </td>
-                                    </tr>
-                                    <?php }
-                                            ?>
-
-                                </tbody>
+                                
                             </table>
                         </div>
                     </div>
@@ -142,9 +119,73 @@
     <script src="<?php echo base_url();?>assets_admin/js/quirk.js"></script>
     <script src="<?php echo base_url();?>assets_admin/view_js/admin.js"></script>
     <script>
-    $(document).ready(function() {
-        var dataTable = $('#order_details_table').DataTable();
+    function format(d) {
+    var html = '';
+    var total_quantity = d.total_quantity;
+    total_quantity = total_quantity.split(",");
+    var date = d.date;
+    date = date.split(",");
+    var id = d.id;
+    id = id.split(",");
+    var remove_quantity = d.remove_quantity;
+    if (remove_quantity != null) {
+        remove_quantity = remove_quantity.split(",");
+    } else {
+        remove_quantity = "";
+    }
+    var remove_quantity1 = '';
+    html += '<table cellpadding="0" cellspacing="0" border="0" class="table table-bordered table-striped table-hover">' + '<tr>' + '<th>Total Quantity</th>' + '<th>Deducted Quantity</th> ' + '<th>Date</th>' + '</tr>';
+    $.each(total_quantity, function(key, val) {
+        if (remove_quantity[key] == undefined) {
+            remove_quantity1 = "";
+        } else {
+            remove_quantity1 = remove_quantity[key];
+        }
+        html += '<tr>' +
+            '<td>' + val + '</td>' +
+            '<td>' + remove_quantity1 + '</td>' +
+            '<td>' + date[key] + '</td>' +
+
+            '</tr>';
     });
+    html += '</table>';
+    return html;
+
+}
+
+$(document).ready(function() {
+    var table = $('#inventory_details_table').DataTable({
+        "ajax": frontend_path + 'Admin/display_all_inventory_datatable',
+        "columns": [{
+                "className": 'details-control',
+                "orderable": false,
+                "data": null,
+                "defaultContent": ''
+            },
+            { "data": "product_name" }
+
+        ],
+        "order": [
+            [1, 'asc']
+        ]
+    });
+
+    // Add event listener for opening and closing details
+    $('#inventory_details_table tbody').on('click', 'td.details-control', function() {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        } else {
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+    });
+});
     </script>
 </body>
 

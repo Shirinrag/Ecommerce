@@ -80,6 +80,11 @@ class Superadmin_model extends CI_Model {
         $result = $query->row_array();
         return $result;
     }
+
+    // public function display_inventory_data()
+    // {
+    // 	$this->db->select('')
+    // }
 }
 ?>
 
