@@ -499,9 +499,9 @@
                         </li>
                     </ul>
                 </div>
-                <div class="header-top-right collapsed-block col-lg-5 col-md-4 col-sm-6 col-xs-8">
-                    <ul class="top-link list-inline lang-curr1" >
-                        <li class="language">
+                <div class="header-top-right collapsed-block col-lg-5 col-md-4 col-sm-6 col-xs-8 headertopright">
+                    <ul class="top-link list-inline lang-curr1" style="padding:2px;">
+                        <li class="language responsivelangbtn">
                             <div class="btn-group languages-block ">
                                 <select class="form-control" id="fk_lang_id">
                                     <?php 
@@ -536,14 +536,14 @@
                 </div>
                 <!-- //end Logo -->
                 <!-- Main menu -->
-                <div class="main-menu col-lg-6 col-md-7 middle-right">
+                <div class="main-menu col-lg-4 col-md-7 middle-right" style="margin-right: 150px;">
                     <div class="responsive so-megamenu megamenu-style-dev">
                         <nav class="navbar-default">
-                            <div class=" container-megamenu  horizontal open ">
+                            <div class=" container-megamenu  horizontal open navbartoggles">
                                 <div class="navbar-header">
                                     <button type="button" id="show-megamenu" data-toggle="collapse"
-                                        class="navbar-toggle">
-                                        <span class="icon-bar"></span>
+                                        class="navbar-toggle ">
+                                        <span class="icon-bar icon1"></span>
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
@@ -744,13 +744,14 @@
                     </div>
                 </div>
                 <!-- //end Main menu -->
-                <div class="middle-left col-lg-4 col-md-3 col-sm-6 col-xs-8">
-                    <div class="signin-w  hidden-sm hidden-xs">
+                <div class="middle-left col-lg-6 col-md-3 col-sm-6 col-xs-8 middle-arabic-left">
+                    <div class="signin-w  hidden-sm hidden-xs " style="margin-left:-30px;">
                         <ul class="signin-link blank">
+                        <li><a href="#"><i class="fa fa-phone-square"></i>Hotline 66655674</a></li>
                             <?php 
                      $user_session_data=$this->session->userdata('user_logged_in'); 
                      if(empty($user_session_data)){ ?>
-                            <li class="log login"><i class="fa fa-lock"></i> <a class="link-lg"
+                            <li class="log login"><i class="fa fa-lock lockicon"></i> <a class="link-lg"
                                     href="<?php echo base_url(); ?>Frontend/login">Login </a> or <a
                                     href="<?php echo base_url(); ?>Frontend/registration">Register</a></li>
                             <?php }else{ ?>
@@ -763,7 +764,7 @@
                                 <?php if(!empty($user_session_data)){ ?>
                                 <a href="#" class="nav-link dropdown-toggle newdrop" data-bs-toggle="dropdown">
                                     <div class="cart-block">
-                                        <div class="cart-icon"
+                                        <div class="cart-icon carticonreverse"
                                             style="margin-top: -5px !important;margin-left: -30px;!important">
                                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                                                 class="Icon-sc-1iwi4w1-0 cHrYdI hover" mr="8" iconsize="20"
@@ -786,7 +787,7 @@
                                 </a>
                                 <?php }
                         ?>
-                                <div class="dropdown-menu">
+                                <div class="dropdown-menu dropdownmenureverse">
                                     <ul class="blank">
                                         <?php if ($user_id != "") {?>
                                         <li><a href="<?php echo base_url(); ?>Frontend/my_account"
@@ -796,11 +797,12 @@
                                         <?php } ?>
                                     </ul>
                             </li>
+                           
                         </ul>
                     </div>
-                    <div class="telephone hidden-xs hidden-sm hidden-md" style="float:left;">
+                    <div class="telephone hidden-xs hidden-sm hidden-md">
                         <ul class="blank">
-                            <li><a href="#"><i class="fa fa-truck"></i>track your order</a></li>
+                            <!-- <li><a href="#"><i class="fa fa-truck"></i>track your order</a></li> -->
                             <li><a href="#"><i class="fa fa-phone-square"></i>Hotline 66655674</a></li>
                         </ul>
                     </div>
@@ -814,14 +816,14 @@
         <div class="container">
             <div class="row">
                 <!-- Search -->
-                <div class="bottom2 col-lg-7 col-md-6 col-sm-6" style="float:right;">
+                <div class="bottom2 col-lg-7 col-md-6 col-sm-6">
                     <div class="search-header-w">
                         <div class="icon-search hidden-lg hidden-md hidden-sm"><i class="fa fa-search"></i></div>
-                        <div id="sosearchpro1" class="sosearchpro-wrapper so-search1 ">
+                        <div id="sosearchpro" class="sosearchpro-wrapper so-search ">
                             <?php echo form_open('Frontend/search_data', array('id' => 'search_form')) ?>
-                            <div id="search0" class="search1 input-group form-group">
+                            <div id="search0" class="search input-group form-group">
                                 <input class="autosearch-input form-control" type="text" size="50" autocomplete="on"
-                                    placeholder="Keyword here..." id="autouser11" dir="rtl">
+                                    placeholder="Keyword here..." id="autouser11" value="" name="search">
                                 <span class="input-group-btn">
                                     <button type="submit" class="button-search btn btn-primary"><i
                                             class="fa fa-search"></i></button>
@@ -834,28 +836,9 @@
                 </div>
                 <!-- //end Search -->
                 <!-- Secondary menu -->
-                
-                    <div class="shopping_cart" style="float:left">
-                        <div id="cart" class="btn-shopping-cart">
-                            <a data-loading-text="Loading... " class="btn-group top_cart"
-                                aria-expanded="true" href="<?php echo base_url()?>Frontend/wishlist_list">
-                                <div class="shopcart">
-                           <span class="icon-c">
-                           <i class="fa fa-heart"></i>
-                           </span>
-                           <div class="shopcart-inner refesh">
-                              <span class="total-shopping-cart cart-total-full">
-                              <span class="items_cart "><?php if($wishlist_count > 0){ echo $wishlist_count; }else{ echo '0';} ?></span>
-                              </span>
-                           </div>
-                        </div>
-                            </a>
-                        
-                     </div>
-                  </div>
-                  <!-- <div class="bottom3 col-lg-3 col-md-3 col-sm-3"> -->
+                <div class="bottom3 col-lg-3 col-md-3 col-sm-3">
                     <!--cart-->
-                    <div class="shopping_cart" style="float:left">
+                    <div class="shopping_cart">
                         <div id="cart" class="btn-shopping-cart">
                             <a data-loading-text="Loading... " class="btn-group top_cart dropdown-toggle"
                                 data-toggle="dropdown" aria-expanded="true">
@@ -871,8 +854,8 @@
                                     </div>
                                 </div>
                             </a>
-                            <div class="refeshlist" style="margin-left: 300px !important;">
-                                <ul class="dropdown-menu pull-left shoppingcart-box " role="menu" >
+                            <div class="refeshlist">
+                                <ul class="dropdown-menu pull-right shoppingcart-box " role="menu">
                                     <li>
                                         <table class="table table-striped">
                                             <tbody>
@@ -931,7 +914,26 @@
                   </div>
 
                   
-               <!-- </div> -->
+               </div>
+               <div class="shopping_cart">
+                        <div id="cart" class="btn-shopping-cart">
+                            <a data-loading-text="Loading... " class="btn-group top_cart"
+                                aria-expanded="true" href="<?php echo base_url()?>Frontend/wishlist_list">
+                                <div class="shopcart">
+                           <span class="icon-c">
+                           <i class="fa fa-heart"></i>
+                           </span>
+                           <div class="shopcart-inner refesh">
+                              <span class="total-shopping-cart cart-total-full">
+                              <span class="items_cart "><?php if($wishlist_count > 0){ echo $wishlist_count; }else{ echo '0';} ?></span>
+                              </span>
+                           </div>
+                        </div>
+                            </a>
+                        
+                     </div>
+                  </div>
+             
             </div>
         </div>
     </div>

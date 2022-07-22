@@ -214,8 +214,13 @@ class Frontend extends CI_Controller {
         $data['cat_data'] = $curl['cat_data'];
        	$data['related_product_details'] = $curl['related_product_details'];
       	$data['fk_lang_id'] = $fk_lang_id;
-
-		$this->load->view('frontend/product',$data);
+        if($fk_lang_id == '1')
+        {
+            $this->load->view('frontend/product',$data);
+        }else{
+            $this->load->view('frontend/productarr',$data);
+        }
+		
 	}
 
     public function wishlist()

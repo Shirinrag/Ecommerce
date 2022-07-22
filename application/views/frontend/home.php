@@ -10,6 +10,14 @@
     body {
         font-family: 'Roboto', sans-serif
     }
+    .owl-carousel .owl-stage {
+      display: flex;
+    }
+
+   .owl-carousel .owl-item img {
+      width: auto;
+      height: 100%;
+    }
     </style>
 </head>
 
@@ -18,6 +26,7 @@
         <!--Header=======================-->
         <?php include('common/header.php');?>
         <!-- Main Container  -->
+        
         <div class="main-container container">
             <div id="content">
 
