@@ -42,6 +42,7 @@
                             </ul>
                         </div>
                         <div class="panel-body">
+                            <input type="hidden" name="order_id" id="order_id" value="<?=$order_data['id']?>">
                             <div class="row">
                                 <div class="col-md-4">
                                     <label>Order Id</label>
@@ -77,11 +78,25 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Order Status</label>
-                                    <div><select>
+                                    <div>
+                                        <select class="form-control" name="order_status_id" id="order_status_id">
                                         <option value=""></option>
-                                        <option value="1">Order Placed</option>
-                                        <option value="2"></option>
-                                    </select></div>                                    
+                                        <?php 
+                                         $order_status_data = explode(",",$order_data['status']);
+                                         $order_status_data = end($order_status_data);
+                                        foreach ($order_status as $order_status_key => $order_status_row) {  
+                                        $selected ="";    
+
+                                                if($order_status_row['id']== $order_status_data){
+                                                    $selected = "selected";
+                                                }else{
+                                                    $selected = "";
+                                                }
+                                         ?>
+                                           <option value="<?=$order_status_row['id']?>" <?=$selected?>><?=$order_status_row['order_status']?></option>
+                                       <?php }?>          
+                                    </select>
+                                </div>                                    
                                 </div>
                                 <div class="col-md-4">
                                     <label>Shipping Address</label>
@@ -121,7 +136,28 @@
     <script src="<?php echo base_url();?>assets_admin/lib/jquery-validate/jquery.validate.js"></script>
     <script src="<?php echo base_url();?>assets_admin/js/quirk.js"></script>
     <script src="<?php echo base_url();?>assets_admin/view_js/admin.js"></script>
-  
+    <script type="text/javascript">
+        $(document).on('change', '#order_status_id', function() {
+      var id = $(this).val();
+      var order_id = $('#order_id').val();
+      $.ajax({
+         url: "<?php echo base_url()?>Admin/update_order_status",
+         method: "POST",
+         data: {
+             id: id,
+             order_id:order_id
+         },
+         dataType: "json",
+         success: function(data) {
+             if (data.status == 'success') {
+               location.reload();
+             } else {
+                 location.reload();
+             }
+         }
+     });
+ });
+    </script>
 </body>
 
 </html>

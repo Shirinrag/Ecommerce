@@ -129,7 +129,7 @@
     <script src="<?php echo base_url();?>assets_admin/lib/select2/select2.js"></script>
     <script src="<?php echo base_url();?>assets_admin/lib/jquery-validate/jquery.validate.js"></script>
     <script src="<?php echo base_url();?>assets_admin/js/quirk.js"></script>
-    <script src="<?php echo base_url();?>assets_admin/view_js/admin.js"></script>
+    <script src="<?php echo base_url();?>assets_admin/view_js/admin.js"></script>   
 
 <script>
     $(document).ready(function() {
