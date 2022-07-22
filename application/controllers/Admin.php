@@ -525,7 +525,8 @@ class Admin extends CI_Controller {
                     
                     $last_id = $product_id = $this->model->insertData('product', $product_array);
                     $last_product_id = $this->db->insert_id();
-                    $this->model->insertData('inventory',array('product_id' => $last_id,'qty' => $product_array['qty'],'supplier_id' => $product_array['supplier_id'],'created_at'=>date('Y-m-d H:i:s'),'status'=>'1'));
+                
+                    $this->model->insertData('inventory',array('product_id' => $last_id, 'add_qty' => $product_array['qty'], 'qty' => $product_array['qty'], 'date' => date('m/d/Y'),'used_status'=>1));
                     $countfiles = count($_FILES['image_files']['name']);
                     for ($i = 0;$i < $countfiles;$i++) {
                         if (!empty($_FILES['image_files']['name'][$i])) {
@@ -589,12 +590,12 @@ class Admin extends CI_Controller {
         $data['product_data'] = $this->model->getData('product', array('product_id' => $product_array['product_id']));
         if($data['product_data'][0]['qty'] != $product_array['qty'])
         {
-            $inventory=$this->model->selectWhereData('inventory',array('product_id' => $product_array['product_id'],'supplier_id' => $product_array['supplier_id'],'status'=>'1'),array('qty','id'));
+            $inventory=$this->model->selectWhereData('inventory',array('product_id' => $product_array['product_id'],'supplier_id' => $product_array['supplier_id'],'user_status'=>'1'),array('qty','id'));
             $new_qty=$inventory['qty']+ $product_array['qty'];
             
-            if($this->model->updateData('inventory',array('modified_at'=>date('Y-m-d H:i:s'),'status'=>'0'),array('id'=>$inventory['id'])))
+            if($this->model->updateData('inventory',array('modified_at'=>date('m/d/Y'),'used_status'=>0),array('id'=>$inventory['id'])))
             {
-                $this->model->insertData('inventory',array('qty'=>$new_qty,'product_id' => $product_array['product_id'],'supplier_id' => $product_array['supplier_id'],'created_at'=>date('Y-m-d H:i:s'),'status'=>'1'));
+                $this->model->insertData('inventory',array('qty'=>$new_qty,'add_qty'=>$new_qty,'product_id' => $product_array['product_id'],'supplier_id' => $product_array['supplier_id'],'created_at'=>date('m/d/Y'),'used_status'=>1));
             }
         }   
         if($data['product_data'][0]['qty'] != $product_array['qty'])
@@ -1207,6 +1208,21 @@ class Admin extends CI_Controller {
         $response= $this->model->insertData('tbl_order_status',$curl_data);
         $response['status']="success";
         echo json_encode($response);
+    }
+
+    public function inventory()
+    {
+        $this->load->view('admin/inventory');
+    }
+
+    public function display_inventory_data()
+    {
+         $this->load->model('superadmin_model');
+         $inventory_data = $this->superadmin_model->display_inventory_data();
+         // echo '<pre>'; print_r($inventory_data); exit;
+         $data['data'] = $inventory_data;
+
+         echo json_encode($data);
     }
 }
 ?>

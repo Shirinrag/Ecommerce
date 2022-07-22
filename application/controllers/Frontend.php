@@ -13,7 +13,7 @@ class Frontend extends CI_Controller {
 		$data['product_data'] = $curl['product_data'];
 		$data['popular'] = $curl['popular'];
         $data['featured'] = $curl['featured'];
-		$data['best_selling'] = $curl['best_selling'];
+		$data['best_selling'] = @$curl['best_selling'];
 		
 		$this->load->view('frontend/home',$data);
 	}

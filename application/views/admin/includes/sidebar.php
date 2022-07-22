@@ -69,6 +69,10 @@ select.form-group-sm .form-control {
         <a href="<?php echo base_url();?>Admin/Order_history"><span class="fa fa-desktop"></span> <span
                 class="xn-text">Order History</span></a>
     </li>
+     <li class="xn-openable">
+        <a href="<?php echo base_url();?>Admin/inventory"><span class="fa fa-desktop"></span> <span
+                class="xn-text">Inventory</span></a>
+    </li>
 
    
 
