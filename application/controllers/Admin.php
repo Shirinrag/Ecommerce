@@ -1179,14 +1179,34 @@ class Admin extends CI_Controller {
     {
          $this->load->model('superadmin_model');
          $order_data = $this->superadmin_model->Order_details();
-         echo '<pre>'; print_r($order_data); exit;
-        $this->load->view('admin/Order_history');
+         $data['order_data'] = $order_data;
+
+        $this->load->view('admin/Order_history',$data);
     }
 
-    public function display_all_order_datatable()
+    public function Order_details()
     {
+         $id = $_GET['id'];
+         $this->load->model('superadmin_model');
+         $order_data = $this->superadmin_model->order_history_on_order_id($id);
+         $order_status = $this->model->selectWhereData('tbl_order_status_master',array(),array('id','order_status'),false);
+         $data['order_data'] = $order_data;
+         $data['order_status'] = $order_status;  
+        $this->load->view('admin/Order_details',$data);
+    }
 
+    public function update_order_status()
+    {
+        $id= $this->input->post('id');
+        $order_id= $this->input->post('order_id');      
 
+        $curl_data = array(
+            'fk_order_id' =>$order_id,
+            'status' => $id
+        );
+        $response= $this->model->insertData('tbl_order_status',$curl_data);
+        $response['status']="success";
+        echo json_encode($response);
     }
 }
 ?>
