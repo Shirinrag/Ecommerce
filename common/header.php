@@ -334,7 +334,7 @@
                                         <?php if ($user_id != "") {?>
                                         <li><a href="<?php echo base_url(); ?>Frontend/my_account"
                                                 class="dropdown-item">My Account</a></li>
-                                        <li><a href="<?php echo base_url(); ?>Frontend/orders" class="dropdown-item">My
+                                        <li><a href="<?php echo base_url(); ?>Frontend/orderhistory" class="dropdown-item">My
                                                 Orders</a></li>
                                         <?php } ?>
                                     </ul>
@@ -791,7 +791,7 @@
                                         <?php if ($user_id != "") {?>
                                         <li><a href="<?php echo base_url(); ?>Frontend/my_account"
                                                 class="dropdown-item">My Account</a></li>
-                                        <li><a href="<?php echo base_url(); ?>Frontend/orders" class="dropdown-item">My
+                                        <li><a href="<?php echo base_url(); ?>Frontend/orderhistory" class="dropdown-item">My
                                                 Orders</a></li>
                                         <?php } ?>
                                     </ul>
