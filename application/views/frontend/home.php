@@ -10,14 +10,14 @@
     body {
         font-family: 'Roboto', sans-serif
     }
-    .owl-carousel .owl-stage {
+    /* .owl-carousel .owl-stage {
       display: flex;
     }
 
    .owl-carousel .owl-item img {
       width: auto;
       height: 100%;
-    }
+    } */
     </style>
 </head>
 
@@ -59,8 +59,8 @@
                     <!---populars -->
                     <div class="slider-brands col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <h3 class="modtitle"><span style="font-size:30px;"><strong>Populars</strong></span></h3>
-                        <div class="related titleLine products-list grid module ">
-                            <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes"
+                        <div class="titleLine products-list grid module ">
+                            <div class="yt-content-slider products-list" data-rtl="no" data-loop="yes"
                                 data-autoplay="no" data-autoheight="no" data-autowidth="no" data-delay="4"
                                 data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="3"
                                 data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes"
@@ -118,8 +118,8 @@
                     <!---Featured -->
                     <div class="slider-brands col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <h3 class="modtitle"><span style="font-size:30px;"><strong>Featured</strong></span></h3>
-                        <div class="related titleLine products-list grid module ">
-                            <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes"
+                        <div class="titleLine products-list grid module ">
+                            <div class="yt-content-slider products-list" data-rtl="no" data-loop="yes"
                                 data-autoplay="no" data-autoheight="no" data-autowidth="no" data-delay="4"
                                 data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="3"
                                 data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes"
@@ -177,8 +177,8 @@
                     <!---Best Selligs -->
                     <div class="slider-brands col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <h3 class="modtitle"><span style="font-size:30px;"><strong>Best Sellings</strong></span></h3>
-                        <div class="related titleLine products-list grid module ">
-                            <div class="releate-products yt-content-slider products-list" data-rtl="no" data-loop="yes"
+                        <div class="titleLine products-list grid module ">
+                            <div class="yt-content-slider products-list" data-rtl="no" data-loop="yes"
                                 data-autoplay="no" data-autoheight="no" data-autowidth="no" data-delay="4"
                                 data-speed="0.6" data-margin="30" data-items_column0="5" data-items_column1="3"
                                 data-items_column2="3" data-items_column3="2" data-items_column4="1" data-arrows="yes"

@@ -836,7 +836,7 @@
                             <?php echo form_open('Frontend/search_data', array('id' => 'search_form')) ?>
                             <div id="search0" class="search input-group form-group">
                                 <input class="autosearch-input form-control" type="text" size="50" autocomplete="on"
-                                    placeholder="Keyword here..." id="autouser11" value="" name="search">
+                                    placeholder="Keyword here..." id="autouser11" value="" name="search" dir="rtl">
                                 <span class="input-group-btn">
                                     <button type="submit" class="button-search btn btn-primary"><i
                                             class="fa fa-search"></i></button>

@@ -888,3 +888,12 @@ a.ui-button:active,
 .box-info-product-rev{
     margin-left: 60px;
 }
+.slider-brands .owl2-controls .owl2-nav .owl2-prev {
+    background-color: #fd7e14 !important;
+}
+
+.slider-brands .owl2-controls .owl2-nav .owl2-next.owl2-next {
+    margin-left: 5px;
+    background-color: #fd7e14 !important;
+}
+

@@ -43,10 +43,13 @@
 .title-product-reverse{
     float: right !important; 
 }
+.title-product-flipleft{
+    float: left !important; 
+}
 .description-rev{
     float:right !important;text-align:right !important;
 }
-.desc1 .desc2{
+.textright{
     text-align:right !important;
 }
 .lockicon{
