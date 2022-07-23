@@ -48,8 +48,8 @@
             <!-- START BREADCRUMB -->
             <ul class="breadcrumb">
                <li><a href="#">Home</a></li>
-               <li><a href="#">Supplier</a></li>
-               <li class="active">Add Supplier</li>
+               <li><a href="#">Vendor</a></li>
+               <li class="active">Add Vendor</li>
             </ul>
             <!-- END BREADCRUMB -->
             <!-- PAGE TITLE -->
@@ -62,8 +62,8 @@
 
 		            <form id="basicForm" method="post" enctype="multipart/form-data" class="form-horizontal" action="<?php echo base_url();?>Admin/submit_supplier_form" novalidate="novalidate" onsubmit="return validate_add_supplier(this);">
 			            <div class="panel-heading nopaddingbottom">
-			            	<h4 class="panel-title">Add New Supplier</h4>
-			            	<button class="btn btn-success btn-quirk btn-wide mr5" style="float: right;margin-top: 2px;">ADD Supplier</button>
+			            	<h4 class="panel-title">Add New Vendor</h4>
+			            	<button class="btn btn-success btn-quirk btn-wide mr5" style="float: right;margin-top: 2px;">ADD Vendor</button>
 			            </div>
 		              	<div class="panel-body">
 			                <hr>

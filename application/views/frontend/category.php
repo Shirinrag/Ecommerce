@@ -107,7 +107,7 @@
                      <!-- //end Filters -->
                      <!--changed listings-->
                      <div class="products-list row nopadding-xs so-filter-gird">
-                        <?php if(count($product_data) > 0) {?>
+                        <?php if(!empty($product_data)) {?>
                         <?php   foreach($product_data as $key => $value){ ?>                 
                         <div class="product-layout col-lg-15 col-md-4 col-sm-6 col-xs-12">
                            <div class="product-item-container">

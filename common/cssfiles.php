@@ -4,7 +4,7 @@
     <!-- Mobile specific metas
         ============================================ -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="shortcut icon" type="image/png" href="<?php echo base_url();?>assets_frontend/ico/favicon-16x16.png"/>
+    <link rel="shortcut icon" type="image/png" href="<?php echo base_url();?>assets_frontend/image/logo.png"/>
 
    
     <!-- Libs CSS

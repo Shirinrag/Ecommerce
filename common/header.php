@@ -275,13 +275,13 @@
                                        <strong>Accessories</strong>
                                        </a> -->
                                                 </li>
-                                                <li class="">
+                                                <!-- <li class="">
                                                     <p class="close-menu"></p>
                                                     <a href="<?php echo base_url(); ?>Blog" class="clearfix">
                                                         <strong>Blog</strong>
                                                         <span class="label"></span>
                                                     </a>
-                                                </li>
+                                                </li> -->
                                             </ul>
                                         </div>
                                     </div>
