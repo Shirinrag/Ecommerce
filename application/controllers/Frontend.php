@@ -81,10 +81,13 @@ class Frontend extends CI_Controller {
                     $response['message']=$curl['message'];
                     $response['url']= base_url().'Frontend/verify_otp?contact_no="' . base64_encode($curl['contact_no']) . '"';
                 } else {
+                    if ($curl['error_status'] == 'Email') {
+                            $error = 'email';
+                        } else {
+                            $error = 'contact_no';
+                        }
                     $response['status'] = 'failure';
-                    $response['error'] = array(
-                     'contact_no' => $curl['message'], 
-                    );
+                    $response['error'] = array($error => $curl['message'],);
                 }
             } 
         echo json_encode($response);
