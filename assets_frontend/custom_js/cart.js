@@ -171,3 +171,31 @@ $('#PaymentModeForm').submit(function(e) {
         }
     });
 });
+
+$(document).on('click', '.fk_address_id', function() {
+    var row_id = $(this).val();
+    $.ajax({
+        url: bases_url + "Frontend/get_rate_on_address_id",
+        method: "POST",
+        data: {
+            address_id: row_id
+        },
+        dataType:'json',
+        success: function(data) {
+            console.log(data);
+
+            $('#delivery_charge').html(data.rate);
+            $('#delivery_charge1').val(data.rate);
+            $('#grand_total').html(data.total);
+            $('#grand_total1').val(data.total);
+            // var productdata = $.parseJSON(data);
+            // if (productdata['status'] == 'success') {
+            //     wishlist.add(productdata['message']);
+            //     location.reload();
+            // } else if (productdata['status'] == 'failed') {
+            //     wishlist.add(productdata['message']);
+            //     location.reload();
+            // }
+        }
+    });
+});
