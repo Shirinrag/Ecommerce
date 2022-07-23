@@ -2,7 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ini_set("memory_limit", "-1");
 class Frontend extends CI_Controller {
-
+    public function set_session_data()
+    {
+        $id = $this->input->post('new_value');
+        $curl_data = array('lang_id'=>$id);     
+        $this->session->set_userdata('logged_in', @$curl_data);
+        $session_data = $this->session->userdata('logged_in');
+        echo json_encode($curl_data);
+    }
 	public function index()
 	{
 		$session_data = $this->session->userdata('logged_in');
@@ -18,14 +25,7 @@ class Frontend extends CI_Controller {
 		$this->load->view('frontend/home',$data);
 	}
 
-	public function set_session_data()
-	{
-		$id = $this->input->post('new_value');
-		$curl_data = array('lang_id'=>$id);		
-		$this->session->set_userdata('logged_in', @$curl_data);
-        $session_data = $this->session->userdata('logged_in');
-		echo json_encode($curl_data);
-	}
+	
 
     public function get_search_data()
     {
@@ -81,10 +81,13 @@ class Frontend extends CI_Controller {
                     $response['message']=$curl['message'];
                     $response['url']= base_url().'Frontend/verify_otp?contact_no="' . base64_encode($curl['contact_no']) . '"';
                 } else {
+                    if ($curl['error_status'] == 'Email') {
+                            $error = 'email';
+                        } else {
+                            $error = 'contact_no';
+                        }
                     $response['status'] = 'failure';
-                    $response['error'] = array(
-                     'contact_no' => $curl['message'], 
-                    );
+                    $response['error'] = array($error => $curl['message'],);
                 }
             } 
         echo json_encode($response);
@@ -378,10 +381,12 @@ class Frontend extends CI_Controller {
             $total = $_POST['total'];
             $sub_total = $_POST['sub_total'];
             $grand_total = $_POST['grand_total'];
+            $tax = $_POST['tax'];
             $fk_lang_id = $session_data['lang_id'];
 
             $curldata=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id,'fk_product_id'=>json_encode($fk_product_id),'order_id'=>$order_id,'fk_address_id'=>$fk_address_id,
-            'quantity'=>json_encode($quantity),'unit_price'=>json_encode($unit_price),'total'=>json_encode($total),'sub_total'=>$sub_total,'grand_total'=>$grand_total);
+            'quantity'=>json_encode($quantity),'unit_price'=>json_encode($unit_price),'total'=>json_encode($total),'sub_total'=>$sub_total,'grand_total'=>$grand_total,'tax'=>$tax);
+            // echo '<pre>'; print_r($curldata); exit;
              $curl=$this->link->hits('add-payment-data',$curldata); 
              
              $curl1=json_decode($curl,true);
@@ -754,6 +759,7 @@ class Frontend extends CI_Controller {
 
     public function save_rating()
     {
+
         $user_id=$this->session->userdata('user_logged_in')['op_user_id']; 
         if($user_id != '')
         {
@@ -774,7 +780,22 @@ class Frontend extends CI_Controller {
         } 
         else{
             redirect(base_url().'Frontend');
-        }
-       
+        }      
+    }
+
+    public function get_rate_on_address_id()
+    {
+       $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
+        $session_data = $this->session->userdata('logged_in');
+        $fk_lang_id = $session_data['lang_id'];
+        $address_id = $this->input->post('address_id');
+        $curl_data=array('user_id'=>$user_id,'fk_lang_id'=>$fk_lang_id,'address_id'=>$address_id);
+        $curl=$this->link->hits('get-delivery-charges-on-address-id',$curl_data); 
+        
+        $curl=json_decode($curl,true);
+        
+        $response['rate'] = $curl['rate'];
+        $response['total'] = $curl['total'];
+        echo json_encode($response);
     }
 }

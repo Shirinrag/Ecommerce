@@ -113,7 +113,7 @@
                                             <?php  foreach($user_address as $key =>$values) {?>
                                             <div class="radio">
                                                 <label>
-                                                <input type="radio" name="fk_address_id" value="<?php echo $values['id']; ?>"><?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label><a  style="float:right;" class="btn edit_address" id="<?php echo $values['id']; ?>" data-toggle="modal" data-target=".edit_address_model"><i class="fa fa-edit"></i></a>
+                                                <input type="radio" class="fk_address_id" name="fk_address_id" value="<?php echo $values['id']; ?>"><?php echo 'Room No: '.$values['roomno'].','.$values['building'].','.$values['street'].','.$values['zone']; ?></label><a  style="float:right;" class="btn edit_address" id="<?php echo $values['id']; ?>" data-toggle="modal" data-target=".edit_address_model"><i class="fa fa-edit"></i></a>
 								            </div>
                                             <?php } ?>
                                         </div>
@@ -156,8 +156,8 @@
                                                         value="<?=$cart_data_row['product_offer_price']?>"
                                                         name="unit_price[]">
                                                     <input type="hidden" value="<?=$cart_total?>" name="sub_total">
-                                                    <input type="hidden" value="" name="tax">
-                                                    <input type="hidden" value="<?=$cart_total?>" name="grand_total">
+                                                   
+                                                    <input type="hidden" value="<?=$cart_total?>" name="grand_total" id="grand_total1">
 
                                                     <td class="text-center"><a href="product.html"><img width="70px"
                                                                 src="<?=$cart_data_row['image_name']?>"
@@ -167,24 +167,7 @@
                                                     <td class="text-left"><a
                                                             href="product.html"><?=$cart_data_row['product_name']?></a><br />
                                                     </td>
-                                                    <!--<td class="text-left" width="200px">
-                           
-                                
-                                  <div class="option quantity">
-  
-                                       <div class="num-block skin-2">
-                                         <div class="num-in">
-                                           <span class="minus dis" id="<?= $cart_data_row['cart_id']?>" onClick="decrement_quantity(<?= $cart_data_row['cart_id']?>, '<?=$cart_data_row['product_offer_price']?>','<?=$cart_data_row['product_id']?>')"></span>
-                                           <input type="text"  id="input-quantity-<?= $cart_data_row['cart_id']?>" value="<?= $cart_data_row['cart_qty']?>" class="in-num" value="<?= $cart_data_row['cart_qty']?>" readonly>
-                                           <span class="plus" id="<?= $cart_data_row['cart_id']?>" onClick="increment_quantity(<?= $cart_data_row['cart_id']?>, '<?=$cart_data_row['product_offer_price']?>','<?=$cart_data_row['product_id']?>')"></span>
-                                         </div>
-                                       </div>
-  
-                                       <div class="cart-item-container">
-                                       <p class="text-center" id="message_<?= $cart_data_row['cart_id']?>" style="font-size:12px;color:red;"></p>
-                                 </div> 
-                             
-                              </td>-->
+                                                   
                                                     <td class="text-right">$ <?=$cart_data_row['product_offer_price']?>
                                                     </td>
                                                     <td class="text-right"
@@ -204,12 +187,20 @@
                                                         <td class="text-right" id="subtotal">$
                                                             <?php echo $cart_total; ?></td>
                                                     </tr>
+                                                    <tr>
+                                                        <td class="text-right" colspan="3">
+                                                            <strong>Delivery Charges:</strong>
+                                                        </td>
+                                                        <td class="text-right" ><span id="delivery_charge">$
+                                                            <?php echo 0; ?></span></td>
+                                                             <input type="hidden" name="tax" id="delivery_charge1">
+                                                    </tr>
 
                                                     <tr>
                                                         <td class="text-right" colspan="3">
                                                             <strong>Total:</strong>
                                                         </td>
-                                                        <td class="text-right" id="subtotal">$
+                                                        <td class="text-right" id="grand_total">$
                                                             <?php echo $cart_total; ?></td>
                                                     </tr>
                                                 </tbody>

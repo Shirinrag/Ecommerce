@@ -2,7 +2,6 @@
    $curl=$this->link->hits('get-language',array(),'',0,'',0);
    $curl = json_decode($curl,true);
    $lang_name = $curl['lang_name'];
-   
    $session_data = $this->session->userdata('logged_in');
    $user_id=$this->session->userdata('user_logged_in')['op_user_id'];  
    $curl_data = array('fk_lang_id' =>$session_data['lang_id'],'user_id'=>$user_id);
@@ -18,11 +17,9 @@
    $cart_data=$curls_data['cart_data'];
    $cart_total_sum=$curls_data['cartPrice'];
    $cart_total=$curls_data['sub_total'];
-
-   //  echo "<pre>";
-   //  print_r($cart_data);die();
+  if($session_data['lang_id']==1){   
    ?>
-<?php if($session_data['lang_id'] == 1){ ?>
+
     <header id="header" class=" typeheader-1">
     <!-- Header Top -->
     <div class="header-top hidden-compact">
@@ -57,7 +54,7 @@
                                         }
                                         $selected = "";
                                         
-                                        foreach ($lang_name as $lang_name_key => $lang_name_row) {                                            
+                                        foreach ($lang_name as $lang_name_key => $lang_name_row) {   
                                              if($lang_name_row['id'] == $selected_id){ 
                                                 $selected="selected";
                                              }else{
