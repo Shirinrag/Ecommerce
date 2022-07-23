@@ -2,7 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ini_set("memory_limit", "-1");
 class Frontend extends CI_Controller {
-
+    public function set_session_data()
+    {
+        $id = $this->input->post('new_value');
+        $curl_data = array('lang_id'=>$id);     
+        $this->session->set_userdata('logged_in', @$curl_data);
+        $session_data = $this->session->userdata('logged_in');
+        echo json_encode($curl_data);
+    }
 	public function index()
 	{
 		$session_data = $this->session->userdata('logged_in');
@@ -18,14 +25,7 @@ class Frontend extends CI_Controller {
 		$this->load->view('frontend/home',$data);
 	}
 
-	public function set_session_data()
-	{
-		$id = $this->input->post('new_value');
-		$curl_data = array('lang_id'=>$id);		
-		$this->session->set_userdata('logged_in', @$curl_data);
-        $session_data = $this->session->userdata('logged_in');
-		echo json_encode($curl_data);
-	}
+	
 
     public function get_search_data()
     {

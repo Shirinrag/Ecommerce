@@ -18,11 +18,14 @@
    $cart_data=$curls_data['cart_data'];
    $cart_total_sum=$curls_data['cartPrice'];
    $cart_total=$curls_data['sub_total'];
-
-   //  echo "<pre>";
-   //  print_r($cart_data);die();
+   if(!empty(@$session_data['lang_id']))
+    {
+        $selected_id = $session_data['lang_id'];
+    } else {
+        $selected_id = 1;
+    }
    ?>
-<?php if($session_data['lang_id'] == 1){ ?>
+<?php if($selected_id==1){ ?>
     <header id="header" class=" typeheader-1">
     <!-- Header Top -->
     <div class="header-top hidden-compact">
